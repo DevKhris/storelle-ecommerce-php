@@ -10,14 +10,11 @@
     ],
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
-
-        },
-        "files": [
-            "config/dbConnection.php"
-        ]
+            "App\\": "src/",
+            "App\\Config\\": "config/"
+        }
     },
     "require": {
-
+      "ext-mysqli": "*"
     }
 }

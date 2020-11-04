@@ -2,12 +2,11 @@
 
 namespace App\Products;
 
-global $conn;
-
 class Products
 {
     public function getProducts($id)
     {
+        global $conn;
         // Gets the product id
         $productId = $_GET['id'];
         // Query to get Id from products table
@@ -20,4 +19,3 @@ class Products
         return $product;
     }
 }
-?>

@@ -2,8 +2,6 @@
 
 namespace App\Views;
 
-use App\Products\Products;
-
 $products = [];
 
 

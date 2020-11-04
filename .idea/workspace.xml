@@ -24,7 +24,20 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/index.php" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\storelle\src\Models" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/index.php">
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -34,7 +47,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1604453114721</updated>
-      <workItem from="1604453116156" duration="2199000" />
+      <workItem from="1604453116156" duration="6642000" />
     </task>
     <servers />
   </component>
@@ -46,13 +59,27 @@
       <screen x="1360" y="0" width="1360" height="740" />
     </state>
     <state x="1360" y="223" key="#SQL_Dialects/1360.0.1360.740/0.0.1360.740@1360.0.1360.740" timestamp="1604453473536" />
-    <state x="1635" y="44" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604453492019">
+    <state x="197" y="22" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604459422865">
+      <screen x="0" y="0" width="1360" height="740" />
+    </state>
+    <state x="197" y="22" key="#com.intellij.execution.impl.EditConfigurationsDialog/1360.0.1360.740/0.0.1360.740@0.0.1360.740" timestamp="1604459422865" />
+    <state x="1635" y="44" key="#com.intellij.execution.impl.EditConfigurationsDialog/1360.0.1360.740/0.0.1360.740@1360.0.1360.740" timestamp="1604453492019" />
+    <state x="1690" y="177" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604455974964">
       <screen x="1360" y="0" width="1360" height="740" />
     </state>
-    <state x="1635" y="44" key="#com.intellij.execution.impl.EditConfigurationsDialog/1360.0.1360.740/0.0.1360.740@1360.0.1360.740" timestamp="1604453492019" />
+    <state x="1690" y="177" key="#com.intellij.fileTypes.FileTypeChooser/1360.0.1360.740/0.0.1360.740@1360.0.1360.740" timestamp="1604455974964" />
     <state x="488" y="88" key="#com.intellij.ide.util.MemberChooser" timestamp="1604453816859">
       <screen x="0" y="0" width="1360" height="740" />
     </state>
     <state x="488" y="88" key="#com.intellij.ide.util.MemberChooser/1360.0.1360.740/0.0.1360.740@0.0.1360.740" timestamp="1604453816859" />
+    <state x="1793" y="216" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1604459882683">
+      <screen x="1360" y="0" width="1360" height="740" />
+    </state>
+    <state x="433" y="216" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/1360.0.1360.740/0.0.1360.740@0.0.1360.740" timestamp="1604459177338" />
+    <state x="1793" y="216" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/1360.0.1360.740/0.0.1360.740@1360.0.1360.740" timestamp="1604459882683" />
+    <state x="522" y="122" key="FileChooserDialogImpl" timestamp="1604459417618">
+      <screen x="0" y="0" width="1360" height="740" />
+    </state>
+    <state x="522" y="122" key="FileChooserDialogImpl/1360.0.1360.740/0.0.1360.740@0.0.1360.740" timestamp="1604459417618" />
   </component>
 </project>

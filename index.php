@@ -1,5 +1,12 @@
 <?php
+
 require_once 'vendor/autoload.php';
+
+use App\Config;
+$conn = \DbConnection::dbConnect();
+
+session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
