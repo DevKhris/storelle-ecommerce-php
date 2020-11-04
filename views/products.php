@@ -12,7 +12,7 @@ $products = [];
 	</div>
 	<div class="col-sm-2">
 		<div class="card product text-center">
-			<img src="res/products/apple.jpg" class="card-img-top" alt="Product Image">
+			<img src="<../res/products/apple.jpg" class="card-img-top" alt="Product Image">
 			<div class="card-body">
 				<h5 class="card-title">Apple</h5>
 				<p class="card-text">0.3$</p>

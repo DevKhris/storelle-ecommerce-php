@@ -1,4 +1,5 @@
-        <div class="row text-light">
+<footer class="container-fluid bg-black position-relative fixed-bottom">
+<div class="row text-light">
             <div class="col-sm-4">
                 <img src="../res/logo.png" alt="" class="img-fluid">
                 <p class="text-center text-muted pb-5">&copy; <a class="text-decoration-none text-white" href="index.php">Storelle</a> 2020 | Developed by DevKhris</p>
@@ -32,4 +33,4 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js" integrity="sha384-5h4UG+6GOuV9qXh6HqOLwZMY4mnLPraeTrjT5v07o347pj6IkfuoASuGBhfDsp3d" crossorigin="anonymous"></script>
         <!-- Font Awesome -->
         <script src="https://kit.fontawesome.com/9599829622.js" crossorigin="anonymous"></script>
- 
+</footer>

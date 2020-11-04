@@ -15,16 +15,16 @@ class DbConnection
         // save the connection to var
         $conn = new \mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
         // Test if the connection fails
-        if ($conn->connect_errno)
-        {
-        // displays a message showing the error.
-        //echo "Can't connect to database.";
-        // closes
-        exit;
-        } else {
-        // display a message when connection is successful
-        echo "Connected to Database";
+        if ($conn->connect_errno) {
+            // displays a message showing the error.
+            //echo "Can't connect to database.";
+            // closes
+            exit;
         }
+        //  else {
+        // display a message when connection is successful
+        // echo "Connected to Database";
+        // }
 
         // Set physical path
         define('ROOT_PATH', realpath(dirname(__FILE__)));

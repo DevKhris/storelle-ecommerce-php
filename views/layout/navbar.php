@@ -24,11 +24,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarToggler">
       <a class="navbar-brand" href="#">
-        <img src="../res/logo.png" alt="Storelle" class="d-inline-block align-top" width="128" height="64">
+        <img src="../../res/logo.png" alt="Storelle" class="d-inline-block align-top" width="128" height="64">
       </a>
       <ul class="navbar-nav mr-auto font-weight-bold">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="home">Home</a>
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="products">Products</a>

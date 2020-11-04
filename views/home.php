@@ -1,13 +1,13 @@
 <div id="carouselShopFade" class="carousel slide carousel-fade" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="https://picsum.photos/1300/500" class="d-block" alt="...">
+      <img class="img-fluid" src="https://picsum.photos/1400/500" class="d-block" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="https://picsum.photos/1300/500" class="d-block" alt="...">
+      <img src="https://picsum.photos/1400/500" class="d-block" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="https://picsum.photos/1300/500" class="d-block" alt="...">
+      <img src="https://picsum.photos/1400/500" class="d-block" alt="...">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselShopFade" role="button" data-slide="prev">
@@ -20,5 +20,5 @@
   </a>
 </div>
 <?php
-    require_once 'views/products.php';
+  require_once 'products.php';
 ?>

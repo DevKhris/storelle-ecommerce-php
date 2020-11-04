@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use App;
+use App\Application;
 use App\Core\Request;
 
 /**
@@ -52,7 +54,6 @@ class Router
 
         if ($callback === false) {
             return "Error 404 | Not Found";
-
         }
 
         if(is_string($callback)){
@@ -63,6 +64,23 @@ class Router
 
     public function renderView($view)
     {
-        include_once __DIR__ . "\\..\\..\\views\\$view.php";
+        $displayContent = $this->displayContent();
+        $viewContent = $this->renderOneView($view);
+        return str_replace('{{display}}', $viewContent, $displayContent);
+        include_once Application::$appPath ."/views/$view.php";
+    }
+
+    protected function displayContent()
+    {
+        \ob_start();
+        include_once Application::$appPath ."/views/layout/main.php";
+        return \ob_get_clean();
+    }
+
+    protected function renderOneView($view)
+    {
+        \ob_start();
+        include_once Application::$appPath ."/views/$view.php";
+        return \ob_get_clean();
     }
 }

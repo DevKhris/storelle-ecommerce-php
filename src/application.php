@@ -16,12 +16,18 @@ use App\Core\Response;
 
 class Application
 {
+    public static string $appPath;
     public Router $router;
     public Request $req;
     public Response $res;
-
-    public function __construct()
+    /**
+     * contructor function
+     *
+     * @param [type] $appPath param of application path
+     */
+    public function __construct($appPath)
     {
+        self::$appPath = $appPath;
         $this->req = new Request();
         $this->router = new Router($this->req);
     }
