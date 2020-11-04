@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use App\Core\Request;
+
 /**
  * Class Router
  * 
@@ -21,7 +22,7 @@ class Router
     public function __construct(Request $req)
     {
 
-        $this->routes = $routes;
+        $this->req = $req;
     }
 
     /**
@@ -31,22 +32,27 @@ class Router
      * @param [type] $callback
      * @return void
      */
-
     public function get($path, $callback)
     {
-        // get's the path and assigns its callback
+        // get's the path route and returns it's callback
         $this->routes['get'][$path] = $callback;
     }
 
+    /**
+     * Resolve function
+     *
+     * @return void
+     */
     public function resolve()
     {
-        $path->$this->req->getPath();
+        $path = $this->req->getPath();
+        $method = $this->req->getMethod();
     }
 
-    public static function Route()
-    {
-        $this->request->getPath()
-        $this->routes = [] = isset($_GET['p']) ? strtolower($_GET['p']) : "home";
-        include_once __DIR__ . '\views\\' . $page . '.php';
-    }
+    // public static function Route()
+    // {
+    //     $this->request->getPath()
+    //     $this->routes = [] = isset($_GET['p']) ? strtolower($_GET['p']) : "home";
+    //     include_once __DIR__ . '\views\\' . $page . '.php';
+    // }
 }

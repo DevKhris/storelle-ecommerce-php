@@ -2,6 +2,9 @@
 
 namespace App\Cart;
 
-class addToCart
+class ShoppingCart
+{
+
+}
 
 ?>
