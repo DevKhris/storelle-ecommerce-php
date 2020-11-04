@@ -3,5 +3,4 @@ namespace App;
 
 class App
 {
-
 }

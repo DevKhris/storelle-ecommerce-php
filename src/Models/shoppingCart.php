@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-class ShoppingCart 
+class ShoppingCart
 {
-	public $products = [];
+    public $products = [];
 
     /**
      * ShoppingCart constructor.
@@ -14,5 +14,4 @@ class ShoppingCart
     {
         $this->products = $products;
     }
-
 }

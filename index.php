@@ -1,9 +1,12 @@
 <?php
 
+use App\Config\DbConnection;
+use App\Router;
+
 require_once 'vendor/autoload.php';
 
-use App\Config;
-$conn = \DbConnection::dbConnect();
+$conn = DbConnection::dbConnect();
+$router new Router;
 
 session_start();
 
@@ -26,10 +29,7 @@ session_start();
          ?>
       </header>
       <main class="container-fluid">
-         <?php
-         $page = isset($_GET['p']) ? strtolower($_GET['p']) : "home";
-         require_once __DIR__ . '\views\\' . $page . '.php';
-         ?>
+
       </main>
       <footer class="container-fluid bg-black position-absolute">
          <div class="row text-light">

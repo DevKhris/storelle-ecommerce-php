@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="04ef745a-5012-419e-b351-e104357ae8d3" name="Default Changelist" comment="" />
+    <list default="true" id="04ef745a-5012-419e-b351-e104357ae8d3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/storelle.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/storelle.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -11,12 +17,16 @@
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/composer" />
     </include_path>
   </component>
   <component name="ProjectId" id="1jnwMK3ksyGUWconsHP8EBpSNSx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -27,6 +37,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/index.php" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalDependencies" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -47,7 +58,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1604453114721</updated>
-      <workItem from="1604453116156" duration="6642000" />
+      <workItem from="1604453116156" duration="7313000" />
     </task>
     <servers />
   </component>
@@ -77,9 +88,13 @@
     </state>
     <state x="433" y="216" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/1360.0.1360.740/0.0.1360.740@0.0.1360.740" timestamp="1604459177338" />
     <state x="1793" y="216" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/1360.0.1360.740/0.0.1360.740@1360.0.1360.740" timestamp="1604459882683" />
-    <state x="522" y="122" key="FileChooserDialogImpl" timestamp="1604459417618">
+    <state x="522" y="122" key="FileChooserDialogImpl" timestamp="1604460881835">
       <screen x="0" y="0" width="1360" height="740" />
     </state>
-    <state x="522" y="122" key="FileChooserDialogImpl/1360.0.1360.740/0.0.1360.740@0.0.1360.740" timestamp="1604459417618" />
+    <state x="522" y="122" key="FileChooserDialogImpl/1360.0.1360.740/0.0.1360.740@0.0.1360.740" timestamp="1604460881835" />
+    <state x="1457" y="8" key="SettingsEditor" timestamp="1604460914279">
+      <screen x="1360" y="0" width="1360" height="740" />
+    </state>
+    <state x="1457" y="8" key="SettingsEditor/1360.0.1360.740/0.0.1360.740@0.0.1360.740" timestamp="1604460914279" />
   </component>
 </project>

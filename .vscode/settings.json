@@ -1,0 +1,13 @@
+{
+    "namespaceResolver.showMessageOnStatusBar": true,
+    "namespaceResolver.sortAlphabetically": true,
+    "php.validate.executablePath": "c:/php/php.exe",
+    "php.executablePath": "c:/php/php.exe",
+    "intelephense.completion.fullyQualifyGlobalConstantsAndFunctions": true,
+    "intelephense.diagnostics.run": "onSave",
+    "intelephense.diagnostics.undefinedSymbols": false,
+    "intelephense.environment.documentRoot": "/.",
+    "intelephense.environment.includePaths": [
+        "/src"
+    ]
+}

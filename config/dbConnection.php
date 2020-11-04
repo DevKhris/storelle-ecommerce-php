@@ -10,7 +10,7 @@ define('DB_NAME','storelle');
 
 class DbConnection
 {
-    function dbConnect()
+    public static function dbConnect()
     {
         // save the connection to var
         $conn = new \mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
