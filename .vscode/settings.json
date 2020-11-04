@@ -8,6 +8,8 @@
     "intelephense.diagnostics.undefinedSymbols": false,
     "intelephense.environment.documentRoot": "/.",
     "intelephense.environment.includePaths": [
-        "/src"
+        "/src",
+        "/config",
+        "/views"
     ]
 }

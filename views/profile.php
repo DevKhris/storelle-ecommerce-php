@@ -14,6 +14,6 @@
 		</div>
 		<hr>
 		<h2>Transations</h2>
-		<?php require_once 'views/transactions.php'?>
+		<?php require_once '../views/transactions.php'?>
 	</div>
 </div>

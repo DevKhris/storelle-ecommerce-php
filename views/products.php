@@ -2,92 +2,29 @@
 
 namespace App\Views;
 
-$products = [];
 
+use App\Products\GetProducts;
+
+$products = GetProducts::getProducts();
 
 ?>
 <div class="row row-cols-sm-1 mt-5 mb-5">
-	<h2 class="h2 text-center pb-5">Featured products</h2>
-	<div class="col-sm-2">
-	</div>
-	<div class="col-sm-2">
-		<div class="card product text-center">
-			<img src="<../res/products/apple.jpg" class="card-img-top" alt="Product Image">
-			<div class="card-body">
-				<h5 class="card-title">Apple</h5>
-				<p class="card-text">0.3$</p>
-				<div class="rating mt-3 mb-3">
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star"></span>
-					<span class="fa fa-star"></span>
-				</div>
-				<a href="#" class="btn btn-product">Add to cart <i class="fa fa-shopping-cart"></i></a>
-			</div>
-		</div>
-	</div>
-	<div class="col-sm-2">
-		<div class="card product text-center">
-			<img src="res/products/beer.png" class="card-img-top" alt="Product Image">
-			<div class="card-body">
-				<h5 class="card-title">Beer</h5>
-				<p class="card-text">2$</p>
-				<div class="rating mt-3 mb-3">
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star"></span>
-					<span class="fa fa-star"></span>
-					<span class="fa fa-star"></span>
-				</div>
-				<a href="#" class="btn btn-product">Add to cart <i class="fa fa-shopping-cart"></i></a>
-			</div>
-		</div>
-	</div>
-	<div class="col-sm-2">
-		<div class="card product text-center">
-			<img src="res/products/waterbottle.png" class="card-img-top" alt="Product Image">
-			<div class="card-body">
-				<h5 class="card-title">Water</h5>
-				<p class="card-text">1$</p>
-				<div class="rating mt-3 mb-3">
-					<a class="text-decoration-none" href="">
-						<span class="fa fa-star checked"></span>
-					</a>
-					<a class="text-decoration-none" href="">
-						<span class="fa fa-star checked"></span>
-					</a>
-					<a class="text-decoration-none" href="">
-						<span class="fa fa-star checked"></span>
-					</a>
-					<a class="text-decoration-none" href="">
-						<span class="fa fa-star checked"></span>
-					</a>
-					<a class="text-decoration-none" href="">
-					<span class="fa fa-star checked"></span>
-					</a>
-			</div>
-			<a href="#" class="btn btn-product">Add to cart <i class="fa fa-shopping-cart"></i></a>
-		</div>
-	</div>
-</div>
-<div class="col-sm-2">
-	<div class="card product text-center">
-		<img src="res/products/cheese.png" class="card-img-top" alt="Product Image">
-		<div class="card-body">
-			<h5 class="card-title">Cheese</h5>
-			<p class="card-text">3.74$</p>
-			<div class="rating mt-3 mb-3">
-				<span class="fa fa-star checked"></span>
-				<span class="fa fa-star checked"></span>
-				<span class="fa fa-star checked"></span>
-				<span class="fa fa-star checked"></span>
-				<span class="fa fa-star"></span>
-			</div>
-			<a href="#" class="btn btn-product">Add to cart <i class="fa fa-shopping-cart"></i></a>
-		</div>
-	</div>
-</div>
+    <h2 class="h2 text-center pb-5">Featured products</h2>
+    <div class="col-sm-2">
+    </div>
+    <?php for ($i=0; $i < count($products); $i++) {?>
+        <div class="col-sm-2">
+            <a class="text-decoration-none" href="product?id=<?php echo $products[$i]['id']; ?>">
+                <div class="card product text-center">
+                    <img src="<?php echo $products[$i]['product_img'];?>" class="card-img-top" alt="<?php echo $products[$i]['product_img'];?>">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $products[$i]['product_name'];?></h5>
+                        <p class="card-text"><? echo $products[$i]['product_price'];?></p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    <?php }  ?>
 </div>
 <div class="col-sm-2">
 </div>

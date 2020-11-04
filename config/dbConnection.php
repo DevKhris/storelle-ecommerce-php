@@ -30,6 +30,8 @@ class DbConnection
         define('ROOT_PATH', realpath(dirname(__FILE__)));
         // Set base uri
         define('BASE_URL', 'http://localhost/storelle/');
+        
+        return $conn;
     }
 }
 

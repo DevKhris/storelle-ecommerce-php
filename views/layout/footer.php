@@ -1,4 +1,4 @@
-<footer class="container-fluid bg-black position-relative fixed-bottom">
+<footer class="container-fluid bg-black">
 <div class="row text-light">
             <div class="col-sm-4">
                 <img src="../res/logo.png" alt="" class="img-fluid">

@@ -23,7 +23,6 @@ class Router
     // constructor function
     public function __construct(Request $req)
     {
-
         $this->req = $req;
     }
 
@@ -53,7 +52,7 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
 
         if ($callback === false) {
-            return "Error 404 | Not Found";
+            return $this->renderView("404");
         }
 
         if(is_string($callback)){
@@ -67,6 +66,7 @@ class Router
         $displayContent = $this->displayContent();
         $viewContent = $this->renderOneView($view);
         return str_replace('{{display}}', $viewContent, $displayContent);
+   
         include_once Application::$appPath ."/views/$view.php";
     }
 

@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Products;
+namespace App\Model;
 
 abstract class BaseProduct
 {
-    $product_id;
-    $product_name;
-    $product_price;
-    $product_img;
-    $product_rating;
+    protected $productId;
+    protected $productName;
+    protected $productPrice;
+    protected $productImg;
+    protected $productRating;
 
-    public function get(){}
+    public function getProduct($productId){}
+    public function setProduct(){}
 }
 ?>

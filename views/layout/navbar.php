@@ -10,10 +10,10 @@
   </ul>
   <ul class="navbar-nav ml-auto pr-3 mb-2 mb-lg-0">
     <li class="nav-item">
-      <a class="nav-link" href="?p=profile">Balance: 100$</a>
+      <a class="nav-link" href="profile">Balance: 100$</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="?p=profile">Guest <i class="fa fa-user"></i></a>
+      <a class="nav-link" href="profile">Guest <i class="fa fa-user"></i></a>
     </li>
   </ul>
 </nav>
@@ -24,7 +24,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarToggler">
       <a class="navbar-brand" href="#">
-        <img src="../../res/logo.png" alt="Storelle" class="d-inline-block align-top" width="128" height="64">
+        <img src="res/logo.png" alt="Storelle" class="d-inline-block align-top" width="128" height="64">
       </a>
       <ul class="navbar-nav mr-auto font-weight-bold">
         <li class="nav-item">
@@ -37,10 +37,10 @@
           <a class="nav-link" href="shopping-cart">Shopping Cart</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="about">About Us</a>
+          <a class="nav-link" href="about">About Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="contact">Contact</a>
+          <a class="nav-link" href="contact">Contact</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto d-flex">

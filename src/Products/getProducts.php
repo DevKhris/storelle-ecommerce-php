@@ -2,20 +2,24 @@
 
 namespace App\Products;
 
-class Products
+use App\Model\BaseProduct;
+
+class GetProducts extends BaseProduct
 {
-    public function getProducts($id)
+    public $products = [];
+    public static function getProducts()
     {
         global $conn;
-        // Gets the product id
-        $productId = $_GET['id'];
-        // Query to get Id from products table
-        $sql = "SELECT * FROM products WHERE id='$productId'";
-        // Saves the result of the query
+
+        $sql = "SELECT * FROM products WHERE id";
+
         $result = mysqli_query($conn, $sql);
-        // Fetch result to product
-        $product = mysqli_fetch_assoc($result);
-        // Returns the product
-        return $product;
+
+        while($row = \mysqli_fetch_array($result, MYSQLI_ASSOC))
+        {
+            $products[] = $row;
+        }
+        // return product as a array
+        return $products;
     }
 }
