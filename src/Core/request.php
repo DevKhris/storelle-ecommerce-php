@@ -10,7 +10,7 @@ namespace App\Core;
  * @package namespace app\core;
  */
 
-class Request 
+class Request
 {
     public $req;
 
@@ -20,19 +20,22 @@ class Request
         $path = $_SERVER['REQUEST_URI'] ?? '/';
         // gets the position of the path at mark ?
         $pos = \strpos($path, '?');
-
         // if position if false, return path
         if (!$pos) {
             return $path;
         }
+        // substracts position mark from path
         $path = \substr($path, 0, $pos);
+
+        // returns the path wthout params
         return $path;
     }
 
     public function getMethod()
     {
-        return strtolower($_SERVER['REQUEST_METHOD']);
+        // get's the method and lowercases the value
+        $method = strtolower($_SERVER['REQUEST_METHOD']);
+        // returns method
+        return $method;
     }
 }
-
-?>

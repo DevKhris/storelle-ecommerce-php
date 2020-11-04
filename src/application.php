@@ -28,6 +28,6 @@ class Application
 
     public function execute()
     {
-        $this->router->resolve();
+        echo $this->router->resolve();
     }
 }

@@ -47,12 +47,22 @@ class Router
     {
         $path = $this->req->getPath();
         $method = $this->req->getMethod();
+
+        $callback = $this->routes[$method][$path] ?? false;
+
+        if ($callback === false) {
+            return "Error 404 | Not Found";
+
+        }
+
+        if(is_string($callback)){
+            return $this->renderView($callback);
+        }
+        return call_user_func($callback);
     }
 
-    // public static function Route()
-    // {
-    //     $this->request->getPath()
-    //     $this->routes = [] = isset($_GET['p']) ? strtolower($_GET['p']) : "home";
-    //     include_once __DIR__ . '\views\\' . $page . '.php';
-    // }
+    public function renderView($view)
+    {
+        include_once __DIR__ . "\\..\\..\\views\\$view.php";
+    }
 }
