@@ -1,0 +1,23 @@
+{
+    "name": "devkhris/storelle",
+    "description": "Ecommerce",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Christian Hernandez",
+            "email": "chrissh443@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+
+        },
+        "files": [
+            "config/dbConnection.php"
+        ]
+    },
+    "require": {
+
+    }
+}
