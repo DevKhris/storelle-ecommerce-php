@@ -18,6 +18,12 @@ $app->router->get('/products', 'products');
 
 $app->router->get('/product', 'product');
 
+$app->router->get('/shopping-cart', 'shopping-cart');
+
+$app->router->get('/about', 'about');
+
+$app->router->get('/contact', 'contact');
+
 $app->router->get('/profile', 'profile');
 
 $app->router->get('/login', 'login');

@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-black text-light">
   <ul class="navbar-nav mr-auto pl-3 mb-2 mb-lg-0">
     <li class="nav-item">
-      <p class="navbar-text">Welcome back,
-        <a class="text-decoration-none" href="">
+      <p class="nav-text text-muted pt-4">Welcome back,
+        <a class="nav-text-link text-decoration-none" href="">
           <?php echo $userName = 'guest'; ?>
         </a>
       </p>

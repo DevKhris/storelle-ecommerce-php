@@ -1,5 +1,6 @@
 <div class="row">
 	<div class="col-sm-4">
+		<?php require_once 'views/shopping-cart.php'?>
 	</div>
 	<div class="col-sm-8">
 		<h2>User Profile</h2>
@@ -14,6 +15,6 @@
 		</div>
 		<hr>
 		<h2>Transations</h2>
-		<?php require_once '../views/transactions.php'?>
+		<?php require_once 'views/transactions.php'?>
 	</div>
 </div>

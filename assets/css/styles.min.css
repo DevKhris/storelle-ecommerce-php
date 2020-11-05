@@ -1,16 +1,52 @@
 /*** Base Styles **/
+html, body {
+	font-family: 'Abel', sans-serif;
+	font-family: 'Noto Sans SC', sans-serif;
+}
+footer {
+	margin-top: 150px;
+	display: block;
+	overflow: auto;
+	position: relative;
+	clear:both;
+}
 
-.nav-footer a {
+.featured {
+	font-size: 2rem;
 	color: #fff;
+	text-shadow: 2px 2px #333;
+	display: flex;
+	flex-direction: column;
+	background-image: url(https://picsum.photos/1400/500);
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 480px;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+.copyright {
+	font-size: 1rem;
+	color: #fff;
+}
+.copyright:hover{
+	color: #f33;
+	transition: .3s all ease-in;
+}
+.nav-footer a {
+	color: #aaa;
+	font-size: 1.1rem;
 }
 
 .nav-footer a:hover {
-	color: #aaa;
+	color: #f33;
+	transition: .3s all ease-in;
 }
 /*** Product Styles ***/
 
 .card .product {
-	width: 16rem;
+	width: 12rem;
 	margin: 0px 16px 0px 16px;
 }
 
@@ -19,21 +55,31 @@
 }
 
 .product price {
-	font-weight: 700;
+	font-weight: 500;
 }
 
 .product img {
-	max-height: 16rem;
+	max-height: 18.2rem;
 	width: auto;
 }
 
-a.btn-product  {
+.product-link {
+	color: #131313;
+	font-size: 1.3rem;
+}
+
+.product-link:hover {
+	color: #d70315 !important;
+	transition: .3s all ease-in;
+}
+
+button.btn-product  {
 	color: #fcfcfc;
 	background-color: #d70315;
 	border-color: #d70315;
 }
 
-a:hover.btn-product {
+button:hover.btn-product {
 	color: #fcfcfc;
 	background-color: #b71111;
 	border-color: #b71111;
@@ -60,4 +106,32 @@ a.checked:hover {
 /*** Colors & Backgrounds ***/
 .bg-black {
 	background-color: #121212;
+}
+
+/*** Navbar ***/
+
+.nav-text {
+	font-size: 1.1em;
+	font-weight: 500;
+}
+.nav-text-link {
+	color:  #fff;
+}
+
+.nav-text-link:hover {
+	color: #d70315 !important;
+	transition: .3s all ease-in;
+}
+.nav-link {
+	font-size: 1.2em;
+	font-weight: 500;
+}
+
+.nav-link:hover {
+	color: #d70315 !important;
+}
+
+.active {
+	color: #d7003c !important;
+	transition: .3s all ease-in;
 }
