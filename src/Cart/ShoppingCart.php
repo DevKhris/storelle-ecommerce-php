@@ -12,7 +12,6 @@ class ShoppingCart
         $query = mysqli_query($conn, $sql);
 
         if ($query === true){
-        	// return sucess
         	echo "<div class="alert alert-success" role="alert">Added to cart!</div>";
         } else {
         	echo "<div class="alert alert-warning" role="alert">Can't add to cart</div>";
@@ -26,8 +25,10 @@ class ShoppingCart
     	$query = mysqli_query($conn,$sql);
 
     	if ($query === true){
-    		// 
-    		echo 
+
+    		echo "<div class="alert alert-success" role="alert">Removed from cart!</div>";
+        } else {
+        	echo "<div class="alert alert-warning" role="alert">Can't remove from cart</div>";
     	}
     }
 }
