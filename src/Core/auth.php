@@ -4,7 +4,7 @@ namespace App\Core;
 
 use App\Model\BaseUser;
 use App\Core\User;
-use App\Config\DbConnection;
+use APp\Core\Router;
 
 class Auth
 {
@@ -17,14 +17,14 @@ class Auth
     public static function checkLogin()
     {
         $session = $_SESSION['loggedIn'];
-        if (!$session) {
+        if (!$session = true) {
             return true;
         } else {
             return false;
         }
     }
 
-    public function logIn()
+    public function loginUser()
     {
         global $conn;
         $username = $_POST['user'];
@@ -32,7 +32,7 @@ class Auth
         if (!isset($username, $password)) {
             exit('Warning: Please fill both fields');
         } else {
-            $sql = ('SELECT id password FROM users WHERE username = $user?');
+            $sql = ("SELECT id password FROM users WHERE username = $username");
 
             $result = \mysqli_query($conn, $sql);
 
@@ -55,6 +55,7 @@ class Auth
                     }
                     echo 'Welcome back, ' . $session['name'] . '|';
                     return $session;
+                    header('Location: login');
                 } else {
                     echo 'Incorrect username/password please try again!';
                     return false;
@@ -63,6 +64,36 @@ class Auth
                 echo 'Incorrect username/password please try again!';
                 return false;
             }
+        }
+    }
+    public function registerUser($username, $password)
+    {
+        global $conn;
+        $balance = 100;
+        $password = \password_hash($password, \PASSWORD_ARGON2ID);
+        if (!isset($username, $password)) {
+            exit('Warning: Please fill both fields');
+        } elseif (empty($username) || empty($password)) {
+            exit('Warning: Please fill both fields');
+        } else {
+            $sql = "INSERT INTO users (username, password, balance) VALUES ($username, $password, $balance)";
+            $result = mysqli_query($sql);
+            if ($result) {
+                echo 'Account successfully created, proceed to login';
+            } else {
+                echo 'Something go wrong, can\'t register account';
+            }
+        }
+    }
+
+    public function logoutUser()
+    {
+        if (\session_destroy()) {
+            header('Location: \login');
+        } else {
+            \session_unset();
+            \session_abort();
+            header('Location: \login');
         }
     }
 }

@@ -14,11 +14,8 @@ $app = new Application(__DIR__);
 // starts tje session
 session_start();
 
-// set's login to false in session
-$_SESSION['loggedIn'] = false;
-
 // check if visitor is logged and assigns the routes
-if (!Auth::checkLogin()) {
+if (Auth::checkLogin() || $_SESSION['loggedIn']) {
 
     // Routes to home view
     $app->router->get('/', 'home');
@@ -27,7 +24,7 @@ if (!Auth::checkLogin()) {
     // Routes to contact view
     $app->router->get('/contact', 'contact');
 
-    //routes the rest to login due to user not logged in
+    //routes the rest to login due to user not logged into system
     $app->router->get('/products', 'login');
     $app->router->get('/product', 'login');
     $app->router->get('/shopping-cart', 'login');
@@ -56,7 +53,7 @@ if (!Auth::checkLogin()) {
 
     // routes to profile because the user is logged
     $app->router->get('/login', 'profile');
-    $app->router->get('/register', 'profile');
+    $app->router->get('/register', 'register');
     $app->router->get('/profile', 'profile');
 }
 

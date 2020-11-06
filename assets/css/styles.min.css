@@ -73,13 +73,13 @@ footer {
 	transition: .3s all ease-in;
 }
 
-button.btn-product  {
+.btn-product  {
 	color: #fcfcfc;
 	background-color: #d70315;
 	border-color: #d70315;
 }
 
-button:hover.btn-product {
+.btn-product:hover {
 	color: #fcfcfc;
 	background-color: #b71111;
 	border-color: #b71111;

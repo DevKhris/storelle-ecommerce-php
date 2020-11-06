@@ -20,7 +20,9 @@ class Router
     // array of routes
     protected array $routes = [];
 
-    // constructor function
+    /** Constructor function
+     * 
+     */
     public function __construct(Request $req)
     {
         $this->req = $req;
@@ -40,6 +42,17 @@ class Router
     }
 
     /**
+     * Set function
+     *
+     * @param [type] $callback
+     * @return void
+     */
+    // public function set(callback)
+    // {
+    //    
+    // }
+
+    /**
      * Resolve function
      *
      * @return void
@@ -55,32 +68,37 @@ class Router
             return $this->renderView("404");
         }
 
-        if(is_string($callback)){
+        if (is_string($callback)) {
             return $this->renderView($callback);
         }
         return call_user_func($callback);
     }
 
+    /**
+     * Render View function
+     * @param [type] $view
+     * @return void
+     */
     public function renderView($view)
     {
         $displayContent = $this->displayContent();
         $viewContent = $this->renderOneView($view);
         return str_replace('{{display}}', $viewContent, $displayContent);
-   
-        include_once Application::$appPath ."/views/$view.php";
+
+        include_once Application::$appPath . "/views/$view.php";
     }
 
     protected function displayContent()
     {
         \ob_start();
-        include_once Application::$appPath ."/views/layout/main.php";
+        include_once Application::$appPath . "/views/layout/main.php";
         return \ob_get_clean();
     }
 
     protected function renderOneView($view)
     {
         \ob_start();
-        include_once Application::$appPath ."/views/$view.php";
+        include_once Application::$appPath . "/views/$view.php";
         return \ob_get_clean();
     }
 }

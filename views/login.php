@@ -9,23 +9,23 @@
 			<h1 class="h3 mb-3 font-weight-normal">Please Log In</h1>
 			<div class="mb-3">
 				<label for="usernameInput">Username:</label>
-				<input class="form-control-plaintext" type="text" placeholder="Insert your username">
+				<input class="form-control-plaintext" type="text" placeholder="Insert your username" id="#userInput">
 			</div>
 			<div class="mb-3">
 				<label for="passwordInput">Password:</label>
-				<input class="form-control-plaintext" type="password" placeholder="Insert your password">
+				<input class="form-control-plaintext" type="password" placeholder="Insert your password" id="#pwdInput">
 			</div>
 			<div class="checkbox mb-3 text-left">
 				<label>
-					<input  type="checkbox" value="remember-me"> Remember me
+					<input type="checkbox" value="remember-me"> Remember me
 				</label>
 			</div>
-			<div class="mb-3">			
+			<div class="mb-3">
 				<a class="btn btn-product btn-block text-center" href="">Log In</a></div>
-				<p class="text-muted">Need an account? <a class="text-decoration-none" href="">Register</a></p>
-			</form>
-		</div>
-		<div class="col-sm-4">
-			
-		</div>
+			<p class="text-muted">Need an account? <a class="text-decoration-none" href="/register">Register</a></p>
+		</form>
 	</div>
+	<div class="col-sm-4">
+
+	</div>
+</div>
