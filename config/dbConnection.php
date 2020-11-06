@@ -2,14 +2,17 @@
 
 namespace App\Config;
 
- // Define for connection constants
+// Define for connection constants
 define('DB_USERNAME', 'root'); // Storelleroot
-define('DB_PASSWORD',''); // Ell3r0tstoor@
-define('DB_HOST','localhost');
-define('DB_NAME','storelle');
+define('DB_PASSWORD', ''); // Ell3r0tstoor@
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'storelle');
+
+global $conn;
 
 class DbConnection
 {
+
     public static function dbConnect()
     {
         // save the connection to var
@@ -30,9 +33,7 @@ class DbConnection
         define('ROOT_PATH', realpath(dirname(__FILE__)));
         // Set base uri
         define('BASE_URL', 'http://localhost/storelle/');
-        
+
         return $conn;
     }
 }
-
-?>

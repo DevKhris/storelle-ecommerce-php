@@ -1,19 +1,30 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-black text-light">
   <ul class="navbar-nav mr-auto pl-3 mb-2 mb-lg-0">
     <li class="nav-item">
-      <p class="nav-text text-muted pt-4">Welcome back,
-        <a class="nav-text-link text-decoration-none" href="">
-          <?php echo $userName = 'guest'; ?>
-        </a>
+      <p class="nav-text text-muted pt-4">Welcome back
       </p>
     </li>
   </ul>
   <ul class="navbar-nav ml-auto pr-3 mb-2 mb-lg-0">
     <li class="nav-item">
-      <a class="nav-link" href="profile">Balance: 100$</a>
+      <a class="nav-link" href="profile">
+        <?php if (isset($user['balance'])) {
+          echo 'Balance: 0' . $user['balance'];
+        }
+        ?>
+      </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="profile">Guest <i class="fa fa-user"></i></a>
+      <a class="nav-link" href="<?php echo $user['username'] ?? '/'; ?>">
+        <?php
+        if (isset($user['username'])) {
+          echo $user['username'];
+        } else {
+          echo 'Guest';
+        }
+        ?>
+        <i class="fa fa-user"></i>
+      </a>
     </li>
   </ul>
 </nav>
@@ -56,8 +67,8 @@
               <div class="card">
                 <a class="dropdown-item align-self-center" href="#">
                   <img class="img-thumbnail" src="res/products/apple.jpg" alt="">
-                  <p class="font-weight-light">Apple</p>
-                  <p class="text-muted">0.3$</p>
+                  <p class="font-weight-light"></p>
+                  <p class="text-muted"></p>
                 </a>
                 <button class="btn btn-remove btn-outline-danger btn-block text-center">X</button>
               </div>

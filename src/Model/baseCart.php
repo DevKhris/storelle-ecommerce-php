@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-class ShoppingCart
+abstract class BaseCart
 {
     public $products = [];
 
