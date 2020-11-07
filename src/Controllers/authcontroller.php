@@ -20,6 +20,18 @@ class AuthController
         return Application::$app->router->renderView('login');
     }
 
+    public function logoutHandler()
+    {
+        $_SESSION['loggedin'] = false;
+        if (\session_destroy()) {
+            header('Location: \login');
+            die;
+        }
+        \session_unset();
+        \session_abort();
+        header('Location: \login');
+        die;
+    }
     public static function loginHandler()
     {
         global $user;
@@ -43,9 +55,9 @@ class AuthController
                         $_SESSION['id'] = $id;
                         $_SESSION['balance'] = 100;
                         $_SESSION['start'] = time();
-                        $_SESSION['expire'] = $_SESSION['start'] + (30 * 120);
+                        $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
                         header('location: /profile');
-                        exit;
+                        exit(500);
                     }
                 }
             }

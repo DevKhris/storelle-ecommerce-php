@@ -8,10 +8,10 @@
 			<img src="res/user/default_male.png" alt="Profile Picture">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<p class="pl-4">Username: <?php echo $user['username']; ?></p>
+					<p class="pl-4">Username: <?php echo $_SESSION['name']; ?></p>
 				</li>
 				<li class="nav-item">
-					<p class="pl-4">Balance: <?php echo $user['balance']; ?></p>
+					<p class="pl-4">Balance: <?php echo $_SESSION['balance']; ?></p>
 				</li>
 			</ul>
 		</div>

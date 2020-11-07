@@ -24,7 +24,7 @@ $imgPath = $product['product_img'];
         <h1 class="text-monospace"><?php echo $productName; ?></h1>
         <h3 class="text-muted">$<?php echo $productPrice; ?></h3>
         <form method="POST" action="">
-            <input type="submit" name="addBtn" value="1" class="btn btn-product btn-block mt-5">Add to cart <i class="fa fa-shopping-cart"></i></input>
+            <input type="submit" name="addBtn" class="btn btn-product btn-block mt-5">Add to cart <i class="fa fa-shopping-cart"></i></input>
         </form>
     </div>
     <div class="col-sm-2">

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-black text-light">
-  <ul class="navbar-nav mr-auto pl-3 mb-2 mb-lg-0">
+  <ul class="navbar-nav mr-auto pl-3 mb-2 mb-lg-0" aria-labelledby="UserMenuButton">
     <li class="nav-item">
       <p class="nav-text text-muted pt-4">Welcome back
       </p>
@@ -26,6 +26,15 @@
         <i class="fa fa-user"></i>
       </a>
     </li>
+    <?php if (isset($_SESSION['name'])) { ?>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">
+          <i class="fa fa-power-off"></i>
+        </a>
+      </li class="nav-item">
+    <?php } ?>
+
+
   </ul>
 </nav>
 <nav class="navbar navbar-expand-sm navbar-light bg-faded">

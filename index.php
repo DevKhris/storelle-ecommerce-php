@@ -14,7 +14,9 @@ $conn = DbConnection::dbConnect();
 // create new app instance
 $app = new Application(__DIR__);
 
-
+if (!array_key_exists('loggedin',$_SERVER)) {
+    $_SERVER['loggedin'] = false =;
+}
 // this routes stay the same even if it's logged or not
 // Routes to home view
 $app->router->get('/', [MainController::class, 'home']);
@@ -26,7 +28,7 @@ $app->router->get('/contact', [MainController::class, 'contact']);
 $app->router->set('/contact', [MainController::class, 'contactHandler']);
 
 // check if visitor is logged and assigns the routes
-if (!$_SESSION['loggedIn']) {
+if (!$_SESSION['loggedin']) {
 
     //set an array for the routes to redirect to login
     $routes = array('products', 'product', 'shopping-cart', 'profile', 'login');
@@ -43,7 +45,7 @@ if (!$_SESSION['loggedIn']) {
     // set controller handler for login and register
     $app->router->set('/login', [AuthController::class, 'loginHandler']);
     $app->router->set('/register', [AuthController::class, 'registerHandler']);
-} elseif (Auth::checkLogin()) {
+} else {
     // Routes products view to login view
     $app->router->get('/products', 'products');
 
@@ -55,6 +57,7 @@ if (!$_SESSION['loggedIn']) {
 
     // routes to profile because the user is logged
     $app->router->get('/login', 'profile');
+    $app->router->get('/logout', [AuthController::class, 'logoutHandler']);
     $app->router->get('/register', 'profile');
     $app->router->get('/profile', 'profile');
 }
