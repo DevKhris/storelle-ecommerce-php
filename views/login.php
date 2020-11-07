@@ -1,6 +1,3 @@
-<?php
-
-?>
 <div class="row">
     <div class="col-sm-4">
     </div>
@@ -10,11 +7,11 @@
             <h1 class="h3 mb-3 font-weight-normal">Please Log In</h1>
             <div class="mb-3">
                 <label for="usernameInput">Username:</label>
-                <input class="form-control" type="text" placeholder="Insert your username" id="userInput">
+                <input class="form-control" type="text" placeholder="Insert your username" name="username">
             </div>
             <div class="mb-3">
                 <label for="passwordInput">Password:</label>
-                <input class="form-control" type="password" placeholder="Insert your password" id="pwdInput">
+                <input class="form-control" type="password" placeholder="Insert your password" name="password">
             </div>
             <div class="mb-3">
                 <input class="btn btn-product btn-block text-center" value="Log In" id="login" type="submit"></input>

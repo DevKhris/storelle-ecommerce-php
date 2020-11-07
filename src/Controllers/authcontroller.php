@@ -4,56 +4,54 @@ namespace App\Controllers;
 
 use App\Application;
 use App\Core\Request;
+use App\Model\BaseUser;
+use App\Core\User;
 
 class AuthController
 {
 
-    public static function login()
+    public $username;
+    public $password;
+    public static function login(Request $req)
     {
+        if ($req->onPost()) {
+            return 'Logged in succesfully';
+        }
         return Application::$app->router->renderView('login');
     }
 
     public static function loginHandler()
     {
+        global $user;
         global $conn;
-        if (!empty($_POST['username']) || !empty($_POST['password'])) {
-            $username = mysqli_escape_string($conn, $_POST['username']);
-            $password = mysqli_escape_string($conn, $_POST['password']);
+        if (isset($_POST['username']) && isset($_POST['password'])) {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+
             if (empty($username) || empty($password)) {
                 echo 'Warning: Please fill both fields';
-            } else {
-                $sql = "SELECT username FROM users WHERE username='$username' AND password='$password'";
-                $result = \mysqli_query($conn, $sql);
-                $row = \mysqli_num_rows($result);
-                if (!empty($result) ||  $row > 0) {
-                    $user = \mysqli_fetch_array($result);
-                    if (\password_verify($password, $user['password'])) {
+            }
+            $sql = "SELECT * FROM users WHERE username='$username'";
+            $result = $conn->query($sql);
+            if (!empty($result)) {
+                if ($result->num_rows > 0) {
+                    $user = \mysqli_fetch_array($result, \MYSQLI_ASSOC);
+                    if (password_verify($password, $user['password'])) {
                         $id = session_regenerate_id(true);
-                        $_SESSION['loggedIn'] = true;
-                        $_SESSION['name'] =  $user['username'];
+                        $_SESSION['loggedin'] = true;
+                        $_SESSION['name'] = $user['username'];
                         $_SESSION['id'] = $id;
-                        $session = $_SESSION;
-                        User::setUsername($session['name']);
-                        switch (User::getBalance()) {
-                            case 0:
-                                User::setBalance(100);
-                                break;
-                            case 100:
-                                break;
-                            default:
-                                break;
-                        }
-                    } else {
-                        echo 'Incorrect username/password please try again!';
-                        return false;
+                        $_SESSION['balance'] = 100;
+                        $_SESSION['start'] = time();
+                        $_SESSION['expire'] = $_SESSION['start'] + (30 * 120);
+                        header('location: /profile');
+                        exit;
                     }
-                } else {
-                    echo 'Incorrect username/password please try again!';
-                    return false;
                 }
             }
         }
     }
+
 
     public static function register(Request $req)
     {

@@ -8,17 +8,17 @@
   <ul class="navbar-nav ml-auto pr-3 mb-2 mb-lg-0">
     <li class="nav-item">
       <a class="nav-link" href="profile">
-        <?php if (isset($user['balance'])) {
-          echo 'Balance: 0' . $user['balance'];
+        <?php if (isset($_SESSION['balance'])) {
+          echo 'Balance: ' . $_SESSION['balance'];
         }
         ?>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="<?php echo $user['username'] ?? '/'; ?>">
+      <a class="nav-link" href="<?php '/profile' ?? '/login'; ?>">
         <?php
-        if (isset($user['username'])) {
-          echo $user['username'];
+        if (isset($_SESSION['name'])) {
+          echo $_SESSION['name'];
         } else {
           echo 'Guest';
         }

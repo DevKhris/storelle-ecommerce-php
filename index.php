@@ -1,4 +1,5 @@
 <?php
+session_start();
 // require the psr-4 autoloader
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -13,10 +14,6 @@ $conn = DbConnection::dbConnect();
 // create new app instance
 $app = new Application(__DIR__);
 
-// starts the session if no one present
-if (!isset($_SESSION)) {
-    session_start();
-}
 
 // this routes stay the same even if it's logged or not
 // Routes to home view
@@ -29,7 +26,7 @@ $app->router->get('/contact', [MainController::class, 'contact']);
 $app->router->set('/contact', [MainController::class, 'contactHandler']);
 
 // check if visitor is logged and assigns the routes
-if (Auth::checkLogin()) {
+if (!$_SESSION['loggedIn']) {
 
     //set an array for the routes to redirect to login
     $routes = array('products', 'product', 'shopping-cart', 'profile', 'login');
@@ -38,6 +35,7 @@ if (Auth::checkLogin()) {
     foreach ($routes as $key => $value) {
         $route = $routes[$key];
         $app->router->get('/' . $route, [AuthController::class, 'login']);
+        $app->router->set('/' . $route, [AuthController::class, 'loginHandler']);
     }
 
     $app->router->get('/login', [AuthController::class, 'login']);
@@ -45,7 +43,7 @@ if (Auth::checkLogin()) {
     // set controller handler for login and register
     $app->router->set('/login', [AuthController::class, 'loginHandler']);
     $app->router->set('/register', [AuthController::class, 'registerHandler']);
-} else {
+} elseif (Auth::checkLogin()) {
     // Routes products view to login view
     $app->router->get('/products', 'products');
 

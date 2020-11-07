@@ -9,20 +9,24 @@ abstract class BaseUser
 {
   // protected vars
   protected $username;
+  protected $password;
   protected $balance;
 
   // protected array for user info like username & balance
-  protected $user = array('username', 'balance');
+  protected $user = array('username', 'password', 'balance');
 
   /**
    * Constructor function for user
    *
    * @param    [string] $username
+   * @param    [hash] $password
    * @param    [int] $balance
+   * 
    */
-  public function __construct($username, $balance)
+  public function __construct($username, $password, $balance)
   {
     $this->user['username'] = $username;
+    $this->user['password'] = $password;
     $this->user['balance'] = $balance;
   }
 
@@ -31,7 +35,7 @@ abstract class BaseUser
    * get's the username from user
    * @return string
    */
-  public function getUsername()
+  public function getUsername($username)
   {
   }
 
@@ -44,6 +48,23 @@ abstract class BaseUser
   {
   }
 
+  /**
+   * GetPassword function
+   * get's the password from user
+   * @return hash
+   */
+  public function getPassword($password)
+  {
+  }
+
+  /**
+   * SetPassword function
+   * set's the password from user
+   * @return hash
+   */
+  public function setPassword($password)
+  {
+  }
   /**
    * Setter & Getter functions for user balance
    */
