@@ -38,4 +38,31 @@ class Request
         // returns method
         return $method;
     }
+
+    public function onGet()
+    {
+        return $this->getMethod() === 'get';
+    }
+
+    public function onPost()
+    {
+        return $this->getMethod() === 'post';
+    }
+
+    public function getBody()
+    {
+        $body = [];
+        if ($this->getMethod() === 'get') {
+            foreach ($_GET as $key => $value) {
+                $body[$key] = \filter_input(INPUT_GET, $key, \FILTER_SANITIZE_SPECIAL_CHARS);
+            }
+        }
+        if ($this->getMethod() === 'post') {
+            foreach ($_GET as $key => $value) {
+                $body[$key] = \filter_input(INPUT_POST, $key, \FILTER_SANITIZE_SPECIAL_CHARS);
+            }
+        }
+
+        return $body;
+    }
 }
