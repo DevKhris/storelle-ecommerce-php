@@ -15,7 +15,7 @@ $conn = DbConnection::dbConnect();
 $app = new Application(__DIR__);
 
 if (!array_key_exists('loggedin',$_SERVER)) {
-    $_SERVER['loggedin'] = false =;
+    $_SERVER['loggedin'] = false;
 }
 // this routes stay the same even if it's logged or not
 // Routes to home view
