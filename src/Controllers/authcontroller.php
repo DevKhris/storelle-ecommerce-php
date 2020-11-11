@@ -42,22 +42,26 @@ class AuthController
 
             if (empty($username) || empty($password)) {
                 echo 'Warning: Please fill both fields';
-            }
-            $sql = "SELECT * FROM users WHERE username='$username'";
-            $result = $conn->query($sql);
-            if (!empty($result)) {
-                if ($result->num_rows > 0) {
-                    $user = \mysqli_fetch_array($result, \MYSQLI_ASSOC);
-                    if (password_verify($password, $user['password'])) {
-                        $id = session_regenerate_id(true);
-                        $_SESSION['loggedin'] = true;
-                        $_SESSION['name'] = $user['username'];
-                        $_SESSION['id'] = $id;
-                        $_SESSION['balance'] = 100;
-                        $_SESSION['start'] = time();
-                        $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
-                        header('location: /profile');
-                        exit(500);
+            } else {
+                $sql = "SELECT * FROM users WHERE username='$username'";
+                $result = $conn->query($sql);
+                if (!empty($result)) {
+                    if ($result->num_rows > 0) {
+                        $user = \mysqli_fetch_array($result, \MYSQLI_ASSOC);
+                        if (password_verify($password, $user['password'])) {
+                            $id = session_regenerate_id(true);
+                            $_SESSION['loggedin'] = true;
+                            $_SESSION['name'] = $user['username'];
+                            $_SESSION['id'] = $id;
+                            $_SESSION['balance'] = $user['balance'];
+                            $_SESSION['start'] = time();
+                            $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
+                            header('location: \\');
+                            exit(500);
+                        }
+                    } else {
+                        echo 'Wrong username or password';
+                        header('location: \login');
                     }
                 }
             }

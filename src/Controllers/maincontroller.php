@@ -21,10 +21,8 @@ class MainController
 	public function contactHandler(Request $req)
 	{
 		$body = $req->getBody();
-		var_dump($body);
 		return $body;
 	}
-
 
 	public static function about()
 	{

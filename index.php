@@ -1,22 +1,20 @@
 <?php
+// start a new session
 session_start();
 // require the psr-4 autoloader
 require_once __DIR__ . '/vendor/autoload.php';
 
 use App\Application;
 use App\Config\DbConnection;
+use App\Core\Auth;
 use App\Controllers\AuthController;
 use App\Controllers\MainController;
-use App\Core\Auth;
 
 // connect to database
 $conn = DbConnection::dbConnect();
 // create new app instance
 $app = new Application(__DIR__);
 
-if (!array_key_exists('loggedin',$_SERVER)) {
-    $_SERVER['loggedin'] = false;
-}
 // this routes stay the same even if it's logged or not
 // Routes to home view
 $app->router->get('/', [MainController::class, 'home']);
@@ -28,7 +26,7 @@ $app->router->get('/contact', [MainController::class, 'contact']);
 $app->router->set('/contact', [MainController::class, 'contactHandler']);
 
 // check if visitor is logged and assigns the routes
-if (!$_SESSION['loggedin']) {
+if (!isset($_SESSION['loggedin'])) {
 
     //set an array for the routes to redirect to login
     $routes = array('products', 'product', 'shopping-cart', 'profile', 'login');

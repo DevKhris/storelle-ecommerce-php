@@ -4,7 +4,7 @@ namespace App\Products;
 
 use App\Model\BaseProduct;
 
-class GetProducts extends BaseProduct
+class Products extends BaseProduct
 {
     public $products = [];
     public static function getProducts()
@@ -15,8 +15,7 @@ class GetProducts extends BaseProduct
 
         $result = mysqli_query($conn, $sql);
 
-        while($row = \mysqli_fetch_array($result, MYSQLI_ASSOC))
-        {
+        while ($row = \mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $products[] = $row;
         }
         // return product as a array

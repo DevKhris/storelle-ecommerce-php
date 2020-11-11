@@ -3,11 +3,13 @@
 namespace App\Views;
 
 use App\Products\Product;
+use App\Reviews\Reviews;
 use App\Cart\ShoppingCart;
 
 $id = $_GET['id'];
 
 $product = Product::get($id);
+$productRating = Reviews::getAverage($id);
 $productName = $product['product_name'];
 $productPrice = $product['product_price'];
 $imgPath = $product['product_img'];
@@ -23,10 +25,15 @@ $imgPath = $product['product_img'];
 
         <h1 class="text-monospace"><?php echo $productName; ?></h1>
         <h3 class="text-muted">$<?php echo $productPrice; ?></h3>
+        <p><?php echo \floor($productRating['t_rating']); ?> / 5 </p>
         <form method="POST" action="">
-            <input type="submit" name="addBtn" class="btn btn-product btn-block mt-5">Add to cart <i class="fa fa-shopping-cart"></i></input>
+            <input type="submit" value="Add to cart" name="addBtn" class="btn btn-product btn-block mt-5"><i class="fa fa-shopping-cart"></i></input>
         </form>
+        <br>
+        <?php require_once 'views/reviews.php'; ?>
     </div>
+
+
     <div class="col-sm-2">
     </div>
 </div>

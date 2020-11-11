@@ -7,7 +7,7 @@
   </ul>
   <ul class="navbar-nav ml-auto pr-3 mb-2 mb-lg-0">
     <li class="nav-item">
-      <a class="nav-link" href="profile">
+      <a class="nav-link" href="">
         <?php if (isset($_SESSION['balance'])) {
           echo 'Balance: ' . $_SESSION['balance'];
         }
@@ -15,7 +15,13 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="<?php '/profile' ?? '/login'; ?>">
+      <a class="nav-link" href="<?php
+                                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
+                                  echo '/profile';
+                                } else {
+                                  echo 'login';
+                                }
+                                ?>">
         <?php
         if (isset($_SESSION['name'])) {
           echo $_SESSION['name'];

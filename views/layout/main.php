@@ -1,11 +1,13 @@
 <?php
-    use App\Application;
+
+use App\Application;
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <?php
-    require_once 'header.php';
-    ?>
+<?php
+require_once 'header.php';
+?>
+
 <body>
     <header>
         <?php
@@ -13,14 +15,11 @@
         ?>
     </header>
     <main class="container-fluid">
-    {{display}}
+        {{display}}
     </main>
-    
-
     <?php
-        require_once 'footer.php';
+    require_once 'footer.php';
     ?>
-
 </body>
 
 </html>

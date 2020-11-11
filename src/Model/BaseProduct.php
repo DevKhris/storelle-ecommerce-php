@@ -19,7 +19,7 @@ abstract class BaseProduct
         $this->productRating = $productRating;
     }
 
-    public function getProduct($productId)
+    public function getProducts($productId)
     {
     }
 }

@@ -103,6 +103,23 @@ a.checked:hover {
 	        transition: all .25s ease-in;
 }
 
+/**  Reviews classes */
+
+.reviews .overall_rating .num {
+    font-size: 30px;
+    font-weight: bold;
+    color: #F5A624;
+}
+.reviews .overall_rating .stars {
+    letter-spacing: 3px;
+    font-size: 32px;
+    color: #F5A624;
+    padding: 0 5px 0 10px;
+}
+.reviews .overall_rating .total {
+    color: #777777;
+    font-size: 14px;
+}
 /*** Colors & Backgrounds ***/
 .bg-black {
 	background-color: #121212;
