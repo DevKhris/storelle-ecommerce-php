@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\Model;
@@ -25,7 +24,7 @@ abstract class BaseReview
     {
     }
 
-    public function postReview($productId, $reviewRating, $reviewComment)
+    public static function postReview($productId, $reviewUser, $reviewRating, $reviewComment)
     {
     }
 }

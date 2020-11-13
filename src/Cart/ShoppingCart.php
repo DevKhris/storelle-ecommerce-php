@@ -4,12 +4,12 @@ namespace App\Cart;
 
 use App\Model\BaseCart;
 
-class ShoppingCart
+class ShoppingCart extends BaseCart
 {
     global $conn;
-    public static function addToCart($name,$price,$img)
+    public static function addToCart($productId, $productName, $productQuantity, $productPrice)
     {
-        $sql = "INSERT INTO shoppingcart (name,price,img) VALUES ($name,$price,$img)";
+        $sql = "INSERT INTO shoppingcart (productId, productName, productQuantity, productPrice) VALUES ('$productId', '$productName', $productQuantity, '$productPrice')";
 
         $query = mysqli_query($conn, $sql);
 

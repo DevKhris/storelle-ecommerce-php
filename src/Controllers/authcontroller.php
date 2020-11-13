@@ -6,10 +6,10 @@ use App\Application;
 use App\Core\Request;
 use App\Model\BaseUser;
 use App\Core\User;
+use mysqli;
 
 class AuthController
 {
-
     public $username;
     public $password;
     public static function login(Request $req)
@@ -44,7 +44,7 @@ class AuthController
                 echo 'Warning: Please fill both fields';
             } else {
                 $sql = "SELECT * FROM users WHERE username='$username'";
-                $result = $conn->query($sql);
+                $result = mysqli_query($conn, $sql);
                 if (!empty($result)) {
                     if ($result->num_rows > 0) {
                         $user = \mysqli_fetch_array($result, \MYSQLI_ASSOC);
@@ -93,12 +93,10 @@ class AuthController
                 echo 'Warning: Please fill both fields';
             } else {
                 $sql = "INSERT INTO users (username, passsword, balance) VALUES ('$safeUsername', '$password', '$balance')";
-                var_dump($sql) . \PHP_EOL;
                 if (\mysqli_query($conn, $sql)) {
                     echo '<p>Account successfully created, proceed to login.</p>';
-                    header('location: /');
+                    header('location: \\');
                 } else {
-
                     echo '<p>Something go wrong, can\'t register account</p>';
                 }
             }

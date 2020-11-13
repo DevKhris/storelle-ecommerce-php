@@ -33,8 +33,12 @@ class User extends BaseUser
         $this->user['balance'] = $balance;
     }
 
-    public function getBalance()
+    public static function getBalance($username)
     {
-        return $this->user['balance'];
+        global $conn;
+        $sql = "SELECT balance FROM users WHERE username='$username'";
+        $result = mysqli_query($conn, $sql);
+        $balance = \mysqli_fetch_array($result, MYSQLI_ASSOC);
+        return $balance['balance'];
     }
 }

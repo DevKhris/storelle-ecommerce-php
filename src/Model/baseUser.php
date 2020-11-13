@@ -74,7 +74,7 @@ abstract class BaseUser
    * get's the balance from user
    * @return int
    */
-  public function getBalance()
+  public static function getBalance($username)
   {
   }
 

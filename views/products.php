@@ -20,6 +20,7 @@ $products = Products::getProducts();
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $products[$i]['product_name']; ?></h5>
                         <span class="card-text">$<?php echo $products[$i]['product_price']; ?></span>
+
                     </div>
                 </div>
             </a>

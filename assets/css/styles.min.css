@@ -120,6 +120,10 @@ a.checked:hover {
     color: #777777;
     font-size: 14px;
 }
+
+.review-box {
+
+}
 /*** Colors & Backgrounds ***/
 .bg-black {
 	background-color: #121212;

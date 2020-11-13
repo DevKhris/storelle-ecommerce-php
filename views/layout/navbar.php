@@ -1,3 +1,10 @@
+<?php
+
+use App\Core\User;
+
+$balance = User::getBalance($_SESSION['name']);
+$_SESSION['balance'] = $balance;
+?>
 <nav class="navbar navbar-expand-sm navbar-dark bg-black text-light">
   <ul class="navbar-nav mr-auto pl-3 mb-2 mb-lg-0" aria-labelledby="UserMenuButton">
     <li class="nav-item">
@@ -9,6 +16,7 @@
     <li class="nav-item">
       <a class="nav-link" href="">
         <?php if (isset($_SESSION['balance'])) {
+
           echo 'Balance: ' . $_SESSION['balance'];
         }
         ?>
@@ -85,7 +93,7 @@
                   <p class="font-weight-light"></p>
                   <p class="text-muted"></p>
                 </a>
-                <button class="btn btn-remove btn-outline-danger btn-block text-center">X</button>
+                <button class="btn btn-remove btn-outline-danger btn-block text-center"></button>
               </div>
             </li>
             <br>

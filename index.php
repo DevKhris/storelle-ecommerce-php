@@ -29,29 +29,38 @@ $app->router->set('/contact', [MainController::class, 'contactHandler']);
 if (!isset($_SESSION['loggedin'])) {
 
     //set an array for the routes to redirect to login
-    $routes = array('products', 'product', 'shopping-cart', 'profile', 'login');
+    $routes = array('products', 'product', 'shopping-cart', 'profile');
 
-    //routes the rest to login due to user not logged into system
+    //routes the rest to login due to user not logged into system by passing the array of routes
     foreach ($routes as $key => $value) {
         $route = $routes[$key];
         $app->router->get('/' . $route, [AuthController::class, 'login']);
         $app->router->set('/' . $route, [AuthController::class, 'loginHandler']);
     }
 
+    // routes login and register to view
     $app->router->get('/login', [AuthController::class, 'login']);
     $app->router->get('/register', [AuthController::class, 'register']);
     // set controller handler for login and register
     $app->router->set('/login', [AuthController::class, 'loginHandler']);
     $app->router->set('/register', [AuthController::class, 'registerHandler']);
 } else {
-    // Routes products view to login view
-    $app->router->get('/products', 'products');
+    // Routes products to view
+    $app->router->get('/products', [MainController::class, 'products']);
 
-    // Routes product  view to login view
+    // Routes product to view
     $app->router->get('/product', 'product');
 
-    // Routes shopping cart view to login view
-    $app->router->get('/shopping-cart', 'shopping-cart');
+    // Sets controller for product route (WIP))
+    $app->router->set('/product', [MainController::class, 'productHandler']);
+
+    // Sets review route to view (testing only)
+    $app->router->get('/review', [MainController::class, 'review']);
+    // Sets controller for reviews route (WIP)
+    $app->router->set('/review', [MainController::class, 'reviewHandler']);
+
+    // Routes shopping cart to view
+    $app->router->get('/shopping-cart', [MainController::class, 'shoppingcart']);
 
     // routes to profile because the user is logged
     $app->router->get('/login', 'profile');

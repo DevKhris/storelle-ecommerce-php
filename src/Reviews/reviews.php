@@ -15,7 +15,7 @@ class Reviews
         $result = mysqli_query($conn, $sql);
 
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            $reviews = $row;
+            $reviews[] = $row;
         }
         return $reviews;
     }

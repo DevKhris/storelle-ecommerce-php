@@ -25,9 +25,11 @@ $imgPath = $product['product_img'];
 
         <h1 class="text-monospace"><?php echo $productName; ?></h1>
         <h3 class="text-muted">$<?php echo $productPrice; ?></h3>
-        <p><?php echo \floor($productRating['t_rating']); ?> / 5 </p>
-        <form method="POST" action="">
-            <input type="submit" value="Add to cart" name="addBtn" class="btn btn-product btn-block mt-5"><i class="fa fa-shopping-cart"></i></input>
+        <p><?php echo \floor($productRating['t_rating']); ?> of 5 </p>
+        <form class="form-group" method="POST" action="">
+            <label for="productQuantity">Qty</label>
+            <input class="form-control form-control-sm" min=1 value="1" type="number" name="productQuantity" id="">
+            <button type="submit" value="" name="addBtn" class="btn btn-product btn-block mt-5">Add to cart <i class="fa fa-shopping-cart"></i></button>
         </form>
         <br>
         <?php require_once 'views/reviews.php'; ?>
