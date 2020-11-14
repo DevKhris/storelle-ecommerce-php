@@ -4,8 +4,10 @@ namespace App\Controllers;
 
 use App\Application;
 use App\Core\Request;
+use App\Products\Products;
 use App\Reviews\Review;
 use App\Reviews\Reviews;
+
 
 class MainController
 {
@@ -18,6 +20,15 @@ class MainController
 	public static function products()
 	{
 		return Application::$app->router->renderView('products');
+	}
+
+	public static function productsHandler()
+	{
+		$res;
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			$res = Products::getProducts();
+			return $res;
+		}
 	}
 
 	public static function product()

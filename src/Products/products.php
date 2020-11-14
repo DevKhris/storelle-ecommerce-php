@@ -11,14 +11,27 @@ class Products extends BaseProduct
     {
         global $conn;
 
-        $sql = "SELECT * FROM products WHERE id";
+        $sql = "SELECT * FROM products";
 
         $result = mysqli_query($conn, $sql);
 
-        while ($row = \mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            $products[] = $row;
+        if (!$result) {
+            die('Can\'t fetch products');
         }
-        // return product as a array
-        return $products;
+        $products = array();
+        while ($row = mysqli_fetch_array($result)) {
+            // return products as a array
+            $products[] = array(
+                'id' => $row['id'],
+                'name' => $row['product_name'],
+                'img' => $row['product_img'],
+                'price' => $row['product_price'],
+                'rating' => $row['product_rating'],
+            );
+        }
+
+        $jsonProducts = json_encode($products);
+
+        echo $jsonProducts;
     }
 }

@@ -22,7 +22,6 @@ if (!empty($_GET)) {
           <th scope="col">Name</th>
           <th scope="col">Quantity</th>
           <th scope="col">Price</th>
-          <th scope="col"></th>
         </tr>
       </thead>
 
@@ -32,7 +31,7 @@ if (!empty($_GET)) {
           <th></th>
           <th></th>
           <th></th>
-          <th><button class="btn btn-close"></button></th>
+          <th><button class="btn btn-outline-danger">X</button></th>
         </tr>
       </body>
     </table>

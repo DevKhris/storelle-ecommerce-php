@@ -48,6 +48,8 @@ if (!isset($_SESSION['loggedin'])) {
     // Routes products to view
     $app->router->get('/products', [MainController::class, 'products']);
 
+    // Sets controller for products route callback
+    $app->router->set('/products', [MainController::class, 'productsHandler']);
     // Routes product to view
     $app->router->get('/product', 'product');
 
