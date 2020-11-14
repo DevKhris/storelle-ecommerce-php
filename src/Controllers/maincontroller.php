@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Application;
 use App\Core\Request;
 use App\Products\Products;
+use App\Products\Product;
 use App\Reviews\Review;
 use App\Reviews\Reviews;
 
@@ -34,15 +35,18 @@ class MainController
 	public static function product()
 	{
 
+
 		return Application::$app->router->renderView('product');
 	}
 
 	public static function productHandler()
 	{
-		$id = $_POST['id'];
-		$qty = $_POST['productQuantity'];
+		if (isset($_REQUEST['id'])) {
+			$id = $_REQUEST['id'];
+			$req = Product::get($id);
+			echo $req;
+		}
 	}
-
 	public static function shoppingcart()
 	{
 		return Application::$app->router->renderView('shopping-cart');
@@ -57,14 +61,14 @@ class MainController
 	{
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			$id = $_POST['id'];
+			$id = $_REQUEST['id'];
 			$reviewRating = $_POST['reviewRating'];
 			$reviewComment = $_POST['reviewContent'];
 			$reviewUser = $_SESSION['name'];
 			Review::postReview($id, $reviewUser, $reviewComment, $reviewRating);
 			\header("location: /product?id=$id");
 		} else {
-			$id = $_POST['id'];
+			$id = $_REQUEST['id'];
 		}
 	}
 

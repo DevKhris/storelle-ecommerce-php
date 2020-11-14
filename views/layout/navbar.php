@@ -2,8 +2,11 @@
 
 use App\Core\User;
 
-$balance = User::getBalance($_SESSION['name']);
-$_SESSION['balance'] = $balance;
+if(!empty($_SESSION['balance'])){
+  $balance = User::getBalance($_SESSION['name']);
+  $_SESSION['balance'] = $balance;
+}
+
 ?>
 <nav class="navbar navbar-expand-sm navbar-dark bg-black text-light">
   <ul class="navbar-nav mr-auto pl-3 mb-2 mb-lg-0" aria-labelledby="UserMenuButton">

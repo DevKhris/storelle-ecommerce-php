@@ -51,9 +51,8 @@ if (!isset($_SESSION['loggedin'])) {
     // Sets controller for products route callback
     $app->router->set('/products', [MainController::class, 'productsHandler']);
     // Routes product to view
-    $app->router->get('/product', 'product');
-
-    // Sets controller for product route (WIP))
+    $app->router->get('/product', [MainController::class, 'product']);
+    // Sets controller for product routecallback
     $app->router->set('/product', [MainController::class, 'productHandler']);
 
     // Sets review route to view (testing only)

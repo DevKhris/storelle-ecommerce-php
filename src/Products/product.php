@@ -3,10 +3,10 @@
 namespace App\Products;
 
 use App\Model\BaseProduct;
+use App\Reviews\Reviews;
 
 class Product extends BaseProduct
 {
-
     public static function get($productId)
     {
         global $conn;
@@ -15,16 +15,34 @@ class Product extends BaseProduct
         // Saves the result of the query
         $result = mysqli_query($conn, $sql);
         // Fetch result to product
-        $product = mysqli_fetch_assoc($result);
-        // Returns the product
-        return $product;
+
+        if (!$result) {
+            echo 'Can\'t fetch product';
+        }
+        $rating = Reviews::getAverage($productId);
+        $rating = floor($rating['t_rating']);
+        $product = array();
+
+        while ($row = mysqli_fetch_array($result)) {
+            $product[] = array(
+                'id' => $row['id'],
+                'name' => $row['product_name'],
+                'img' => $row['product_img'],
+                'price' => $row['product_price'],
+                'rating' => $rating,
+            );
+        }
+
+        $jsonProduct = json_encode($product);
+        // Returns the product json
+        echo $jsonProduct;
     }
 
     public static function set()
     {
-        $productId = $this->product[0];
-        $productName = $this->product[1];
-        $productPrice = $this->product[2];
-        $productImg = $this->product[3];
+        $productId = $this->product['id'];
+        $productName = $this->product['name'];
+        $productPrice = $this->product['price'];
+        $productImg = $this->product['img'];
     }
 }
