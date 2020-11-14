@@ -8,7 +8,7 @@ use App\Products\Products;
 use App\Products\Product;
 use App\Reviews\Review;
 use App\Reviews\Reviews;
-
+use App\Cart\ShoppingCart;
 
 class MainController
 {
@@ -34,8 +34,6 @@ class MainController
 
 	public static function product()
 	{
-
-
 		return Application::$app->router->renderView('product');
 	}
 
@@ -52,8 +50,16 @@ class MainController
 		return Application::$app->router->renderView('shopping-cart');
 	}
 
+	public static function shoppingcartHandler()
+	{
+		$res;
+		$res = ShoppingCart::getCart(2);
+		return $res;
+	}
+
 	public static function review()
 	{
+
 		return Application::$app->router->renderView('review');
 	}
 

@@ -52,13 +52,14 @@ class AuthController
                         if (password_verify($password, $user['password'])) {
                             $id = session_regenerate_id(true);
                             $uId = $user['id'];
+                            $cart = ShoppingCart::getCart($uId);
                             $_SESSION['loggedin'] = true;
                             $_SESSION['name'] = $user['username'];
                             $_SESSION['id'] = $id;
                             $_SESSION['balance'] = $user['balance'];
                             $_SESSION['start'] = time();
                             $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
-                            $_SESSION['cart'] = ShoppingCart::getCart($uId);
+                            $_SESSION['cart'] = array($cart);
                             header('location: \\');
                             exit(500);
                         }

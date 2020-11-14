@@ -6,8 +6,10 @@ use App\Model\BaseCart;
 
 class ShoppingCart extends BaseCart
 {
+
     public static function addToCart($userId, $productId, $productName, $productQuantity, $productPrice)
     {
+        global $conn;
         $sql = "INSERT INTO shoppingcart ($userId, $productId, productName, productQuantity, productPrice) VALUES ('$userId', '$productId', '$productName', '$productQuantity', '$productPrice')";
 
         $result = mysqli_query($conn, $sql);
@@ -20,6 +22,7 @@ class ShoppingCart extends BaseCart
     }
     public static function removeFromCart($id)
     {
+        global $conn;
         $sql = "DELETE * FROM shoppingcart WHERE id = '$id'";
 
         $result = mysqli_query($conn, $sql);
@@ -32,14 +35,28 @@ class ShoppingCart extends BaseCart
     }
     public static function getCart($userId)
     {
-        $sql = "SELECT * FROM shoppingcart WHERE userId = '$userId' ORDER by id ASC";
+        global $conn;
+        $sql = "SELECT * FROM shoppingcart WHERE userId = '$userId' ORDER by id DESC";
 
         $result = mysqli_query($conn, $sql);
 
-        while ($row = \mysqli_fetch_array($result)) {
-            $cart[] = $row;
+        if (!$result) {
+            echo 'Can\'t fetch shopping cart';
         }
-        $jsonCart = json_encode($cart);
+
+        $cart = array();
+        while ($row = mysqli_fetch_array($result)) {
+            $cart[] = array(
+                'id' => $row['id'],
+                'uId' => $row['userId'],
+                'pId' => $row['productId'],
+                'name' => $row['productName'],
+                'quantity' => $row['productQuantity'],
+                'price' => $row['productPrice']
+            );
+        }
+
+        $jsonCart = \json_encode($cart);
         echo $jsonCart;
     }
 }

@@ -47,9 +47,9 @@ if (!isset($_SESSION['loggedin'])) {
 } else {
     // Routes products to view
     $app->router->get('/products', [MainController::class, 'products']);
-
     // Sets controller for products route callback
     $app->router->set('/products', [MainController::class, 'productsHandler']);
+
     // Routes product to view
     $app->router->get('/product', [MainController::class, 'product']);
     // Sets controller for product route callback
@@ -57,11 +57,13 @@ if (!isset($_SESSION['loggedin'])) {
 
     // Sets review route to view (testing only)
     $app->router->get('/review', [MainController::class, 'review']);
-    // Sets controller for reviews route (WIP)
+    // Sets controller for reviews route callback (WIP)
     $app->router->set('/review', [MainController::class, 'reviewHandler']);
 
     // Routes shopping cart to view
     $app->router->get('/shopping-cart', [MainController::class, 'shoppingcart']);
+
+    $app->router->set('/shopping-cart', [MainController::class, 'shoppingcartHandler']);
 
     // routes to profile because the user is logged
     $app->router->get('/login', 'profile');

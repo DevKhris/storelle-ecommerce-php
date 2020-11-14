@@ -1,5 +1,7 @@
 <?php
 
+use App\Cart\ShoppingCart;
+
 $totalPrice = 0;
 $shippingCost = 0;
 if (!empty($_GET)) {
@@ -7,7 +9,6 @@ if (!empty($_GET)) {
   $totalPrice += $shippingCost;
 }
 
-var_dump($_SESSION);
 
 ?>
 <div class="row">
@@ -28,15 +29,8 @@ var_dump($_SESSION);
         </tr>
       </thead>
 
-      <body>
-        <tr>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th><button class="btn btn-outline-danger">X</button></th>
-        </tr>
-      </body>
+      <tbody id="cart">
+      </tbody>
     </table>
     <div class="dropdown text-md-right">
       <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">

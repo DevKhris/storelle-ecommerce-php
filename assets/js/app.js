@@ -2,7 +2,7 @@ $(function () {
     $('#review-box').hide();
     requestProduct();
     requestProducts();
-    
+    requestCart();
 });
 
 // Show or hides the review box
@@ -76,7 +76,35 @@ function requestProducts()
         });
     }
 
+function requestCart()
+{
+    $.ajax({
+        url: 'shopping-cart',
+        type: 'POST',
+        success: function (req) {
+            let cartItems = JSON.parse(req);
+            console.log(cartItems);
+            let template = '';
+            cartItems.forEach(cartItem => {
+                template += `
+                    <tr cartId="${cartItem.id}">
+                        <td>${cartItem.id}</td>
+                        <td>
+                            <a href="product?id=${cartItem.id}" class="task-item">${cartItem.name}</a>
+                        </td>
+                        <td>${cartItem.quantity}</td>
+                        <td>${cartItem.price}</td>
+                        <td>
+                            <button class="btn btn-outline-danger cartItem-delete">X</button>
+                        </td>
+                    </tr>
+                `
+            });
+             $('#cart').html(template);
+        }
+    });
 
+}
 // function cartHandler(handle,id) {
 //     let query;
 //     if (handle != "") {
