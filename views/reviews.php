@@ -36,7 +36,7 @@ $reviews = Reviews::getReviews($id);
                 <div class=" card">
                     <div class="card-header">
                         <h4 class="mt-3 mx-auto">
-                            <?php echo strtoupper($reviews[$i]['user_name']); ?>
+                            <?php echo strtoupper($reviews[$i]['username']); ?>
                         </h4>
                         <h5>
                             Rating: <?php echo $reviews[$i]['rating']; ?>

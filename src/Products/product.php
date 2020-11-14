@@ -26,9 +26,9 @@ class Product extends BaseProduct
         while ($row = mysqli_fetch_array($result)) {
             $product[] = array(
                 'id' => $row['id'],
-                'name' => $row['product_name'],
-                'img' => $row['product_img'],
-                'price' => $row['product_price'],
+                'name' => $row['productName'],
+                'img' => $row['productImg'],
+                'price' => $row['productPrice'],
                 'rating' => $rating,
             );
         }

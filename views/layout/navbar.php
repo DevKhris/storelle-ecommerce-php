@@ -2,7 +2,7 @@
 
 use App\Core\User;
 
-if(!empty($_SESSION['balance'])){
+if (!empty($_SESSION['balance'])) {
   $balance = User::getBalance($_SESSION['name']);
   $_SESSION['balance'] = $balance;
 }
@@ -60,8 +60,8 @@ if(!empty($_SESSION['balance'])){
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarToggler">
-      <a class="navbar-brand" href="#">
-        <img src="res/logo.png" alt="Storelle" class="d-inline-block align-top" width="128" height="64">
+      <a class="navbar-brand" href="/">
+        <img src="res/logo.png" alt="Storelle" class="d-inline-block align-top" width="132" height="72">
       </a>
       <ul class="navbar-nav mr-auto font-weight-bold">
         <li class="nav-item">
@@ -80,28 +80,6 @@ if(!empty($_SESSION['balance'])){
           <a class="nav-link" href="contact">Contact</a>
         </li>
       </ul>
-      <ul class="navbar-nav ml-auto d-flex">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
-            <i class="fa fa-shopping-cart text-dark"></i>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li>
-              <h6 class="dropdown-header text-muted">Shopping Cart</h6>
-            </li>
-            <li class="nav-item">
-              <div class="card">
-                <a class="dropdown-item align-self-center" href="#">
-                  <img class="img-thumbnail" src="res/products/apple.jpg" alt="">
-                  <p class="font-weight-light"></p>
-                  <p class="text-muted"></p>
-                </a>
-                <button class="btn btn-remove btn-outline-danger btn-block text-center"></button>
-              </div>
-            </li>
-            <br>
-            <button class="btn btn-primary btn-block" href="">Checkout</button>
-          </ul>
     </div>
     </ul>
     </li>

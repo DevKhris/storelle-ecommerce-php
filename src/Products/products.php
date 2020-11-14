@@ -23,10 +23,10 @@ class Products extends BaseProduct
             // return products as a array
             $products[] = array(
                 'id' => $row['id'],
-                'name' => $row['product_name'],
-                'img' => $row['product_img'],
-                'price' => $row['product_price'],
-                'rating' => $row['product_rating'],
+                'name' => $row['productName'],
+                'img' => $row['productImg'],
+                'price' => $row['productPrice'],
+                'rating' => $row['productRating'],
             );
         }
 

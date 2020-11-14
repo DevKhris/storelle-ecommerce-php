@@ -1,7 +1,8 @@
 $(function () {
     $('#review-box').hide();
-    requestProducts();
     requestProduct();
+    requestProducts();
+    
 });
 
 // Show or hides the review box
@@ -24,6 +25,7 @@ function requestProduct()
         },
         dataType: 'json',
         success: function (product) {
+            console.log(product);
             let productImg = `<img class="img-fluid" src="${product[0].img}" alt="${product[0].img}" width=512 height=512>` 
             $('#productImg').html(productImg);
             let productInfo = `
@@ -74,3 +76,18 @@ function requestProducts()
         });
     }
 
+
+// function cartHandler(handle,id) {
+//     let query;
+//     if (handle != "") {
+//         switch (handle) {
+//             case addProduct:
+//                 query = 'a=' + handle + '&id=' + id + 'qty=' + $("#productQuantity" + id).val();
+//                 break;
+            
+//             case removeProduct:
+//                 query = 'a=' + handle + '%id=' + id;
+//                 break;
+//         }
+//     }
+// }

@@ -13,9 +13,24 @@ use App\Reviews\Reviews;
     </div>
     <div class="col-sm-6" id="productInfo">
 
-        <!--<?php //require_once 'views/reviews.php';
-            ?>-->
+
+    </div>
+
+    <div class="col-sm-2">
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-2">
+
+    </div>
+    <div class="col-sm-3">
+
+    </div>
+    <div class="col-sm-6">
+        <?php require_once 'views/reviews.php'; ?>
     </div>
     <div class="col-sm-2">
-    </div>`
+
+    </div>
 </div>

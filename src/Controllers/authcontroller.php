@@ -6,6 +6,7 @@ use App\Application;
 use App\Core\Request;
 use App\Model\BaseUser;
 use App\Core\User;
+use App\Cart\ShoppingCart;
 use mysqli;
 
 class AuthController
@@ -50,12 +51,14 @@ class AuthController
                         $user = \mysqli_fetch_array($result, \MYSQLI_ASSOC);
                         if (password_verify($password, $user['password'])) {
                             $id = session_regenerate_id(true);
+                            $uId = $user['id'];
                             $_SESSION['loggedin'] = true;
                             $_SESSION['name'] = $user['username'];
                             $_SESSION['id'] = $id;
                             $_SESSION['balance'] = $user['balance'];
                             $_SESSION['start'] = time();
                             $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
+                            $_SESSION['cart'] = ShoppingCart::getCart($uId);
                             header('location: \\');
                             exit(500);
                         }

@@ -15,11 +15,11 @@ abstract class BaseCart
         $this->cart = $cart;
     }
 
-    public function getCart()
+    public static function getCart($userId)
     {
     }
 
-    public function addToCart($productId, $productName, $productPrice)
+    public static function addToCart($userId, $productId, $productName, $productQuantity, $productPrice)
     {
     }
 }
