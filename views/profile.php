@@ -11,7 +11,7 @@
 					<p class="pl-4">Username: <?php echo $_SESSION['name']; ?></p>
 				</li>
 				<li class="nav-item">
-					<p class="pl-4">Balance: <?php echo $_SESSION['balance']; ?></p>
+					<p class="pl-4">Balance: <?php echo '$' . $_SESSION['balance']; ?></p>
 				</li>
 			</ul>
 		</div>

@@ -8,7 +8,7 @@ $(function() {
 
 
     // hide the review form
-    $('#review-box').hide();
+    $('#review-form').hide();
 
     // renders the shopping cart
     requestCart();
@@ -18,7 +18,7 @@ $(function() {
             let elm = $(this)[0].parentElement.parentElement;
             let id = $(elm).attr('cartId');
             $.post('shopping-cart', {
-                id
+                id: id
             }, function(res) {
                 requestCart();
             })
@@ -38,14 +38,29 @@ $(function() {
             alert(id);
         })
     });
+
+    $('#review-form').submit(function (e) {
+        const reviewData = {
+            productId: $('#productId').val(),
+            feedBack: $('#reviewContent').val(),
+            rating: $('#reviewRating').val(),
+        };
+        let jsonData = JSON.stringify(reviewData);
+        postReview(jsonData);
+        $('#review-form').trigger('reset');
+        id = parseUrlParams('id');
+        requestReviews(id);
+        e.preventDefault();
+    })
+
 });
 
-// Show or hides the review box
+// Show or hides the review form
 function toggleReviewBox() {
-    if ($('#review-box').is(':visible')) {
-        $('#review-box').hide();
+    if ($('#review-form').is(':visible')) {
+        $('#review-form').hide();
     } else {
-        $('#review-box').show();
+        $('#review-form').show();
     }
 }
 
@@ -64,7 +79,7 @@ function requestProduct() {
             let productInfo = `
             <h1 class="text-monospace" id="productName">${product[0].name}</h1>
             <h3 class="text-muted" id="productPrice">$${product[0].price}</h3>
-            <p>${product[0].rating}</p>
+            <p>${product[0].rating} / 5 </p>
             <form class="form-group" action="" method="" id="add-form">
                 <label for="productQuantity">Qty</label>
                 <input class="form-control form-control-sm" min=1 value="1" type="number" name="productQuantity" id="productQuantity">
@@ -96,7 +111,7 @@ function requestProducts() {
                 <div class="col-sm-2">
                     <a class="text-decoration-none product-link font-weight-bold" href="product?id=${product.id}">
                         <div class="card product text-center">
-                            <img src="${product.img}" class="card-img-top img-fluid" alt="${product.img}">
+                            <img src="${product.img}" class="card-img-top img-fluid" alt="${product.img}" width="360" height="360">
                             <div class="card-body">
                                 <h5 class="card-title">${product.name}</h5>
                                 <span class="card-text">$${product.price}</span>
@@ -113,8 +128,22 @@ function requestProducts() {
     });
 }
 
+function postReview(reviewData) {
+    $.ajax({
+        url: '/reviews',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            review: reviewData
+        },
+        contentType: "application/json",
+        success: function(review) {
+            console.log(review);
+        }
+    });
+
+}
 function requestReviews(id) {
-    console.log(id);
     $.ajax({
         url: '/reviews',
         type: 'POST',
@@ -125,7 +154,6 @@ function requestReviews(id) {
             let reviews = JSON.parse(res);
             let template = '';
             reviews.forEach(review => {
-                console.log(review);
                 template += `
                     <div class=" card">
                     <div class="card-header">
@@ -142,6 +170,7 @@ function requestReviews(id) {
                         </p>
                     </div>
                 </div>
+                
                 `;
             });
 

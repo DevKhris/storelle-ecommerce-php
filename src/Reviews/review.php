@@ -19,9 +19,10 @@ class Review extends BaseReview
     {
         global $conn;
 
-        $sql = "INSERT INTO reviews (productId, userName, feedBack, rating) VALUES ('$productId', '$reviewUser', '$reviewFeedBack', '$reviewRating')";
+        $sql = "INSERT INTO reviews (productId, userName, feedBack, rating) VALUES ('$productId', '$reviewUserName', '$reviewFeedBack', '$reviewRating')";
 
-        if (mysqli_query($conn, $sql)) {
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
             return true;
         } else {
             return false;

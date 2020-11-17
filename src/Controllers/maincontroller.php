@@ -76,28 +76,18 @@ class MainController
             $res = [];
             $res = Reviews::getReviews($id);   
             return $res;
+
         }
-            
-    }
-
-    public static function review()
-    {
-
-        return Application::$app->router->renderView('review');
-    }
-
-    public static function reviewHandler()
-    {
-
+                    
         if (isset($_POST['review'])) {
-            $id = $_REQUEST['id'];
-            $reviewRating = $_POST['reviewRating'];
-            $reviewComment = $_POST['reviewContent'];
-            $reviewUser = $_SESSION['name'];
-            Review::postReview($id, $reviewUser, $reviewComment, $reviewRating);
-            \header("location: /product?id=$id");
-        } else {
-            $id = $_REQUEST['id'];
+            $review = json_($_POST['review']);
+            $productId = $_REQUEST['id'];
+            $reviewUserName = $_SESSION['name'];
+            $reviewRating = $_REQUEST['rating'];
+            $reviewFeedBack = $_REQUEST['feedBack'];
+            Review::postReview($productId, $reviewUserName, $reviewFeedBack, $reviewRating);
+            return $review;
+            //\header("location: /product?id=$id");
         }
     }
 

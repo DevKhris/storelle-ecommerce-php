@@ -39,7 +39,9 @@ class Reviews
         $sql = "SELECT AVG(rating) AS t_rating, COUNT(*) AS t_reviews FROM reviews WHERE productId = $productId";
 
         $result = mysqli_query($conn, $sql);
-
+        if (!$result){
+            die('Can\'t fetch average rating for product');
+        }
         $rating = mysqli_fetch_assoc($result);
 
         return $rating;
