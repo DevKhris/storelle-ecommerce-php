@@ -14,10 +14,22 @@ class Reviews
 
         $result = mysqli_query($conn, $sql);
 
-        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            $reviews[] = $row;
+        if(!$result) {
+            die('Can\'t fetch reviews');    
         }
-        return $reviews;
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            $reviews[] = array(
+            'id' => $row['id'],
+            'productId' => $row['productId'],
+            'userName' => $row['userName'],
+            'feedBack' => $row['feedBack'],
+            'rating' => $row['rating'],
+            );
+        }
+
+        $jsonReviews = json_encode($reviews);
+
+        echo $jsonReviews;
     }
 
     public static function getAverage($productId)

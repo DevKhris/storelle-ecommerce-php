@@ -23,7 +23,7 @@ class ShoppingCart extends BaseCart
     public static function removeFromCart($id)
     {
         global $conn;
-        $sql = "DELETE * FROM shoppingcart WHERE id = '$id'";
+        $sql = "DELETE FROM shoppingcart WHERE id = '$id'";
 
         $result = mysqli_query($conn, $sql);
 

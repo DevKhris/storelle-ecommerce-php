@@ -63,6 +63,8 @@ footer {
 	width: auto;
 }
 
+
+
 .product-link {
 	color: #131313;
 	font-size: 1.3rem;
@@ -123,6 +125,21 @@ a.checked:hover {
 
 .review-box {
 
+}
+
+/*** Shopping Cart ***/
+.cart-item {
+	color: #131313;
+	text-decoration: none;
+}
+.cart-item:hover {
+	color: #d7003c;
+	text-decoration: none;
+	-webkit-transition: all .25s ease-in;
+	   -moz-transition: all .25s ease-in;
+	    -ms-transition: all .25s ease-in;
+		 -o-transition: all .25s ease-in;
+	        transition: all .25s ease-in;
 }
 /*** Colors & Backgrounds ***/
 .bg-black {

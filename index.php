@@ -57,8 +57,14 @@ if (!isset($_SESSION['loggedin'])) {
 
     // Sets review route to view (testing only)
     $app->router->get('/review', [MainController::class, 'review']);
-    // Sets controller for reviews route callback (WIP)
+    // Sets controller for review route callback (WIP)
     $app->router->set('/review', [MainController::class, 'reviewHandler']);
+
+    // Sets controller for reviews route callback 
+    $app->router->get('/reviews', [MainController::class, 'reviews']);
+
+    // Sets controller for reviews route callback
+    $app->router->set('/reviews', [MainController::class, 'reviewsHandler']);
 
     // Routes shopping cart to view
     $app->router->get('/shopping-cart', [MainController::class, 'shoppingcart']);

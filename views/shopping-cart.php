@@ -20,8 +20,8 @@ if (!empty($_GET)) {
     <h3 class="text-center ">Shopping Cart</h3>
     <hr>
     <table class="table table-hover mt-5 text-center">
-      <thead class="table-dark">
-        <tr>
+      <thead c>
+        <tr class="table-dark">
           <th scope="col">Id</th>
           <th scope="col">Name</th>
           <th scope="col">Quantity</th>

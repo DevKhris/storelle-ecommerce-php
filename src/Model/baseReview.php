@@ -7,24 +7,24 @@ abstract class BaseReview
     protected $productId;
     protected $reviewId;
     protected $reviewProductId;
-    protected $reviewUsername;
+    protected $reviewUserName;
     protected $reviewRating;
-    protected $reviewComment;
+    protected $reviewFeedBack;
 
-    public function __construct($reviewId, $reviewProductId, $reviewUsername, $reviewRating, $reviewComment)
+    public function __construct($reviewId, $reviewProductId, $reviewUserName, $reviewRating, $reviewFeedBack)
     {
         $this->reviewId = $reviewId;
         $this->reviewProductId = $reviewProductId;
-        $this->reviewUsername = $reviewUsername;
+        $this->reviewUserName = $reviewUserName;
         $this->reviewRating = $reviewRating;
-        $this->reviewComment = $reviewComment;
+        $this->reviewFeedBack = $reviewFeedBack;
     }
 
     public function getReview($productId)
     {
     }
 
-    public static function postReview($productId, $reviewUser, $reviewRating, $reviewComment)
+    public static function postReview($productId, $reviewUserName, $reviewRating, $reviewFeedBack)
     {
     }
 }

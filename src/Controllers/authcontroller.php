@@ -56,6 +56,7 @@ class AuthController
                             $_SESSION['loggedin'] = true;
                             $_SESSION['name'] = $user['username'];
                             $_SESSION['id'] = $id;
+                            $_SESSION['uid'] = $uId;
                             $_SESSION['balance'] = $user['balance'];
                             $_SESSION['start'] = time();
                             $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);

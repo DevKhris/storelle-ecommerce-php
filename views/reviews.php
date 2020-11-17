@@ -1,13 +1,3 @@
-<?php
-
-use App\Reviews\Reviews;
-use App\Reviews\Review;
-use App\Controllers\MainController;
-
-$id = $_GET['id'];
-$reviews = [];
-$reviews = Reviews::getReviews($id);
-?>
 <div class="container">
 
     <h2 class="mt-3 pt-3">User Reviews</h2>
@@ -30,27 +20,7 @@ $reviews = Reviews::getReviews($id);
     </div>
     <br>
     <br>
-    <div class="reviews">
-        <?php if (!empty($reviews)) {
-            for ($i = 0; $i < count($reviews); $i++) { ?>
-                <div class=" card">
-                    <div class="card-header">
-                        <h4 class="mt-3 mx-auto">
-                            <?php echo strtoupper($reviews[$i]['username']); ?>
-                        </h4>
-                        <h5>
-                            Rating: <?php echo $reviews[$i]['rating']; ?>
-                        </h5>
-                    </div>
-                    <div class="card-body">
-                        <p class="text-muted">
-                            <?php echo $reviews[$i]['comment']; ?>
-                        </p>
-                    </div>
-                </div>
-        <?php
-            }
-        }
-        ?>
+    <div class="reviews" id="reviews-box">
+
     </div>
 </div>
