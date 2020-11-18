@@ -15,7 +15,7 @@ class Review extends BaseReview
      * @param [int] $reviewRating
      * @return void
      */
-    
+
     public static function addReview($productId, $reviewUserName, $reviewFeedBack, $reviewRating)
     {
         global $conn;
@@ -24,9 +24,9 @@ class Review extends BaseReview
 
         $result = mysqli_query($conn, $sql);
         if (!$result) {
-            echo $sql;
             die('Can\'t add user review');
-        } 
+        }
         return $result;
+        return $_SESSION;
     }
 }

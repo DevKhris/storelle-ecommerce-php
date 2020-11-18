@@ -43,8 +43,8 @@ class MainController
             $id = $_REQUEST['id'];
             $req = Product::get($id);
         }
-        
-        if(isset($_POST['data'])) {
+
+        if (isset($_POST['data'])) {
             var_dump($_POST['data']);
         }
     }
@@ -55,12 +55,23 @@ class MainController
 
     public static function shoppingcartHandler()
     {
-        // if ($_POST['id']) {
-        //  ShoppingCart::removeFromCart($_REQUEST['id']);
-        // }
-        $res;
-        $res = ShoppingCart::getCart($_SESSION['uid']);
-        return $res;
+        if (isset($_REQUEST['product'])) {
+            $product = \json_decode($_REQUEST['product'], true);
+            $userId = $_SESSION['uid'];
+            $productId = $product['productId'];
+            $productName = $product['productName'];
+            $productQuantity = $product['productQuantity'];
+            $productPrice = $product['productPrice'];
+            ShoppingCart::addToCart($userId, $productId, $productName, $productQuantity, $productPrice);
+        }
+        if (isset($_REQUEST['id'])) {
+            ShoppingCart::removeFromCart($_REQUEST['id']);
+        }
+
+        if (isset($_SESSION['uid'])) {
+            $res = ShoppingCart::getCart($_SESSION['uid']);
+            return $res;
+        }
     }
 
     public static function reviews()
@@ -70,27 +81,24 @@ class MainController
     }
 
     public static function reviewsHandler()
-    {   
+    {
         if (isset($_REQUEST['id'])) {
             $id = $_REQUEST['id'];
             $res = [];
-            $res = Reviews::getReviews($id);   
+            $res = Reviews::getReviews($id);
             return $res;
-
-        }     
-
+        }
     }
 
     public static function reviewHandler()
-    {           
+    {
         if (isset($_REQUEST['review'])) {
-            $review = json_decode($_REQUEST['review'],true);
+            $review = json_decode($_REQUEST['review'], true);
             $productId = $review['productId'];
             $reviewUserName = $_SESSION['name'];
             $reviewFeedBack = $review['feedBack'];
             $reviewRating = $review['rating'];
             Review::addReview($productId, $reviewUserName, $reviewFeedBack, $reviewRating);
-            //\header("location: /product?id=$id");
         }
     }
     public static function contact()

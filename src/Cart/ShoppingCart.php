@@ -10,16 +10,16 @@ class ShoppingCart extends BaseCart
     public static function addToCart($userId, $productId, $productName, $productQuantity, $productPrice)
     {
         global $conn;
-        $sql = "INSERT INTO shoppingcart ($userId, $productId, productName, productQuantity, productPrice) VALUES ('$userId', '$productId', '$productName', '$productQuantity', '$productPrice')";
+
+        $sql = "INSERT INTO shoppingcart (userId, productId, productName, productQuantity, productPrice) VALUES ('$userId', '$productId', '$productName', '$productQuantity', '$productPrice')";
 
         $result = mysqli_query($conn, $sql);
-
-        if ($result) {
-            echo '<div class="alert alert-success" role="alert">Added to cart!</div>';
-        } else {
-            echo '<div class="alert alert-warning" role="alert">Can\'t add to cart</div>';
+        if (!$result) {
+            echo '<div class="alert alert-warning alert-dismissible" role="alert">Can\'t add ' . $productName . ' to cart</div>';
         }
+        return $result;
     }
+
     public static function removeFromCart($id)
     {
         global $conn;
@@ -27,12 +27,12 @@ class ShoppingCart extends BaseCart
 
         $result = mysqli_query($conn, $sql);
 
-        if ($result) {
-            echo '<div class="alert alert-success" role="alert">Removed from cart!</div>';
-        } else {
+        if (!$result) {
             echo '<div class="alert alert-warning" role="alert">Can\'t remove from cart</div>';
         }
+        echo '<div class="alert alert-success" role="alert">Removed from cart!</div>';
     }
+
     public static function getCart($userId)
     {
         global $conn;
@@ -48,11 +48,11 @@ class ShoppingCart extends BaseCart
         while ($row = mysqli_fetch_array($result)) {
             $cart[] = array(
                 'id' => $row['id'],
-                'uId' => $row['userId'],
-                'pId' => $row['productId'],
-                'name' => $row['productName'],
-                'quantity' => $row['productQuantity'],
-                'price' => $row['productPrice']
+                'userId' => $row['userId'],
+                'productId' => $row['productId'],
+                'productName' => $row['productName'],
+                'productQuantity' => $row['productQuantity'],
+                'productPrice' => $row['productPrice']
             );
         }
 

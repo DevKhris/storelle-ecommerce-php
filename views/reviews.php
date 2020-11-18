@@ -1,5 +1,5 @@
 <?php
-
+// get product id and passes it to var
 $id = $_GET['id'];
 ?>
 

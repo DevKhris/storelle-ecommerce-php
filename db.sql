@@ -14,16 +14,16 @@
 -- Volcando estructura para tabla storelle.products
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `product_name` varchar(50) NOT NULL DEFAULT '0',
-  `product_price` double NOT NULL DEFAULT '0',
-  `product_rating` double NOT NULL,
-  `product_img` text NOT NULL,
+  `productName` varchar(50) NOT NULL DEFAULT '0',
+  `productPrice` double NOT NULL DEFAULT '0',
+  `productRating` double NOT NULL,
+  `productImg` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla storelle.products: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` (`id`, `product_name`, `product_price`, `product_rating`, `product_img`) VALUES
+INSERT INTO `products` (`id`, `productName`, `productPrice`, `productRating`, `productImg`) VALUES
 	(1, 'Apple', 0.3, 3, 'res/products/apple.jpg'),
 	(2, 'Beer', 2, 3, 'res/products/beer.png'),
 	(3, 'Water', 1, 2, 'res/products/waterbottle.png'),
@@ -32,14 +32,17 @@ INSERT INTO `products` (`id`, `product_name`, `product_price`, `product_rating`,
 
 -- Volcando estructura para tabla storelle.reviews
 CREATE TABLE IF NOT EXISTS `reviews` (
-  `id` int(11) DEFAULT NULL,
-  `userId` int(11) DEFAULT NULL,
-  `userName` varchar(50) DEFAULT NULL,
-  `rating` int(11) DEFAULT NULL,
-  `comment` text
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `productId` int(11) NOT NULL,
+  `userName` varchar(50) NOT NULL,
+  `feedBack` text NOT NULL,
+  `rating` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `productId` (`productId`),
+  KEY `userName` (`userName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla storelle.reviews: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla storelle.reviews: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `reviews` DISABLE KEYS */;
 /*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 
@@ -47,17 +50,20 @@ CREATE TABLE IF NOT EXISTS `reviews` (
 CREATE TABLE IF NOT EXISTS `shoppingcart` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) DEFAULT NULL,
-  `name` varchar(50) NOT NULL,
-  `price` double NOT NULL,
-  `img` text NOT NULL,
-  `quantity` int(11) NOT NULL,
+  `productId` int(11),
+  `productName` varchar(50) NOT NULL,
+  `productQuantity` int(11) NOT NULL,
+  `productPrice` double NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `shoppingcart_users` (`userId`),
-  CONSTRAINT `shoppingcart_users` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `shoppingcart_users` (`productId`),
+  KEY `userId` (`userId`),
+  CONSTRAINT `FK_shoppingcart_users` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla storelle.shoppingcart: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla storelle.shoppingcart: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `shoppingcart` DISABLE KEYS */;
+INSERT INTO `shoppingcart` (`id`, `userId`, `productId`, `productName`, `productQuantity`, `productPrice`) VALUES
+	(1, 2, 2, 'Beer', 1, 2);
 /*!40000 ALTER TABLE `shoppingcart` ENABLE KEYS */;
 
 -- Volcando estructura para tabla storelle.users

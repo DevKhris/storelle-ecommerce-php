@@ -1,11 +1,10 @@
 $(function() {
 
-    // render one product
-    requestProduct();
-
     // renders the products
     requestProducts();
 
+    // render one product
+    requestProduct();
 
     // hide the review form
     $('#review-form').hide();
@@ -13,30 +12,19 @@ $(function() {
     // renders the shopping cart
     requestCart();
 
-    $(document).on('click', '.cartItem-delete', function() {
-        if (confirm('Are you sure you want to remove this product from cart?')) {
-            let elm = $(this)[0].parentElement.parentElement;
-            let id = $(elm).attr('cartId');
-            $.post('shopping-cart', {
-                id: id
-            }, function(res) {
-                requestCart();
-            })
-        }
-    });
-
-    $(document).on('click', '.product-add', function() {
-        let productName = document.getElementById('productName');
-        let productPrice = document.getElementById('productPrice');
-        let product = {
-            'name': productName,
-            'price': productPrice,
+    $('#product-form').submit(function (e) {
+        e.preventDefault();
+        let productData = {
+            'productId': parseUrlParams('id'),
+            'productName': $('#productName').html(),
+            'productPrice': $('#productPrice').html().replace('$',''),
+            'productQuantity': $('#productQuantity').val(),
         };
-        $.post('product', {
-            id
-        }, function(res) {
-            alert(id);
-        })
+        if (productData.productQuantity > 0) {
+            let jsonData = JSON.stringify(productData);
+            addProduct(jsonData);
+            requestCart();
+        }            
     });
 
     $('#review-form').submit(function (e) {
@@ -51,8 +39,19 @@ $(function() {
         $('#review-form').trigger('reset');
         id = parseUrlParams('id');
         requestReviews(id);
-       
     })
+
+    $(document).on('click', '.cartItem-delete', function() {
+        if (confirm('Are you sure you want to remove this product from cart?')) {
+            let elm = $(this)[0].parentElement.parentElement;
+            let id = $(elm).attr('cartId');
+            $.post('shopping-cart', {
+                id: id
+            }, function(res) {
+                requestCart();
+            })
+        }
+    });
 
 });
 
@@ -79,17 +78,8 @@ function requestProduct() {
             $('#productImg').html(productImg);
             let productInfo = `
             <h1 class="text-monospace" id="productName">${product[0].name}</h1>
-            <h3 class="text-muted" id="productPrice">$${product[0].price}</h3>
+            <h3 class="text-muted" id="productPrice">${product[0].price}</h3>
             <p class="reviews num"><i class="fa fa-star stars"></i> ${product[0].rating} / 5 </p>
-            <form class="form-group" action="" method="" id="add-form">
-                <label for="productQuantity">Qty</label>
-                <input class="form-control form-control-sm" min=1 value="1" type="number" name="productQuantity" id="productQuantity">
-            <button type="submit" name="product-add" class="btn btn-product btn-block mt-5">
-                    Add to cart
-                    <i class="fa fa-shopping-cart"></i>
-            </button>
-            </form>          
-            <br>
             `;
             $('#productInfo').html(productInfo);
             id = parseUrlParams('id');
@@ -97,6 +87,17 @@ function requestProduct() {
             requestReviews(id);
         }
 
+    });
+}
+
+function addProduct(productData) {
+    $.ajax({
+        url: '/shopping-cart',
+        type: 'POST',
+        data: { product:productData },
+        success: function (res) {
+            $('#alerts').html(res);
+        }
     });
 }
 
@@ -135,7 +136,6 @@ function postReview(reviewData) {
         type: 'POST',
         data: {review:reviewData},
         success: function(res) {
-            alert(res);
         }
     });
 
@@ -183,17 +183,16 @@ function requestCart() {
         type: 'POST',
         success: function(req) {
             let cartItems = JSON.parse(req);
-            //console.log(cartItems);
             let template = '';
             cartItems.forEach(cartItem => {
                 template += `
                     <tr cartId="${cartItem.id}">
                         <td>${cartItem.id}</td>
                         <td>
-                            <a href="product?id=${cartItem.id}" class="cart-item">${cartItem.name}</a>
+                            <a href="product?id=${cartItem.productId}" class="cart-item">${cartItem.productName}</a>
                         </td>
-                        <td>${cartItem.quantity}</td>
-                        <td>${cartItem.price}</td>
+                        <td>${cartItem.productQuantity}</td>
+                        <td>$${cartItem.productPrice}</td>
                         <td>
                             <button href="&id=${cartItem.id}" class="btn btn-outline-danger cartItem-delete">X</button>
                         </td>
@@ -206,21 +205,6 @@ function requestCart() {
     });
 
 }
-// function cartHandler(handle,id) {
-//     let query;
-//     if (handle != "") {
-//         switch (handle) {
-//             case addProduct:
-//                 query = 'a=' + handle + '&id=' + id + 'qty=' + $("#productQuantity" + id).val();
-//                 break;
-
-//             case removeProduct:
-//                 query = 'a=' + handle + '%id=' + id;
-//                 break;
-//         }
-//     }
-// }
-// 
 
 function parseUrlParams(param)
 {

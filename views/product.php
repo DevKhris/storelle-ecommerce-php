@@ -11,9 +11,19 @@ use App\Reviews\Reviews;
     </div>
     <div class="col-sm-3" id="productImg">
     </div>
-    <div class="col-sm-6" id="productInfo">
-
-
+    <div class="col-sm-6">
+        <div id="alerts"></div>
+        <div id="productInfo">
+        </div>
+        <form class="form-group" method="POST" id="product-form">
+            <label for="productQuantity">Qty</label>
+            <input class="form-control form-control-sm" min=1 value="1" type="number" name="productQuantity" id="productQuantity">
+            <button type="submit" name="product-add" class="btn btn-product btn-block mt-5">
+                Add to cart
+                <i class="fa fa-shopping-cart"></i>
+            </button>
+        </form>
+        <br>
     </div>
 
     <div class="col-sm-2">
