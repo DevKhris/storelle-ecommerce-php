@@ -197,7 +197,8 @@ function requestCart() {
             let template = '';
             let pricing = '';
             cartItems.forEach(cartItem => {
-                template += `,
+                totalPrice += cartItem.productPrice.valueOf();
+                template += `
                     <tr cartId="${cartItem.id}">
                         <td>${cartItem.id}</td>
                         <td>
