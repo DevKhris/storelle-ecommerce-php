@@ -43,9 +43,15 @@ class User extends BaseUser
         $result = mysqli_query($conn, $sql);
 
         if (!$result) {
-            echo 'Can\'t update funds';
+            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Warning, Can\'t update funds!</strong>
+                    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                  </div>';
         }
-        echo 'Succesfully updated funds!';
+        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Successfully updated funds!</strong>
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+              </div>';
     }
 
     public static function getBalance($username)
@@ -55,7 +61,10 @@ class User extends BaseUser
         $result = mysqli_query($conn, $sql);
 
         if (!$result) {
-            echo ('Can\'t get user balance');
+            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Warning, Can\'t get user balance!</strong>
+                    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                  </div>';
         }
 
         $user = array();

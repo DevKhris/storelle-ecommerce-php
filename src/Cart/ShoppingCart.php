@@ -76,10 +76,18 @@ class ShoppingCart extends BaseCart
         $result = mysqli_query($conn, $sql);
         if (!$result) {
             // returns error if can't insert item
-            echo '<div class="alert alert-warning alert-dismissible" role="alert">Can\'t add ' . $productName . ' to cart</div>';
+            echo '
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    Can\'t add <strong>' . $productName . '</strong> to cart
+                    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                </div>';
         }
         // returns success if item was inserted into db
-        echo '<div class="alert alert-success alert-dismissible" role="alert">Succesfully added ' . $productName . ' to cart</div>';
+        echo '
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Successfully added <strong>' . $productName . ' </strong> to cart
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+            </div>';
     }
 
     /**
@@ -100,10 +108,16 @@ class ShoppingCart extends BaseCart
 
         if (!$result) {
             // returns error if can't remove item
-            echo '<div class="alert alert-warning" role="alert">Can\'t remove from cart</div>';
+            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Can\'t remove from shopping cart!</strong>
+                    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                  </div>';
         }
         // returns success if item was removed from db
-        echo '<div class="alert alert-success" role="alert">Removed from cart!</div>';
+        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Removed from shopping cart!</strong>
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+              </div>';
     }
 
     public static function checkOut($userId)
@@ -112,10 +126,19 @@ class ShoppingCart extends BaseCart
         // Query for deleting item from cart after purchase
         $sql = "DELETE FROM shoppingcart WHERE userId = '$userId'";
 
+        // Stores the result of query
         $result = mysqli_query($conn, $sql);
         if (!$result) {
-            echo '';
+            // returns error if can't process the query
+            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Can\'t process purchase!</strong>
+                    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                  </div>';
         }
-        echo '';
+        // returns success if query is successfull
+        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Purchase processed successfully!</strong>
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+              </div>';
     }
 }

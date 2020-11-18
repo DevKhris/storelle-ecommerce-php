@@ -10,7 +10,7 @@ use App\Cart\ShoppingCart;
   <div class="col-sm-10">
     <h3 class="text-center ">Shopping Cart</h3>
     <hr>
-    <div class="alerts">
+    <div id="alerts">
 
     </div>
     <table class="table table-hover mt-5 text-center">

@@ -59,7 +59,7 @@ if (!empty($_SESSION['name'])) {
     </button>
     <div class="collapse navbar-collapse" id="navbarToggler">
       <a class="navbar-brand" href="/">
-        <img src="res/logo.png" alt="Storelle" class="d-inline-block align-top" width="132" height="72">
+        <img src="res/logo-min.png" alt="Storelle" class="d-inline-block align-top" width="132" height="72">
       </a>
       <ul class="navbar-nav mr-auto pr-5 font-weight-bold">
         <li class="nav-item">

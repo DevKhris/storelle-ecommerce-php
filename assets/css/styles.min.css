@@ -46,8 +46,8 @@ footer {
 /*** Product Styles ***/
 
 .card .product {
-	width: 12rem;
-	margin: 0px 16px 0px 16px;
+	width: 10rem;
+	margin: 0px 16px 4px 16px;
 }
 
 .product h4 {
@@ -59,8 +59,9 @@ footer {
 }
 
 .product img {
-	max-height: 18.2rem;
-	width: auto;
+	max-height: 14rem !important;
+	max-width: 14rem !important;
+	object-fit: cover;
 }
 
 .product-link {

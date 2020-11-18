@@ -72,10 +72,12 @@ class MainController
             $productQuantity = $product['productQuantity'];
             $productPrice = $product['productPrice'];
             ShoppingCart::addToCart($userId, $productId, $productName, $productQuantity, $productPrice);
+            return;
         }
 
         if (isset($_REQUEST['id'])) {
             ShoppingCart::removeFromCart($_REQUEST['id']);
+            return;
         }
 
         if (isset($_SESSION['uid'])) {
@@ -87,9 +89,9 @@ class MainController
             $data[] = $_REQUEST['checkout'];
             $cost = $data[0]['totalPrice'];
             $balance = ($_SESSION['balance'] - $cost);
-            var_dump($balance);
             User::setBalance($balance, $userId);
             $res = ShoppingCart::checkOut($userId);
+            return;
         }
     }
 
@@ -143,6 +145,6 @@ class MainController
             $req = [];
             $req = User::getBalance($_SESSION['name']);
         }
-        echo $req;
+        return $req;
     }
 }

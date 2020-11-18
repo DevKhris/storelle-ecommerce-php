@@ -13,6 +13,7 @@ $id = $_GET['id'];
     <br>
     <div class="row">
         <div class="col-sm-12">
+            <div id="review-alerts"></div>
             <form class="form-group" id="review-form">
                 <label for="reviewRating">Rate this product</label>
                 <input type="hidden" name="" value="<?php echo $id; ?>" id="productId">

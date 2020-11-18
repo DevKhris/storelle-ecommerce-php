@@ -1,16 +1,27 @@
 $(function() {
 
-    // renders the products
-    requestProducts();
-
-    // render one product
-    requestProduct();
+    switch (getUrl()) {
+        case '/':
+            requestProducts();
+            break;
+        case '/products':
+            // renders the products
+            requestProducts();          
+            break;
+        case '/product':
+            // render one product
+            requestProduct();
+            break;
+        case '/shopping-cart':
+            // renders the shopping cart
+            requestCart();
+            break;
+        default:
+            break;
+    }
 
     // hide the review form
     $('#review-form').hide();
-
-    // renders the shopping cart
-    requestCart();
 
     $('#product-form').submit(function(e) {
         e.preventDefault();
@@ -56,9 +67,12 @@ $(function() {
             'currentBalance': parseFloat($('#userBalance').html().replace('Balance: $','')),
         };
         if (cartData.totalPrice > cartData.currentBalance) {
-             alert('Insufficien funds');
+            alerts = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Can't proceed, Insufficient funds!</strong>
+                            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                        </div>`;
+            $('#alerts').html(alerts);
         } else {
-            alert('Thanks for your purchase');
             cartData.currentBalance = cartData.currentBalance - cartData.totalPrice;
             performCheckout(cartData);
             requestCart();           
@@ -110,7 +124,7 @@ function addProduct(productData) {
             product: productData
         },
         success: function(res) {
-
+            $('#alerts').html(res);
         }
     });
 }
@@ -137,10 +151,10 @@ function requestProducts() {
             let template = '';
             products.forEach(product => {
                 template += `
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     <a class="text-decoration-none product-link font-weight-bold" href="product?id=${product.id}">
                         <div class="card product text-center">
-                            <img src="${product.img}" class="card-img-top " width=360 height=230 alt="${product.img}">
+                            <img src="${product.img}" class="card-img-top align-self-center img-fluid" width=360 height=240 alt="${product.img}">
                             <div class="card-body">
                                 <h5 class="card-title">${product.name}</h5>
                                 <span class="card-text">$${product.price}</span>
@@ -164,7 +178,9 @@ function postReview(reviewData) {
         data: {
             review: reviewData
         },
-        success: function(res) {}
+        success: function (res) {
+            $('#review-alerts').html(res);
+        }
     });
 
 }
@@ -254,7 +270,7 @@ function performCheckout(cartData)
             checkout: cartData
         },
         success: function(res) {
-            alert(res);
+            $('#alerts').html(res);
         }
     });
 }
@@ -282,6 +298,6 @@ function parseUrlParams(param)
 
 function getUrl()
 {
-    const query = windows.location.search;
+    const query = window.location['pathname'];
     return query;
 }
