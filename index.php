@@ -41,25 +41,26 @@ if (!isset($_SESSION['loggedin'])) {
     // routes login and register to view
     $app->router->get('/login', [AuthController::class, 'login']);
     $app->router->get('/register', [AuthController::class, 'register']);
-    // set controller handler for login and register
+    // set controller handler for login and register callbacks
     $app->router->set('/login', [AuthController::class, 'loginHandler']);
     $app->router->set('/register', [AuthController::class, 'registerHandler']);
 } else {
     // Routes products to view
     $app->router->get('/products', [MainController::class, 'products']);
-    // Sets controller for products route callback
+    // Sets controller for products callback
     $app->router->set('/products', [MainController::class, 'productsHandler']);
 
     // Routes product to view
     $app->router->get('/product', [MainController::class, 'product']);
-    // Sets controller for product route callback
+    // Sets controller for product callback
     $app->router->set('/product', [MainController::class, 'productHandler']);
 
     // Sets controller for reviews view
     $app->router->get('/reviews', [MainController::class, 'reviews']);
 
-    // Sets controller for reviews route callback
+    // Sets controller for reviews callback
     $app->router->set('/reviews', [MainController::class, 'reviewsHandler']);
+    // Sets controller for review posting callback
     $app->router->set('/review', [MainController::class, 'reviewHandler']);
 
     // Routes shopping cart to view
@@ -67,11 +68,13 @@ if (!isset($_SESSION['loggedin'])) {
 
     $app->router->set('/shopping-cart', [MainController::class, 'shoppingcartHandler']);
 
-    // routes to profile because the user is logged
+    // routes to profile because the user is logged in
     $app->router->get('/login', 'profile');
     $app->router->get('/logout', [AuthController::class, 'logoutHandler']);
     $app->router->get('/register', 'profile');
     $app->router->get('/profile', 'profile');
+    // Sets controller for profile callback
+    $app->router->set('/profile', [MainController::class, 'profileHandler']);
 }
 
 // execute the app

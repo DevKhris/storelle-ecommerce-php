@@ -57,7 +57,7 @@ class MainController
     public static function shoppingcartHandler()
     {
         if (isset($_REQUEST['product'])) {
-            $product = \json_decode($_REQUEST['product'], true);
+            $product = json_decode($_REQUEST['product'], true);
             $userId = $_SESSION['uid'];
             $productId = $product['productId'];
             $productName = $product['productName'];
@@ -74,14 +74,12 @@ class MainController
             $res = ShoppingCart::getCart($_SESSION['uid']);
         }
 
-        if (isset($_REQUEST['userBalance'])) {
-            $res = User::getBalance($_SESSION['name']);
-            return $res;
-        }
-
         if (isset($_REQUEST['checkout'])) {
+            $cost = $_REQUEST['checkout'];
+            //$balance($_SESSION['balance'] = $_SESSION['balance'] - $cost['totalPrice']);
+            //User::setBalance($balance);
             $res = ShoppingCart::checkOut($_SESSION['uid']);
-            return $res;
+            return var_dump($_REQUEST['checkout']);
         }
     }
 
@@ -127,5 +125,13 @@ class MainController
     public static function about()
     {
         return Application::$app->router->renderView('about');
+    }
+
+    public static function profileHandler()
+    {
+        if (isset($_REQUEST['balance'])) {
+            $res = [];
+            $res = User::getBalance($_SESSION['name']);
+        }
     }
 }

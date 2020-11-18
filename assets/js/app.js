@@ -2,7 +2,7 @@ $(function() {
 
     // renders the products
     requestProducts();
-
+    
     // render one product
     requestProduct();
 
@@ -50,9 +50,12 @@ $(function() {
         }
     });
 
-    $(document).on('click', '.checkout', function() {
-        //performCheckout();
-        //requestCart();
+    $(document).on('click', '.checkout', function () {
+        let cartData = {
+            'totalPrice': $('#totalPrice').html().replace('Total: $',''),
+        };
+        performCheckout(cartData);
+        requestCart();
     });
 
 });
@@ -101,7 +104,7 @@ function addProduct(productData)
         type: 'POST',
         data: { product:productData },
         success: function (res) {
-            $('#alerts').html(res);
+
         }
     });
 }
@@ -207,7 +210,7 @@ function requestCart()
             let template = '';
             let pricing = '';
             cartItems.forEach(cartItem => {
-                totalPrice += Number(cartItem.productPrice) * Number(cartItem.productQuantity);
+                totalPrice += parseFloat(cartItem.productPrice) * parseInt(cartItem.productQuantity);
                 template += `
                     <tr cartId="${cartItem.id}">
                         <td>${cartItem.id}</td>
@@ -222,11 +225,11 @@ function requestCart()
                     </tr>
                 `
             });
-            totalPrice = Number(totalPrice) + Number(shippingCost);
+            totalPrice = parseFloat(totalPrice) + parseInt(shippingCost);
             pricing += `
-                <p class="text-md-right" id="userBalance>Balance: $${Number(balance)}</p>
-                <p class="text-md-right" id="shippingCost">Shipping Cost: $${Number(shippingCost)}</p>
-                <p class="text-md-right" id="totalPrice"><b>Total: $${Number(totalPrice)}</b></p>
+                <p class="text-md-right" id="userBalance">Balance: $${parseFloat(balance)}</p>
+                <p class="text-md-right" id="shippingCost">Shipping Cost: $${parseInt(shippingCost)}</p>
+                <p class="text-md-right" id="totalPrice"><b>Total: $${parseFloat(totalPrice)}</b></p>
                 `
             $('#cart').html(template);
             $('#pricing').html(pricing);
@@ -235,12 +238,12 @@ function requestCart()
 
 }
 
-function performCheckout()
+function performCheckout(cartData)
 {
     $.ajax({
         url: 'shopping-cart',
         type: 'POST',
-        data: { checkout:'checkout' },
+        data: { checkout:cartData },
         success: function (res) {
             alert(res);
         }
@@ -248,14 +251,13 @@ function performCheckout()
 }
 function getBalance()
 {   
-    let balance = 0;
+    let balance;
     $.ajax({
-        url: 'shopping-cart',
+        url: 'profile',
         type: 'POST',
-        data: { userBalance:balance },
+        data: { userBalance:balance } ,
         success: function (res) {
-            balance = res;
-            return balance;
+            alert(res);
         }
     })
 }
@@ -266,4 +268,10 @@ function parseUrlParams(param)
     const urlParams = new URLSearchParams(query);
     let result = urlParams.get(param);
     return result;
+}
+
+function getUrl()
+{
+    const query = windows.location.search;
+    return query;
 }

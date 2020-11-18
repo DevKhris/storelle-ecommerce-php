@@ -14,16 +14,16 @@ class Reviews
 
         $result = mysqli_query($conn, $sql);
 
-        if(!$result) {
-            die('Can\'t fetch reviews');    
+        if (!$result) {
+            echo ('Can\'t fetch reviews');
         }
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $reviews[] = array(
-            'id' => $row['id'],
-            'productId' => $row['productId'],
-            'userName' => $row['userName'],
-            'feedBack' => $row['feedBack'],
-            'rating' => $row['rating'],
+                'id' => $row['id'],
+                'productId' => $row['productId'],
+                'userName' => $row['userName'],
+                'feedBack' => $row['feedBack'],
+                'rating' => $row['rating'],
             );
         }
 
@@ -39,7 +39,7 @@ class Reviews
         $sql = "SELECT AVG(rating) AS t_rating, COUNT(*) AS t_reviews FROM reviews WHERE productId = $productId";
 
         $result = mysqli_query($conn, $sql);
-        if (!$result){
+        if (!$result) {
             die('Can\'t fetch average rating for product');
         }
         $rating = mysqli_fetch_assoc($result);

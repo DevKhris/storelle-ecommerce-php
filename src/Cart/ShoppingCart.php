@@ -31,7 +31,7 @@ class ShoppingCart extends BaseCart
             );
         }
 
-        $jsonCart = \json_encode($cart);
+        $jsonCart = json_encode($cart);
         echo $jsonCart;
     }
 

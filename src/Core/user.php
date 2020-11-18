@@ -38,7 +38,19 @@ class User extends BaseUser
         global $conn;
         $sql = "SELECT balance FROM users WHERE username='$username'";
         $result = mysqli_query($conn, $sql);
-        $balance = \mysqli_fetch_array($result, MYSQLI_ASSOC);
-        return $balance['balance'];
+
+        if (!$result) {
+            echo ('Can\'t get user balance');
+        }
+
+        $user = array();
+        while ($row = mysqli_fetch_array($result)) {
+            $user[] = array(
+                'balance' => $row['balance']
+            );
+        }
+
+        $jsonUser = json_encode($user);
+        echo $jsonUser;
     }
 }

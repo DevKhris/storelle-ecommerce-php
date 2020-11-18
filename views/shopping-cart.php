@@ -41,7 +41,7 @@ use App\Cart\ShoppingCart;
 
     <hr>
     <a class="btn btn-primary" id="backBtn" href="/">Back</a>
-    <button class="btn btn-dark" type="submit" id="checkout">Checkout</button>
+    <button class="btn btn-dark checkout" type="submit">Checkout</button>
   </div>
   <div class="col-sm-2">
   </div>

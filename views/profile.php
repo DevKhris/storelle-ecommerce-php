@@ -1,7 +1,4 @@
 <div class="row">
-	<div class="col-sm-4">
-		<?php require_once 'views/shopping-cart.php' ?>
-	</div>
 	<div class="col-sm-8">
 		<h2>User Profile</h2>
 		<div class="d-inline-flex">
