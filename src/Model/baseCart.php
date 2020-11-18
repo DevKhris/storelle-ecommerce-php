@@ -27,7 +27,7 @@ abstract class BaseCart
     {
     }
 
-    public static function checkOut()
+    public static function checkOut($userId)
     {
     }
 }
