@@ -8,11 +8,11 @@
             <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
             <div class="mb-3">
                 <label for="userInput">Username:</label>
-                <input class="form-control" id="userInput" name="username" type="text" placeholder="Insert your username">
+                <input class="form-control" id="userInput" name="username" type="text" placeholder="Insert your username" required="required">
             </div>
             <div class="mb-3">
                 <label for="pwdInput">Password:</label>
-                <input class="form-control" id="pwdInput" name="password" type="password" placeholder="Insert your password">
+                <input class="form-control" id="pwdInput" name="password" type="password" placeholder="Insert your password" required="required">
             </div>
             <div class="mb-3">
                 <input class="btn btn-product btn-block text-center" type="submit" value="Register" id="register"></input>

@@ -24,7 +24,7 @@ abstract class BaseReview
     {
     }
 
-    public static function postReview($productId, $reviewUserName, $reviewRating, $reviewFeedBack)
+    public static function addReview($productId, $reviewUserName, $reviewRating, $reviewFeedBack)
     {
     }
 }

@@ -60,6 +60,7 @@ if (!isset($_SESSION['loggedin'])) {
 
     // Sets controller for reviews route callback
     $app->router->set('/reviews', [MainController::class, 'reviewsHandler']);
+    $app->router->set('/review', [MainController::class, 'reviewHandler']);
 
     // Routes shopping cart to view
     $app->router->get('/shopping-cart', [MainController::class, 'shoppingcart']);

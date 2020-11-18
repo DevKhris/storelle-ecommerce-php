@@ -7,11 +7,11 @@
             <h1 class="h3 mb-3 font-weight-normal">Please Log In</h1>
             <div class="mb-3">
                 <label for="usernameInput">Username:</label>
-                <input class="form-control" type="text" placeholder="Insert your username" name="username">
+                <input class="form-control" type="text" placeholder="Insert your username" name="username" required="required">
             </div>
             <div class="mb-3">
                 <label for="passwordInput">Password:</label>
-                <input class="form-control" type="password" placeholder="Insert your password" name="password">
+                <input class="form-control" type="password" placeholder="Insert your password" name="password" required="required">
             </div>
             <div class="mb-3">
                 <input class="btn btn-product btn-block text-center" value="Log In" id="login" type="submit"></input>

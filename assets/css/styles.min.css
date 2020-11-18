@@ -63,8 +63,6 @@ footer {
 	width: auto;
 }
 
-
-
 .product-link {
 	color: #131313;
 	font-size: 1.3rem;
@@ -125,6 +123,12 @@ a.checked:hover {
 
 .review-box {
 
+}
+
+i.stars {
+	    letter-spacing: 3px;
+    font-size: 24px;
+    color: #F5A624 !important;
 }
 
 /*** Shopping Cart ***/

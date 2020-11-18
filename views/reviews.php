@@ -15,10 +15,10 @@ $id = $_GET['id'];
         <div class="col-sm-12">
             <form class="form-group" id="review-form">
                 <label for="reviewRating">Rate this product</label>
-                <input type="hidden" name="id" value="<?php echo $id; ?>" id="productId">
-                <input class="form-control" type="number" min=1 max=5 name="" id="reviewRating">
+                <input type="hidden" name="" value="<?php echo $id; ?>" id="productId">
+                <input class="form-control" type="number" min=1 max=5 name="" id="reviewRating" required="required">
                 <label for="reviewContent">Write your review:</label>
-                <textarea class="form-control" name="" id="reviewContent" cols="30" rows="10"></textarea>
+                <textarea class="form-control" name="" id="reviewContent" cols="30" rows="10" required="required"></textarea>
                 <input class="btn btn-success btn-block" type="submit" value="Post Review" method="POST"></input>
             </form>
         </div>

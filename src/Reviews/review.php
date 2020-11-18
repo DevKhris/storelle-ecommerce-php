@@ -7,25 +7,25 @@ use App\Model\BaseReview;
 class Review extends BaseReview
 {
     /**
-     * Undocumented function
+     * addReview function
      *
      * @param [int] $productId
      * @param [string] $reviewUserName
-     * @param [string] $reviewComment
+     * @param [string] $reviewFeedBack
      * @param [int] $reviewRating
      * @return void
      */
-    public static function postReview($productId, $reviewUserName, $reviewFeedBack, $reviewRating)
+    
+    public static function addReview($productId, $reviewUserName, $reviewFeedBack, $reviewRating)
     {
         global $conn;
 
         $sql = "INSERT INTO reviews (productId, userName, feedBack, rating) VALUES ('$productId', '$reviewUserName', '$reviewFeedBack', '$reviewRating')";
 
         $result = mysqli_query($conn, $sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
+        if (!$result) {
+            die('Can\'t Added user review');
+        } 
+        return $result;
     }
 }

@@ -40,6 +40,7 @@ $(function() {
     });
 
     $('#review-form').submit(function (e) {
+        e.preventDefault();
         const reviewData = {
             productId: $('#productId').val(),
             feedBack: $('#reviewContent').val(),
@@ -50,7 +51,7 @@ $(function() {
         $('#review-form').trigger('reset');
         id = parseUrlParams('id');
         requestReviews(id);
-        e.preventDefault();
+       
     })
 
 });
@@ -79,7 +80,7 @@ function requestProduct() {
             let productInfo = `
             <h1 class="text-monospace" id="productName">${product[0].name}</h1>
             <h3 class="text-muted" id="productPrice">$${product[0].price}</h3>
-            <p>${product[0].rating} / 5 </p>
+            <p class="reviews num"><i class="fa fa-star stars"></i> ${product[0].rating} / 5 </p>
             <form class="form-group" action="" method="" id="add-form">
                 <label for="productQuantity">Qty</label>
                 <input class="form-control form-control-sm" min=1 value="1" type="number" name="productQuantity" id="productQuantity">
@@ -111,7 +112,7 @@ function requestProducts() {
                 <div class="col-sm-2">
                     <a class="text-decoration-none product-link font-weight-bold" href="product?id=${product.id}">
                         <div class="card product text-center">
-                            <img src="${product.img}" class="card-img-top img-fluid" alt="${product.img}" width="360" height="360">
+                            <img src="${product.img}" class="card-img-top " width=360 height=230 alt="${product.img}">
                             <div class="card-body">
                                 <h5 class="card-title">${product.name}</h5>
                                 <span class="card-text">$${product.price}</span>
@@ -130,15 +131,11 @@ function requestProducts() {
 
 function postReview(reviewData) {
     $.ajax({
-        url: '/reviews',
+        url: '/review',
         type: 'POST',
-        dataType: 'json',
-        data: {
-            review: reviewData
-        },
-        contentType: "application/json",
-        success: function(review) {
-            console.log(review);
+        data: {review:reviewData},
+        success: function(res) {
+            alert(res);
         }
     });
 
@@ -155,13 +152,13 @@ function requestReviews(id) {
             let template = '';
             reviews.forEach(review => {
                 template += `
-                    <div class=" card">
+                    <div class="reviews card">
                     <div class="card-header">
                         <h4 class="mt-3 mx-auto">
                             ${review.userName}
                         </h4>
                         <h5>
-                            ${review.rating}
+                            <i class="fa fa-star stars"></i> ${review.rating}
                         </h5>
                     </div>
                     <div class="card-body">
