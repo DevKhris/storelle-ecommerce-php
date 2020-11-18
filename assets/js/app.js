@@ -45,11 +45,9 @@ $(function() {
         if (confirm('Are you sure you want to remove this product from cart?')) {
             let elm = $(this)[0].parentElement.parentElement;
             let id = $(elm).attr('cartId');
-            $.post('shopping-cart', {
-                id: id
-            }, function(res) {
-                requestCart();
-            })
+            removeProduct(id);
+            requestCart();
+
         }
     });
 
@@ -101,6 +99,17 @@ function addProduct(productData) {
     });
 }
 
+function removeProduct(id)
+{ 
+    $.ajax({
+        url: '/shopping-cart',
+        type: 'POST',
+        data: { id: id },
+        success: function (res) {
+            alert(res);
+        }
+    })
+}
 function requestProducts() {
     $.ajax({
         url: "products",
