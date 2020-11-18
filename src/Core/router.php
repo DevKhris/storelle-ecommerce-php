@@ -1,17 +1,18 @@
 <?php
 
+/**
+ * Class Router for basic routing and route handling
+ * 
+ * @package RubyNight\App\Core;
+ * 
+ * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
+ */
+
 namespace App\Core;
 
 use App;
 use App\Application;
 use App\Core\Request;
-
-/**
- * Class Router
- * 
- * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
- * @package namespace app\core;
- */
 
 class Router
 {

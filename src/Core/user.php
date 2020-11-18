@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Class User for building user extended from BaseUser model
+ * 
+ * @package RubyNight\App\Core;
+ * 
+ * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
+ */
 namespace App\Core;
 
 use App\Model\BaseUser;

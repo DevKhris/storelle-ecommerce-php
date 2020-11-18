@@ -3,17 +3,18 @@
 namespace App\Core;
 
 /**
- * Class Response
+ * Class Request for response management
+ * 
+ * @package RubyNight\App\Core;
  * 
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
- * @package namespace app\core;
  */
 
 class Response 
 {
     public function setStatus(int $code)
     {
-    	http_response_code($code);
-   	}
+        http_response_code($code);
+    }
 }
 ?>

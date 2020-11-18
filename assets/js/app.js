@@ -2,7 +2,7 @@ $(function() {
 
     // renders the products
     requestProducts();
-    
+
     // render one product
     requestProduct();
 
@@ -12,22 +12,22 @@ $(function() {
     // renders the shopping cart
     requestCart();
 
-    $('#product-form').submit(function (e) {
+    $('#product-form').submit(function(e) {
         e.preventDefault();
         let productData = {
             'productId': parseUrlParams('id'),
             'productName': $('#productName').html(),
-            'productPrice': $('#productPrice').html().replace('$',''),
+            'productPrice': $('#productPrice').html().replace('$', ''),
             'productQuantity': $('#productQuantity').val(),
         };
         if (productData.productQuantity > 0) {
             let jsonData = JSON.stringify(productData);
             addProduct(jsonData);
             requestCart();
-        }            
+        }
     });
 
-    $('#review-form').submit(function (e) {
+    $('#review-form').submit(function(e) {
         e.preventDefault();
         const reviewData = {
             productId: $('#productId').val(),
@@ -50,19 +50,23 @@ $(function() {
         }
     });
 
-    $(document).on('click', '.checkout', function () {
+    $(document).on('click', '.checkout', function() {
         let cartData = {
-            'totalPrice': $('#totalPrice').html().replace('Total: $',''),
+            'totalPrice': $('#totalPrice').html().replace('Total: $', ''),
         };
-        performCheckout(cartData);
-        requestCart();
+        let balance;
+        if (balance < cartData.totalprice){
+
+        } else {
+         performCheckout(cartData);
+         requestCart();           
+        }
     });
 
 });
 
 // Show or hides the review form
-function toggleReviewBox()
-{
+function toggleReviewBox() {
     if ($('#review-form').is(':visible')) {
         $('#review-form').hide();
     } else {
@@ -70,11 +74,10 @@ function toggleReviewBox()
     }
 }
 
-function requestProduct()
-{
+function requestProduct() {
     let id = $(this).attr('id');
     $.ajax({
-        url: 'product'. id,
+        url: 'product'.id,
         type: "POST",
         data: {
             id: id,
@@ -97,31 +100,33 @@ function requestProduct()
     });
 }
 
-function addProduct(productData)
-{
+function addProduct(productData) {
     $.ajax({
         url: '/shopping-cart',
         type: 'POST',
-        data: { product:productData },
-        success: function (res) {
+        data: {
+            product: productData
+        },
+        success: function(res) {
 
         }
     });
 }
 
-function removeProduct(id)
-{ 
+function removeProduct(id) {
     $.ajax({
         url: '/shopping-cart',
         type: 'POST',
-        data: { id: id },
-        success: function (res) {
+        data: {
+            id: id
+        },
+        success: function(res) {
             $('#alerts').html(res);
         }
     })
 }
-function requestProducts()
-{
+
+function requestProducts() {
     $.ajax({
         url: "products",
         type: 'POST',
@@ -154,14 +159,15 @@ function postReview(reviewData) {
     $.ajax({
         url: '/review',
         type: 'POST',
-        data: {review:reviewData},
-        success: function(res) {
-        }
+        data: {
+            review: reviewData
+        },
+        success: function(res) {}
     });
 
 }
-function requestReviews(id)
-{
+
+function requestReviews(id) {
     $.ajax({
         url: '/reviews',
         type: 'POST',
@@ -197,16 +203,15 @@ function requestReviews(id)
 
 }
 
-function requestCart()
-{
+function requestCart() {
     $.ajax({
-        url: 'shopping-cart',
+        url: '/shopping-cart',
         type: 'POST',
         success: function(req) {
             let cartItems = JSON.parse(req);
-            let balance = getBalance() ?? 0 ;
+            let balance = 0;
             let totalPrice = 0;
-            let shippingCost = parseUrlParams('shipping') ?? 0 ;
+            let shippingCost = parseUrlParams('shipping') ?? 0;
             let template = '';
             let pricing = '';
             cartItems.forEach(cartItem => {
@@ -225,6 +230,7 @@ function requestCart()
                     </tr>
                 `
             });
+            balance = getBalance();
             totalPrice = parseFloat(totalPrice) + parseInt(shippingCost);
             pricing += `
                 <p class="text-md-right" id="userBalance">Balance: $${parseFloat(balance)}</p>
@@ -238,40 +244,41 @@ function requestCart()
 
 }
 
-function performCheckout(cartData)
-{
+function performCheckout(cartData) {
     $.ajax({
-        url: 'shopping-cart',
+        url: '/shopping-cart',
         type: 'POST',
-        data: { checkout:cartData },
-        success: function (res) {
+        data: {
+            checkout: cartData
+        },
+        success: function(res) {
             alert(res);
         }
     });
 }
-function getBalance()
-{   
+
+function getBalance() {
     let balance;
     $.ajax({
-        url: 'profile',
+        url: '/profile',
         type: 'POST',
-        data: { userBalance:balance } ,
-        success: function (res) {
+        data: {
+            userBalance: balance
+        },
+        success: function(res) {
             alert(res);
         }
     })
 }
 
-function parseUrlParams(param)
-{
+function parseUrlParams(param) {
     const query = window.location.search;
     const urlParams = new URLSearchParams(query);
     let result = urlParams.get(param);
     return result;
 }
 
-function getUrl()
-{
+function getUrl() {
     const query = windows.location.search;
     return query;
 }

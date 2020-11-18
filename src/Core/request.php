@@ -3,11 +3,11 @@
 namespace App\Core;
 
 /**
- * Class Request
+ * Class Request for request management
  * 
- *
+ * @package RubyNight\App\Core;
+ * 
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
- * @package namespace app\core;
  */
 
 class Request
