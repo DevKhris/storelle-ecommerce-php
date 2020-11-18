@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class Router for basic routing and route handling
  * 

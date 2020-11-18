@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class MainController for handling rendering and callbacks
  * 

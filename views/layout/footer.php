@@ -1,7 +1,7 @@
 <footer class="container-fluid bg-black pb-5 py-5">
     <div class="row text-light ">
         <div class="col-sm-4">
-            <img src="../res/logo.png" alt="" class="img-fluid">
+            <img src="../res/logo-min.png" alt="" class="img-fluid">
             <p class="text-center text-muted pb-5">&copy; <a class="text-decoration-none copyright" href="index.php">Storelle</a> <?php echo $year = date('Y'); ?> | Developed by <a class="copyright text-decoration-none" href="https://devkhris.github.io">@DevKhris</a></p>
         </div>
         <div class="col-sm-2 py-3">

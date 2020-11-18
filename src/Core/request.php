@@ -1,7 +1,4 @@
 <?php
-
-namespace App\Core;
-
 /**
  * Class Request for request management
  * 
@@ -9,6 +6,8 @@ namespace App\Core;
  * 
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
+
+namespace App\Core;
 
 class Request
 {

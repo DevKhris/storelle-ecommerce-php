@@ -31,7 +31,7 @@ if (!isset($_SESSION['loggedin'])) {
     //set an array for the routes to redirect to login
     $routes = array('products', 'product', 'shopping-cart', 'profile');
 
-    //routes the rest to login due to user not logged into system by passing the array of routes
+    //routes the rest to login due to us
     foreach ($routes as $key => $value) {
         $route = $routes[$key];
         $app->router->get('/' . $route, [AuthController::class, 'login']);

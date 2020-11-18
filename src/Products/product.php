@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Class Product for fetching product from db extended from BaseProduct model
+ * 
+ * @package RubyNight\App\Products;
+ * 
+ * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
+ */
 namespace App\Products;
 
 use App\Model\BaseProduct;

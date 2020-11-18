@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class User for building user extended from BaseUser model
  * 

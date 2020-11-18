@@ -1,7 +1,9 @@
 $(function() {
 
+    // switch for rendering according to url to avoid unwanted requests
     switch (getUrl()) {
         case '/':
+            // renders the products at home
             requestProducts();
             break;
         case '/products':
@@ -253,7 +255,7 @@ function requestCart() {
                 <p class="text-md-right" id="userBalance">Balance: $${currentBalance}</p>
                 <p class="text-md-right" id="shippingCost">Shipping Cost: $${parseInt(shippingCost)}</p>
                 <b><p class="text-md-right" id="totalPrice">Total: $${parseFloat(totalPrice)}</p></b>
-                `
+                `;
             $('#cart').html(template);
             $('#pricing').html(pricing);
         }

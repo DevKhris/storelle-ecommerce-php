@@ -24,10 +24,10 @@ CREATE TABLE IF NOT EXISTS `products` (
 -- Volcando datos para la tabla storelle.products: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
 INSERT INTO `products` (`id`, `productName`, `productPrice`, `productRating`, `productImg`) VALUES
-	(1, 'Apple', 0.3, 3, 'res/products/apple.jpg'),
-	(2, 'Beer', 2, 3, 'res/products/beer.png'),
-	(3, 'Water', 1, 2, 'res/products/waterbottle.png'),
-	(4, 'Cheese', 3.74, 4, 'res/products/cheese.png');
+	(1, 'Apple', 0.3, 3, 'res/products/apple-min.jpg'),
+	(2, 'Beer', 2, 3, 'res/products/beer-min.png'),
+	(3, 'Water', 1, 2, 'res/products/waterbottle-min.png'),
+	(4, 'Cheese', 3.74, 4, 'res/products/cheese-min.png');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 
 -- Volcando estructura para tabla storelle.reviews
@@ -38,11 +38,11 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   `feedBack` text NOT NULL,
   `rating` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `productId` (`productId`),
+  UNIQUE KEY `productId` (`productId`,`userName`),
   KEY `userName` (`userName`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla storelle.reviews: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla storelle.reviews: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `reviews` DISABLE KEYS */;
 /*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 
@@ -55,15 +55,13 @@ CREATE TABLE IF NOT EXISTS `shoppingcart` (
   `productQuantity` int(11) NOT NULL,
   `productPrice` double NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `shoppingcart_users` (`productId`),
+  UNIQUE KEY `productId` (`productId`),
   KEY `userId` (`userId`),
   CONSTRAINT `FK_shoppingcart_users` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla storelle.shoppingcart: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla storelle.shoppingcart: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `shoppingcart` DISABLE KEYS */;
-INSERT INTO `shoppingcart` (`id`, `userId`, `productId`, `productName`, `productQuantity`, `productPrice`) VALUES
-	(1, 2, 2, 'Beer', 1, 2);
 /*!40000 ALTER TABLE `shoppingcart` ENABLE KEYS */;
 
 -- Volcando estructura para tabla storelle.users
@@ -78,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Volcando datos para la tabla storelle.users: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `username`, `password`, `balance`) VALUES
-	(2, 'admin', '$argon2id$v=19$m=65536,t=4,p=1$b2wvaTBvQTlTYjlwNVBQTw$IpjKooI5WAQHeD8/BBm6o/GZ+hvpMl2AWivlnyzNNcw', 100);
+	(1, 'admin', '$argon2id$v=19$m=65536,t=4,p=1$b2wvaTBvQTlTYjlwNVBQTw$IpjKooI5WAQHeD8/BBm6o/GZ+hvpMl2AWivlnyzNNcw', 100);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
