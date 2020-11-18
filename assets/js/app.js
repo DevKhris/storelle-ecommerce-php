@@ -53,10 +53,10 @@ $(function() {
     $(document).on('click', '.checkout', function() {
         let cartData = {
             'totalPrice': $('#totalPrice').html().replace('Total: $', ''),
+            'currentBalance': $('#userBalance').html().replace('Balance: $',''),
         };
-        let balance;
-        if (balance < cartData.totalprice){
-
+        if (cartData.currentBalance < cartData.totalprice){
+            console.log('Insufficien funds');
         } else {
          performCheckout(cartData);
          requestCart();           
@@ -207,9 +207,9 @@ function requestCart() {
     $.ajax({
         url: '/shopping-cart',
         type: 'POST',
-        success: function(req) {
+        success: function (req) {
+            let currentBalance = getBalance();
             let cartItems = JSON.parse(req);
-            let balance = 0;
             let totalPrice = 0;
             let shippingCost = parseUrlParams('shipping') ?? 0;
             let template = '';
@@ -230,10 +230,9 @@ function requestCart() {
                     </tr>
                 `
             });
-            balance = getBalance();
             totalPrice = parseFloat(totalPrice) + parseInt(shippingCost);
             pricing += `
-                <p class="text-md-right" id="userBalance">Balance: $${parseFloat(balance)}</p>
+                <p class="text-md-right" id="userBalance">Balance: $${currentBalance}</p>
                 <p class="text-md-right" id="shippingCost">Shipping Cost: $${parseInt(shippingCost)}</p>
                 <p class="text-md-right" id="totalPrice"><b>Total: $${parseFloat(totalPrice)}</b></p>
                 `
@@ -244,7 +243,8 @@ function requestCart() {
 
 }
 
-function performCheckout(cartData) {
+function performCheckout(cartData)
+{
     $.ajax({
         url: '/shopping-cart',
         type: 'POST',
@@ -257,28 +257,30 @@ function performCheckout(cartData) {
     });
 }
 
-function getBalance() {
-    let balance;
+function getBalance()
+{
+    let currentBalance;
     $.ajax({
         url: '/profile',
         type: 'POST',
-        data: {
-            userBalance: balance
-        },
-        success: function(res) {
-            alert(res);
+        data: { balance: '' },
+        dataType: 'json',
+        success: function (data) {
+            $('#userBalance').html('Balance: $' + data[0].balance);
         }
-    })
+    });
 }
 
-function parseUrlParams(param) {
+function parseUrlParams(param)
+{
     const query = window.location.search;
     const urlParams = new URLSearchParams(query);
     let result = urlParams.get(param);
     return result;
 }
 
-function getUrl() {
+function getUrl()
+{
     const query = windows.location.search;
     return query;
 }

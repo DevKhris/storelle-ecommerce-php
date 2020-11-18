@@ -4,10 +4,10 @@ use App\Cart\ShoppingCart;
 ?>
 <div class="row">
 
-  <div class="col-sm-2">
+  <div class="col-sm-1">
 
   </div>
-  <div class="col-sm-8">
+  <div class="col-sm-10">
     <h3 class="text-center ">Shopping Cart</h3>
     <hr>
     <div class="alerts">
@@ -43,6 +43,6 @@ use App\Cart\ShoppingCart;
     <a class="btn btn-primary" id="backBtn" href="/">Back</a>
     <button class="btn btn-dark checkout" type="submit">Checkout</button>
   </div>
-  <div class="col-sm-2">
+  <div class="col-sm-1">
   </div>
 </div>

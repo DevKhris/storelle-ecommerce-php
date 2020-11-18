@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class User for building user extended from BaseUser model
  * 
@@ -6,6 +7,7 @@
  * 
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
+
 namespace App\Core;
 
 use App\Model\BaseUser;
@@ -57,6 +59,6 @@ class User extends BaseUser
         }
 
         $jsonUser = json_encode($user);
-        echo $jsonUser;
+        return $jsonUser;
     }
 }

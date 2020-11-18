@@ -1,9 +1,11 @@
 <?php
+
 use App\Core\User;
 // checks if the user is logged
 if (!empty($_SESSION['name'])) {
-// get balance from current user and passes to var
-$balance = User::getBalance($_SESSION['name']);
+  // get balance from current user and passes to var
+  $currentBalance = json_decode(User::getBalance($_SESSION['name']), true);
+  $_SESSION['balance'] = ($currentBalance[0]['balance']);
 }
 ?>
 
@@ -18,42 +20,42 @@ $balance = User::getBalance($_SESSION['name']);
     <li class="nav-item">
       <a class="nav-link" href="">
         <?php if (isset($_SESSION['balance'])) {
-        echo 'Balance: $' . $_SESSION['balance'];
+          echo 'Balance: $' . $_SESSION['balance'];
         }
         ?>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="<?php
-        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
-        echo '/profile';
-        } else {
-        echo 'login';
-        }
-        ?>">
+                                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
+                                  echo '/profile';
+                                } else {
+                                  echo 'login';
+                                }
+                                ?>">
         <?php
         if (isset($_SESSION['name'])) {
-        echo $_SESSION['name'];
+          echo $_SESSION['name'];
         } else {
-        echo 'Guest';
+          echo 'Guest';
         }
         ?>
         <i class="fa fa-user"></i>
       </a>
     </li>
     <?php if (isset($_SESSION['name'])) { ?>
-    <li class="nav-item">
-      <a class="nav-link" href="/logout">
-        <i class="fa fa-power-off"></i>
-      </a>
-    </li class="nav-item">
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">
+          <i class="fa fa-power-off"></i>
+        </a>
+      </li class="nav-item">
     <?php } ?>
   </ul>
 </nav>
 <nav class="navbar navbar-expand-sm navbar-light bg-faded text-center">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle Navigation">
-    <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarToggler">
       <a class="navbar-brand" href="/">
@@ -77,9 +79,9 @@ $balance = User::getBalance($_SESSION['name']);
         </li>
       </ul>
     </div>
-  </ul>
-</li>
-</ul>
-</div>
-</div>
+    </ul>
+    </li>
+    </ul>
+  </div>
+  </div>
 </nav>

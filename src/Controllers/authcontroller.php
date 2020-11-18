@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class AuthController for authentication
  * 
@@ -6,6 +7,7 @@
  * 
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
+
 namespace App\Controllers;
 
 use App\Application;
@@ -62,6 +64,7 @@ class AuthController
     }
     /**
      * [callback handler for handling login and session]
+     * 
      * @return [route] [returns to home]
      */
     public static function loginHandler()

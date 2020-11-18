@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class MainController for handling rendering and callbacks
  * 
@@ -6,6 +7,7 @@
  * 
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
+
 namespace App\Controllers;
 
 use App\Application;
@@ -136,8 +138,9 @@ class MainController
     public static function profileHandler()
     {
         if (isset($_REQUEST['balance'])) {
-            $res = [];
-            $res = User::getBalance($_SESSION['name']);
+            $req = [];
+            $req = User::getBalance($_SESSION['name']);
         }
+        echo $req;
     }
 }
