@@ -9,6 +9,7 @@ use App\Products\Product;
 use App\Reviews\Review;
 use App\Reviews\Reviews;
 use App\Cart\ShoppingCart;
+use App\Core\User;
 
 class MainController
 {
@@ -42,10 +43,10 @@ class MainController
         if (isset($_REQUEST['id'])) {
             $id = $_REQUEST['id'];
             $req = Product::get($id);
+            return $req;
         }
 
         if (isset($_POST['data'])) {
-            var_dump($_POST['data']);
         }
     }
     public static function shoppingcart()
@@ -70,6 +71,10 @@ class MainController
 
         if (isset($_SESSION['uid'])) {
             $res = ShoppingCart::getCart($_SESSION['uid']);
+        }
+
+        if (isset($_SESSION['userBalance'])) {
+            $res = User::getBalance($_SESSION['name']);
             return $res;
         }
     }

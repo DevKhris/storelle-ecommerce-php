@@ -17,7 +17,7 @@ class ShoppingCart extends BaseCart
         if (!$result) {
             echo '<div class="alert alert-warning alert-dismissible" role="alert">Can\'t add ' . $productName . ' to cart</div>';
         }
-        return $result;
+        echo '<div class="alert alert-success alert-dismissible" role="alert"> Succesfully added ' . $productName . ' to cart</div>';
     }
 
     public static function removeFromCart($id)

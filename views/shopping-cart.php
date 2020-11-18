@@ -1,15 +1,6 @@
 <?php
 
 use App\Cart\ShoppingCart;
-
-$totalPrice = 0;
-$shippingCost = 0;
-if (!empty($_GET)) {
-  $shippingCost = $_GET['shipping'];
-  $totalPrice += $shippingCost;
-}
-
-
 ?>
 <div class="row">
 
@@ -19,6 +10,9 @@ if (!empty($_GET)) {
   <div class="col-sm-8">
     <h3 class="text-center ">Shopping Cart</h3>
     <hr>
+    <div class="alerts">
+
+    </div>
     <table class="table table-hover mt-5 text-center">
       <thead c>
         <tr class="table-dark">
@@ -41,8 +35,10 @@ if (!empty($_GET)) {
         <li><a class="dropdown-item" href="?shipping=5">UPS (5 USD)</a></li>
       </ul>
     </div>
-    <p class="text-md-right">Shipping Cost: $<?php echo $shippingCost; ?></p>
-    <p class="text-md-right">Total: $<?php echo $totalPrice; ?></p>
+    <div class="mt-3" id="pricing">
+
+    </div>
+
     <hr>
     <button class="btn btn-dark" type="submit" value="Checkout">Checkout</button>
   </div>

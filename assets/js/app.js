@@ -47,7 +47,6 @@ $(function() {
             let id = $(elm).attr('cartId');
             removeProduct(id);
             requestCart();
-
         }
     });
 
@@ -106,7 +105,7 @@ function removeProduct(id)
         type: 'POST',
         data: { id: id },
         success: function (res) {
-            alert(res);
+            $('#alerts').html(res);
         }
     })
 }
@@ -192,9 +191,13 @@ function requestCart() {
         type: 'POST',
         success: function(req) {
             let cartItems = JSON.parse(req);
+            let balance = getBalance() ?? 0 ;
+            let totalPrice = 0;
+            let shippingCost = parseUrlParams('shipping') ?? 0 ;
             let template = '';
+            let pricing = '';
             cartItems.forEach(cartItem => {
-                template += `
+                template += `,
                     <tr cartId="${cartItem.id}">
                         <td>${cartItem.id}</td>
                         <td>
@@ -208,11 +211,30 @@ function requestCart() {
                     </tr>
                 `
             });
+            pricing += `
+                <p class="text-md-right">Balance: $${balance.valueOf()}</p>
+                <p class="text-md-right">Shipping Cost: $${shippingCost.valueOf()}</p>
+                <p class="text-md-right"><b>Total: $${totalPrice.valueOf()}</b></p>
+                `
             $('#cart').html(template);
-            let form = ``;
+            $('#pricing').html(pricing);
         }
     });
 
+}
+
+function getBalance()
+{   
+    let balance = 0;
+    $.ajax({
+        url: 'shopping-cart',
+        type: 'POST',
+        data: { userBalance:balance },
+        success: function (res) {
+            balance = res;
+            return balance;
+        }
+    })
 }
 
 function parseUrlParams(param)
