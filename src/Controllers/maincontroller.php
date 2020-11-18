@@ -89,8 +89,7 @@ class MainController
             $reviewUserName = $_SESSION['name'];
             $reviewFeedBack = $review['feedBack'];
             $reviewRating = $review['rating'];
-            $result = Review::postReview($productId, $reviewUserName, $reviewFeedBack, $reviewRating);
-            return $result;
+            Review::addReview($productId, $reviewUserName, $reviewFeedBack, $reviewRating);
             //\header("location: /product?id=$id");
         }
     }

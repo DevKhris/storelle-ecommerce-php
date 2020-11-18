@@ -24,7 +24,8 @@ class Review extends BaseReview
 
         $result = mysqli_query($conn, $sql);
         if (!$result) {
-            die('Can\'t Added user review');
+            echo $sql;
+            die('Can\'t add user review');
         } 
         return $result;
     }
