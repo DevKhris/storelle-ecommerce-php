@@ -39,7 +39,7 @@ $(function() {
         $('#review-form').trigger('reset');
         id = parseUrlParams('id');
         requestReviews(id);
-    })
+    });
 
     $(document).on('click', '.cartItem-delete', function() {
         if (confirm('Are you sure you want to remove this product from cart?')) {
@@ -50,10 +50,16 @@ $(function() {
         }
     });
 
+    $(document).on('click', '.checkout', function() {
+        //performCheckout();
+        //requestCart();
+    });
+
 });
 
 // Show or hides the review form
-function toggleReviewBox() {
+function toggleReviewBox()
+{
     if ($('#review-form').is(':visible')) {
         $('#review-form').hide();
     } else {
@@ -61,7 +67,8 @@ function toggleReviewBox() {
     }
 }
 
-function requestProduct() {
+function requestProduct()
+{
     let id = $(this).attr('id');
     $.ajax({
         url: 'product'. id,
@@ -87,7 +94,8 @@ function requestProduct() {
     });
 }
 
-function addProduct(productData) {
+function addProduct(productData)
+{
     $.ajax({
         url: '/shopping-cart',
         type: 'POST',
@@ -109,7 +117,8 @@ function removeProduct(id)
         }
     })
 }
-function requestProducts() {
+function requestProducts()
+{
     $.ajax({
         url: "products",
         type: 'POST',
@@ -148,7 +157,8 @@ function postReview(reviewData) {
     });
 
 }
-function requestReviews(id) {
+function requestReviews(id)
+{
     $.ajax({
         url: '/reviews',
         type: 'POST',
@@ -174,8 +184,7 @@ function requestReviews(id) {
                             ${review.feedBack}
                         </p>
                     </div>
-                </div>
-                
+                </div> 
                 `;
             });
 
@@ -185,7 +194,8 @@ function requestReviews(id) {
 
 }
 
-function requestCart() {
+function requestCart()
+{
     $.ajax({
         url: 'shopping-cart',
         type: 'POST',
@@ -197,7 +207,7 @@ function requestCart() {
             let template = '';
             let pricing = '';
             cartItems.forEach(cartItem => {
-                totalPrice += cartItem.productPrice.valueOf();
+                totalPrice += Number(cartItem.productPrice) * Number(cartItem.productQuantity);
                 template += `
                     <tr cartId="${cartItem.id}">
                         <td>${cartItem.id}</td>
@@ -212,10 +222,11 @@ function requestCart() {
                     </tr>
                 `
             });
+            totalPrice = Number(totalPrice) + Number(shippingCost);
             pricing += `
-                <p class="text-md-right">Balance: $${balance.valueOf()}</p>
-                <p class="text-md-right">Shipping Cost: $${shippingCost.valueOf()}</p>
-                <p class="text-md-right"><b>Total: $${totalPrice.valueOf()}</b></p>
+                <p class="text-md-right" id="userBalance>Balance: $${Number(balance)}</p>
+                <p class="text-md-right" id="shippingCost">Shipping Cost: $${Number(shippingCost)}</p>
+                <p class="text-md-right" id="totalPrice"><b>Total: $${Number(totalPrice)}</b></p>
                 `
             $('#cart').html(template);
             $('#pricing').html(pricing);
@@ -224,6 +235,17 @@ function requestCart() {
 
 }
 
+function performCheckout()
+{
+    $.ajax({
+        url: 'shopping-cart',
+        type: 'POST',
+        data: { checkout:'checkout' },
+        success: function (res) {
+            alert(res);
+        }
+    });
+}
 function getBalance()
 {   
     let balance = 0;

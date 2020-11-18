@@ -19,7 +19,15 @@ abstract class BaseCart
     {
     }
 
+    public static function removeFromCart($id)
+    {
+    }
+
     public static function addToCart($userId, $productId, $productName, $productQuantity, $productPrice)
+    {
+    }
+
+    public static function checkOut()
     {
     }
 }

@@ -40,7 +40,8 @@ use App\Cart\ShoppingCart;
     </div>
 
     <hr>
-    <button class="btn btn-dark" type="submit" value="Checkout">Checkout</button>
+    <a class="btn btn-primary" id="backBtn" href="/">Back</a>
+    <button class="btn btn-dark" type="submit" id="checkout">Checkout</button>
   </div>
   <div class="col-sm-2">
   </div>

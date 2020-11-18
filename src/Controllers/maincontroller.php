@@ -65,6 +65,7 @@ class MainController
             $productPrice = $product['productPrice'];
             ShoppingCart::addToCart($userId, $productId, $productName, $productQuantity, $productPrice);
         }
+
         if (isset($_REQUEST['id'])) {
             ShoppingCart::removeFromCart($_REQUEST['id']);
         }
@@ -73,8 +74,13 @@ class MainController
             $res = ShoppingCart::getCart($_SESSION['uid']);
         }
 
-        if (isset($_SESSION['userBalance'])) {
+        if (isset($_REQUEST['userBalance'])) {
             $res = User::getBalance($_SESSION['name']);
+            return $res;
+        }
+
+        if (isset($_REQUEST['checkout'])) {
+            $res = ShoppingCart::checkOut($_SESSION['uid']);
             return $res;
         }
     }
