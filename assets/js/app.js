@@ -52,14 +52,16 @@ $(function() {
 
     $(document).on('click', '.checkout', function() {
         let cartData = {
-            'totalPrice': $('#totalPrice').html().replace('Total: $', ''),
-            'currentBalance': $('#userBalance').html().replace('Balance: $',''),
+            'totalPrice': parseFloat($('#totalPrice').html().replace('Total: $', '')),
+            'currentBalance': parseFloat($('#userBalance').html().replace('Balance: $','')),
         };
-        if (cartData.currentBalance < cartData.totalprice){
-            console.log('Insufficien funds');
+        if (cartData.totalPrice > cartData.currentBalance) {
+             alert('Insufficien funds');
         } else {
-         performCheckout(cartData);
-         requestCart();           
+            alert('Thanks for your purchase');
+            cartData.currentBalance = cartData.currentBalance - cartData.totalPrice;
+            performCheckout(cartData);
+            requestCart();           
         }
     });
 
@@ -234,7 +236,7 @@ function requestCart() {
             pricing += `
                 <p class="text-md-right" id="userBalance">Balance: $${currentBalance}</p>
                 <p class="text-md-right" id="shippingCost">Shipping Cost: $${parseInt(shippingCost)}</p>
-                <p class="text-md-right" id="totalPrice"><b>Total: $${parseFloat(totalPrice)}</b></p>
+                <b><p class="text-md-right" id="totalPrice">Total: $${parseFloat(totalPrice)}</p></b>
                 `
             $('#cart').html(template);
             $('#pricing').html(pricing);
@@ -259,7 +261,6 @@ function performCheckout(cartData)
 
 function getBalance()
 {
-    let currentBalance;
     $.ajax({
         url: '/profile',
         type: 'POST',

@@ -29,16 +29,23 @@ class User extends BaseUser
 
     public function setPassword($password)
     {
-        $this->user['password'] = $username;
+        $this->user['password'] = $password;
     }
     public function getPassword($password)
     {
         return $this->user['password'];
     }
 
-    public function setBalance($balance)
+    public static function setBalance($balance, $uid)
     {
-        $this->user['balance'] = $balance;
+        global $conn;
+        $sql = "UPDATE users SET balance='$balance' WHERE id='$uid'";
+        $result = mysqli_query($conn, $sql);
+
+        if (!$result) {
+            echo 'Can\'t update funds';
+        }
+        echo 'Succesfully updated funds!';
     }
 
     public static function getBalance($username)

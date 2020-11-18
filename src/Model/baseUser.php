@@ -83,7 +83,7 @@ abstract class BaseUser
    * set's the balance of user
    * @return int
    */
-  public function setBalance($balance)
+  public static function setBalance($balance, $uid)
   {
   }
 }

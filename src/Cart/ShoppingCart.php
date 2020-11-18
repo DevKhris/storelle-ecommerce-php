@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class ShoppingCart extended from BaseCart model
  * 
@@ -6,6 +7,7 @@
  * 
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
+
 namespace App\Cart;
 
 use App\Model\BaseCart;
@@ -107,8 +109,13 @@ class ShoppingCart extends BaseCart
     public static function checkOut($userId)
     {
         global $conn;
+        // Query for deleting item from cart after purchase
         $sql = "DELETE FROM shoppingcart WHERE userId = '$userId'";
 
         $result = mysqli_query($conn, $sql);
+        if (!$result) {
+            echo '';
+        }
+        echo '';
     }
 }

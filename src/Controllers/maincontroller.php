@@ -83,11 +83,13 @@ class MainController
         }
 
         if (isset($_REQUEST['checkout'])) {
-            $cost = $_REQUEST['checkout'];
-            //$balance($_SESSION['balance'] = $_SESSION['balance'] - $cost['totalPrice']);
-            //User::setBalance($balance);
-            $res = ShoppingCart::checkOut($_SESSION['uid']);
-            return var_dump($_REQUEST['checkout']);
+            $userId = $_SESSION['uid'];
+            $data[] = $_REQUEST['checkout'];
+            $cost = $data[0]['totalPrice'];
+            $balance = ($_SESSION['balance'] - $cost);
+            var_dump($balance);
+            User::setBalance($balance, $userId);
+            $res = ShoppingCart::checkOut($userId);
         }
     }
 
