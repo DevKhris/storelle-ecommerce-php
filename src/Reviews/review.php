@@ -32,9 +32,9 @@ class Review extends BaseReview
         // Query to insert values from review into db
         $sql = "INSERT INTO reviews (productId, userName, feedBack, rating) VALUES ('$productId', '$reviewUserName', '$reviewFeedBack', '$reviewRating')";
 
-        // do the quert and store the result
+        // do the query and store the result
         $result = mysqli_query($conn, $sql);
-        // checks if result is true
+        // checks if result has value
         if (!$result) {
             echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <strong>Warning, Can\'t submit review.</strong>

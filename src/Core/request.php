@@ -12,7 +12,11 @@ namespace App\Core;
 class Request
 {
     public $req;
-
+    /**
+     * [getPath get's the relative path]
+     * 
+     * @return [string] [path]
+     */
     public function getPath()
     {
         // get's the request uri or set's it to root
@@ -30,6 +34,10 @@ class Request
         return $path;
     }
 
+    /**
+     * [getMethod get method from server]
+     * @return [type] [description]
+     */
     public function getMethod()
     {
         // get's the method and lowercases the value

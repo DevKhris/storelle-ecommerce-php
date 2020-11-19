@@ -17,6 +17,7 @@ class Products extends BaseProduct
     
     /**
      * [getProducts get all products from database]
+     * 
      * @return [obj] [json]
      */
     public static function getProducts()
@@ -36,7 +37,7 @@ class Products extends BaseProduct
 
         // go towards every row and fetch from result
         while ($row = mysqli_fetch_array($result)) {
-            // return products as a array
+            // save products as a array and assign values to it from row
             $products[] = array(
                 'id' => $row['id'],
                 'name' => $row['productName'],

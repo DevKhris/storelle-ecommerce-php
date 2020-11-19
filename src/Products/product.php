@@ -16,6 +16,7 @@ class Product extends BaseProduct
     /**
      * [get's product from database by id]
      * @param  [int] $productId [product id to get]
+     * 
      * @return [obj]            [json]
      */
     public static function get($productId)

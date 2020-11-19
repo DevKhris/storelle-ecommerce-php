@@ -107,7 +107,11 @@ class Router
 
         include_once Application::$appPath . "/views/$view.php";
     }
-
+    /**
+     * [renderContent function for rendering content]
+     * @param  [string] $viewContent [content to render]
+     * @return [view]              [content]
+     */
     public function renderContent($viewContent)
     {
         $displayContent = $this->displayContent();
