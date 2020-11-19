@@ -27,6 +27,7 @@ class MainController
      */
     public static function home()
     {
+        // render view from router for home
         return Application::$app->router->renderView('home');
     }
 
@@ -37,6 +38,7 @@ class MainController
      */
     public static function products()
     {
+        // render view from router for products
         return Application::$app->router->renderView('products');
     }
 
@@ -63,6 +65,7 @@ class MainController
      */
     public static function product()
     {
+        // render view from router for product
         return Application::$app->router->renderView('product');
     }
 
@@ -89,6 +92,7 @@ class MainController
      */
     public static function shoppingcart()
     {
+        // render view from router for shopping cart
         return Application::$app->router->renderView('shopping-cart');
     }
 
@@ -154,6 +158,7 @@ class MainController
     public static function reviews()
     {
 
+        // render view from router for reviews 
         return Application::$app->router->renderView('reviews');
     }
 

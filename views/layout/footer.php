@@ -2,7 +2,7 @@
     <div class="row text-light ">
         <div class="col-sm-4">
             <img src="../res/logo-min.png" alt="" class="img-fluid">
-            <p class="text-center text-muted pb-5">&copy; <a class="text-decoration-none copyright" href="index.php">Storelle</a> <?php echo $year = date('Y'); ?> | Developed by <a class="copyright text-decoration-none" href="https://devkhris.github.io">@DevKhris</a></p>
+            <p class="text-center text-muted pb-5">&copy; <a class="text-decoration-none copyright" href="index.php">Storelle</a> <?php echo $year = date('Y'); ?> | Developed by <a class="copyright text-decoration-none" href="https://devkhris.github.io" target="_blank">@DevKhris</a> with parts of <a class="copyright text-decoration-none" href="https://github.com/DevKhris/rubynight-framework" target="_blank">RubyNight</a></p>
         </div>
         <div class="col-sm-2 py-3">
             <ul class="nav nav-footer flex-column pt-4">

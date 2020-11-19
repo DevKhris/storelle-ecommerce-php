@@ -54,10 +54,13 @@ $(function() {
             feedBack: $('#reviewContent').val(),
             rating: $('#reviewRating').val(),
         };
+        // encode data to json
         let jsonData = JSON.stringify(reviewData);
         postReview(jsonData);
         $('#review-form').trigger('reset');
+        // parse id to var from url
         id = parseUrlParams('id');
+        // request reviews
         requestReviews(id);
     });
 
@@ -65,25 +68,33 @@ $(function() {
         if (confirm('Are you sure you want to remove this product from cart?')) {
             let elm = $(this)[0].parentElement.parentElement;
             let id = $(elm).attr('cartId');
+            // remove product by id
             removeProduct(id);
+            // request cart
             requestCart();
         }
     });
 
     $(document).on('click', '.checkout', function() {
+        // assign cart data by parsing element id's to array
         let cartData = {
             'totalPrice': parseFloat($('#totalPrice').html().replace('Total: $', '')),
             'currentBalance': parseFloat($('#userBalance').html().replace('Balance: $','')),
         };
+        // verify if the price is greater than the user balance
         if (cartData.totalPrice > cartData.currentBalance) {
+            // if true thrown alert
             alerts = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <strong>Can't proceed, Insufficient funds!</strong>
                             <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
                         </div>`;
             $('#alerts').html(alerts);
         } else {
+            // get total balance
             cartData.currentBalance = cartData.currentBalance - cartData.totalPrice;
+            // performs checkout from cart
             performCheckout(cartData);
+            // request cart
             requestCart();           
         }
     });
@@ -99,7 +110,11 @@ function toggleReviewBox() {
     }
 }
 
-// fetch product from id
+
+/**
+ * [requestProduct fetch product from id]
+ * @return {[json]} [product]
+ */
 function requestProduct() {
     // get id from attribute
     let id = $(this).attr('id');
@@ -117,7 +132,7 @@ function requestProduct() {
             $('#productImg').html(productImg);
             let productInfo = `
             <h1 class="text-monospace" id="productName">${product[0].name}</h1>
-            <h3 class="text-muted" id="productPrice">${product[0].price}</h3>
+            <h3 class="text-muted" id="productPrice">$ ${product[0].price}</h3>
             <p class="reviews num"><i class="fa fa-star stars"></i> ${product[0].rating} / 5 </p>
             `;
             $('#productInfo').html(productInfo);
@@ -130,6 +145,10 @@ function requestProduct() {
     });
 }
 
+/**
+ * [addProduct ajax request]
+ * @param {[array]} productData [data from product to add]
+ */
 function addProduct(productData) {
     $.ajax({
         url: '/shopping-cart',
@@ -143,6 +162,10 @@ function addProduct(productData) {
     });
 }
 
+/**
+ * [addProduct ajax request]
+ * @param {[int]} id [id from product to remove]
+ */
 function removeProduct(id) {
     $.ajax({
         url: '/shopping-cart',
@@ -156,6 +179,10 @@ function removeProduct(id) {
     })
 }
 
+/**
+ * [requestProducts request all products]
+ * @return {[json]} [products]
+ */
 function requestProducts() {
     $.ajax({
         url: "products",
@@ -185,6 +212,11 @@ function requestProducts() {
     });
 }
 
+/**
+ * [postReview request for posting review]
+ * @param  {[array]} reviewData [review data to posts]
+ * @return {[string]}            [alert]
+ */
 function postReview(reviewData) {
     $.ajax({
         url: '/review',
@@ -199,6 +231,11 @@ function postReview(reviewData) {
 
 }
 
+/**
+ * [requestReviews request all reviews for product by id]
+ * @param  {[int]} id [product id]
+ * @return {[template]}    [views]
+ */
 function requestReviews(id) {
     $.ajax({
         url: '/reviews',
@@ -235,6 +272,10 @@ function requestReviews(id) {
 
 }
 
+/**
+ * [requestCart request items from cart]
+ * @return {[array]} [cart items]
+ */
 function requestCart() {
     $.ajax({
         url: '/shopping-cart',
@@ -275,6 +316,11 @@ function requestCart() {
 
 }
 
+/**
+ * [performCheckout performs the checkout request]
+ * @param  {[array]} cartData [items in cart]
+ * @return {[string]}          [alert]
+ */
 function performCheckout(cartData)
 {
     $.ajax({
@@ -289,6 +335,10 @@ function performCheckout(cartData)
     });
 }
 
+/**
+ * [getBalance request for get user balance]
+ * @return {[json]} [balance]
+ */
 function getBalance()
 {
     $.ajax({
@@ -302,6 +352,11 @@ function getBalance()
     });
 }
 
+/**
+ * [parseUrlParams get param from url]
+ * @param  {[string]} param [param to parse]
+ * @return {[string]}       [parse result]
+ */
 function parseUrlParams(param)
 {
     const query = window.location.search;
@@ -310,6 +365,10 @@ function parseUrlParams(param)
     return result;
 }
 
+/**
+ * [getUrl get url from pathname]
+ * @return {[string]} [relative path]
+ */
 function getUrl()
 {
     const query = window.location['pathname'];
