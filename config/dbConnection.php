@@ -10,8 +10,8 @@
 namespace App\Config;
 
 // Define for connection constants
-define('DB_USERNAME', 'root'); // Storelleroot
-define('DB_PASSWORD', ''); // Ell3r0tstoor@
+define('DB_USERNAME', 'root'); 
+define('DB_PASSWORD', ''); 
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'storelle');
 
