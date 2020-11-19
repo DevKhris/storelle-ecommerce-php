@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Class Reviews for fetching reviews from db
+ * 
+ * @package RubyNight\App\Reviews;
+ * 
+ * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
+ */
 namespace App\Reviews;
 
 class Reviews

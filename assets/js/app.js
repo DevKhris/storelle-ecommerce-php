@@ -1,3 +1,4 @@
+// main document listener
 $(function() {
 
     // switch for rendering according to url to avoid unwanted requests
@@ -25,17 +26,23 @@ $(function() {
     // hide the review form
     $('#review-form').hide();
 
+    // handles add product from product view
     $('#product-form').submit(function(e) {
         e.preventDefault();
+        // obtains product info and store in a array
         let productData = {
             'productId': parseUrlParams('id'),
             'productName': $('#productName').html(),
             'productPrice': $('#productPrice').html().replace('$', ''),
             'productQuantity': $('#productQuantity').val(),
         };
+        // checks if the value it's not empty
         if (productData.productQuantity > 0) {
+            // converts the productData to json
             let jsonData = JSON.stringify(productData);
+            // calls function passing json a param
             addProduct(jsonData);
+            // fetch cart
             requestCart();
         }
     });
@@ -92,8 +99,11 @@ function toggleReviewBox() {
     }
 }
 
+// fetch product from id
 function requestProduct() {
+    // get id from attribute
     let id = $(this).attr('id');
+    // do a post petition
     $.ajax({
         url: 'product'.id,
         type: "POST",
@@ -102,6 +112,7 @@ function requestProduct() {
         },
         dataType: 'json',
         success: function(product) {
+            // render product to view
             let productImg = `<img class="img-fluid" src="${product[0].img}" alt="${product[0].img}" width=512 height=512>`
             $('#productImg').html(productImg);
             let productInfo = `
@@ -110,6 +121,7 @@ function requestProduct() {
             <p class="reviews num"><i class="fa fa-star stars"></i> ${product[0].rating} / 5 </p>
             `;
             $('#productInfo').html(productInfo);
+            // parse url param id and store in var
             id = parseUrlParams('id');
             // renders the reviews
             requestReviews(id);

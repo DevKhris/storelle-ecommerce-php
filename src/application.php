@@ -1,18 +1,16 @@
 <?php
-
+/**
+ * Class MainController for handling rendering and callbacks
+ * 
+ * @package RubyNight\App;
+ * 
+ * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
+ */
 namespace App;
 
 use App\Core\Router;
 use App\Core\Request;
 use App\Core\Response;
-
-/**
- * Class Application
- *
- * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
- * @package namespace app;
- * @category project
- */
 
 class Application
 {
@@ -31,16 +29,21 @@ class Application
         // self instance and application path
         self::$app = $this;
         self::$appPath = $appPath;
-        // request instance
+        // new request instance
         $this->req = new Request();
-        // response instance
+        // new response instance
         $this->res = new Response();
-        // router instance
+        // new router instance
         $this->router = new Router($this->req, $this->res);
     }
 
+    /**
+     * [execute resolves callback]
+     * @return [callback] [executes callback from request]
+     */
     public function execute()
     {
+        // returns resolve
         echo $this->router->resolve();
     }
 }

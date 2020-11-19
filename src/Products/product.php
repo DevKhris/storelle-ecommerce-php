@@ -13,6 +13,11 @@ use App\Reviews\Reviews;
 
 class Product extends BaseProduct
 {
+    /**
+     * [get's product from database by id]
+     * @param  [int] $productId [product id to get]
+     * @return [obj]            [json]
+     */
     public static function get($productId)
     {
         global $conn;
@@ -25,11 +30,16 @@ class Product extends BaseProduct
         if (!$result) {
             echo 'Can\'t fetch product';
         }
+        // get average rating from product 
         $rating = Reviews::getAverage($productId);
+        // round value from array and convert to int
         $rating = floor($rating['t_rating']);
+        // declare product var as array
         $product = array();
 
+        // go towards every row and fetch from result
         while ($row = mysqli_fetch_array($result)) {
+            // put values to array
             $product[] = array(
                 'id' => $row['id'],
                 'name' => $row['productName'],
@@ -38,13 +48,16 @@ class Product extends BaseProduct
                 'rating' => $rating,
             );
         }
-
+        // encode product array to json
         $jsonProduct = json_encode($product);
         // Returns the product json
         echo $jsonProduct;
     }
 
-    public static function set()
+    /**
+     * [set values from self (draft)]
+     */
+    public function set()
     {
         $productId = $this->product['id'];
         $productName = $this->product['name'];

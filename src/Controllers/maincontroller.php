@@ -20,47 +20,82 @@ use App\Core\User;
 
 class MainController
 {
-
+    /**
+     * [home router render]
+     * 
+     * @return [view] [renders view] 
+     */
     public static function home()
     {
         return Application::$app->router->renderView('home');
     }
 
+    /**
+     * [products router render]
+     * 
+     * @return [view] [renders view]
+     */
     public static function products()
     {
         return Application::$app->router->renderView('products');
     }
 
+    /**
+     * [productsHandler for requests of products]
+     * 
+     * @return [json] [returns products]
+     */
     public static function productsHandler()
     {
         $res;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // get products and store in var
             $res = Products::getProducts();
+            // return response
             return $res;
         }
     }
 
+    /**
+     * [product router render]
+     * 
+     * @return [view] [renders view]
+     */
     public static function product()
     {
         return Application::$app->router->renderView('product');
     }
 
+    /**
+     * [productHandler for requests of product]
+     * 
+     * @return [json] [returns product]
+     */
     public static function productHandler()
     {
         if (isset($_REQUEST['id'])) {
             $id = $_REQUEST['id'];
+            // get product by id and store in var
             $req = Product::get($id);
+            // return response
             return $req;
         }
-
-        if (isset($_POST['data'])) {
-        }
     }
+
+    /**
+     * [shoppingcart router render]
+     * 
+     * @return [view] [renders view]
+     */
     public static function shoppingcart()
     {
         return Application::$app->router->renderView('shopping-cart');
     }
 
+    /**
+     * [shoppingcartHandler description]
+     * @return [type] [description]
+     */
     public static function shoppingcartHandler()
     {
         if (isset($_REQUEST['product'])) {
