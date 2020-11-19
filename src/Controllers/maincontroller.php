@@ -100,8 +100,9 @@ class MainController
     public static function shoppingcartHandler()
     {
         if (isset($_REQUEST['product'])) {
+
             // decode json from request
-            $product = json_decode($_REQUEST['product'], true);ç
+            $product = json_decode($_REQUEST['product'], true);
             // get user id from session
             $userId = $_SESSION['uid'];
             // get values from product array
