@@ -33,5 +33,5 @@
     <!-- Font Awesome -->
 <!--     <script src="https://kit.fontawesome.com/9599829622.js" crossorigin="anonymous"></script> -->
     <!-- App -->
-    <script src="assets/js/app.js"></script>
+    <script defer src="assets/js/app.js"></script>
 </footer>

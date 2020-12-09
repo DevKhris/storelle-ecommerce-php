@@ -10,7 +10,7 @@ if (!empty($_SESSION['name'])) {
 }
 ?>
 <nav class="navbar navbar-expand-sm navbar-dark bg-black text-light">
-  <ul class="navbar-nav mr-auto pl-3" aria-labelledby="UserMenuButton">
+  <ul class="navbar-nav mr-auto pl-3">
     <li class="nav-item">
       <p class="nav-text text-white pt-4">Welcome back,
         <?= ucfirst($_SESSION['name']) ?>

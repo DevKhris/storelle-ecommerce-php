@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Application;
 use App\Core\Request;
-use App\Model\addReview;
 use App\Reviews\Review;
 use App\Reviews\Reviews;
 use App\Reviews\addReview;

@@ -68,10 +68,10 @@ if (!isset($_SESSION['loggedin'])) {
     $app->router->get('/reviews', [ReviewsController::class, 'index']);
 
     // Sets controller for reviews callback
-    $app->router->get('/reviews', [ReviewController::class, 'get']);
+    $app->router->post('/review', [ReviewsController::class, 'get']);
 
     // Sets controller for review posting callback
-    $app->router->post('/review', [ReviewsController::class, 'add']);
+    $app->router->post('/publish', [ReviewsController::class, 'add']);
 
     // Routes shopping cart to view
     $app->router->get('/shopping-cart', [ShoppingCartController::class, 'index']);

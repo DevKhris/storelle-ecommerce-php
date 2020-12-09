@@ -14,6 +14,7 @@ $(function() {
         case '/product':
             // render one product
             requestProduct();
+            requestReviews();
             break;
         case '/shopping-cart':
             // renders the shopping cart
@@ -219,7 +220,7 @@ function requestProducts() {
  */
 function postReview(reviewData) {
     $.ajax({
-        url: '/review',
+        url: '/publish',
         type: 'POST',
         data: {
             review: reviewData
@@ -238,8 +239,8 @@ function postReview(reviewData) {
  */
 function requestReviews(id) {
     $.ajax({
-        url: '/reviews',
-        type: 'GET',
+        url: '/review',
+        type: 'POST',
         data: {
             id: id,
         },
