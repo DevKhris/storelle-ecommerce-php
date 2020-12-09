@@ -19,7 +19,7 @@ if (!empty($_SESSION['name'])) {
   </ul>
   <ul class="navbar-nav ml-auto pr-3 mb-2 mb-lg-0">
     <li class="nav-item">
-      <a class="nav-link" href="">
+      <a class="nav-link" href="/dashboard">
         <?php if (isset($_SESSION['balance'])) {
             echo 'Balance: $' . $_SESSION['balance'];
         }
