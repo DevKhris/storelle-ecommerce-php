@@ -239,7 +239,7 @@ function postReview(reviewData) {
 function requestReviews(id) {
     $.ajax({
         url: '/reviews',
-        type: 'POST',
+        type: 'GET',
         data: {
             id: id,
         },
@@ -279,7 +279,7 @@ function requestReviews(id) {
 function requestCart() {
     $.ajax({
         url: '/shopping-cart',
-        type: 'POST',
+        type: 'GET',
         success: function (req) {
             let currentBalance = getBalance();
             let cartItems = JSON.parse(req);
@@ -342,7 +342,7 @@ function performCheckout(cartData)
 function getBalance()
 {
     $.ajax({
-        url: '/profile',
+        url: '/dashboard',
         type: 'POST',
         data: { balance: '' },
         dataType: 'json',

@@ -1,14 +1,23 @@
 <?php
-// start a new session
+/* start a new session */
 session_start();
 // require the psr-4 autoloader
 require_once __DIR__ . '/vendor/autoload.php';
 
 use App\Application;
 use App\Config\DbConnection;
-use App\Core\Auth;
-use App\Controllers\AuthController;
+use App\Controllers\AboutController;
+use App\Controllers\Auth\LoginController;
+use App\Controllers\Auth\RegisterController;
+use App\Controllers\ContactController;
+use App\Controllers\Dashboard\DashboardController;
+use App\Controllers\HomeController;
 use App\Controllers\MainController;
+use App\Controllers\ProductController;
+use App\Controllers\ProductsController;
+use App\Controllers\ReviewsController;
+use App\Controllers\ShoppingCartController;
+use App\Core\Auth;
 
 // connect to database
 $conn = DbConnection::dbConnect();
@@ -17,64 +26,66 @@ $app = new Application(__DIR__);
 
 // this routes stay the same even if it's logged or not
 // Routes to home view
-$app->router->get('/', [MainController::class, 'home']);
+$app->router->get('/', [HomeController::class, 'index']);
 // Routes to about view
-$app->router->get('/about', [MainController::class, 'about']);
+$app->router->get('/about', [AboutController::class, 'index']);
 // Routes to contact controller to render view
-$app->router->get('/contact', [MainController::class, 'contact']);
+$app->router->get('/contact', [ContactController::class, 'index']);
 // sets the controller for the current request
-$app->router->set('/contact', [MainController::class, 'contactHandler']);
+$app->router->post('/contact', [ContactController::class, 'send']);
 
 // check if visitor is logged and assigns the routes
 if (!isset($_SESSION['loggedin'])) {
-
     //set an array for the routes to redirect to login
-    $routes = array('products', 'product', 'shopping-cart', 'profile');
+    $routes = array('products', 'product', 'shopping-cart', 'dashboard');
 
-    //routes the rest to login due to us
+    //routes the rest to login
     foreach ($routes as $key => $value) {
         $route = $routes[$key];
-        $app->router->get('/' . $route, [AuthController::class, 'login']);
-        $app->router->set('/' . $route, [AuthController::class, 'loginHandler']);
+        $app->router->get('/' . $route, [LoginController::class, 'index']);
+        $app->router->post('/' . $route, [LoginController::class, 'login']);
     }
 
-    // routes login and register to view
-    $app->router->get('/login', [AuthController::class, 'login']);
-    $app->router->get('/register', [AuthController::class, 'register']);
-    // set controller handler for login and register callbacks
-    $app->router->set('/login', [AuthController::class, 'loginHandler']);
-    $app->router->set('/register', [AuthController::class, 'registerHandler']);
+    // Routes login to view
+    $app->router->get('/login', [LoginController::class, 'index']);
+    $app->router->post('/login', [LoginController::class, 'login']);
+
+    // Routes register to view
+    $app->router->get('/register', [RegisterController::class, 'index']);
+    $app->router->post('/register', [RegisterController::class, 'register']);
 } else {
     // Routes products to view
-    $app->router->get('/products', [MainController::class, 'products']);
+    $app->router->get('/products', [ProductsController::class, 'index']);
     // Sets controller for products callback
-    $app->router->set('/products', [MainController::class, 'productsHandler']);
+    $app->router->post('/products', [ProductsController::class, 'get']);
 
     // Routes product to view
-    $app->router->get('/product', [MainController::class, 'product']);
+    $app->router->get('/product', [ProductController::class, 'index']);
     // Sets controller for product callback
-    $app->router->set('/product', [MainController::class, 'productHandler']);
+    $app->router->post('/product', [ProductController::class, 'get']);
 
     // Sets controller for reviews view
-    $app->router->get('/reviews', [MainController::class, 'reviews']);
+    $app->router->get('/reviews', [ReviewsController::class, 'index']);
 
     // Sets controller for reviews callback
-    $app->router->set('/reviews', [MainController::class, 'reviewsHandler']);
+    $app->router->get('/reviews', [ReviewController::class, 'get']);
+
     // Sets controller for review posting callback
-    $app->router->set('/review', [MainController::class, 'reviewHandler']);
+    $app->router->post('/review', [ReviewsController::class, 'add']);
 
     // Routes shopping cart to view
-    $app->router->get('/shopping-cart', [MainController::class, 'shoppingcart']);
+    $app->router->get('/shopping-cart', [ShoppingCartController::class, 'index']);
 
-    $app->router->set('/shopping-cart', [MainController::class, 'shoppingcartHandler']);
+    $app->router->post('/shopping-cart', [ShoppingCartController::class, 'get']);
 
-    // routes to profile because the user is logged in
-    $app->router->get('/login', 'profile');
-    $app->router->get('/logout', [AuthController::class, 'logoutHandler']);
-    $app->router->get('/register', 'profile');
-    $app->router->get('/profile', 'profile');
-    // Sets controller for profile callback
-    $app->router->set('/profile', [MainController::class, 'profileHandler']);
+    // route auth routes to dashboard because the user is logged in
+    $app->router->get('/login', [DashboardController::class, 'index']);
+    $app->router->get('/register', [DashboardController::class, 'index']);
+    
+    // Sets controller for dashboard callback functions
+    $app->router->get('/dashboard', [DashboardController::class, 'index']);
+    $app->router->post('/dashboard', [DashboardController::class, 'get']);
+    $app->router->get('/logout', [DashboardController::class, 'logout']);
 }
 
 // execute the app

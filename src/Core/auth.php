@@ -1,73 +1,18 @@
 <?php
 
-/**
- * Class AuthController for authentication
- * 
- * @package RubyNight\App\Controllers;
- * 
- * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
- */
+namespace App\Core;
 
-namespace App\Controllers;
-
-use App\Application;
-use App\Core\Request;
-use App\Model\BaseUser;
-use App\Core\User;
 use App\Cart\ShoppingCart;
+use App\Core\User;
+use App\Model\BaseUser;
 
-class AuthController
+/**
+ *
+ */
+class Auth
 {
-    public $username;
-    public $password;
-
-    /**
-     * [login callback]
-     * 
-     * @param Request $req [request]
-     * 
-     * @return [view]       [renders login]
-     */
-    public static function login(Request $req)
-    {
-        // if request was post then
-        if ($req->onPost()) {
-            return 'Logged in succesfully';
-        }
-        // renders the login view and returns it
-        return Application::$app->router->renderView('login');
-    }
-
-    /**
-     * [callback for handling logout]
-     * 
-     * @return [header] [returns user to login]
-     */
-    public function logoutHandler()
-    {
-        // set logged to false
-        $_SESSION['loggedin'] = false;
-
-        // if the session is destroyed returns to login and ends
-        if (\session_destroy()) {
-            header('Location: \login');
-            die;
-        }
-        // unsets the session
-        \session_unset();
-        // aborts session
-        \session_abort();
-        // returns to login
-        header('Location: \login');
-        // end
-        die;
-    }
-    /**
-     * [callback handler for handling login and session]
-     * 
-     * @return [route] [returns to home]
-     */
-    public static function loginHandler()
+    
+    public static function validate()
     {
         global $user;
         global $conn;
@@ -131,27 +76,7 @@ class AuthController
         }
     }
 
-    /**
-     * [register callback]
-     * 
-     * @param Request $req [request]
-     * 
-     * @return [view]       [renders register]
-     */
-    public static function register(Request $req)
-    {
-        if ($req->onPost()) {
-            return 'Register succesfully';
-        }
-        return Application::$app->router->renderView('register');
-    }
-
-    /**
-     * [callback handler for handling user register]
-     * 
-     * @return [string] [validation]
-     */
-    public static function registerHandler()
+    public static function register()
     {
         global $conn;
 

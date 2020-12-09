@@ -1,9 +1,9 @@
 <?php
 /**
  * Class Router for basic routing and route handling
- * 
+ *
  * @package RubyNight\App\Core;
- * 
+ *
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
 
@@ -45,9 +45,10 @@ class Router
      */
     public function get($path, $callback)
     {
-        // get's the path route and returns it's callback
-        $this->routes['get'][$path] = $callback;
+           // get's the path route and returns it's callback
+            $this->routes['get'][$path] = $callback;
     }
+
 
     /**
      * Set function
@@ -55,7 +56,7 @@ class Router
      * @param Callback $callback
      * @return void
      */
-    public function set($path, $callback)
+    public function post($path, $callback)
     {
         // post's the path route and returns it's callback
         $this->routes['post'][$path] = $callback;

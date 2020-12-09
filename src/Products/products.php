@@ -1,11 +1,12 @@
 <?php
 /**
  * Class Products for fetching all products from db extended from BaseProduct model
- * 
+ *
  * @package RubyNight\App\Products;
- * 
+ *
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
+
 namespace App\Products;
 
 use App\Model\BaseProduct;
@@ -17,7 +18,7 @@ class Products extends BaseProduct
     
     /**
      * [getProducts get all products from database]
-     * 
+     *
      * @return [obj] [json]
      */
     public static function getProducts()
@@ -49,6 +50,6 @@ class Products extends BaseProduct
         // encode products array to json
         $jsonProducts = json_encode($products);
         // Returns the products json
-        echo $jsonProducts;
+        return $jsonProducts;
     }
 }

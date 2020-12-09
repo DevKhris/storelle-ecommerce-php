@@ -1,9 +1,9 @@
 <?php
 /**
  * Class Product for fetching product from db extended from BaseProduct model
- * 
+ *
  * @package RubyNight\App\Products;
- * 
+ *
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
 namespace App\Products;
@@ -16,7 +16,7 @@ class Product extends BaseProduct
     /**
      * [get's product from database by id]
      * @param  [int] $productId [product id to get]
-     * 
+     *
      * @return [obj]            [json]
      */
     public static function get($productId)
@@ -31,7 +31,7 @@ class Product extends BaseProduct
         if (!$result) {
             echo 'Can\'t fetch product';
         }
-        // get average rating from product 
+        // get average rating from product
         $rating = Reviews::getAverage($productId);
         // round value from array and convert to int
         $rating = floor($rating['t_rating']);
@@ -52,7 +52,7 @@ class Product extends BaseProduct
         // encode product array to json
         $jsonProduct = json_encode($product);
         // Returns the product json
-        echo $jsonProduct;
+        return $jsonProduct;
     }
 
     /**

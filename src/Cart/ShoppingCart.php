@@ -2,9 +2,9 @@
 
 /**
  * Class ShoppingCart extended from BaseCart model
- * 
+ *
  * @package RubyNight\App\Cart;
- * 
+ *
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
 
@@ -16,9 +16,9 @@ class ShoppingCart extends BaseCart
 {
     /**
      * [get the items in the shopping cart from db]
-     * 
+     *
      * @param [int] $userId [current user id]
-     * 
+     *
      * @return [json] [returns a json object with the cart values]
      */
     public static function getCart($userId)
@@ -37,7 +37,7 @@ class ShoppingCart extends BaseCart
         // declare cart as an array
         $cart = array();
 
-        // go to every row in result query and saves to array 
+        // go to every row in result query and saves to array
         while ($row = mysqli_fetch_array($result)) {
             $cart[] = array(
                 'id' => $row['id'],
@@ -52,18 +52,18 @@ class ShoppingCart extends BaseCart
         // encode the array to a json object
         $jsonCart = json_encode($cart);
         // returns json
-        echo $jsonCart;
+        return $jsonCart;
     }
 
     /**
      * [Add product item to shopping cart]
-     * 
+     *
      * @param [id] $userId [id from current user]
      * @param [id] $productId [id from product]
      * @param [string] $productName [name of the current product]
      * @param [int] $productQuantity [quantity of products]
      * @param [float] $productPrice [current price]
-     * 
+     *
      * @return [string]     [validation]
      */
     public static function addToCart($userId, $productId, $productName, $productQuantity, $productPrice)
@@ -74,27 +74,28 @@ class ShoppingCart extends BaseCart
 
         // saves the query result to var
         $result = mysqli_query($conn, $sql);
-        if (!$result) {
-            // returns error if can't insert item
-            echo '
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    Can\'t add <strong>' . $productName . '</strong> to cart
-                    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-                </div>';
-        }
+        if ($result) {
         // returns success if item was inserted into db
-        echo '
+            echo '
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 Successfully added <strong>' . $productName . ' </strong> to cart
-                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+                </button>
             </div>';
+        }
+        // returns error if can't insert item
+        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+              Can\'t add <strong>' . $productName . '</strong> to cart
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+                </button>
+              </div>';
     }
 
     /**
      * [remove selected product by it id from db]
-     * 
+     *
      * @param [int] $id [entry id]
-     * 
+     *
      * @return [string]     [validation]
      */
     public static function removeFromCart($id)
