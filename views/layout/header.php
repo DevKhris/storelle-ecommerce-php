@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="description" content="Ecommerce site build with PHP7">
     <title>Storelle</title>
 
     <!-- Bootstrap -->
