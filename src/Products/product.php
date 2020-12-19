@@ -15,18 +15,24 @@ class Product extends BaseProduct
 {
     /**
      * [get's product from database by id]
-     * @param  [int] $productId [product id to get]
+     *
+     * @param [int] $productId product id to get
      *
      * @return [obj]            [json]
      */
     public static function get($productId)
     {
         global $conn;
-        // Query to get Id from products table
-        $sql = "SELECT * FROM products WHERE id='$productId'";
-        // Saves the result of the query
-        $result = mysqli_query($conn, $sql);
-        // Fetch result to product
+        // Query to get Id from products table with placeholder
+        $sql = ("SELECT * FROM products WHERE id=:id");
+
+        // Prepare query statement
+        $stmt = $conn->prepare($sql);
+
+        // execute query injecting product id to placeholder
+        $stmt->execute([':id' => $productId]);
+        // Fetch the result to associative array
+        $result = $stmt->fetch(PDO::ASSOC);
 
         if (!$result) {
             echo 'Can\'t fetch product';

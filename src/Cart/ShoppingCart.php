@@ -48,7 +48,6 @@ class ShoppingCart extends BaseCart
                 'productPrice' => $row['productPrice']
             );
         }
-
         // encode the array to a json object
         $jsonCart = json_encode($cart);
         // returns json

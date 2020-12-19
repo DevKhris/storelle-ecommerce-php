@@ -22,6 +22,7 @@ class ShoppingCartController
     {
         // render view from router for shopping cart
         return Application::$app->router->renderView('shopping-cart');
+        get();
     }
 
     /**
@@ -30,6 +31,15 @@ class ShoppingCartController
      * @return [obj] [json]
      */
     public static function get()
+    {
+        if (isset($_SESSION['uid'])) {
+            $uid = $_SESSION['uid'];
+            // get cart from user id
+            $res = ShoppingCart::getCart($uid);
+        }
+    }
+    
+    public static function add()
     {
         if (isset($_REQUEST['product'])) {
             // decode json from request
@@ -44,17 +54,17 @@ class ShoppingCartController
             // add product to cart from values
             ShoppingCart::addToCart($userId, $productId, $productName, $productQuantity, $productPrice);
         }
-
+    }
+    public static function remove()
+    {
         if (isset($_REQUEST['id'])) {
             // remove item from cart by id
             ShoppingCart::removeFromCart($_REQUEST['id']);
         }
-
-        if (isset($_SESSION['uid'])) {
-            // get cart from user id
-            $res = ShoppingCart::getCart($_SESSION['uid']);
-        }
-
+    }
+    
+    public static function checkout()
+    {
         if (isset($_REQUEST['checkout'])) {
             // get user id from session
             $userId = $_SESSION['uid'];
@@ -68,7 +78,7 @@ class ShoppingCartController
             User::setBalance($balance, $userId);
             // do the checkout
             $res = ShoppingCart::checkOut($userId);
-            // return empty
+            // return response
             return $res;
         }
     }

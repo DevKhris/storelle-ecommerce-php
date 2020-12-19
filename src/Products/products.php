@@ -13,13 +13,25 @@ use App\Model\BaseProduct;
 
 class Products extends BaseProduct
 {
-    //declare products as array
+    // declare products as array
     public $products = [];
-    
+
+    /**
+     * [__construct function for products]
+     *
+     * @param [array] $products [products array]
+     *
+     * @return $this->products products instance
+     */
+    public function __construct($products)
+    {
+        return $this->products = $products;
+    }
+
     /**
      * [getProducts get all products from database]
      *
-     * @return [obj] [json]
+     * @return [array] [json]
      */
     public static function getProducts()
     {
@@ -27,26 +39,17 @@ class Products extends BaseProduct
         // sql query for all products in db
         $sql = "SELECT * FROM products";
 
-        // store query result in array
-        $result = mysqli_query($conn, $sql);
-
-        // verify if result has value or is empty
-        if (!$result) {
-            // thrown warning
-            die('Warning, can\'t fetch products!');
-        }
-
         // go towards every row and fetch from result
-        while ($row = mysqli_fetch_array($result)) {
-            // save products as a array and assign values to it from row
-            $products[] = array(
+        foreach ($conn->query($sql) as $row) {
+                $products[] = array(
                 'id' => $row['id'],
                 'name' => $row['productName'],
                 'img' => $row['productImg'],
                 'price' => $row['productPrice'],
                 'rating' => $row['productRating'],
-            );
+                );
         }
+
         // encode products array to json
         $jsonProducts = json_encode($products);
         // Returns the products json

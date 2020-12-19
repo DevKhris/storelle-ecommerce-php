@@ -1,9 +1,9 @@
 <?php
 /**
  * Class User for building user extended from BaseUser model
- * 
+ *
  * @package RubyNight\App\Core;
- * 
+ *
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
 
@@ -13,24 +13,25 @@ use App\Model\BaseUser;
 
 class User extends BaseUser
 {
-    public $username;
-    public $password;
-    public $balance;
+    protected $username;
+    protected $password;
+    protected $balance;
+    
+    public function getUsername()
+    {
+        return $this->user['username'];
+    }
 
     public function setUsername($username)
     {
         $this->user['username'] = $username;
-    }
-    public  function getUsername($username)
-    {
-        return $this->user['username'];
     }
 
     public function setPassword($password)
     {
         $this->user['password'] = $password;
     }
-    public function getPassword($password)
+    public function getPassword()
     {
         return $this->user['password'];
     }
@@ -53,10 +54,10 @@ class User extends BaseUser
               </div>';
     }
 
-    public static function getBalance($username)
+    public static function getBalance()
     {
         global $conn;
-        $sql = "SELECT balance FROM users WHERE username='$username'";
+        $sql = "SELECT balance FROM users WHERE username='$this->user['username']'";
         $result = mysqli_query($conn, $sql);
 
         if (!$result) {

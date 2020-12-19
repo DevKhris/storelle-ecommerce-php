@@ -1,4 +1,5 @@
 /*** Base Styles **/
+
 html, body {
 	font-family: 'Abel', sans-serif;
 	font-family: 'Noto Sans SC', sans-serif;
@@ -11,8 +12,11 @@ footer {
 	clear:both;
 }
 
+.btn {
+	border-radius: 0rem !important;
+}
 .featured {
-	font-size: 2rem;
+	font-size: 1.6rem;
 	color: #fff;
 	text-shadow: 2px 2px #333;
 	display: flex;
@@ -47,11 +51,11 @@ footer {
 
 .card .product {
 	width: 10rem;
-	margin: 0px 16px 4px 16px;
+	margin: 2px 16px 2px 16px;
 }
 
 .product h4 {
-	color: #aa54ff;
+	color: #030303;
 }
 
 .product price {
@@ -163,10 +167,12 @@ i.stars {
 
 .nav-text-link:hover {
 	color: #d70315 !important;
-	transition: .3s all ease-in;
+
+	transition: .5s all linear;
+
 }
 .nav-link {
-	font-size: 1.2em;
+	font-size: 1.1em;
 	font-weight: 500;
 }
 

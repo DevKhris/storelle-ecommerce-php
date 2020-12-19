@@ -43,8 +43,6 @@ $(function() {
             let jsonData = JSON.stringify(productData);
             // calls function passing json a param
             addProduct(jsonData);
-            // fetch cart
-            requestCart();
         }
     });
 
@@ -195,10 +193,10 @@ function requestProducts() {
                 template += `
                 <div class="col-sm-3">
                     <a class="text-decoration-none product-link font-weight-bold" href="product?id=${product.id}">
-                        <div class="card product text-center">
+                        <div class="card product text-center my-2">
                             <img src="${product.img}" class="card-img-top align-self-center img-fluid" width=360 height=240 alt="${product.img}">
                             <div class="card-body">
-                                <h5 class="card-title">${product.name}</h5>
+                                <h3 class="card-title">${product.name}</h3>
                                 <span class="card-text">$${product.price}</span>
                             </div>
                             <div class="card-footer">
@@ -280,38 +278,41 @@ function requestReviews(id) {
 function requestCart() {
     $.ajax({
         url: '/shopping-cart',
-        type: 'GET',
-        success: function (req) {
+        type: 'POST',
+        success: function (res) {
             let currentBalance = getBalance();
-            let cartItems = JSON.parse(req);
+            let cartItems = res;
             let totalPrice = 0;
             let shippingCost = parseUrlParams('shipping') ?? 0;
             let template = '';
             let pricing = '';
-            cartItems.forEach(cartItem => {
-                totalPrice += parseFloat(cartItem.productPrice) * parseInt(cartItem.productQuantity);
-                template += `
-                    <tr cartId="${cartItem.id}">
-                        <td>${cartItem.id}</td>
-                        <td>
-                            <a href="product?id=${cartItem.productId}" class="cart-item">${cartItem.productName}</a>
-                        </td>
-                        <td>${cartItem.productQuantity}</td>
-                        <td>$${cartItem.productPrice}</td>
-                        <td>
-                            <button href="&id=${cartItem.id}" class="btn btn-outline-danger cartItem-delete">X</button>
-                        </td>
-                    </tr>
-                `
-            });
+            console.log(res);
+            // cartItems.forEach(cartItem  => {
+            //     totalPrice += parseFloat(cartItem.productPrice) * parseInt(cartItem.productQuantity);
+            //     template += `
+            //         <tr cartId="${cartItem.id}">
+            //             <td>${cartItem.id}</td>
+            //             <td>
+            //                 <a href="product?id=${cartItem.productId}" class="cart-item">${cartItem.productName}</a>
+            //             </td>
+            //             <td>${cartItem.productQuantity}</td>
+            //             <td>$${cartItem.productPrice}</td>
+            //             <td>
+            //                 <button href="&id=${cartItem.id}" class="btn btn-outline-danger cartItem-delete">X</button>
+            //             </td>
+            //         </tr>
+            //     `
+            // });
+            
             totalPrice = parseFloat(totalPrice) + parseInt(shippingCost);
             pricing += `
                 <p class="text-md-right" id="userBalance">Balance: $${currentBalance}</p>
                 <p class="text-md-right" id="shippingCost">Shipping Cost: $${parseInt(shippingCost)}</p>
                 <b><p class="text-md-right" id="totalPrice">Total: $${parseFloat(totalPrice)}</p></b>
                 `;
-            $('#cart').html(template);
             $('#pricing').html(pricing);
+            $('#cart').html(template);
+            
         }
     });
 
@@ -325,7 +326,7 @@ function requestCart() {
 function performCheckout(cartData)
 {
     $.ajax({
-        url: '/shopping-cart',
+        url: '/checkout',
         type: 'POST',
         data: {
             checkout: cartData

@@ -4,23 +4,27 @@ session_start();
 // require the psr-4 autoloader
 require_once __DIR__ . '/vendor/autoload.php';
 
+// Set physical path
+define('ROOT_PATH', realpath(dirname(__FILE__)));
+// Set base uri
+define('BASE_URL', 'http://localhost/storelle/');
+
 use App\Application;
-use App\Config\DbConnection;
+use App\Config\Database;
 use App\Controllers\AboutController;
 use App\Controllers\Auth\LoginController;
 use App\Controllers\Auth\RegisterController;
 use App\Controllers\ContactController;
 use App\Controllers\Dashboard\DashboardController;
 use App\Controllers\HomeController;
-use App\Controllers\MainController;
 use App\Controllers\ProductController;
 use App\Controllers\ProductsController;
 use App\Controllers\ReviewsController;
 use App\Controllers\ShoppingCartController;
-use App\Core\Auth;
 
 // connect to database
-$conn = DbConnection::dbConnect();
+$db = new Database;
+$conn = $db->conn;
 // create new app instance
 $app = new Application(__DIR__);
 
@@ -75,13 +79,13 @@ if (!isset($_SESSION['loggedin'])) {
 
     // Routes shopping cart to view
     $app->router->get('/shopping-cart', [ShoppingCartController::class, 'index']);
-
     $app->router->post('/shopping-cart', [ShoppingCartController::class, 'get']);
-
+    $app->router->post('/shopping-cart?del', [ShoppingCartController::class, 'remove']);
+    $app->router->post('/checkout', [ShoppingCartController::class, 'checkout']);
     // route auth routes to dashboard because the user is logged in
     $app->router->get('/login', [DashboardController::class, 'index']);
     $app->router->get('/register', [DashboardController::class, 'index']);
-    
+
     // Sets controller for dashboard callback functions
     $app->router->get('/dashboard', [DashboardController::class, 'index']);
     $app->router->post('/dashboard', [DashboardController::class, 'get']);

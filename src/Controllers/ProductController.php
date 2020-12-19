@@ -32,9 +32,9 @@ class ProductController
         if (isset($_REQUEST['id'])) {
             $id = $_REQUEST['id'];
             // get product by id and store in var
-            $req = Product::get($id);
+            $res = Product::get($id);
             // return response
-            return $req;
+            return $res;
         }
     }
 }
