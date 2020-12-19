@@ -32,6 +32,6 @@ class LoginController
      */
     public static function login()
     {
-        Auth::validate();
+        Auth::validate($_POST['username'], $_POST['password']);
     }
 }

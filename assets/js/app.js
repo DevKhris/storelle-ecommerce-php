@@ -187,7 +187,8 @@ function requestProducts() {
         url: "products",
         type: 'POST',
         success: function(res) {
-            let products = JSON.parse(res);
+            console.log(res);
+            let products = res;
             let template = '';
             products.forEach(product => {
                 template += `

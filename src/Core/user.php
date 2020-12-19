@@ -19,7 +19,7 @@ class User extends BaseUser
     
     public function getUsername()
     {
-        return $this->user['username'];
+        return $this->name['username'];
     }
 
     public function setUsername($username)

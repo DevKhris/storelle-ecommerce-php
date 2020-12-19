@@ -9,9 +9,7 @@
 
 namespace App\Products;
 
-use App\Model\BaseProduct;
-
-class Products extends BaseProduct
+class Products
 {
     // declare products as array
     public $products = [];
@@ -29,11 +27,11 @@ class Products extends BaseProduct
     }
 
     /**
-     * [getProducts get all products from database]
+     * [get all products from database]
      *
      * @return [array] [json]
      */
-    public static function getProducts()
+    public static function get()
     {
         global $conn;
         // sql query for all products in db
@@ -49,10 +47,10 @@ class Products extends BaseProduct
                 'rating' => $row['productRating'],
                 );
         }
-
         // encode products array to json
-        $jsonProducts = json_encode($products);
+        $json = json_encode($products);
+        echo (string) $json;
         // Returns the products json
-        return $jsonProducts;
+        return $json;
     }
 }
