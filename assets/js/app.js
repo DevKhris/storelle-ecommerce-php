@@ -1,22 +1,21 @@
 // main document listener
 $(function() {
-
     // switch for rendering according to url to avoid unwanted requests
     switch (getUrl()) {
-        case '/':
+        case "/":
             // renders the products at home
             requestProducts();
             break;
-        case '/products':
+        case "/products":
             // renders the products
-            requestProducts();          
+            requestProducts();
             break;
-        case '/product':
+        case "/product":
             // render one product
             requestProduct();
             requestReviews();
             break;
-        case '/shopping-cart':
+        case "/shopping-cart":
             // renders the shopping cart
             requestCart();
             break;
@@ -25,17 +24,17 @@ $(function() {
     }
 
     // hide the review form
-    $('#review-form').hide();
+    $("#review-form").hide();
 
     // handles add product from product view
-    $('#product-form').submit(function(e) {
+    $("#product-form").submit(function(e) {
         e.preventDefault();
         // obtains product info and store in a array
         let productData = {
-            'productId': parseUrlParams('id'),
-            'productName': $('#productName').html(),
-            'productPrice': $('#productPrice').html().replace('$', ''),
-            'productQuantity': $('#productQuantity').val(),
+            productId: parseUrlParams("id"),
+            productName: $("#productName").html(),
+            productPrice: $("#productPrice").html().replace("$", ""),
+            productQuantity: $("#productQuantity").val(),
         };
         // checks if the value it's not empty
         if (productData.productQuantity > 0) {
@@ -46,27 +45,27 @@ $(function() {
         }
     });
 
-    $('#review-form').submit(function(e) {
+    $("#review-form").submit(function(e) {
         e.preventDefault();
         const reviewData = {
-            productId: $('#productId').val(),
-            feedBack: $('#reviewContent').val(),
-            rating: $('#reviewRating').val(),
+            productId: $("#productId").val(),
+            feedBack: $("#reviewContent").val(),
+            rating: $("#reviewRating").val(),
         };
         // encode data to json
         let jsonData = JSON.stringify(reviewData);
         postReview(jsonData);
-        $('#review-form').trigger('reset');
+        $("#review-form").trigger("reset");
         // parse id to var from url
-        id = parseUrlParams('id');
+        id = parseUrlParams("id");
         // request reviews
         requestReviews(id);
     });
 
-    $(document).on('click', '.cartItem-delete', function() {
-        if (confirm('Are you sure you want to remove this product from cart?')) {
+    $(document).on("click", ".cartItem-delete", function() {
+        if (confirm("Are you sure you want to remove this product from cart?")) {
             let elm = $(this)[0].parentElement.parentElement;
-            let id = $(elm).attr('cartId');
+            let id = $(elm).attr("cartId");
             // remove product by id
             removeProduct(id);
             // request cart
@@ -74,11 +73,13 @@ $(function() {
         }
     });
 
-    $(document).on('click', '.checkout', function() {
+    $(document).on("click", ".checkout", function() {
         // assign cart data by parsing element id's to array
         let cartData = {
-            'totalPrice': parseFloat($('#totalPrice').html().replace('Total: $', '')),
-            'currentBalance': parseFloat($('#userBalance').html().replace('Balance: $','')),
+            totalPrice: parseFloat($("#totalPrice").html().replace("Total: $", "")),
+            currentBalance: parseFloat(
+                $("#userBalance").html().replace("Balance: $", "")
+            ),
         };
         // verify if the price is greater than the user balance
         if (cartData.totalPrice > cartData.currentBalance) {
@@ -87,28 +88,26 @@ $(function() {
                             <strong>Can't proceed, Insufficient funds!</strong>
                             <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
                         </div>`;
-            $('#alerts').html(alerts);
+            $("#alerts").html(alerts);
         } else {
             // get total balance
             cartData.currentBalance = cartData.currentBalance - cartData.totalPrice;
             // performs checkout from cart
             performCheckout(cartData);
             // request cart
-            requestCart();           
+            requestCart();
         }
     });
-
 });
 
 // Show or hides the review form
 function toggleReviewBox() {
-    if ($('#review-form').is(':visible')) {
-        $('#review-form').hide();
+    if ($("#review-form").is(":visible")) {
+        $("#review-form").hide();
     } else {
-        $('#review-form').show();
+        $("#review-form").show();
     }
 }
-
 
 /**
  * [requestProduct fetch product from id]
@@ -116,31 +115,30 @@ function toggleReviewBox() {
  */
 function requestProduct() {
     // get id from attribute
-    let id = $(this).attr('id');
+    let id = $(this).attr("id");
     // do a post petition
     $.ajax({
-        url: 'product'.id,
+        url: "product".id,
         type: "POST",
         data: {
             id: id,
         },
-        dataType: 'json',
+        dataType: "json",
         success: function(product) {
             // render product to view
-            let productImg = `<img class="img-fluid" src="${product[0].img}" alt="${product[0].img}" width=512 height=512>`
-            $('#productImg').html(productImg);
+            let productImg = `<img class="img-fluid" src="${product[0].img}" alt="${product[0].img}" width=512 height=512>`;
+            $("#productImg").html(productImg);
             let productInfo = `
             <h1 class="text-monospace" id="productName">${product[0].name}</h1>
             <h3 class="text-muted" id="productPrice">$ ${product[0].price}</h3>
             <p class="reviews num"><i class="fa fa-star stars"></i> ${product[0].rating} / 5 </p>
             `;
-            $('#productInfo').html(productInfo);
+            $("#productInfo").html(productInfo);
             // parse url param id and store in var
-            id = parseUrlParams('id');
+            id = parseUrlParams("id");
             // renders the reviews
             requestReviews(id);
-        }
-
+        },
     });
 }
 
@@ -150,14 +148,14 @@ function requestProduct() {
  */
 function addProduct(productData) {
     $.ajax({
-        url: '/shopping-cart',
-        type: 'POST',
+        url: "/shopping-cart",
+        type: "POST",
         data: {
-            product: productData
+            product: productData,
         },
         success: function(res) {
-            $('#alerts').html(res);
-        }
+            $("#alerts").html(res);
+        },
     });
 }
 
@@ -167,15 +165,15 @@ function addProduct(productData) {
  */
 function removeProduct(id) {
     $.ajax({
-        url: '/shopping-cart',
-        type: 'POST',
+        url: "/shopping-cart",
+        type: "POST",
         data: {
-            id: id
+            id: id,
         },
         success: function(res) {
-            $('#alerts').html(res);
-        }
-    })
+            $("#alerts").html(res);
+        },
+    });
 }
 
 /**
@@ -185,17 +183,17 @@ function removeProduct(id) {
 function requestProducts() {
     $.ajax({
         url: "products",
-        type: 'POST',
+        type: "POST",
         success: function(res) {
-            console.log(res);
             let products = res;
-            let template = '';
-            products.forEach(product => {
+            let template = "";
+            console.log(products);
+            products.forEach((product) => {
                 template += `
                 <div class="col-sm-3">
                     <a class="text-decoration-none product-link font-weight-bold" href="product?id=${product.id}">
                         <div class="card product text-center my-2">
-                            <img src="${product.img}" class="card-img-top align-self-center img-fluid" width=360 height=240 alt="${product.img}">
+                            <img src="${product.img}" class="card-img-top align-self-center img-fluid" width=360 height=240 alt="${product.name}">
                             <div class="card-body">
                                 <h3 class="card-title">${product.name}</h3>
                                 <span class="card-text">$${product.price}</span>
@@ -207,8 +205,8 @@ function requestProducts() {
                     </a>
                 </div>`;
             });
-            $('#products').html(template);
-        }
+            $("#products").html(template);
+        },
     });
 }
 
@@ -219,16 +217,15 @@ function requestProducts() {
  */
 function postReview(reviewData) {
     $.ajax({
-        url: '/publish',
-        type: 'POST',
+        url: "/publish",
+        type: "POST",
         data: {
-            review: reviewData
+            review: reviewData,
         },
-        success: function (res) {
-            $('#review-alerts').html(res);
-        }
+        success: function(res) {
+            $("#review-alerts").html(res);
+        },
     });
-
 }
 
 /**
@@ -238,15 +235,15 @@ function postReview(reviewData) {
  */
 function requestReviews(id) {
     $.ajax({
-        url: '/review',
-        type: 'POST',
+        url: "/review",
+        type: "POST",
         data: {
             id: id,
         },
         success: function(res) {
             let reviews = JSON.parse(res);
-            let template = '';
-            reviews.forEach(review => {
+            let template = "";
+            reviews.forEach((review) => {
                 template += `
                     <div class="reviews card">
                     <div class="card-header">
@@ -266,10 +263,9 @@ function requestReviews(id) {
                 `;
             });
 
-            $('#reviews-box').html(template);
-        }
+            $("#reviews-box").html(template);
+        },
     });
-
 }
 
 /**
@@ -278,15 +274,15 @@ function requestReviews(id) {
  */
 function requestCart() {
     $.ajax({
-        url: '/shopping-cart',
-        type: 'POST',
-        success: function (res) {
+        url: "/shopping-cart",
+        type: "POST",
+        success: function(res) {
             let currentBalance = getBalance();
             let cartItems = res;
             let totalPrice = 0;
-            let shippingCost = parseUrlParams('shipping') ?? 0;
-            let template = '';
-            let pricing = '';
+            // let shippingCost = parseUrlParams("shipping") ? 0;
+            let template = "";
+            let pricing = "";
             console.log(res);
             // cartItems.forEach(cartItem  => {
             //     totalPrice += parseFloat(cartItem.productPrice) * parseInt(cartItem.productQuantity);
@@ -304,19 +300,21 @@ function requestCart() {
             //         </tr>
             //     `
             // });
-            
+
             totalPrice = parseFloat(totalPrice) + parseInt(shippingCost);
             pricing += `
                 <p class="text-md-right" id="userBalance">Balance: $${currentBalance}</p>
-                <p class="text-md-right" id="shippingCost">Shipping Cost: $${parseInt(shippingCost)}</p>
-                <b><p class="text-md-right" id="totalPrice">Total: $${parseFloat(totalPrice)}</p></b>
+                <p class="text-md-right" id="shippingCost">Shipping Cost: $${parseInt(
+                  shippingCost
+                )}</p>
+                <b><p class="text-md-right" id="totalPrice">Total: $${parseFloat(
+                  totalPrice
+                )}</p></b>
                 `;
-            $('#pricing').html(pricing);
-            $('#cart').html(template);
-            
-        }
+            $("#pricing").html(pricing);
+            $("#cart").html(template);
+        },
     });
-
 }
 
 /**
@@ -324,17 +322,16 @@ function requestCart() {
  * @param  {[array]} cartData [items in cart]
  * @return {[string]}          [alert]
  */
-function performCheckout(cartData)
-{
+function performCheckout(cartData) {
     $.ajax({
-        url: '/checkout',
-        type: 'POST',
+        url: "/checkout",
+        type: "POST",
         data: {
-            checkout: cartData
+            checkout: cartData,
         },
         success: function(res) {
-            $('#alerts').html(res);
-        }
+            $("#alerts").html(res);
+        },
     });
 }
 
@@ -342,16 +339,15 @@ function performCheckout(cartData)
  * [getBalance request for get user balance]
  * @return {[json]} [balance]
  */
-function getBalance()
-{
+function getBalance() {
     $.ajax({
-        url: '/dashboard',
-        type: 'POST',
-        data: { balance: '' },
-        dataType: 'json',
-        success: function (data) {
-            $('#userBalance').html('Balance: $' + data[0].balance);
-        }
+        url: "/dashboard",
+        type: "POST",
+        data: { balance: "" },
+        dataType: "json",
+        success: function(data) {
+            $("#userBalance").html("Balance: $" + data[0].balance);
+        },
     });
 }
 
@@ -360,8 +356,7 @@ function getBalance()
  * @param  {[string]} param [param to parse]
  * @return {[string]}       [parse result]
  */
-function parseUrlParams(param)
-{
+function parseUrlParams(param) {
     const query = window.location.search;
     const urlParams = new URLSearchParams(query);
     let result = urlParams.get(param);
@@ -372,8 +367,7 @@ function parseUrlParams(param)
  * [getUrl get url from pathname]
  * @return {[string]} [relative path]
  */
-function getUrl()
-{
-    const query = window.location['pathname'];
+function getUrl() {
+    const query = window.location["pathname"];
     return query;
 }

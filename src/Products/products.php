@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class Products for fetching all products from db extended from BaseProduct model
  *
@@ -11,27 +12,22 @@ namespace App\Products;
 
 class Products
 {
-    // declare products as array
-    public $products = [];
-
     /**
-     * [__construct function for products]
+     * [Constructor function for products]
      *
-     * @param [array] $products [products array]
-     *
-     * @return $this->products products instance
+     * @return products from this get instance
      */
-    public function __construct($products)
+    public function __construct()
     {
-        return $this->products = $products;
+        return $this->products = $this->get();
     }
 
     /**
      * [get all products from database]
      *
-     * @return [array] [json]
+     * @return array json
      */
-    public static function get()
+    public function get()
     {
         global $conn;
         // sql query for all products in db
@@ -39,17 +35,16 @@ class Products
 
         // go towards every row and fetch from result
         foreach ($conn->query($sql) as $row) {
-                $products[] = array(
+            $products[] = array(
                 'id' => $row['id'],
                 'name' => $row['productName'],
                 'img' => $row['productImg'],
                 'price' => $row['productPrice'],
                 'rating' => $row['productRating'],
-                );
+            );
         }
         // encode products array to json
         $json = json_encode($products);
-        echo (string) $json;
         // Returns the products json
         return $json;
     }

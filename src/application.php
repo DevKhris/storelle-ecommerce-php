@@ -1,17 +1,19 @@
 <?php
-/**
- * Class MainController for handling rendering and callbacks
- * 
- * @package RubyNight\App;
- * 
- * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
- */
+
 namespace App;
 
 use App\Core\Router;
 use App\Core\Request;
 use App\Core\Response;
 
+/**
+ * Class MainController for handling rendering and callbacks
+ * 
+ * @package RubyNight\App;
+ * 
+ * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
+ * 
+ */
 class Application
 {
     public static string $appPath;
@@ -20,9 +22,9 @@ class Application
     public Response $res;
     public static Application $app;
     /**
-     * contructor function
+     * Contructor function
      *
-     * @param [type] $appPath param of application path
+     * @param string $appPath param of application path
      */
     public function __construct($appPath)
     {
@@ -38,8 +40,9 @@ class Application
     }
 
     /**
-     * [execute resolves callback]
-     * @return [callback] [executes callback from request]
+     * Exec to resolve callback
+     * 
+     * @return callback executes callback from request
      */
     public function execute()
     {

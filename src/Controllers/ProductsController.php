@@ -3,17 +3,21 @@
 namespace App\Controllers;
 
 use App\Application;
-use App\Core\Request;
-use App\Core\User;
 use App\Products\Products;
-use App\Controllers\ShoppingCartController;
 
+/**
+ * Class ProductsController for request products
+ *
+ * @package RubyNight\App\Controllers;
+ *
+ * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
+ */
 class ProductsController
 {
-     /**
-     * [products router render]
+    /**
+     * Render view
      *
-     * @return [view] [renders view]
+     * @return view renders view
      */
     public static function index()
     {
@@ -21,18 +25,16 @@ class ProductsController
         return Application::$app->router->renderView('products');
     }
 
-     /**
-     * [get  requests of products]
+    /**
+     * Get products from db
      *
-     * @return [json] [returns products]
+     * @return array $products
      */
     public static function get()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // get products and store in var
-            $res = Products::getProducts();
-            // return response
-            return $res;
-        }
+        // declare a new products object
+        $products = new Products();
+        // return products
+        return $products->get();
     }
 }
