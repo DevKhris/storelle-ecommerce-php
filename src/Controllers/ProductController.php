@@ -1,7 +1,8 @@
 <?php
+
 /**
-*
-*/
+ *
+ */
 
 namespace App\Controllers;
 
@@ -18,23 +19,21 @@ class ProductController
      */
     public static function index()
     {
-         // render view from router for product
+        // render view from router for product
         return Application::$app->router->renderView('product');
     }
 
-     /**
-      * [productHandler for requests of product]
-      *
-      * @return [json] [returns product]
-      */
+    /**
+     * [productHandler for requests of product]
+     *
+     * @return [json] [returns product]
+     */
     public static function get()
     {
-        if (isset($_REQUEST['id'])) {
-            $id = $_REQUEST['id'];
-            // get product by id and store in var
-            $res = Product::get($id);
-            // return response
-            return $res;
-        }
+        $productId = $_GET['id'];
+        // get product by id and store in var
+        $product = new Product();
+        // return product
+        return $product->get($productId);
     }
 }

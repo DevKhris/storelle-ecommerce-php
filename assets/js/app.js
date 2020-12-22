@@ -13,7 +13,7 @@ $(function() {
         case "/product":
             // render one product
             requestProduct();
-            requestReviews();
+            //requestReviews();
             break;
         case "/shopping-cart":
             // renders the shopping cart
@@ -110,13 +110,12 @@ function toggleReviewBox() {
 }
 
 /**
- * [requestProduct fetch product from id]
- * @return {[json]} [product]
+ * Fetch product by Id
+ * @return {json} product
  */
 function requestProduct() {
     // get id from attribute
     let id = $(this).attr("id");
-    // do a post petition
     $.ajax({
         url: "product".id,
         type: "POST",
@@ -126,12 +125,12 @@ function requestProduct() {
         dataType: "json",
         success: function(product) {
             // render product to view
-            let productImg = `<img class="img-fluid" src="${product[0].img}" alt="${product[0].img}" width=512 height=512>`;
+            let productImg = `<img class="img-fluid" src="${product.img}" alt="${product.name}" width=512 height=512>`;
             $("#productImg").html(productImg);
             let productInfo = `
-            <h1 class="text-monospace" id="productName">${product[0].name}</h1>
-            <h3 class="text-muted" id="productPrice">$ ${product[0].price}</h3>
-            <p class="reviews num"><i class="fa fa-star stars"></i> ${product[0].rating} / 5 </p>
+            <h1 class="text-monospace" id="productName">${product.name}</h1>
+            <h3 class="text-muted" id="productPrice">$ ${product.price}</h3>
+            <p class="reviews num"><i class="fa fa-star stars"></i> ${product.rating} / 5 </p>
             `;
             $("#productInfo").html(productInfo);
             // parse url param id and store in var
@@ -185,9 +184,8 @@ function requestProducts() {
         url: "products",
         type: "POST",
         success: function(res) {
-            let products = res;
+            let products = JSON.parse(res);
             let template = "";
-            console.log(products);
             products.forEach((product) => {
                 template += `
                 <div class="col-sm-3">
@@ -241,7 +239,8 @@ function requestReviews(id) {
             id: id,
         },
         success: function(res) {
-            let reviews = JSON.parse(res);
+            console.log(res);
+            let reviews = res;
             let template = "";
             reviews.forEach((review) => {
                 template += `
@@ -318,9 +317,9 @@ function requestCart() {
 }
 
 /**
- * [performCheckout performs the checkout request]
- * @param  {[array]} cartData [items in cart]
- * @return {[string]}          [alert]
+ * Performs the checkout request
+ * @param  {array} cartData items in cart
+ * @return {string}         alert
  */
 function performCheckout(cartData) {
     $.ajax({
@@ -336,8 +335,8 @@ function performCheckout(cartData) {
 }
 
 /**
- * [getBalance request for get user balance]
- * @return {[json]} [balance]
+ * Get user balance request
+ * @return {json} balance
  */
 function getBalance() {
     $.ajax({
@@ -352,9 +351,9 @@ function getBalance() {
 }
 
 /**
- * [parseUrlParams get param from url]
- * @param  {[string]} param [param to parse]
- * @return {[string]}       [parse result]
+ * Parse param from url
+ * @param  {string}      'param to parse'
+ * @return {string}       parse result
  */
 function parseUrlParams(param) {
     const query = window.location.search;
@@ -364,8 +363,8 @@ function parseUrlParams(param) {
 }
 
 /**
- * [getUrl get url from pathname]
- * @return {[string]} [relative path]
+ * Get url from path name
+ * @return {string} relative path
  */
 function getUrl() {
     const query = window.location["pathname"];

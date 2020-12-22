@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class Reviews for fetching reviews from db
  * 
@@ -6,38 +7,43 @@
  * 
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
+
 namespace App\Reviews;
 
 class Reviews
 {
-    // declare reviews as array
-    public $reviews = [];
-    // declare rating var
-    public $rating;
+    public function __construct($productId)
+    {
+        return $this->reviews = $this->get($productId);
+    }
 
     /**
-     * [getReviews get all review from product by id]
-     * @param [int] $productId [product id]
+     * Get reviews from product by id
      * 
-     * @return [obj]            [json]
+     * @param int $productId product id
+     * 
+     * @return json reviews json
      */
-    public static function getReviews($productId)
+    public static function get($productId)
     {
         global $conn;
         // query for select all review from database by id
-        $sql = "SELECT * FROM reviews WHERE productId = $productId";
-
+        $sql = "SELECT * FROM reviews WHERE productId = ?";
+        // prepare the query
+        $stmt = $conn->prepare($sql);
         // do the query and store the result
-        $result = mysqli_query($conn, $sql);
+        $result = $stmt->execute([$productId]);
         // checks if result has value
         if (!$result) {
             // thrown warning
             echo ('Warning, can\'t fetch reviews');
         }
-        // go towards every row and fetch from result as an associative array
-        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        $result = $stmt->fetchAll();
+        var_dump($result);
+        // go towards each row and fetch from result to an associative array
+        foreach ($result as $row) {
             // save reviews as a array and assign values to it from row
-            $reviews[] = array(
+            $reviews = array(
                 'id' => $row['id'],
                 'productId' => $row['productId'],
                 'userName' => $row['userName'],
@@ -46,32 +52,35 @@ class Reviews
             );
         }
         // encode reviews array to json
+
         $jsonReviews = json_encode($reviews);
         // Returns the reviews json
-        echo $jsonReviews;
+        return $jsonReviews;
     }
 
     /**
-     * [getAverage  get average rating from reviews of a product]
-     * @param [int] $productId [product id]
+     * Get average rating from reviews of a product by id
      * 
-     * @return [array]            [rating]
+     * @param int $productId product id
+     * 
+     * @return array rating
      */
-    public static function getAverage($productId)
+    public static function avg($productId)
     {
         global $conn;
         // query for getting average rating from reviews of a product
-        $sql = "SELECT AVG(rating) AS t_rating, COUNT(*) AS t_reviews FROM reviews WHERE productId = $productId";
-
+        $sql = "SELECT AVG(rating) AS t_rating, COUNT(*) AS t_reviews FROM reviews WHERE productId = ?";
+        // prepare the query
+        $stmt = $conn->prepare($sql);
         // store query result
-        $result = mysqli_query($conn, $sql);
+        $result = $stmt->execute([$productId]);
         // verify if result has value
         if (!$result) {
-             // thrown warning
+            // thrown warning
             die('Warning, can\'t fetch average rating for product');
         }
         // fetch associative array and store into var
-        $rating = mysqli_fetch_assoc($result);
+        $rating = $stmt->fetch($result);
         // returns array
         return $rating;
     }

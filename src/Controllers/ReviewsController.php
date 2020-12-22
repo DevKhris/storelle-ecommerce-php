@@ -14,7 +14,7 @@ use App\Reviews\getReviews;
  */
 class ReviewsController
 {
-     /**
+    /**
      * [get reviews view]
      *
      * @return [view] [renders view]
@@ -35,11 +35,10 @@ class ReviewsController
         if (isset($_REQUEST['id'])) {
             // get id from requests
             $id = $_REQUEST['id'];
-            $res = [];
             // get reviews and save to response var from id
-            $res = Reviews::getReviews($id);
+            $reviews = new Reviews($id);
             // return response
-            return $res;
+            return $reviews;
         }
     }
 

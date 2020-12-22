@@ -80,7 +80,7 @@ if (!isset($_SESSION['loggedin'])) {
     // Routes shopping cart to view
     $app->router->get('/shopping-cart', [ShoppingCartController::class, 'index']);
     $app->router->post('/shopping-cart', [ShoppingCartController::class, 'get']);
-    $app->router->post('/shopping-cart?del', [ShoppingCartController::class, 'remove']);
+    $app->router->post('/shopping-cart?del', [ShoppingCartController::class, 'del']);
     $app->router->post('/checkout', [ShoppingCartController::class, 'checkout']);
     // route auth routes to dashboard because the user is logged in
     $app->router->get('/login', [DashboardController::class, 'index']);

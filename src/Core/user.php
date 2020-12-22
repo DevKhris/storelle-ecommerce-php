@@ -36,8 +36,10 @@ class User extends BaseUser
     public function setBalance($balance)
     {
         global $conn;
-        $sql = "UPDATE users SET balance='$balance' WHERE id='$uid'";
-        $result = mysqli_query($conn, $sql);
+        $sql = "UPDATE users SET balance=:balance WHERE id=:id";
+        $stmt = $conn->prepare($sql);
+
+        $result =  $stmt->execute([':balance' => $balance, ':id' => $uId]);
 
         if (!$result) {
             echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -55,24 +57,29 @@ class User extends BaseUser
     {
         if (!empty($username)) {
             global $conn;
-            $sql = "SELECT balance FROM users WHERE username=?";
+            $sql = "SELECT balance FROM users WHERE username = ?";
             $stmt = $conn->prepare($sql);
-
             $result = $stmt->execute([$username]);
 
             if ($result) {
                 echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Warning, Can\'t get user balance!</strong>
-                    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-                  </div>';
+                        <strong>
+                            Warning, Can\'t get user balance!
+                        </strong>
+                        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+                        </button>
+                      </div>';
             }
+            // fetch result from statement
             $result = $stmt->fetchAll();
-            var_dump($result);
+            // save value from result
             $user = array('balance' => $result[0]);
-
-            $jsonUser = json_encode($user);
-            return $jsonUser;
+            // encode to json
+            $json = json_encode($user);
+            // return json
+            return $json;
         } else {
+            // return balance from this
             return $this->balance;
         }
     }
