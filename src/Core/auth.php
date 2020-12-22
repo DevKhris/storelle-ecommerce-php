@@ -19,13 +19,14 @@ class Auth
      * [Validate user authentication]
      * @param  [string] $username [user username]
      * @param  [string] $password [user password]
+     *
      * @return [type]           [description]
      */
     public static function validate($username, $password)
     {
         global $user;
         global $conn;
-            // validate if the vars are not empty
+        // validate if the vars are not empty
         if (empty($username) || empty($password)) {
             // if empty, triggers a warning
             echo 'Warning: Please fill both fields';
@@ -41,31 +42,33 @@ class Auth
                 // if not fetch the result as an associative array
                 if ($result) {
                     // save array to var
-                    $user = $stmt->fetch(\PDO::FETCH_ASSOC);
-                      // verifys if passwords match
-                    if (password_verify($password, $user['password'])) {
+                    $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+                    // verifys if passwords match
+                    if (password_verify($password, $result['password'])) {
+                        // initialize new user sesssion
+                        $user = new User($result['username'], $result['balance']);
                         // generate sesssion id
                         $id = session_regenerate_id(true);
                         // saves user id from array
-                        $uId = $user['id'];
+                        $uId = $result['id'];
                         // get's shopping cart from user id
                         $cart = ShoppingCart::getCart($uId);
                         // set's the user to logged
                         $_SESSION['loggedin'] = true;
                         // assign name from username to session
-                        $_SESSION['name'] = $user['username'];
+                        $_SESSION['username'] = $user->getUsername();
                         // assign id from id to session
                         $_SESSION['id'] = $id;
                         // assign id from user to session
                         $_SESSION['uid'] = $uId;
-                        // assign balance from user to session
-                        $_SESSION['balance'] = $user['balance'];
+                        // assign balance from user to user session
+                        $_SESSION['balance'] = $user->getBalance();
                         // set session start to current time
                         $_SESSION['start'] = time();
                         // set expiration time
                         $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
                         // set shopping cart to session
-                        $_SESSION['cart'] = array($cart);
+                        //$_SESSION['cart'] = array($cart);
                         // returns to home
                         header('location: \\');
                         // exits with 500 code

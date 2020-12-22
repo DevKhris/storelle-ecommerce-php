@@ -7,15 +7,15 @@
             <img src="res/user/default_male.png" alt="Profile Picture">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <p class="pl-4">Username: <?= $_SESSION['name']; ?></p>
+                    <p class="pl-4">Username: <?= $_SESSION['username']; ?></p>
                 </li>
                 <li class="nav-item">
-                    <p class="pl-4">Balance: <?='$' . $_SESSION['balance']; ?></p>
+                    <p class="pl-4">Balance: <?= '$' . $_SESSION['balance']; ?></p>
                 </li>
             </ul>
         </div>
         <hr>
     </div>
-        <div class="col-sm-2">
+    <div class="col-sm-2">
     </div>
 </div>

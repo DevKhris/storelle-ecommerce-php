@@ -1,86 +1,67 @@
 <?php
+
 /**
  * BaseUser class for user implementation
  */
+
 namespace App\Model;
 
-abstract class BaseUser
+class BaseUser
 {
     // protected vars
     protected $username;
-    protected $password;
     protected $balance;
 
     // protected array for user info like username & balance
-    protected $user = array('username', 'password', 'balance');
+    protected $user = array('username', 'balance');
 
     /**
      * [constructor function for user]
      *
-     * @param [string] $username
-     * 
-     * @param [string] $password
-     * 
-     * @param [int] $balance
-    */
-    public function __construct($username, $password, $balance)
-    {
-        $this->user['username'] = $username;
-        $this->user['password'] = $password;
-        $this->user['balance'] = $balance;
-    }
-
-    /**
-     * [get's the username from user]
-     * 
-     * @return string
-    */
-    public function getUsername($username)
+     * @param [string] $username user name
+     * @param [int]    $balance  user balance
+     */
+    public function __construct($username, $balance)
     {
     }
 
     /**
      * [get's the username from user]
-     * 
+     *
      * @return string
-    */
+     */
+    public function getUsername()
+    {
+    }
+
+    /**
+     * [set's the username from user]
+     *
+     * @param  [string] $username username
+     *
+     * @return string
+     */
     public function setUsername($username)
     {
     }
 
     /**
-     * [get's the password from user]
-     * 
-     * @return hash
-    */
-    public function getPassword($password)
-    {
-    }
-
-    /**
-     * [set's the password from user]
-     * 
-     * @return hash
-    */
-    public function setPassword($password)
-    {
-    }
-
-    /**
      * [get's the balance from user]
-     * 
+     *
      * @return int
-    */
-    public static function getBalance($username)
+     */
+    public function getBalance($username = null)
     {
     }
 
     /**
      * [set's the balance of user]
-     * 
+     *
+     * @param [int] $balance balance to set
+     *
      * @return int
-    */
-    public static function setBalance($balance, $uid)
+     */
+    public function setBalance($balance)
     {
     }
 }

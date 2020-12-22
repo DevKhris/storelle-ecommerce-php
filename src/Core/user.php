@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class User for building user extended from BaseUser model
  *
@@ -13,30 +14,26 @@ use App\Model\BaseUser;
 
 class User extends BaseUser
 {
-    protected $username;
-    protected $password;
-    protected $balance;
-    
+    public $username;
+    public $balance;
+
+    public function __construct($username, $balance)
+    {
+        $this->username = $username;
+        $this->balance = $balance;
+    }
+
     public function getUsername()
     {
-        return $this->name['username'];
+        return $this->username;
     }
 
     public function setUsername($username)
     {
-        $this->user['username'] = $username;
+        $this->username = $username;
     }
 
-    public function setPassword($password)
-    {
-        $this->user['password'] = $password;
-    }
-    public function getPassword()
-    {
-        return $this->user['password'];
-    }
-
-    public static function setBalance($balance, $uid)
+    public function setBalance($balance)
     {
         global $conn;
         $sql = "UPDATE users SET balance='$balance' WHERE id='$uid'";
@@ -54,27 +51,29 @@ class User extends BaseUser
               </div>';
     }
 
-    public static function getBalance()
+    public function getBalance($username = null)
     {
-        global $conn;
-        $sql = "SELECT balance FROM users WHERE username='$this->user['username']'";
-        $result = mysqli_query($conn, $sql);
+        if (!empty($username)) {
+            global $conn;
+            $sql = "SELECT balance FROM users WHERE username=?";
+            $stmt = $conn->prepare($sql);
 
-        if (!$result) {
-            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+            $result = $stmt->execute([$username]);
+
+            if ($result) {
+                echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
                     <strong>Warning, Can\'t get user balance!</strong>
                     <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
                   </div>';
-        }
+            }
+            $result = $stmt->fetchAll();
+            var_dump($result);
+            $user = array('balance' => $result[0]);
 
-        $user = array();
-        while ($row = mysqli_fetch_array($result)) {
-            $user[] = array(
-                'balance' => $row['balance']
-            );
+            $jsonUser = json_encode($user);
+            return $jsonUser;
+        } else {
+            return $this->balance;
         }
-
-        $jsonUser = json_encode($user);
-        return $jsonUser;
     }
 }

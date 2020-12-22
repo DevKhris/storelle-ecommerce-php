@@ -24,8 +24,8 @@ class Router
 
     /** Constructor function
      *
-     * @param \app\core\Request $req
-     * @param \app\core\Response $res
+     * @param Request $req
+     * @param Response $res
      */
     public function __construct($req, $res)
     {
@@ -41,6 +41,7 @@ class Router
      *
      * @param [type] $path
      * @param [type] $callback
+     *
      * @return void
      */
     public function get($path, $callback)
