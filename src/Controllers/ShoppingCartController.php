@@ -3,43 +3,43 @@
 namespace App\Controllers;
 
 use App\Application;
-use App\Core\Request;
 use App\Core\User;
-use App\Core\setBalance;
-use App\Model\BaseCart;
 use App\Cart\ShoppingCart;
-use App\Products\Product;
-use App\Products\Products;
 
 class ShoppingCartController
 {
-     /**
-     * [index router render]
+    public function __construct()
+    {
+        $this->cart = new ShoppingCart;
+    }
+    /**
+     * Index function
      *
-     * @return [view] [renders view]
+     * @return view render view
      */
     public static function index()
     {
         // render view from router for shopping cart
-        return Application::$app->router->renderView('shopping-cart');
-        get();
+        return Application::$app->router->view('shopping-cart');
     }
 
     /**
      * [get for shopping cart requests]
      *
-     * @return [obj] [json]
+     * @return array json
      */
-    public static function get()
+    public function get()
     {
         if (isset($_SESSION['uid'])) {
-            $uid = $_SESSION['uid'];
             // get cart from user id
-            $res = ShoppingCart::getCart($uid);
+            $uid = $_SESSION['uid'];
+
+            // return shopping cart
+            return $this->cart->get($uid);
         }
     }
-    
-    public static function add()
+
+    public function add()
     {
         if (isset($_REQUEST['product'])) {
             // decode json from request
@@ -52,18 +52,19 @@ class ShoppingCartController
             $productQuantity = $product['productQuantity'];
             $productPrice = $product['productPrice'];
             // add product to cart from values
-            ShoppingCart::addToCart($userId, $productId, $productName, $productQuantity, $productPrice);
+            $this->cart->add($userId, $productId, $productName, $productQuantity, $productPrice);
         }
     }
-    public static function remove()
+
+    public function remove()
     {
         if (isset($_REQUEST['id'])) {
             // remove item from cart by id
-            ShoppingCart::removeFromCart($_REQUEST['id']);
+            $this->cart->remove($_REQUEST['id']);
         }
     }
-    
-    public static function checkout()
+
+    public function checkout()
     {
         if (isset($_REQUEST['checkout'])) {
             // get user id from session
@@ -77,7 +78,7 @@ class ShoppingCartController
             // save balance from user id
             User::setBalance($balance, $userId);
             // do the checkout
-            $res = ShoppingCart::checkOut($userId);
+            $res = $this->cart->checkout($userId);
             // return response
             return $res;
         }

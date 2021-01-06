@@ -15,20 +15,20 @@ use App\Reviews\getReviews;
 class ReviewsController
 {
     /**
-     * [get reviews view]
+     * Index function
      *
-     * @return [view] [renders view]
+     * @return view render view
      */
     public static function index()
     {
         // render view from router for reviews
-        return Application::$app->router->renderView('reviews');
+        return Application::$app->router->view('reviews');
     }
 
     /**
-     * [get reviews requests]
+     * Get reviews from product by Id
      *
-     * @return [array] [response]
+     * @return array response
      */
     public static function get()
     {
@@ -36,9 +36,9 @@ class ReviewsController
             // get id from requests
             $id = $_REQUEST['id'];
             // get reviews and save to response var from id
-            $reviews = new Reviews($id);
+            $reviews = new Reviews();
             // return response
-            return $reviews;
+            return $reviews->get($id);
         }
     }
 

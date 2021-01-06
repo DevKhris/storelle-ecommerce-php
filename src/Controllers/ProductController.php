@@ -13,14 +13,14 @@ use App\Products\Product;
 class ProductController
 {
     /**
-     * [product router render]
+     * Index function
      *
-     * @return [view] [renders view]
+     * @return view render view
      */
     public static function index()
     {
         // render view from router for product
-        return Application::$app->router->renderView('product');
+        return Application::$app->router->view('product');
     }
 
     /**

@@ -17,9 +17,6 @@ use App\Core\Response;
 class Application
 {
     public static string $appPath;
-    public Router $router;
-    public Request $req;
-    public Response $res;
     public static Application $app;
     /**
      * Contructor function
@@ -37,6 +34,8 @@ class Application
         $this->res = new Response();
         // new router instance
         $this->router = new Router($this->req, $this->res);
+
+        return $this;
     }
 
     /**

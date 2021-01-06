@@ -10,11 +10,14 @@
 
 namespace App\Reviews;
 
+use App;
+use App\Core\Database;
+
 class Reviews
 {
-    public function __construct($productId)
+    public function __construct()
     {
-        return $this->reviews = $this->get($productId);
+        return $this;
     }
 
     /**
@@ -26,62 +29,12 @@ class Reviews
      */
     public static function get($productId)
     {
-        global $conn;
-        // query for select all review from database by id
-        $sql = "SELECT * FROM reviews WHERE productId = ?";
-        // prepare the query
-        $stmt = $conn->prepare($sql);
-        // do the query and store the result
-        $result = $stmt->execute([$productId]);
-        // checks if result has value
-        if (!$result) {
-            // thrown warning
-            echo ('Warning, can\'t fetch reviews');
-        }
-        $result = $stmt->fetchAll();
-        var_dump($result);
-        // go towards each row and fetch from result to an associative array
-        foreach ($result as $row) {
-            // save reviews as a array and assign values to it from row
-            $reviews = array(
-                'id' => $row['id'],
-                'productId' => $row['productId'],
-                'userName' => $row['userName'],
-                'feedBack' => $row['feedBack'],
-                'rating' => $row['rating'],
-            );
-        }
+        $db = new Database;
+        // save query to reviews array
+        $reviews = $db->select('reviews', "productId = $productId");
         // encode reviews array to json
-
-        $jsonReviews = json_encode($reviews);
+        $json = json_encode($reviews);
         // Returns the reviews json
-        return $jsonReviews;
-    }
-
-    /**
-     * Get average rating from reviews of a product by id
-     * 
-     * @param int $productId product id
-     * 
-     * @return array rating
-     */
-    public static function avg($productId)
-    {
-        global $conn;
-        // query for getting average rating from reviews of a product
-        $sql = "SELECT AVG(rating) AS t_rating, COUNT(*) AS t_reviews FROM reviews WHERE productId = ?";
-        // prepare the query
-        $stmt = $conn->prepare($sql);
-        // store query result
-        $result = $stmt->execute([$productId]);
-        // verify if result has value
-        if (!$result) {
-            // thrown warning
-            die('Warning, can\'t fetch average rating for product');
-        }
-        // fetch associative array and store into var
-        $rating = $stmt->fetch($result);
-        // returns array
-        return $rating;
+        return $json;
     }
 }

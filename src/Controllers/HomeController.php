@@ -1,7 +1,9 @@
 <?php
+
 /**
 
  */
+
 namespace App\Controllers;
 
 use App\Application;
@@ -10,14 +12,14 @@ use App\Core\User;
 
 class HomeController
 {
-     /**
-     * [home router render]
+    /**
+     * Index function
      *
-     * @return [view] [renders view]
+     * @return view render view
      */
     public static function index()
     {
         // render view from router for home
-        return Application::$app->router->renderView('home');
+        return Application::$app->router->view('home');
     }
 }

@@ -13,7 +13,7 @@ $(function() {
         case "/product":
             // render one product
             requestProduct();
-            //requestReviews();
+            requestReviews(parseUrlParams("id"));
             break;
         case "/shopping-cart":
             // renders the shopping cart
@@ -142,8 +142,8 @@ function requestProduct() {
 }
 
 /**
- * [addProduct ajax request]
- * @param {[array]} productData [data from product to add]
+ * Add product to shopping cart request
+ * @param {array} productData data from product to add
  */
 function addProduct(productData) {
     $.ajax({
@@ -159,8 +159,8 @@ function addProduct(productData) {
 }
 
 /**
- * [addProduct ajax request]
- * @param {[int]} id [id from product to remove]
+ * Remove product to shopping cart request
+ * @param {int} id id from product to remove
  */
 function removeProduct(id) {
     $.ajax({
@@ -177,7 +177,7 @@ function removeProduct(id) {
 
 /**
  * [requestProducts request all products]
- * @return {[json]} [products]
+ * @return json products
  */
 function requestProducts() {
     $.ajax({
@@ -193,6 +193,7 @@ function requestProducts() {
                         <div class="card product text-center my-2">
                             <img src="${product.img}" class="card-img-top align-self-center img-fluid" width=360 height=240 alt="${product.name}">
                             <div class="card-body">
+                                
                                 <h3 class="card-title">${product.name}</h3>
                                 <span class="card-text">$${product.price}</span>
                             </div>
@@ -238,9 +239,8 @@ function requestReviews(id) {
         data: {
             id: id,
         },
-        success: function(res) {
-            console.log(res);
-            let reviews = res;
+        success: function(json) {
+            let reviews = JSON.parse(json);
             let template = "";
             reviews.forEach((review) => {
                 template += `
@@ -258,10 +258,9 @@ function requestReviews(id) {
                             ${review.feedBack}
                         </p>
                     </div>
-                </div> 
+                </div>
                 `;
             });
-
             $("#reviews-box").html(template);
         },
     });

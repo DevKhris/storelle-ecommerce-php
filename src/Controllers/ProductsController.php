@@ -22,7 +22,7 @@ class ProductsController
     public static function index()
     {
         // render view from router for products
-        return Application::$app->router->renderView('products');
+        return Application::$app->router->view('products');
     }
 
     /**

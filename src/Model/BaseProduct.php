@@ -6,17 +6,14 @@
 
 namespace App\Model;
 
-abstract class BaseProduct
+interface BaseProduct
 {
-    protected $productId;
-
     /**
      * Constructor function
-     * @param [int] $productId     [product id]
+     * @param int $productId product id
      */
     public function __construct($productId)
     {
-        $this->productId = $this->get($productId);
     }
 
     /**

@@ -8,7 +8,7 @@ use App\Core\Request;
 
 class LoginController
 {
-        /**
+    /**
      * [login callback]
      *
      * @param Request $req [request]
@@ -22,16 +22,17 @@ class LoginController
             return 'Logged in succesfully';
         }
         // renders the login view and returns it
-        return Application::$app->router->renderView('login');
+        return Application::$app->router->view('login');
     }
 
     /**
-     * [callback handler for handling login and session]
+     * callback handler for validate user session
      *
-     * @return [route] [returns to home]
+     * @return void
      */
     public static function login()
     {
-        Auth::validate($_POST['username'], $_POST['password']);
+        $auth = new Auth;
+        $auth->validate($_POST['username'], $_POST['password']);
     }
 }

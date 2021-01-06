@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class Router for basic routing and route handling
  *
@@ -9,58 +10,71 @@
 
 namespace App\Core;
 
-use App;
 use App\Application;
 use App\Core\Request;
+use App\Core\Response;
 
 class Router
 {
-    // Request var
-    public Request $req;
-    // Response var
-    public Response $res;
-    // array of routes
-    protected array $routes = [];
-
-    /** Constructor function
-     *
-     * @param Request $req
-     * @param Response $res
+    /** 
+     * Associative array for routing table
+     * 
+     * @var array
      */
-    public function __construct($req, $res)
+    protected $routes = array();
+
+    /** 
+     * Parameters from the route
+     * 
+     * @var array
+     */
+    protected $params = array();
+
+    /** 
+     * Constructor function
+     *
+     * @param Request $req  Request object
+     * @param Response $res Response object
+     * 
+     * @return $this
+     */
+    public function __construct(Request $req, Response $res)
     {
         // instance of request object
         $this->req = $req;
-
         // instance of response object
         $this->res = $res;
+
+        return $this;
     }
 
     /**
      * Get function
      *
-     * @param [type] $path
-     * @param [type] $callback
+     * @param string $path     uri path
+     * @param string $callback callback
      *
-     * @return void
+     * @return $this
      */
     public function get($path, $callback)
     {
-           // get's the path route and returns it's callback
-            $this->routes['get'][$path] = $callback;
+        // get's the path route and returns it's callback
+        return $this->routes['get'][$path] = $callback;
     }
 
 
     /**
-     * Set function
+     * Post function
      *
-     * @param Callback $callback
-     * @return void
+     * @param string $path     uri path
+     * @param string  $callback callback
+     *
+     * @return $this
      */
     public function post($path, $callback)
     {
         // post's the path route and returns it's callback
-        $this->routes['post'][$path] = $callback;
+        return $this->routes['post'][$path] = $callback;
     }
 
     /**
@@ -74,19 +88,18 @@ class Router
         $path = $this->req->getPath();
         // get pmethod from request
         $method = $this->req->getMethod();
-
         // get the route method and path or return false
         $callback = $this->routes[$method][$path] ?? false;
 
         // if not callback then return and 404 state and display view
         if ($callback === false) {
             $this->res->setStatus(404);
-            return $this->renderView("404");
+            return $this->view("404");
         }
         // if callback is a string
         if (is_string($callback)) {
             // return the view of the current callack
-            return $this->renderView($callback);
+            return $this->view($callback);
         }
         // if is an array passes the callback index to self instance
         if (is_array($callback)) {
@@ -97,37 +110,49 @@ class Router
     }
 
     /**
-     * Render View function
-     * @param [type] $view
-     * @return void
+     * Render view function
+     * 
+     * @param  string $view
+     * 
+     * @return string
      */
-    public function renderView($view)
+    public function view($view)
     {
-        $displayContent = $this->displayContent();
-        $viewContent = $this->renderOneView($view);
-        return str_replace('{{display}}', $viewContent, $displayContent);
-
+        $content = $this->display();
+        $view = $this->render($view);
+        return str_replace('{{ display }}', $view, $content);
         include_once Application::$appPath . "/views/$view.php";
     }
+
     /**
-     * [renderContent function for rendering content]
-     * @param  [string] $viewContent [content to render]
-     * @return [view]              [content]
+     * Content function for rendering content to display placeholder
+     * 
+     * @param  string $content content to render
+     * 
+     * @return string
      */
-    public function renderContent($viewContent)
+    public function content($content)
     {
-        $displayContent = $this->displayContent();
-        return str_replace('{{display}}', $viewContent, $displayContent);
+        $display = $this->display();
+        return str_replace('{{ display }}', $content, $display);
     }
 
-    protected function displayContent()
+    protected function display()
     {
         \ob_start();
         include_once Application::$appPath . "/views/layout/main.php";
         return \ob_get_clean();
     }
 
-    protected function renderOneView($view, $params = [])
+    /**
+     * Render function
+     * 
+     * @param string view
+     * @param array parameters for view
+     * 
+     * @return object
+     */
+    protected function render($view, $params = [])
     {
         foreach ($params as $key => $value) {
             $key = $value;

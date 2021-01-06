@@ -11,13 +11,13 @@ use App\Core\Request;
 class AboutController
 {
     /**
-     * [about router render]
+     * Index function
      *
-     * @return [view] [render view]
+     * @return view render view
      */
     public static function index()
     {
         // render view from router for about
-        return Application::$app->router->renderView('about');
+        return Application::$app->router->view('about');
     }
 }

@@ -8,14 +8,14 @@ use App\Core\Request;
 class ContactController
 {
     /**
-     * [contact router render]
+     * Index function
      *
-     * @return [view] [render view]
+     * @return view render view
      */
     public static function index()
     {
         // render view from router for contact
-        return Application::$app->router->renderView('contact');
+        return Application::$app->router->view('contact');
     }
 
     /**

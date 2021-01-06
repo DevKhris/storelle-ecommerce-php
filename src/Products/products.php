@@ -10,10 +10,12 @@
 
 namespace App\Products;
 
+use App\Core\Database;
+
 class Products
 {
     /**
-     * [Constructor function for products]
+     * Constructor function for products
      *
      * @return products from this get instance
      */
@@ -23,29 +25,19 @@ class Products
     }
 
     /**
-     * [get all products from database]
+     * Get all products from database
      *
      * @return array json
      */
     public function get()
     {
-        global $conn;
-        // sql query for all products in db
-        $sql = "SELECT * FROM products";
-
-        // go towards every row and fetch from result
-        foreach ($conn->query($sql) as $row) {
-            $products[] = array(
-                'id' => $row['id'],
-                'name' => $row['productName'],
-                'img' => $row['productImg'],
-                'price' => $row['productPrice'],
-                'rating' => $row['productRating'],
-            );
-        }
-        // encode products array to json
+        // instance of database object
+        $db = new Database;
+        // fetch products from db
+        $products = $db->select('products');
+        // // encode products array to json
         $json = json_encode($products);
-        // Returns the products json
+        // // Returns the products json
         return $json;
     }
 }

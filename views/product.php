@@ -27,7 +27,7 @@
     <div class="col-sm-3">
     </div>
     <div class="col-sm-6">
-        <div id="rewiews-box">
+        <div id="reviews-box">
         </div>
     </div>
     <div class="col-sm-2">

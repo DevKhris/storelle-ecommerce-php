@@ -16,10 +16,13 @@ use App\Core\Request;
 
 class RegisterController
 {
-    public $username;
-    public $password;
+    public $auth;
 
-     /**
+    public function __construct()
+    {
+        return $this;
+    }
+    /**
      * [register callback]
      *
      * @param Request $req [request]
@@ -31,7 +34,7 @@ class RegisterController
         if ($req->onPost()) {
             return 'Register succesfully';
         }
-        return Application::$app->router->renderView('register');
+        return Application::$app->router->view('register');
     }
 
     /**
@@ -41,6 +44,7 @@ class RegisterController
      */
     public static function register()
     {
-        Auth::register();
+        $auth = new Auth;
+        $auth->register($_POST['username'], $_POST['password']);
     }
 }

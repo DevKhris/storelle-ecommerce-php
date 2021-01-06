@@ -10,10 +10,15 @@
 
 namespace App\Cart;
 
+use App\Core\Database;
 use App\Model\BaseCart;
 
 class ShoppingCart extends BaseCart
 {
+    public function __construct()
+    {
+        return $this;
+    }
     /**
      * [get the items in the shopping cart from db]
      *
@@ -21,37 +26,18 @@ class ShoppingCart extends BaseCart
      *
      * @return [json] [returns a json object with the cart values]
      */
-    public static function getCart($userId)
+    public static function get($userId)
     {
-        global $conn;
-        // query the items in the table and orders it by descendant order
-        $sql = "SELECT * FROM shoppingcart WHERE userId = '$userId' ORDER by id DESC";
+        // instance of database object
+        $db = new Database;
 
-        // saves the query result to var
-        $result = mysqli_query($conn, $sql);
+        // fetch shopping cart from db
+        $shoppingCart = $db->select('shoppingcart', "userId = $userId");
 
-        if (!$result) {
-            echo 'Can\'t fetch shopping cart';
-        }
-
-        // declare cart as an array
-        $cart = array();
-
-        // go to every row in result query and saves to array
-        while ($row = mysqli_fetch_array($result)) {
-            $cart[] = array(
-                'id' => $row['id'],
-                'userId' => $row['userId'],
-                'productId' => $row['productId'],
-                'productName' => $row['productName'],
-                'productQuantity' => $row['productQuantity'],
-                'productPrice' => $row['productPrice']
-            );
-        }
         // encode the array to a json object
-        $jsonCart = json_encode($cart);
+        $json = json_encode($shoppingCart);
         // returns json
-        return $jsonCart;
+        return $json;
     }
 
     /**
@@ -65,7 +51,7 @@ class ShoppingCart extends BaseCart
      *
      * @return [string]     [validation]
      */
-    public static function addToCart($userId, $productId, $productName, $productQuantity, $productPrice)
+    public static function add($userId, $productId, $productName, $productQuantity, $productPrice)
     {
         global $conn;
         // Query to insert the current product into the shopping cart
@@ -74,7 +60,7 @@ class ShoppingCart extends BaseCart
         // saves the query result to var
         $result = mysqli_query($conn, $sql);
         if ($result) {
-        // returns success if item was inserted into db
+            // returns success if item was inserted into db
             echo '
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 Successfully added <strong>' . $productName . ' </strong> to cart
@@ -97,7 +83,7 @@ class ShoppingCart extends BaseCart
      *
      * @return [string]     [validation]
      */
-    public static function removeFromCart($id)
+    public static function remove($id)
     {
         global $conn;
         // Query to delete item by id from table

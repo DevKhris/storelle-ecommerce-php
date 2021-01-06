@@ -10,13 +10,21 @@
 
 namespace App\Core;
 
-use App\Model\BaseUser;
+use App\Interfaces\BaseUser;
 
-class User extends BaseUser
+class User implements BaseUser
 {
-    public $username;
-    public $balance;
+    private $username;
+    private $balance;
 
+    /**
+     * Constructor function for user object
+     * 
+     * @param string $username user name
+     * @param int    $balance  user balance
+     * 
+     * @return this instance
+     */
     public function __construct($username, $balance)
     {
         $this->username = $username;
@@ -38,7 +46,6 @@ class User extends BaseUser
         global $conn;
         $sql = "UPDATE users SET balance=:balance WHERE id=:id";
         $stmt = $conn->prepare($sql);
-
         $result =  $stmt->execute([':balance' => $balance, ':id' => $uId]);
 
         if (!$result) {

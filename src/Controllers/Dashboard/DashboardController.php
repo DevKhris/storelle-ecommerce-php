@@ -11,9 +11,9 @@ class DashboardController
 {
     public static function index()
     {
-        return Application::$app->router->renderView('dashboard');
+        return Application::$app->router->view('dashboard');
     }
-    
+
     /**
      * [get for profile requests]
      *
