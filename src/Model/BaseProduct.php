@@ -10,11 +10,8 @@ interface BaseProduct
 {
     /**
      * Constructor function
-     * @param int $productId product id
      */
-    public function __construct($productId)
-    {
-    }
+    public function __construct();
 
     /**
      * Get function
@@ -23,7 +20,5 @@ interface BaseProduct
      *
      * @return array json
      */
-    public function get($productId)
-    {
-    }
+    public function get($productId);
 }

@@ -18,10 +18,8 @@ class Product implements BaseProduct
 {
     /**
      * Constructor function
-     *
-     * @param int $productId
      * 
-     * @return array product array
+     * @return $this
      */
     public function __construct()
     {
@@ -30,9 +28,9 @@ class Product implements BaseProduct
     /**
      * [get's product from database by id]
      *
-     * @param [int] $productId product id to get
+     * @param int $productId product id to get
      *
-     * @return [obj]            [json]
+     * @return json
      */
     public function get($productId)
     {

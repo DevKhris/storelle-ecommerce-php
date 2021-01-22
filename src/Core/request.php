@@ -1,9 +1,10 @@
 <?php
+
 /**
  * Class Request for request management
- * 
+ *
  * @package RubyNight\App\Core;
- * 
+ *
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
 
@@ -12,10 +13,11 @@ namespace App\Core;
 class Request
 {
     public $req;
+
     /**
-     * [getPath get's the relative path]
-     * 
-     * @return [string] [path]
+     * Get the relative path
+     *
+     * @return string path
      */
     public function getPath()
     {
@@ -35,8 +37,9 @@ class Request
     }
 
     /**
-     * [getMethod get method from server]
-     * @return [type] [description]
+     * Get method from server
+     *
+     * @return string description
      */
     public function getMethod()
     {

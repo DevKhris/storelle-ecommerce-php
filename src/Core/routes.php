@@ -22,7 +22,7 @@ $app->router->get('/contact', [ContactController::class, 'index']);
 $app->router->post('/contact', [ContactController::class, 'send']);
 
 // check if visitor is logged and assigns the routes
-if (!$_SESSION['auth']) {
+if ($_SESSION['auth'] === false) {
     //set an array for the routes to redirect to login
     $routes = array('products', 'product', 'shopping-cart', 'dashboard');
 

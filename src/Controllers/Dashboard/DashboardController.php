@@ -9,15 +9,20 @@ use App\Core\getBalance;
 
 class DashboardController
 {
+    /**
+     * Index function
+     *
+     * @return void
+     */
     public static function index()
     {
         return Application::$app->router->view('dashboard');
     }
 
     /**
-     * [get for profile requests]
+     * Get for profile requests
      *
-     * @return [array] [request]
+     * @return array request
      */
     public static function get()
     {
@@ -31,12 +36,12 @@ class DashboardController
     /**
      * [callback for handling logout]
      *
-     * @return [header] [returns user to login]
+     * @return void
      */
     public function logout()
     {
         // set logged to false
-        $_SESSION['loggedin'] = false;
+        $_SESSION['auth'] = false;
 
         // if the session is destroyed returns to login and ends
         if (\session_destroy()) {
@@ -49,7 +54,5 @@ class DashboardController
         \session_abort();
         // returns to login
         header('Location: \login');
-        // end
-        die;
     }
 }

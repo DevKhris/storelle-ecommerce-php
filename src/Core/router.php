@@ -33,7 +33,7 @@ class Router
     /** 
      * Constructor function
      *
-     * @param Request $req  Request object
+     * @param Request  $req Request object
      * @param Response $res Response object
      * 
      * @return $this
@@ -44,7 +44,7 @@ class Router
         $this->req = $req;
         // instance of response object
         $this->res = $res;
-
+        // return instance
         return $this;
     }
 
@@ -62,12 +62,11 @@ class Router
         return $this->routes['get'][$path] = $callback;
     }
 
-
     /**
      * Post function
      *
      * @param string $path     uri path
-     * @param string  $callback callback
+     * @param string $callback callback
      *
      * @return $this
      */
@@ -90,9 +89,8 @@ class Router
         $method = $this->req->getMethod();
         // get the route method and path or return false
         $callback = $this->routes[$method][$path] ?? false;
-
         // if not callback then return and 404 state and display view
-        if ($callback === false) {
+        if ($callback == false) {
             $this->res->setStatus(404);
             return $this->view("404");
         }
@@ -112,7 +110,7 @@ class Router
     /**
      * Render view function
      * 
-     * @param  string $view
+     * @param string $view view to render
      * 
      * @return string
      */

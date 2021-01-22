@@ -14,10 +14,14 @@ use App\Cart\ShoppingCart;
  */
 class Auth
 {
+    /**
+     * Constructor function
+     */
     public function __construct()
     {
         return $this;
     }
+
     /**
      * Validate user authentication
      * 
@@ -34,15 +38,16 @@ class Auth
         }
         // Query to search if exists username in db with placeholder
         $result = $db->select('users', "username = '$username'");
-        if ($result) {
+        if (!empty($result)) {
             // verifys if passwords match
-            if (password_verify($password, $result['password'])) {
+            if (password_verify($password, $result[0]['password'])) {
                 // initialize new user sesssion
-                $user = new User($result['username'], $result['balance']);
+                var_dump($result);
+                $user = new User($result[0]['username'], $result[0]['balance']);
                 // generate sesssion id
                 $id = session_regenerate_id(true);
                 // saves user id from array
-                $uId = $result['id'];
+                $uId = $result[0]['id'];
                 // set's the user to logged
                 $_SESSION['auth'] = true;
                 // assign name from username to session
@@ -62,6 +67,8 @@ class Auth
             }
             // if wrong return to login
             header('location: \login');
+        } else {
+            header('location: \login');
         }
     }
 
@@ -79,7 +86,7 @@ class Auth
             // set initial balance to 100
             $balance = 100;
             // hashes the password
-            $hash = \password_hash($password, \PASSWORD_ARGON2ID);
+            $hash = password_hash($password, PASSWORD_ARGON2ID);
             //  query to register into table with safe values and hashing
             $data = "'$username', '$hash', '$balance'";
             $result = $db->insert('users', 'username, password , balance', $data);

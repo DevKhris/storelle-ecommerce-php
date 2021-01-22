@@ -9,7 +9,7 @@ use App\Core\Request;
 class LoginController
 {
     /**
-     * [login callback]
+     * Index
      *
      * @param Request $req [request]
      *
@@ -26,13 +26,13 @@ class LoginController
     }
 
     /**
-     * callback handler for validate user session
+     * handler for validate user session
      *
      * @return void
      */
     public static function login()
     {
         $auth = new Auth;
-        $auth->validate($_POST['username'], $_POST['password']);
+        return $auth->validate($_POST['username'], $_POST['password']);
     }
 }

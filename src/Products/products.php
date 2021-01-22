@@ -21,7 +21,7 @@ class Products
      */
     public function __construct()
     {
-        return $this->products = $this->get();
+        return $this->get();
     }
 
     /**

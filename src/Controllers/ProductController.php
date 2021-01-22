@@ -24,9 +24,9 @@ class ProductController
     }
 
     /**
-     * [productHandler for requests of product]
+     * Get's the requested product and return it
      *
-     * @return [json] [returns product]
+     * @return json returns product
      */
     public static function get()
     {
