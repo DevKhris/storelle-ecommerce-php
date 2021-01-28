@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Reviews;
+namespace App\Model\Reviews;
 
-use App\Model\BaseReview;
+use App\Interfaces\ReviewInterface;
 use App\Core\Database;
 
 /**
@@ -12,8 +12,14 @@ use App\Core\Database;
  *
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
-class Review extends BaseReview
+final class Review implements ReviewInterface
 {
+    public $reviewId;
+    public $productId;
+    public $username;
+    public $rating;
+    public $feedback;
+
     /**
      * @var App\Core\Database database
      */
@@ -24,6 +30,11 @@ class Review extends BaseReview
      */
     public function __construct()
     {
+        $this->reviewId = $reviewId;
+        $this->productId = $productId;
+        $this->username = $username;
+        $this->rating = $rating;
+        $this->feedback = $feedback;
         $this->db = new Database;
 
         return $this;

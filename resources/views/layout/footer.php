@@ -1,7 +1,7 @@
 <footer class="container-fluid bg-black pb-5 py-5">
     <div class="row text-light">
         <div class="col-sm-4">
-            <img src="../res/logo-min.png" alt="" class="mx-3 img-fluid" width="356">
+            <img src="images/logo-min.png" alt="" class="mx-3 img-fluid" width="356">
             <p class="text-center pb-5">&copy;
                 <a class="text-decoration-none copyright" href="index.php">
                     Storelle
@@ -38,11 +38,11 @@
     </div>
 </div>
 <!-- Bootstrap -->
-<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
 <!-- Jquery -->
-<script src="assets/js/jquery.min.js"></script>
+<script src="/js/jquery.min.js"></script>
 <!-- Font Awesome -->
 <!--     <script src="https://kit.fontawesome.com/9599829622.js" crossorigin="anonymous"></script> -->
 <!-- App -->
-<script defer src="assets/js/app.js"></script>
+<script defer src="/js/app.js"></script>
 </footer>

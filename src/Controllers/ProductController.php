@@ -8,7 +8,7 @@ namespace App\Controllers;
 
 use App\Application;
 use App\Core\Request;
-use App\Products\Product;
+use App\Model\Products\Product;
 
 class ProductController
 {

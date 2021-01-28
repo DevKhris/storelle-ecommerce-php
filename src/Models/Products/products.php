@@ -8,7 +8,7 @@
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
 
-namespace App\Products;
+namespace App\Model\Products;
 
 use App\Core\Database;
 

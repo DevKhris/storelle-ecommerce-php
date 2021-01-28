@@ -8,13 +8,13 @@
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
 
-namespace App\Cart;
+namespace App\Model\Cart;
 
 use App\Alerts\Alerts;
 use App\Core\Database;
-use App\Model\BaseCart;
+use App\Interfaces\ShoppingCartInterface;
 
-final class ShoppingCart implements BaseCart
+final class ShoppingCart implements ShoppingCartInterface
 {
     /**
      * @var App\Core\Database database

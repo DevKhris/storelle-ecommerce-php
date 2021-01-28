@@ -1,5 +1,10 @@
 <?php
 
+/*-------------------------------
+ *	Front Controller
+ *-------------------------------
+ **/
+
 use App\Application;
 use App\Core\Database;
 
@@ -11,17 +16,13 @@ if (!isset($_SESSION['auth'])) {
     $_SESSION['auth'] = false;
 }
 
-// require config
-require_once __DIR__ . '/src/Core/config.php';
-
 // require the psr-4 autoloader
-require_once BASE_PATH . '/vendor/autoload.php';
+require_once '../vendor/autoload.php';
+// require config
+require_once '../src/Core/config.php';
 
 // create new app instance
 $app = new Application(BASE_PATH);
 
 // require routes
 require_once BASE_PATH . '/src/Core/routes.php';
-
-// instance of database object
-$db = new Database;

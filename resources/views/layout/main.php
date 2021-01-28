@@ -12,9 +12,9 @@ $debugbarRenderer = $debugbar->getJavascriptRenderer();
         <meta name="description" content="Ecommerce site build with PHP7">
         <title>Storelle</title>
         <!-- Bootstrap -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
         <!-- Custom Styles -->
-        <link rel="stylesheet" href="assets/css/styles.min.css">
+        <link rel="stylesheet" href="/css/styles.min.css">
         <!-- Google Fonts -->
         <link rel="preload" href="https://fonts.googleapis.com/css2?family=Abel&family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
         <?= $debugbarRenderer->renderHead() ?>

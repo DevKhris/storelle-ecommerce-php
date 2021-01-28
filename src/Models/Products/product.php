@@ -8,12 +8,12 @@
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
 
-namespace App\Products;
+namespace App\Model\Products;
 
 use App\Core\Database;
-use App\Model\BaseProduct;
+use App\Interfaces\ProductInterface;
 
-final class Product implements BaseProduct
+final class Product implements ProductInterface
 {
     private Database $db;
     /**
@@ -23,7 +23,7 @@ final class Product implements BaseProduct
      */
     public function __construct()
     {
-        $this->db =  new Database;
+        $this->db = new Database;
         return $this;
     }
     /**
@@ -36,10 +36,10 @@ final class Product implements BaseProduct
     public function get($productId)
     {
         // fetch products from db
-        $product = $db->select('products', "id=$productId");
+        $product = $this->db->select('products', "id=$productId");
 
         // get average rating from product
-        $average = $db->average('rating', 't_rating', 'reviews', 't_reviews', "productId = $productId");
+        $average = $this->db->average('rating', 't_rating', 'reviews', 't_reviews', "productId = $productId");
 
         // round value from array and convert to int
         $rating = floor($average[0]['t_rating']);

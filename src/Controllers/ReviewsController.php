@@ -4,10 +4,8 @@ namespace App\Controllers;
 
 use App\Application;
 use App\Core\Request;
-use App\Reviews\Review;
-use App\Reviews\Reviews;
-use App\Reviews\addReview;
-use App\Reviews\getReviews;
+use App\Model\Reviews\Review;
+use App\Model\Reviews\Reviews;
 
 /**
  *
@@ -55,11 +53,11 @@ class ReviewsController
             // set values from array keys
             $productId = $review['productId'];
             // assign name from current user in session
-            $reviewUserName = $_SESSION['name'];
-            $reviewFeedBack = $review['feedBack'];
-            $reviewRating = $review['rating'];
+            $username = $_SESSION['username'];
+            $feedback = $review['feedback'];
+            $rating = $review['rating'];
             // add review to db call
-            Review::addReview($productId, $reviewUserName, $reviewFeedBack, $reviewRating);
+            Review::addReview($productId, $username, $feedback, $rating);
         }
     }
 }

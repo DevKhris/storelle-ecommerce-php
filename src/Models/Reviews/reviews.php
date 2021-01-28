@@ -8,7 +8,7 @@
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
 
-namespace App\Reviews;
+namespace App\Model\Reviews;
 
 use App;
 use App\Core\Database;

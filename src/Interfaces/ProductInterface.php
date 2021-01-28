@@ -4,9 +4,9 @@
  * BaseProduct class for product implementation
  */
 
-namespace App\Model;
+namespace App\Interfaces;
 
-interface BaseProduct
+interface ProductInterface
 {
     /**
      * Constructor function
@@ -15,7 +15,7 @@ interface BaseProduct
 
     /**
      * Get function
-     * 
+     *
      * @param int $productId product id
      *
      * @return array json

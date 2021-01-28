@@ -2,9 +2,9 @@
 /**
  * BaseCart class for cart implementation
  */
-namespace App\Model;
+namespace App\Interfaces;
 
-abstract class BaseCart
+interface ShoppingCartInterface
 {
     public $cart = [];
 
@@ -14,9 +14,7 @@ abstract class BaseCart
      * @param array $cart
      *
      */
-    public function __construct(array $cart)
-    {
-    }
+    public function __construct(array $cart);
     
     /**
      * [getCart description]
@@ -25,19 +23,15 @@ abstract class BaseCart
      *
      * @return json
      */
-    public static function get($userId)
-    {
-    }
-    
+    public static function get($userId);
+
     /**
      * Remove from Cart Function
      *
      * @param int $id product id
      *
      */
-    public static function remove($id)
-    {
-    }
+    public static function remove($id);
 
     /**
      * Add to Cart Function
@@ -49,17 +43,12 @@ abstract class BaseCart
      * @param float  $productPrice    product price
      *
      */
-    public static function add($userId, $productId, $productName, $productQuantity, $productPrice)
-    {
-    }
-
+    public static function add($userId, $productId, $productName, $productQuantity, $productPrice);
     /**
      * Ccheckout function
      *
      * @param int $userId user id
      *
      */
-    public static function checkOut($userId)
-    {
-    }
+    public static function checkout($userId);
 }

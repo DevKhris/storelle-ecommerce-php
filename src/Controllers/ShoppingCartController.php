@@ -4,9 +4,9 @@ namespace App\Controllers;
 
 use App\Application;
 use App\Core\User;
-use App\Cart\ShoppingCart;
+use App\Model\Cart\ShoppingCart;
 
-/**   
+/**
  * Shopping Cart Controller
  */
 class ShoppingCartController

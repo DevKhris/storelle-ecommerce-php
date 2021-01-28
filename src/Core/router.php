@@ -138,7 +138,7 @@ class Router
     protected function display()
     {
         \ob_start();
-        include_once Application::$path . "/views/layout/main.php";
+        include_once Application::$path . "/resources/views/layout/main.php";
         return \ob_get_clean();
     }
 
@@ -156,7 +156,7 @@ class Router
             $key = $value;
         }
         \ob_start();
-        include_once Application::$path . "/views/$view.php";
+        include_once Application::$path . "/resources/views/$view.php";
         return \ob_get_clean();
     }
 }
