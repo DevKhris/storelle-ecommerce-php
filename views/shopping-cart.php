@@ -23,8 +23,7 @@
             </tbody>
         </table>
         <div class="dropdown text-md-right">
-            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                aria-expanded="false">
+            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
                 Shipping
             </button>
             <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton">
@@ -38,7 +37,7 @@
 
         <hr>
         <a class="btn btn-primary" id="backBtn" href="/">Back</a>
-        <button class="btn btn-dark checkout" type="submit">Checkout</button>
+        <button class="btn btn-dark checkout" onclick="performCheckout()" type="submit">Checkout</button>
     </div>
     <div class="col-sm-1">
     </div>

@@ -143,7 +143,7 @@ function requestProduct() {
 
 /**
  * Add product to shopping cart request
- * @param {array} productData data from product to add
+ * @param array data from product to add
  */
 function addProduct(productData) {
     $.ajax({
@@ -278,11 +278,10 @@ function requestCart() {
             let currentBalance = getBalance();
             let cartItems = res;
             let totalPrice = 0;
-            // let shippingCost = parseUrlParams("shipping") ? 0;
+            let shippingCost = parseUrlParams("shipping") ? 5 : 0;
             let template = "";
             let pricing = "";
-            console.log(res);
-            // cartItems.forEach(cartItem  => {
+            //  cartItems.forEach(cartItem  => {
             //     totalPrice += parseFloat(cartItem.productPrice) * parseInt(cartItem.productQuantity);
             //     template += `
             //         <tr cartId="${cartItem.id}">
@@ -310,7 +309,7 @@ function requestCart() {
                 )}</p></b>
                 `;
             $("#pricing").html(pricing);
-            $("#cart").html(template);
+            // $("#cart").html(template);
         },
     });
 }
@@ -343,8 +342,8 @@ function getBalance() {
         type: "POST",
         data: { balance: "" },
         dataType: "json",
-        success: function(data) {
-            $("#userBalance").html("Balance: $" + data[0].balance);
+        success: function (data) {
+            $("#userBalance").html("Balance: $" + data.balance);
         },
     });
 }

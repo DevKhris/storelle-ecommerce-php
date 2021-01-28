@@ -9,9 +9,10 @@ abstract class BaseCart
     public $cart = [];
 
     /**
-     * [ShoppingCart constructor.]
+     * Constructor function
      *
-     * @param [array] $products
+     * @param array $cart
+     *
      */
     public function __construct(array $cart)
     {
@@ -20,44 +21,42 @@ abstract class BaseCart
     /**
      * [getCart description]
      *
-     * @param  [int] $userId [user id]
+     * @param int $userId user id
      *
-     * @return [obj]         [json]
+     * @return json
      */
-    public static function getCart($userId)
+    public static function get($userId)
     {
     }
     
     /**
-     * [removeFromCart description]
+     * Remove from Cart Function
      *
-     * @param  [int] $id [product id]
+     * @param int $id product id
      *
      */
-    public static function removeFromCart($id)
+    public static function remove($id)
     {
     }
 
     /**
-     * [addToCart description]
-     * @param [int] $userId          [user id]
+     * Add to Cart Function
      *
-     * @param [int] $productId     [product id]
+     * @param int    $userId          user id
+     * @param int    $productId       product id
+     * @param string $productName     product name
+     * @param int    $productQuantity product quantity
+     * @param float  $productPrice    product price
      *
-     * @param [string] $productName   [product name]
-     *
-     * @param [int] $productQuantity [product quantity]
-     *
-     * @param [float] $productPrice  [product price]
      */
-    public static function addToCart($userId, $productId, $productName, $productQuantity, $productPrice)
+    public static function add($userId, $productId, $productName, $productQuantity, $productPrice)
     {
     }
 
     /**
-     * [checkOut description]
+     * Ccheckout function
      *
-     * @param  [int] $userId [user id]
+     * @param int $userId user id
      *
      */
     public static function checkOut($userId)

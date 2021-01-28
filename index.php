@@ -11,7 +11,6 @@ if (!isset($_SESSION['auth'])) {
     $_SESSION['auth'] = false;
 }
 
-
 // require config
 require_once __DIR__ . '/src/Core/config.php';
 

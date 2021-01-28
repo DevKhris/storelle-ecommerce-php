@@ -14,17 +14,17 @@ class BaseReview
     public function __construct()
     {
         $this->reviewId = $reviewId;
-        $this->reviewProductId = $reviewProductId;
-        $this->reviewUserName = $reviewUserName;
-        $this->reviewRating = $reviewRating;
-        $this->reviewFeedBack = $reviewFeedBack;
+        $this->productId = $productId;
+        $this->username = $username;
+        $this->rating = $rating;
+        $this->feedBack = $feedBack;
     }
 
     /**
      * Get reviews interfase
-     * 
+     *
      * @param  int $productId product id
-     * 
+     *
      * @return array json
      */
     public function get($productId)
@@ -32,14 +32,14 @@ class BaseReview
     }
     /**
      * Add Review interfase
-     * 
+     *
      * @param int $productId      product id
      * @param string $userName username for review
      * @param float $rating   rating for review
      * @param  string $feedBack feedback for review
-     * 
+     *
      */
-    public function add($productId, $userName, $rating, $feedBack)
+    public function add($productId, $username, $feedback, $rating)
     {
     }
 }

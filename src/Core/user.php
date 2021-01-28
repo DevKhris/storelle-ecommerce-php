@@ -10,30 +10,22 @@
 
 namespace App\Core;
 
+use App\Alerts\Alerts;
+use App\Core\Database;
 use App\Interfaces\BaseUser;
 
-class User implements BaseUser
+final class User implements UserInterface
 {
-    private $username;
-    private $balance;
-
-    /**
-     * Constructor function for user object
-     * 
-     * @param string $username user name
-     * @param int    $balance  user balance
-     * 
-     * @return this instance
-     */
-    public function __construct($username, $balance)
+    private Database $db;
+    
+    public function __construct()
     {
-        $this->username = $username;
-        $this->balance = $balance;
+        $this->db = new Database;
     }
-
+    
     public function getUsername()
     {
-        return $this->username;
+        return $_SESSION['username'];
     }
 
     public function setUsername($username)
@@ -41,53 +33,34 @@ class User implements BaseUser
         $this->username = $username;
     }
 
-    public function setBalance($balance)
+    /**
+     * Set Balance function
+     *
+     * @param int $balance amount to set
+     *
+     * @return void
+     */
+    public static function setBalance($balance)
     {
-        global $conn;
-        $sql = "UPDATE users SET balance=:balance WHERE id=:id";
-        $stmt = $conn->prepare($sql);
-        $result =  $stmt->execute([':balance' => $balance, ':id' => $uId]);
-
-        if (!$result) {
-            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Warning, Can\'t update funds!</strong>
-                    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-                  </div>';
+        $result = $this->db->update('users', $balance, $_SESSION['uid']);
+        if (!empty($result)) {
+            return Alert::user_set_balance_success();
         }
-        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Successfully updated funds!</strong>
-                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-              </div>';
+        return Alert::user_set_balance_error();
     }
 
-    public function getBalance($username = null)
+    /**
+     * Get Balance
+     *
+     * @return void
+     */
+    public static function getBalance()
     {
-        if (!empty($username)) {
-            global $conn;
-            $sql = "SELECT balance FROM users WHERE username = ?";
-            $stmt = $conn->prepare($sql);
-            $result = $stmt->execute([$username]);
+        $data = array(
+            'balance' => $_SESSION['balance']
+        );
 
-            if ($result) {
-                echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>
-                            Warning, Can\'t get user balance!
-                        </strong>
-                        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
-                        </button>
-                      </div>';
-            }
-            // fetch result from statement
-            $result = $stmt->fetchAll();
-            // save value from result
-            $user = array('balance' => $result[0]);
-            // encode to json
-            $json = json_encode($user);
-            // return json
-            return $json;
-        } else {
-            // return balance from this
-            return $this->balance;
-        }
+        $json = json_encode($data);
+        return $json;
     }
 }

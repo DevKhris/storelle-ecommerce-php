@@ -6,14 +6,8 @@ namespace App\Interfaces;
 /**
  * BaseUser interfase for user methods implementation
  */
-
-interface BaseUser
+interface UserInterface
 {
-    /**
-     * Constructor function for user
-     */
-    function __construct($username, $balance);
-
     /**
      * Get's the username from user
      */
@@ -28,10 +22,10 @@ interface BaseUser
     /**
      * Get's the balance from user
      */
-    function getBalance($username = null);
+    static function getBalance();
 
     /**
      * Set's the balance of user
      */
-    function setBalance($username);
+    static function setBalance($username);
 }

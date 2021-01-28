@@ -9,8 +9,7 @@
         </div>
         <form class="form-group" method="POST" id="product-form">
             <label for="productQuantity">Qty</label>
-            <input class="form-control form-control-sm" min=1 value="1" type="number" name="productQuantity"
-                id="productQuantity">
+            <input class="form-control form-control-sm" min=1 value="1" type="number" name="productQuantity" id="productQuantity">
             <button type="submit" name="product-add" class="btn btn-product btn-block mt-5">
                 Add to cart
                 <i class="fa fa-shopping-cart"></i>

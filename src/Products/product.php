@@ -10,19 +10,20 @@
 
 namespace App\Products;
 
-
 use App\Core\Database;
 use App\Model\BaseProduct;
 
-class Product implements BaseProduct
+final class Product implements BaseProduct
 {
+    private Database $db;
     /**
      * Constructor function
-     * 
+     *
      * @return $this
      */
     public function __construct()
     {
+        $this->db =  new Database;
         return $this;
     }
     /**
@@ -34,9 +35,6 @@ class Product implements BaseProduct
      */
     public function get($productId)
     {
-        // instance of database object
-        $db = new Database;
-
         // fetch products from db
         $product = $db->select('products', "id=$productId");
 

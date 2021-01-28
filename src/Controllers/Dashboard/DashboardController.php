@@ -28,7 +28,7 @@ class DashboardController
     {
         $res = [];
         // get balance from current user in session and store
-        $res = User::getBalance($_SESSION['name']);
+        $res = User::getBalance();
         // return response
         return $res;
     }

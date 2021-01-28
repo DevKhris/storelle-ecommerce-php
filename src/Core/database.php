@@ -11,8 +11,7 @@ namespace App\Core;
  */
 class Database
 {
-    private $model;
-    private $link, $dsn, $username, $password;
+    private $link, $_dsn, $_username, $_password;
 
     /**
      * Constructor function
@@ -20,23 +19,31 @@ class Database
     public function __construct()
     {
         // define connection credentials and connect
-        $this->dsn = "mysql:host=localhost;dbname=storelle";
-        $this->username = "root";
-        $this->password = "";
+        $this->_dsn = "mysql:host=localhost;dbname=storelle";
+        $this->_username = "root";
+        $this->_password = "";
         $this->connect();
     }
 
+    /**
+     * Connect to DB with PDO 
+     *
+     * @return void
+     */
     public function connect()
     {
         // Try connection and return exception if the connection fails
         try {
             // save the connection to link
-            $this->link = new \PDO($this->dsn, $this->username, $this->password);
+            $this->link = new \PDO($this->_dsn, $this->_username, $this->_password);
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
+    /**
+     * Connect in wakeup
+     */
     public function __wakeup()
     {
         $this->connect();
@@ -45,9 +52,9 @@ class Database
     /**
      * Insert function
      *
-     * @param string       $table
-     * @param array        $columns
-     * @param array|string $data
+     * @param string       $table   table to insert
+     * @param array        $columns columns to insert
+     * @param array|string $data    data to insert in row
      *
      * @return void
      */
@@ -64,9 +71,8 @@ class Database
     /**
      * Select function
      *
-     * @param string $table database table
-     * @param array|string $data data to apss
-     * @param array|string $args arguments
+     * @param string       $table database table
+     * @param array|string $args  arguments to search
      *
      * @return void
      */
@@ -90,11 +96,28 @@ class Database
     }
 
     /**
+     * Select function
+     * 
+     * @param array|string $row   row to search from
+     * @param string       $table database table
+     * @param array|string $args  arguments to search
+     *
+     * @return void
+     */
+    public function selectFrom($row, $table, $args)
+    {
+        if ($args != '' && $row != '') {
+            $sql = "SELECT $row FROM $table WHERE $args";
+            $result = $this->link->query($sql);
+            return !empty($result) ? $result : false;
+        }
+    }
+    /**
      * Update function
      *
-     * @param string $table
-     * @param array|string $data
-     * @param array|string $args
+     * @param string       $table table to update
+     * @param array|string $data  data used to update
+     * @param array|string $args  arguments
      *
      * @return void
      */
@@ -112,10 +135,10 @@ class Database
     /**
      * Delete query
      *
-     * @param  string $table database table
-     * @param  array|string $args  arguments
+     * @param string       $table database table
+     * @param array|string $args  arguments
      *
-     * @return boolean      result
+     * @return boolean     result
      */
     public function delete($table, $args)
     {
@@ -130,11 +153,11 @@ class Database
     /**
      * Get average from given table and columns
      *
-     * @param string $column      table column
-     * @param string $totalColumn total from column
-     * @param string $table       database table
-     * @param string $totalTable  total from table
-     * @param array|string $args  arguments
+     * @param string       $column      table column
+     * @param string       $totalColumn total from column
+     * @param string       $table       database table
+     * @param string       $totalTable  total from table
+     * @param array|string $args        arguments
      *
      * @return array|boolean        average result
      */
