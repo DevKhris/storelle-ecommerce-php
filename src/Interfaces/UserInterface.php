@@ -15,6 +15,9 @@ interface UserInterface
 
     /**
      * Set's the username from user
+     *
+     * @param string $username username
+     *
      */
     function setUsername($username);
 
@@ -22,10 +25,13 @@ interface UserInterface
     /**
      * Get's the balance from user
      */
-    static function getBalance();
+    function getBalance();
 
     /**
      * Set's the balance of user
+     *
+     * @param string $username username
+     *
      */
-    static function setBalance($username);
+    function setBalance($username);
 }

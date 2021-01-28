@@ -15,6 +15,7 @@
         }
     },
     "require": {
-      "ext-mysqli": "*"
+      "ext-mysqli": "*",
+        "maximebf/debugbar": "^1.16"
     }
 }

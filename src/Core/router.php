@@ -16,26 +16,26 @@ use App\Core\Response;
 
 class Router
 {
-    /** 
+    /**
      * Associative array for routing table
-     * 
+     *
      * @var array
      */
     protected $routes = array();
 
-    /** 
+    /**
      * Parameters from the route
-     * 
+     *
      * @var array
      */
     protected $params = array();
 
-    /** 
+    /**
      * Constructor function
      *
      * @param Request  $req Request object
      * @param Response $res Response object
-     * 
+     *
      * @return $this
      */
     public function __construct(Request $req, Response $res)
@@ -109,9 +109,9 @@ class Router
 
     /**
      * Render view function
-     * 
+     *
      * @param string $view view to render
-     * 
+     *
      * @return string
      */
     public function view($view)
@@ -119,14 +119,14 @@ class Router
         $content = $this->display();
         $view = $this->render($view);
         return str_replace('{{ display }}', $view, $content);
-        include_once Application::$appPath . "/views/$view.php";
+        include_once Application::$apppath . "/views/$view.php";
     }
 
     /**
      * Content function for rendering content to display placeholder
-     * 
+     *
      * @param  string $content content to render
-     * 
+     *
      * @return string
      */
     public function content($content)
@@ -138,16 +138,16 @@ class Router
     protected function display()
     {
         \ob_start();
-        include_once Application::$appPath . "/views/layout/main.php";
+        include_once Application::$path . "/views/layout/main.php";
         return \ob_get_clean();
     }
 
     /**
      * Render function
-     * 
+     *
      * @param string view
      * @param array parameters for view
-     * 
+     *
      * @return object
      */
     protected function render($view, $params = [])
@@ -156,7 +156,7 @@ class Router
             $key = $value;
         }
         \ob_start();
-        include_once Application::$appPath . "/views/$view.php";
+        include_once Application::$path . "/views/$view.php";
         return \ob_get_clean();
     }
 }

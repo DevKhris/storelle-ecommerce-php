@@ -12,27 +12,32 @@ namespace App\Core;
 
 use App\Alerts\Alerts;
 use App\Core\Database;
-use App\Interfaces\BaseUser;
+use App\Interfaces\UserInterface;
 
 final class User implements UserInterface
 {
+    public $username;
+    public $balance;
     private Database $db;
     
-    public function __construct()
+    public function __construct($username, $balance)
     {
+        $this->username = $username;
+        $this->balance = $balance;
         $this->db = new Database;
+
+        return $this;
     }
     
     public function getUsername()
     {
-        return $_SESSION['username'];
+        return $this->username;
     }
 
     public function setUsername($username)
     {
         $this->username = $username;
     }
-
     /**
      * Set Balance function
      *
@@ -40,7 +45,7 @@ final class User implements UserInterface
      *
      * @return void
      */
-    public static function setBalance($balance)
+    public function setBalance($balance)
     {
         $result = $this->db->update('users', $balance, $_SESSION['uid']);
         if (!empty($result)) {
@@ -54,10 +59,12 @@ final class User implements UserInterface
      *
      * @return void
      */
-    public static function getBalance()
+    public function getBalance()
     {
+        $return = $this->balance;
+
         $data = array(
-            'balance' => $_SESSION['balance']
+            'balance' => $balance
         );
 
         $json = json_encode($data);

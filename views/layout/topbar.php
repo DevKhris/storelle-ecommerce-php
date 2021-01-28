@@ -1,9 +1,9 @@
 <?php
-
 use App\Core\User;
+
 // checks if the user is logged
 if (!empty($_SESSION['name'])) {
-    // get balance from current user and passes to var
+// get balance from current user and passes to var
     $currentBalance = json_decode(User::getBalance($_SESSION['username']), true);
     $_SESSION['balance'] = ($currentBalance[0]['balance']);
 }
@@ -18,16 +18,15 @@ if (!empty($_SESSION['name'])) {
     </ul>
     <ul class="navbar-nav ml-auto pr-3">
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                <?php if (isset($_SESSION['balance'])) {
-                    echo 'Balance: $' . $_SESSION['balance'];
-                }
-                ?>
+            <?php if ($_SESSION['auth']) { ?>
+            <a class="nav-link" href="dashboard">
+                Balance: $<?= $_SESSION['balance']; ?>
             </a>
+            <?php } ?>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-center" href="
-                <?= ($_SESSION['auth'] ? false : 'login') ?? 'dashboard'; ?>">
+            <a class="nav-link text-center"
+                href="<?= (!$_SESSION['auth']) ? 'login' : 'dashboard' ?>">
                 <?php
                 if (isset($_SESSION['username'])) {
                     echo ucfirst($_SESSION['username']);
@@ -38,12 +37,13 @@ if (!empty($_SESSION['name'])) {
                 <i class="fa fa-user"></i>
             </a>
         </li>
-        <?php if (isset($_SESSION['username'])) { ?>
+        <?php if ($_SESSION['auth']) { ?>
         <li class="nav-item">
-            <a class="nav-link text-center" href="/logout">
-                <i class="fa fa-power-off"></i>
-                Logout
-            </a>
+            <form action="/logout" method="POST">
+                <i class="fa fa-power-off">
+                <input class="bg-dark nav-link form-control border-0" type="submit" value="Logout">
+                </i>
+            </form>
         </li class="nav-item">
         <?php } ?>
     </ul>

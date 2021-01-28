@@ -46,6 +46,6 @@ class Application
     public function execute()
     {
         // returns resolve
-        return $this->router->resolve();
+        echo $this->router->resolve();
     }
 }

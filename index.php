@@ -23,6 +23,5 @@ $app = new Application(BASE_PATH);
 // require routes
 require_once BASE_PATH . '/src/Core/routes.php';
 
-
 // instance of database object
 $db = new Database;
