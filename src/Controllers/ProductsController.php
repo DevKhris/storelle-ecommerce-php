@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Application;
-use App\Model\Products\Products;
+use App\Models\Products\Products;
 
 /**
  * Class ProductsController for request products

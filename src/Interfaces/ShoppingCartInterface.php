@@ -6,15 +6,12 @@ namespace App\Interfaces;
 
 interface ShoppingCartInterface
 {
-    public $cart = [];
-
     /**
      * Constructor function
      *
-     * @param array $cart
      *
      */
-    public function __construct(array $cart);
+    public function __construct($userId);
     
     /**
      * [getCart description]
@@ -23,7 +20,7 @@ interface ShoppingCartInterface
      *
      * @return json
      */
-    public static function get($userId);
+    public function get($userId);
 
     /**
      * Remove from Cart Function
@@ -31,24 +28,21 @@ interface ShoppingCartInterface
      * @param int $id product id
      *
      */
-    public static function remove($id);
+    public function remove($id);
 
     /**
      * Add to Cart Function
      *
-     * @param int    $userId          user id
-     * @param int    $productId       product id
-     * @param string $productName     product name
-     * @param int    $productQuantity product quantity
-     * @param float  $productPrice    product price
+     * @param string $data product data
      *
      */
-    public static function add($userId, $productId, $productName, $productQuantity, $productPrice);
+    public function add($data);
+
     /**
      * Ccheckout function
      *
      * @param int $userId user id
      *
      */
-    public static function checkout($userId);
+    public function checkout($userId);
 }

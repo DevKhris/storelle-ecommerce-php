@@ -8,7 +8,7 @@
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
 
-namespace App\Model\Reviews;
+namespace App\Models\Reviews;
 
 use App;
 use App\Core\Database;
@@ -37,7 +37,7 @@ class Reviews
      *
      * @return json reviews json
      */
-    public static function get($productId)
+    public function get($productId)
     {
           // save query to reviews array
         $reviews = $this->db->select('reviews', "productId = $productId");

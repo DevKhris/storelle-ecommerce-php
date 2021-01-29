@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Application;
 use App\Core\User;
-use App\Model\Cart\ShoppingCart;
+use App\Models\Cart\ShoppingCart;
 
 /**
  * Shopping Cart Controller
@@ -30,13 +30,13 @@ class ShoppingCartController
      */
     public static function get()
     {
-        if (isset($_SESSION['uid'])) {
+        if (isset($_SESSION['id'])) {
             // get cart from user id
-            $uid = $_SESSION['uid'];
+            $id = $_SESSION['id'];
             // return shopping cart
-            $shoppingCart = ShoppingCart::get($uid);
+            $shoppingCart = new ShoppingCart($id);
             // return cart
-            return $shoppingCart;
+            return $shoppingCart->cart;
         }
     }
 
@@ -48,34 +48,30 @@ class ShoppingCartController
     public static function add()
     {
         // decode json from request
-        $product = json_decode($_REQUEST['product'], true);
+        $data = json_decode($_REQUEST['product'], true);
         // get user id from session
-        $uid = $_SESSION['uid'];
-        // get values from product array
-        $data = array(
-            'uid' => $uid,
-            'pid' => $product['productId'],
-            'name' => $product['productName'],
-            'quantity' => $product['productQuantity'],
-            'price' => $product['productPrice']
-        );
-        // add product to cart from values
-        ShoppingCart::add($data);
+        $userId = $_SESSION['id'];
+        // add user id to data array
+        $data['userId'] = $userId;
+        $shoppingCart = new ShoppingCart($userId);
+        // add product to cart from array
+        $shoppingCart->add($data);
     }
 
     public static function remove()
     {
-        if (isset($_REQUEST['id'])) {
+        $userId = $_SESSION['id'];
+
+        $shoppingCart = new ShoppingCart($userId);
             // remove item from cart by id
-            $this->cart->remove($_REQUEST['id']);
-        }
+        $shoppingCart->remove($_REQUEST['id']);
     }
 
     public static function checkout()
     {
         if (isset($_REQUEST['checkout'])) {
             // get user id from session
-            $uid = $_SESSION['uid'];
+            $id = $_SESSION['id'];
             // get data from request
             $data[] = $_REQUEST['checkout'];
             // get cost from array key
@@ -83,11 +79,15 @@ class ShoppingCartController
             // calculate final balance from session and store to var
             $balance = ($_SESSION['balance'] - $cost);
             // save balance from user id
-            User::setBalance($balance, $uid);
+            $user = new User($_SESSION['username'], $balance);
             // do the checkout
-            $res = ShoppingCart::checkout($uid);
-            // return response
-            return $res;
+            $shoppingCart = new ShoppingCart($id);
+            $result = $shoppingCart->checkout($id);
+            // set user balance
+            $user->setBalance($balance, $id);
+              // return response
+            $_SESSION['balance'] = $balance;
+            return $result;
         }
     }
 }

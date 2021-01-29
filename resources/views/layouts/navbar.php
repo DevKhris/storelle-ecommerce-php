@@ -1,13 +1,13 @@
-<nav class="navbar navbar-expand-sm navbar-light bg-faded text-center">
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
   <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+      <img src="/images/logo-min.png" alt="Storelle" class="d-inline-block align-top" width="132" height="72">
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle Navigation">
     <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarToggler">
-      <a class="navbar-brand" href="/">
-        <img src="/images/logo-min.png" alt="Storelle" class="d-inline-block align-top" width="132" height="72">
-      </a>
-      <ul class="navbar-nav mr-auto pr-5 font-weight-bold">
+      <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/">
             <i class="fa fa-home"></i>
@@ -40,9 +40,5 @@
         </li>
       </ul>
     </div>
-  </ul>
-</li>
-</ul>
-</div>
-</div>
+  </div>
 </nav>

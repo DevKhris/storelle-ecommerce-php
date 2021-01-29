@@ -111,7 +111,7 @@ function toggleReviewBox() {
 
 /**
  * Fetch product by Id
- * @return {json} product
+ * @return json product
  */
 function requestProduct() {
     // get id from attribute
@@ -125,7 +125,7 @@ function requestProduct() {
         dataType: "json",
         success: function(product) {
             // render product to view
-            let productImg = `<img class="img-fluid" src="${product.img}" alt="${product.name}" width=512 height=512>`;
+            let productImg = `<img class="img-thumbnail" src="${product.img}" alt="${product.name}" width=512 height=512>`;
             $("#productImg").html(productImg);
             let productInfo = `
             <h1 class="text-monospace" id="productName">${product.name}</h1>
@@ -147,7 +147,7 @@ function requestProduct() {
  */
 function addProduct(productData) {
     $.ajax({
-        url: "/shopping-cart",
+        url: "/shopping-cart/add",
         type: "POST",
         data: {
             product: productData,
@@ -164,7 +164,7 @@ function addProduct(productData) {
  */
 function removeProduct(id) {
     $.ajax({
-        url: "/shopping-cart",
+        url: "/shopping-cart/remove",
         type: "POST",
         data: {
             id: id,
@@ -243,19 +243,23 @@ function requestReviews(id) {
             let reviews = JSON.parse(json);
             let template = "";
             reviews.forEach((review) => {
-                template += `
+                   template += `
                     <div class="reviews card">
                     <div class="card-header">
                         <h4 class="mt-3 mx-auto">
-                            ${review.userName}
+                            ${review.username}
                         </h4>
                         <h5>
-                            <i class="fa fa-star stars"></i> ${review.rating}
+                            <div id=stars>
+                            <i class="fa fa-star stars"></i>
+                             ${review.rating}
+                            </div>
+                           
                         </h5>
                     </div>
                     <div class="card-body">
                         <p class="text-muted">
-                            ${review.feedBack}
+                        ${review.feedback}
                         </p>
                     </div>
                 </div>
@@ -274,30 +278,31 @@ function requestCart() {
     $.ajax({
         url: "/shopping-cart",
         type: "POST",
-        success: function(res) {
+        success: function(data) {
             let currentBalance = getBalance();
-            let cartItems = res;
+            let cartItems = JSON.parse(data);
+          
             let totalPrice = 0;
             let shippingCost = parseUrlParams("shipping") ? 5 : 0;
             let template = "";
             let pricing = "";
-            //  cartItems.forEach(cartItem  => {
-            //     totalPrice += parseFloat(cartItem.productPrice) * parseInt(cartItem.productQuantity);
-            //     template += `
-            //         <tr cartId="${cartItem.id}">
-            //             <td>${cartItem.id}</td>
-            //             <td>
-            //                 <a href="product?id=${cartItem.productId}" class="cart-item">${cartItem.productName}</a>
-            //             </td>
-            //             <td>${cartItem.productQuantity}</td>
-            //             <td>$${cartItem.productPrice}</td>
-            //             <td>
-            //                 <button href="&id=${cartItem.id}" class="btn btn-outline-danger cartItem-delete">X</button>
-            //             </td>
-            //         </tr>
-            //     `
-            // });
-
+             cartItems.forEach((cartItem) => {
+                  console.log(cartItem);
+                totalPrice += parseFloat(cartItem.price) * parseInt(cartItem.quantity);
+                template += `
+                    <tr cartId="${cartItem.id}">
+                        <td>${cartItem.productId}</td>
+                        <td>
+                            <a href="product?id=${cartItem.productId}" class="cart-item">${cartItem.name}</a>
+                        </td>
+                        <td>${cartItem.quantity}</td>
+                        <td>$${cartItem.price}</td>
+                        <td>
+                            <button href="&id=${cartItem.id}" class="btn btn-outline-danger cartItem-delete">X</button>
+                        </td>
+                    </tr>
+                `
+            });
             totalPrice = parseFloat(totalPrice) + parseInt(shippingCost);
             pricing += `
                 <p class="text-md-right" id="userBalance">Balance: $${currentBalance}</p>
@@ -309,7 +314,7 @@ function requestCart() {
                 )}</p></b>
                 `;
             $("#pricing").html(pricing);
-            // $("#cart").html(template);
+            $("#cart").html(template);
         },
     });
 }
@@ -326,8 +331,9 @@ function performCheckout(cartData) {
         data: {
             checkout: cartData,
         },
-        success: function(res) {
-            $("#alerts").html(res);
+        success: function(data) {
+            getBalance();
+            $("#alerts").html(data);
         },
     });
 }
@@ -340,10 +346,10 @@ function getBalance() {
     $.ajax({
         url: "/dashboard",
         type: "POST",
-        data: { balance: "" },
+        data: { balance: '0' },
         dataType: "json",
         success: function (data) {
-            $("#userBalance").html("Balance: $" + data.balance);
+            $("#userBalance").html("Balance: $" +  data);
         },
     });
 }

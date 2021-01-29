@@ -26,7 +26,7 @@ class Database
     }
 
     /**
-     * Connect to DB with PDO 
+     * Connect to DB with PDO
      *
      * @return void
      */
@@ -97,7 +97,7 @@ class Database
 
     /**
      * Select function
-     * 
+     *
      * @param array|string $row   row to search from
      * @param string       $table database table
      * @param array|string $args  arguments to search
@@ -106,11 +106,9 @@ class Database
      */
     public function selectFrom($row, $table, $args)
     {
-        if ($args != '' && $row != '') {
-            $sql = "SELECT $row FROM $table WHERE $args";
-            $result = $this->link->query($sql);
-            return !empty($result) ? $result : false;
-        }
+        $sql = "SELECT $row FROM $table WHERE $args";
+        $result = $this->link->query($sql);
+        return !empty($result) ? $result : false;
     }
     /**
      * Update function

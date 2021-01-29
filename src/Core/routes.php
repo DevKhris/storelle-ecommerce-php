@@ -63,7 +63,8 @@ if ($_SESSION['auth'] === false) {
     // Routes shopping cart to view
     $app->router->get('/shopping-cart', [ShoppingCartController::class, 'index']);
     $app->router->post('/shopping-cart', [ShoppingCartController::class, 'get']);
-    $app->router->post('/remove', [ShoppingCartController::class, 'remove']);
+    $app->router->post('/shopping-cart/add', [ShoppingCartController::class, 'add']);
+    $app->router->post('/shopping-cart/remove', [ShoppingCartController::class, 'remove']);
     $app->router->post('/checkout', [ShoppingCartController::class, 'checkout']);
 
     // route auth routes to dashboard because the user is logged in

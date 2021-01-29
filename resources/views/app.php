@@ -1,9 +1,3 @@
-<?php
-use DebugBar\StandardDebugBar;
-
-$debugbar = new StandardDebugBar();
-$debugbarRenderer = $debugbar->getJavascriptRenderer();
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -17,23 +11,29 @@ $debugbarRenderer = $debugbar->getJavascriptRenderer();
         <link rel="stylesheet" href="/css/styles.min.css">
         <!-- Google Fonts -->
         <link rel="preload" href="https://fonts.googleapis.com/css2?family=Abel&family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-        <?= $debugbarRenderer->renderHead() ?>
     </head>
     <body>
         <header>
             <?php
-            require_once 'topbar.php';
+            require_once 'layouts/topbar.php';
             ?>
             <?php
-            require_once 'navbar.php';
+            require_once 'layouts/navbar.php';
             ?>
         </header>
         <main class="container-fluid">
             {{ display }}
         </main>
         <?php
-        require_once 'footer.php';
+        require_once 'layouts/footer.php';
         ?>
-        <?php echo $debugbarRenderer->render() ?>
+        <!-- Font Awesome -->
+        <script src="https://kit.fontawesome.com/9599829622.js" crossorigin="anonymous"></script>
+        <!-- Bootstrap -->
+        <script src="/js/bootstrap.bundle.min.js"></script>
+         <!-- Jquery -->
+        <script src="/js/jquery.min.js"></script>
+        <!-- App -->
+        <script src="/js/app.js"></script>
     </body>
 </html>

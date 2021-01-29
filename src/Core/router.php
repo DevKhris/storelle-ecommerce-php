@@ -138,7 +138,7 @@ class Router
     protected function display()
     {
         \ob_start();
-        include_once Application::$path . "/resources/views/layout/main.php";
+        include_once Application::$path . "/resources/views/app.php";
         return \ob_get_clean();
     }
 

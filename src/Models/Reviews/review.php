@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\Reviews;
+namespace App\Models\Reviews;
 
 use App\Interfaces\ReviewInterface;
 use App\Core\Database;

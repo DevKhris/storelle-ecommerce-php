@@ -16,6 +16,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Price</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
 
@@ -23,10 +24,10 @@
             </tbody>
         </table>
         <div class="dropdown text-md-right">
-            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-info dropdown-toggle" type="button" id="shippingButton" data-toggle="shippingButton" aria-expanded="false">
                 Shipping
             </button>
-            <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+            <ul class="dropdown-menu" aria-labelledby="shippingButton">
                 <li><a class="dropdown-item" href="?shipping=0">Pickup (0 USD)</a></li>
                 <li><a class="dropdown-item" href="?shipping=5">UPS (5 USD)</a></li>
             </ul>
@@ -36,7 +37,7 @@
         </div>
 
         <hr>
-        <a class="btn btn-primary" id="backBtn" href="/">Back</a>
+        <a class="btn btn-primary" id="backBtn" href="/products">Back</a>
         <button class="btn btn-dark checkout" onclick="performCheckout()" type="submit">Checkout</button>
     </div>
     <div class="col-sm-1">

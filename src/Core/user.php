@@ -45,13 +45,14 @@ final class User implements UserInterface
      *
      * @return void
      */
-    public function setBalance($balance)
+    public function setBalance($balance, $id)
     {
-        $result = $this->db->update('users', $balance, $_SESSION['uid']);
+        $result = $this->db->update('users', "balance = $balance", "id = $id");
+
         if (!empty($result)) {
-            return Alert::user_set_balance_success();
+            return Alerts::user_set_balance_success();
         }
-        return Alert::user_set_balance_error();
+        return Alerts::user_set_balance_error();
     }
 
     /**
@@ -61,12 +62,11 @@ final class User implements UserInterface
      */
     public function getBalance()
     {
-        $return = $this->balance;
-
+        $id = $_SESSION['id'];
+        $balance = $this->db->selectFrom('balance', 'users', "id = $id");
         $data = array(
             'balance' => $balance
         );
-
         $json = json_encode($data);
         return $json;
     }

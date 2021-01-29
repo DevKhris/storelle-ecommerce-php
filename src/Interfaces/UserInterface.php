@@ -33,5 +33,5 @@ interface UserInterface
      * @param string $username username
      *
      */
-    function setBalance($username);
+    function setBalance($username, $id);
 }

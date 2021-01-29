@@ -8,7 +8,7 @@
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
 
-namespace App\Model\Cart;
+namespace App\Models\Cart;
 
 use App\Alerts\Alerts;
 use App\Core\Database;
@@ -24,10 +24,10 @@ final class ShoppingCart implements ShoppingCartInterface
     /**
      * Constructor function
      */
-    public function __construct()
+    public function __construct($userId)
     {
         $this->db = new Database;
-
+        $this->cart = $this->get($userId);
         return $this;
     }
 
@@ -38,13 +38,12 @@ final class ShoppingCart implements ShoppingCartInterface
      *
      * @return json returns a json with the cart values
      */
-    public static function get($userId)
+    public function get($userId)
     {
         // fetch shopping cart from db
-        $shoppingCart = $this->db->select('shoppingcart', "userId = $userId");
-
+        $result = $this->db->select('shoppingcart', "userId = " . $userId);
         // encode the array to a json object
-        $json = json_encode($shoppingCart);
+        $json = json_encode($result);
         // returns json
         return $json;
     }
@@ -56,17 +55,26 @@ final class ShoppingCart implements ShoppingCartInterface
      *
      * @return void
      */
-    public static function add($data)
+    public function add($data)
     {
+        $userId = $data['userId'];
+        $productId = $data['productId'];
+        $name = $data['productName'];
+        $price = $data['productPrice'];
+        $quantity = $data['productQuantity'];
+        $product = "'$userId', '$productId', '$name', '$quantity', '$price'";
+        
         // Query to insert the current product into the shopping cart
-        $res = $this->db->insert("shoppingcart", "(uid, pid, name, quantity, price)", $data);
-        if ($res) {
+        
+        $result = $this->db->insert("shoppingcart", "userId, productId, name, quantity, price", $product);
+       
+        if ($result) {
             // returns success if item was inserted into db
-            echo Alerts::shopping_cart_add_success($data['name']);
+            echo Alerts::shopping_cart_add_success($name);
+        } else {
+          // returns error if can't insert item
+            echo Alerts::shopping_cart_add_error($name);
         }
-
-        // returns error if can't insert item
-        echo Alerts::shopping_cart_add_error($data['name']);
     }
 
     /**
@@ -76,20 +84,21 @@ final class ShoppingCart implements ShoppingCartInterface
      *
      * @return string    status
      */
-    public static function remove($id)
+    public function remove($id)
     {
         // Query to delete item by id from table and stores the result
-        $res =  $this->db->delete('shoppingcart', "id = $id");
+        $result = $this->db->delete('shoppingcart', "id = $id");
 
         if (!$result) {
             // returns error if can't remove item
             echo Alerts::shopping_cart_remove_error();
+        } else {
+             // returns success if item was removed from db
+            echo Alerts::shopping_cart_remove_success();
         }
-        // returns success if item was removed from db
-        echo Alerts::shopping_cart_remove_success();
     }
 
-    public static function checkout($userId)
+    public function checkout($userId)
     {
         // Query for deleting item from cart after purchase
         $result = $this->db->delete('shoppingcart', $userId);

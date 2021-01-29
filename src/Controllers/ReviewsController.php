@@ -4,8 +4,8 @@ namespace App\Controllers;
 
 use App\Application;
 use App\Core\Request;
-use App\Model\Reviews\Review;
-use App\Model\Reviews\Reviews;
+use App\Models\Reviews\Review;
+use App\Models\Reviews\Reviews;
 
 /**
  *

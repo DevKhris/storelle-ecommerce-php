@@ -5,7 +5,6 @@ namespace App\Controllers\Dashboard;
 use App\Application;
 use App\Core\Request;
 use App\Core\User;
-use App\Core\getBalance;
 
 class DashboardController
 {
@@ -26,9 +25,8 @@ class DashboardController
      */
     public static function get()
     {
-        $res = [];
         // get balance from current user in session and store
-        $res = User::getBalance();
+        $res = $_SESSION['balance'];
         // return response
         return $res;
     }
