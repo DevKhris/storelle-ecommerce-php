@@ -3,7 +3,7 @@
     </div>
     <div class="col-sm-4 p-5">
         <form action="/login" method="POST" class="form-group form-signin gt-3">
-            <img src="res/logo-min.png" alt="Storelle" class="mb-4">
+            <img src="images/logo-min.png" alt="Storelle" class="mb-4">
             <h1 class="h3 mb-3 font-weight-normal">Please Log In</h1>
             <div class="mb-3">
                 <label for="usernameInput">Username:</label>
