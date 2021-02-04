@@ -1,3 +1,5 @@
+let shippingCost = 0;
+
 // main document listener
 $(function() {
     // switch for rendering according to url to avoid unwanted requests
@@ -100,6 +102,7 @@ $(function() {
     });
 });
 
+
 // Show or hides the review form
 function toggleReviewBox() {
     if ($("#review-form").is(":visible")) {
@@ -160,7 +163,7 @@ function addProduct(productData) {
 
 /**
  * Remove product to shopping cart request
- * @param {int} id id from product to remove
+ * @param int id id from product to remove
  */
 function removeProduct(id) {
     $.ajax({
@@ -283,11 +286,10 @@ function requestCart() {
             let cartItems = JSON.parse(data);
           
             let totalPrice = 0;
-            let shippingCost = parseUrlParams("shipping") ? 5 : 0;
+            let shippingCost = getShipping();
             let template = "";
             let pricing = "";
              cartItems.forEach((cartItem) => {
-                  console.log(cartItem);
                 totalPrice += parseFloat(cartItem.price) * parseInt(cartItem.quantity);
                 template += `
                     <tr cartId="${cartItem.id}">
@@ -319,6 +321,14 @@ function requestCart() {
     });
 }
 
+function getShipping() {
+    return shippingCost;
+}
+
+function setShipping(value) {
+   shippingCost = value;
+   requestCart();
+}
 /**
  * Performs the checkout request
  * @param  {array} cartData items in cart
@@ -335,6 +345,8 @@ function performCheckout(cartData) {
             getBalance();
             $("#alerts").html(data);
         },
+    }).fail(function(data) {
+            $("#alerts").html(data);
     });
 }
 

@@ -29,8 +29,6 @@
         ?>
         <!-- Jquery -->
         <script src="/js/jquery.min.js"></script>
-        <!-- Popper -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <!-- Bootstrap -->
         <script src="/js/bootstrap.bundle.min.js"></script>
         <!-- App -->
