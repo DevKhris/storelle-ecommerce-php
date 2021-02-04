@@ -63,7 +63,7 @@ class ShoppingCartController
         $userId = $_SESSION['id'];
 
         $shoppingCart = new ShoppingCart($userId);
-            // remove item from cart by id
+        // remove item from cart by id
         $shoppingCart->remove($_REQUEST['id']);
     }
 
@@ -85,8 +85,8 @@ class ShoppingCartController
             $result = $shoppingCart->checkout($id);
             // set user balance
             $user->setBalance($balance, $id);
-              // return response
             $_SESSION['balance'] = $balance;
+            // return response
             return $result;
         }
     }

@@ -22,6 +22,8 @@ class Reviews
 
     /**
      * Constructor function
+     *
+     * @return  $this description
      */
     public function __construct()
     {

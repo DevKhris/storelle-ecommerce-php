@@ -27,13 +27,15 @@
         <?php
         require_once 'layouts/footer.php';
         ?>
-        <!-- Font Awesome -->
-        <script src="https://kit.fontawesome.com/9599829622.js" crossorigin="anonymous"></script>
+        <!-- Jquery -->
+        <script src="/js/jquery.min.js"></script>
+        <!-- Popper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <!-- Bootstrap -->
         <script src="/js/bootstrap.bundle.min.js"></script>
-         <!-- Jquery -->
-        <script src="/js/jquery.min.js"></script>
         <!-- App -->
         <script src="/js/app.js"></script>
+        <!-- Font Awesome -->
+        <script src="https://kit.fontawesome.com/9599829622.js" crossorigin="anonymous"></script>
     </body>
 </html>

@@ -49,7 +49,7 @@ $(function() {
         e.preventDefault();
         const reviewData = {
             productId: $("#productId").val(),
-            feedBack: $("#reviewContent").val(),
+            feedback: $("#reviewContent").val(),
             rating: $("#reviewRating").val(),
         };
         // encode data to json

@@ -2,8 +2,9 @@
 
 namespace App\Models\Reviews;
 
-use App\Interfaces\ReviewInterface;
+use App\Alerts\Alerts;
 use App\Core\Database;
+use App\Interfaces\ReviewInterface;
 
 /**
  * Class Review for adding reviews to db extending from BaseReview model
@@ -14,12 +15,6 @@ use App\Core\Database;
  */
 final class Review implements ReviewInterface
 {
-    public $reviewId;
-    public $productId;
-    public $username;
-    public $rating;
-    public $feedback;
-
     /**
      * @var App\Core\Database database
      */
@@ -27,16 +22,12 @@ final class Review implements ReviewInterface
 
     /**
      * Constructor function
+     *
+     * @return $this
      */
     public function __construct()
     {
-        $this->reviewId = $reviewId;
-        $this->productId = $productId;
-        $this->username = $username;
-        $this->rating = $rating;
-        $this->feedback = $feedback;
         $this->db = new Database;
-
         return $this;
     }
 
@@ -48,15 +39,25 @@ final class Review implements ReviewInterface
      * @param string $feedback
      * @param int    $rating
      *
+     * @return string
      */
     public function add($productId, $username, $feedback, $rating)
     {
         // Query to insert values from review into db and store the result
-        $result = $this->db->insert('reviews', '(productId, username, feedback, rating)', "$productId, $username, $feedback, $rating");
+        $result = $this->db->insert('reviews', 'productId, username, feedback, rating', "$productId, '$username', '$feedback', $rating");
          // checks if result has value
         if (!$result) {
             echo Alerts::review_submit_error();
+        } else {
+            echo Alerts::review_submit_success();
         }
-        echo Alerts::review_submit_success();
+    }
+
+    /**
+     * Get review from database by product id
+     */
+    public function get($productId)
+    {
+        // To implement
     }
 }

@@ -20,15 +20,23 @@
     <div class="col-sm-2">
     </div>
 </div>
-<div class="row">
+<div class="row mt-4">
     <div class="col-sm-2">
+      
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-3">     
     </div>
     <div class="col-sm-6">
+        <h2>User Reviews</h2>
+        <hr>
         <div id="reviews-box">
         </div>
     </div>
     <div class="col-sm-2">
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+         <?php require_once 'reviews.php'; ?>
     </div>
 </div>

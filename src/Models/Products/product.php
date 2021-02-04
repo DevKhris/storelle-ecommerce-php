@@ -15,7 +15,11 @@ use App\Interfaces\ProductInterface;
 
 final class Product implements ProductInterface
 {
+    /**
+     * @var App\Core\Database database
+     */
     private Database $db;
+
     /**
      * Constructor function
      *
