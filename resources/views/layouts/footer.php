@@ -1,45 +1,43 @@
-<footer class="container-fluid sticky-bottom bg-black pb-5 py-5">
-    <div class="row text-light">
-        <div class="col-sm-4">
-            <img src="images/logo-min.png" alt="" class="mx-3 img-fluid" width="356">
-            <p class="text-center pb-5">&copy;
-                <a class="text-decoration-none copyright" href="index.php">
-                    Storelle
-                </a>
-                <?= date('Y'); ?>
-                <br>
-                Powered with
-                <a rel="noopener" class="copyright text-decoration-none"
-                    href="https://github.com/DevKhris/rubynight-framework" title="RubyNight Framework" target="_blank">
-                    RubyNight
-                </a> by
-                <a rel="noopener" class="copyright text-decoration-none" title="DevKhris" href="https://devkhris.rf.gd"
-                    target="_blank">
-                    @DevKhris
-                </a>
-            </p>
-        </div>
-        <div class="col-sm-2 py-3">
-            <ul class="nav nav-footer flex-column pt-4">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" title="Home" href="home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" title="Products" href="products">Products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" title="Shopping Cart" href="shopping-cart">Shopping Cart</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" title="About" href="about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" title="Contact" href="contact">Contact</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-sm-6">
-        </div>
+<div class="row text-light">
+    <div class="col-sm-4">
+        <img src="images/logo-min.png" alt="" class="mx-3 img-fluid" width="356">
+        <p class="text-center pb-5">&copy;
+            <a class="text-decoration-none copyright" href="index.php">
+                Storelle
+            </a>
+            <?= date('Y'); ?>
+            <br>
+            Powered with
+            <a rel="noopener" class="copyright text-decoration-none"
+                href="https://github.com/DevKhris/rubynight-framework" title="RubyNight Framework" target="_blank">
+                RubyNight
+            </a> by
+            <a rel="noopener" class="copyright text-decoration-none" title="DevKhris" href="https://devkhris.rf.gd"
+                target="_blank">
+                @DevKhris
+            </a>
+        </p>
     </div>
-
-</footer>
+    <div class="col-sm-2 py-3">
+        <ul class="nav nav-footer flex-column pt-4">
+            <p class="text-muted">General</p>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" title="Home" href="home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" title="Products" href="products">Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" title="Shopping Cart" href="shopping-cart">Shopping Cart</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" title="About" href="about">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" title="Contact" href="contact">Contact</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-sm-6">
+    </div>
+</div>

@@ -127,18 +127,22 @@ function requestProduct() {
     dataType: "json",
     success: function (product) {
       // render product to view
-      let productImg = `<img class="img-thumbnail" src="${product.img}" alt="${product.name}" width=512 height=512>`;
+      let stars = '<i class="fa fa-star stars"></i>';
+      let productImg = `<img class="img-thumbnail shadow-sm shadow-lg" src="${product.img}" alt="${product.name}" width=512 height=512>`;
       $("#productImg").html(productImg);
       let productInfo = `
-            <h1 class="text-monospace" id="productName">
-              ${product.name}
-            </h1>
-            <h3 class="text-muted" id="productPrice">
-             $${product.price}
-            </h3>
-            <p class="reviews num">
-            <i class="fa fa-star stars"></i> ${product.rating} / 5 
-            </p>
+            <div>
+              <h1 class="text-monospace mt-3" id="productName">
+                ${product.name}
+              </h1>
+              <h3 class="text-muted" id="productPrice">
+                <i class="fa fa-dollar"></i> ${product.price}
+              </h3>
+              <p class="reviews num" id="stars">
+                ${stars}
+                ${product.rating} / 5 
+              </p>
+            </div>
             `;
       $("#productInfo").html(productInfo);
       // parse url param id and store in var
@@ -184,7 +188,7 @@ function removeProduct(id) {
 }
 
 /**
- * [requestProducts request all products]
+ * Request all products
  * @return json products
  */
 function requestProducts() {
@@ -198,7 +202,7 @@ function requestProducts() {
         template += `
                 <div class="col-sm-3">
                     <a class="text-decoration-none product-link font-weight-bold" href="product?id=${product.id}">
-                        <div class="card product text-center my-2">
+                        <div class="card shadow-sm shadow-lg product text-center my-2">
                             <img src="${product.img}" class="card-img-top align-self-center img-fluid" width=360 height=240 alt="${product.name}">
                             <div class="card-body">
                                 
@@ -220,9 +224,10 @@ function requestProducts() {
 }
 
 /**
- * [postReview request for posting review]
- * @param  {[array]} reviewData [review data to posts]
- * @return {[string]}            [alert]
+ * Request for posting review
+ * @param  array reviewData review data to posts
+ *
+ * @return string           alert
  */
 function postReview(reviewData) {
   $.ajax({
@@ -238,9 +243,10 @@ function postReview(reviewData) {
 }
 
 /**
- * [requestReviews request all reviews for product by id]
- * @param  {[int]} id [product id]
- * @return {[template]}    [views]
+ * Request all reviews for product by id
+ * @param  int id product id
+ *
+ * @return string view
  */
 function requestReviews(id) {
   $.ajax({

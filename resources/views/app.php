@@ -20,16 +20,16 @@
 
 <body>
     <header>
-        <?php
-            require_once 'layouts/navbar.php';
-        ?>
+        <?= $this->render('layouts.navbar'); ?>
+
     </header>
     <main class="container-fluid">
         {{ display }}
     </main>
-    <?php
-        require_once 'layouts/footer.php';
-        ?>
+    <footer class="container-fluid sticky-bottom bg-black pb-5 py-5">
+        <?= $this->render('layouts.footer'); ?>
+    </footer>
+
     <!-- Jquery -->
     <script src="/js/jquery.min.js"></script>
     <!-- Bootstrap -->

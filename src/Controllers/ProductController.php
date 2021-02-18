@@ -19,7 +19,7 @@ class ProductController
      */
     public static function index(Request $req)
     {
-        return Application::$app->router->view('product');
+        return Application::$app->router->view('product.index');
     }
 
     /**

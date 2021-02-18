@@ -124,19 +124,6 @@ class Router
         return str_replace('{{ display }}', $view, $content);
     }
 
-    /**
-     * Content function for rendering content to display placeholder
-     *
-     * @param string $content content to render
-     *
-     * @return string
-     */
-    public function content($content)
-    {
-        $display = $this->display();
-        return str_replace('{{ display }}', $content, $display);
-    }
-
     protected function display()
     {
         ob_start();
@@ -153,12 +140,13 @@ class Router
      * @return object
      */
     protected function render($view, $params = [])
-    {
+    {   
+        $view = str_replace('.', DIRECTORY_SEPARATOR, $view);
         foreach ($params as $key => $value) {
             $key = $value;
         }
         ob_start();
-        include_once Application::$path . "/resources/views/$view.php";
+        include_once Application::$path . "/resources/views/" . "$view.php";
         return ob_get_clean();
     }
 }

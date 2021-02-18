@@ -7,7 +7,7 @@ use App\Core\Request;
 use App\Core\Response;
 
 /**
- * Class MainController for handling rendering and callbacks
+ * Application Class
  *
  * @package RubyNight\App;
  *
@@ -21,20 +21,16 @@ class Application
     /**
      * Contructor function
      *
-     * @param string $appPath param of application path
+     * @param string $path application path
      */
     public function __construct($path)
     {
-        // self instance and application path
         self::$app = $this;
         self::$path = $path;
-        // new request instance
         $this->req = new Request();
-        // new response instance
         $this->res = new Response();
-        // new router instance
         $this->router = new Router($this->req, $this->res);
-
+        
         return $this;
     }
 
@@ -45,7 +41,6 @@ class Application
      */
     public function execute()
     {
-        // returns resolve
         echo $this->router->resolve();
     }
 }
