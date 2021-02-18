@@ -64,7 +64,7 @@ class Alerts
     public static function shopping_cart_checkout_success() : string
     {
         $alert ='<div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Purchase processed successfully!</strong>
+                <strong>Order processed successfully!</strong>
                 <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
               </div>';
         return $alert;
@@ -73,7 +73,7 @@ class Alerts
     public static function shopping_cart_checkout_error() : string
     {
         $alert ='<div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Can\'t process purchase!</strong>
+                    <strong>Can\'t process order!</strong>
                     <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
                  </div>';
         return $alert;
