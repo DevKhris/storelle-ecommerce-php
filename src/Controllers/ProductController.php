@@ -13,16 +13,6 @@ use App\Models\Products\Product;
 class ProductController
 {
     /**
-     * Index function
-     *
-     * @return view render view
-     */
-    public static function index(Request $req)
-    {
-        return Application::$app->router->view('product.index');
-    }
-
-    /**
      * Get's the requested product and return it
      *
      * @return $product returns product
@@ -41,7 +31,7 @@ class ProductController
     public static function show()
     {
         // render view from router for product
-        return Application::$app->router->view('product');
+        return Application::$app->router->view('products.show');
+    
     }
-
 }

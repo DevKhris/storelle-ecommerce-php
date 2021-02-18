@@ -21,8 +21,6 @@ $(function () {
       // renders the shopping cart
       requestCart();
       break;
-    default:
-      break;
   }
 
   // hide the review form
@@ -128,7 +126,12 @@ function requestProduct() {
     success: function (product) {
       // render product to view
       let stars = '<i class="fa fa-star stars"></i>';
-      let productImg = `<img class="img-thumbnail shadow-sm shadow-lg" src="${product.img}" alt="${product.name}" width=512 height=512>`;
+      let productImg = `
+        <a class="text-decoration-none" href="${product.img}" data-lightbox="product">
+          <img class="img-thumbnail shadow-sm shadow-lg" src="${product.img}" alt="${product.name}" width=512 height=512>
+          <p class="text-muted text-center" >${product.name}</p>
+        </a>
+      `;
       $("#productImg").html(productImg);
       let productInfo = `
             <div>
@@ -201,6 +204,7 @@ function requestProducts() {
       products.forEach((product) => {
         template += `
                 <div class="col-sm-3">
+                <div class="card-deck">
                     <a class="text-decoration-none product-link font-weight-bold" href="product?id=${product.id}">
                         <div class="card shadow-sm shadow-lg product text-center my-2">
                             <img src="${product.img}" class="card-img-top align-self-center img-fluid" width=360 height=240 alt="${product.name}">
@@ -216,6 +220,7 @@ function requestProducts() {
                             </div>
                         </div>
                     </a>
+                    </div>
                 </div>`;
       });
       $("#products").html(template);
@@ -250,7 +255,7 @@ function postReview(reviewData) {
  */
 function requestReviews(id) {
   $.ajax({
-    url: "/review",
+    url: "/reviews",
     type: "POST",
     data: {
       id: id,

@@ -47,19 +47,19 @@ if ($_SESSION['auth'] === false) {
     $app->router->post('/products', [ProductsController::class, 'get']);
 
     // Routes product to view
-    $app->router->get('/product', [ProductController::class, 'index']);
+    $app->router->get('/product', [ProductController::class, 'show']);
     $app->router->get('/product/[id]', [ProductController::class, 'show']);
     // Sets controller for product callback
     $app->router->post('/product', [ProductController::class, 'get']);
 
     // Sets controller for reviews view
-    $app->router->get('/reviews', [ReviewsController::class, 'index']);
+    $app->router->get('/reviews', [ReviewsController::class, 'show']);
 
     // Sets controller for reviews callback
-    $app->router->post('/review', [ReviewsController::class, 'get']);
+    $app->router->post('/reviews', [ReviewsController::class, 'get']);
 
     // Sets controller for review posting callback
-    $app->router->post('/publish', [ReviewsController::class, 'add']);
+    $app->router->post('/publish', [ReviewsController::class, 'store']);
 
     // Routes shopping cart to view
     $app->router->get('/shopping-cart', [ShoppingCartController::class, 'index']);

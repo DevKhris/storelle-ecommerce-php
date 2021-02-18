@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Application;
 use App\Models\Products\Products;
-
 /**
  * Class ProductsController for request products
  *
@@ -22,7 +21,7 @@ class ProductsController
     public static function index()
     {
         // render view from router for products
-        return Application::$app->router->view('products');
+        return Application::$app->router->view('products.index');
     }
 
     /**

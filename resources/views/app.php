@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="/css/styles.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <!-- Lightbox -->
+    <link rel="stylesheet" href="/css/lightbox.min.css">
     <!-- Google Fonts -->
     <link rel="preload"
         href="https://fonts.googleapis.com/css2?family=Abel&family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap"
@@ -32,6 +34,8 @@
 
     <!-- Jquery -->
     <script src="/js/jquery.min.js"></script>
+    <!-- Lightbox -->
+    <script src="/js/lightbox-plus-jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="/js/bootstrap.bundle.min.js"></script>
     <!-- App -->

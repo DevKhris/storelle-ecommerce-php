@@ -17,10 +17,10 @@ class ReviewsController
      *
      * @return view render view
      */
-    public static function index()
+    public static function show()
     {
         // render view from router for reviews
-        return Application::$app->router->view('reviews');
+        return Application::$app->router->view('reviews.create');
     }
 
     /**
@@ -28,7 +28,7 @@ class ReviewsController
      *
      * @return array response
      */
-    public static function get()
+    public static function create()
     {
         if (!isset($_REQUEST['id'])) {
             throw new RuntimeException('Can\' find request');
@@ -46,7 +46,7 @@ class ReviewsController
      *
      * @return void
      */
-    public static function add()
+    public static function store()
     {
         if (!isset($_REQUEST['review'])) {
             throw new RuntimeException('Can\'t find request');

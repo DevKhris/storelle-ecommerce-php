@@ -1,3 +1,7 @@
+<?php
+use App\Core\User;
+$user = new User($_SESSION['username'],$_SESSION['balance']); 
+?>
 <div class="row">
     <div class="col-sm-2">
     </div>
@@ -9,13 +13,15 @@
                 <li class="nav-item">
                     <p class="pl-4">
                         <i class="fa fa-user"></i>
-                        Username: <?= $_SESSION['username']; ?>
+                        Username:
+                        <?= $user->username ?>
                     </p>
                 </li>
                 <li class="nav-item">
                     <p class="pl-4">
                         <i class="fa fa-money"></i>
-                        Balance: <i class="fa fa-dollar"></i><?= $_SESSION['balance']; ?>
+                        Balance: <i class="fa fa-dollar"></i>
+                        <?= $user->balance ?>
                     </p>
                 </li>
             </ul>

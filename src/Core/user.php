@@ -20,11 +20,11 @@ final class User implements UserInterface
     public $balance;
     private Database $db;
     
-    public function __construct($username, $balance)
+    public function __construct($username,$balance)
     {
+        $this->db = new Database;
         $this->username = $username;
         $this->balance = $balance;
-        $this->db = new Database;
 
         return $this;
     }

@@ -54,6 +54,10 @@ footer {
 	margin: 2px 16px 2px 16px;
 }
 
+.card.product:hover {
+	transform: scale(1.05) !important;
+	transition: .3s all ease-in-out;
+}
 .product h4 {
 	color: #030303;
 }
@@ -66,6 +70,7 @@ footer {
 	max-height: 14rem !important;
 	max-width: 14rem !important;
 	object-fit: cover;
+	object-position: center;
 }
 
 .product-link {

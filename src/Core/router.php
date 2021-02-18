@@ -95,7 +95,7 @@ class Router
         // if not callback then return and 404 state and display view
         if ($callback == false) {
             $this->res->setStatus(404);
-            return $this->view("404");
+            return $this->view("partials.404");
         }
         // if callback is a string
         if (is_string($callback)) {

@@ -72,6 +72,7 @@ final class ShoppingCart implements ShoppingCartInterface
             // returns success if item was inserted into db
             echo Alerts::shopping_cart_add_success($name);
         } else {
+            dump($result);
           // returns error if can't insert item
             echo Alerts::shopping_cart_add_error($name);
         }

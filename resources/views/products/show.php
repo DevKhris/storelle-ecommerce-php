@@ -14,7 +14,6 @@
             <button type="submit" name="product-add" class="btn btn-product btn-block mt-5">
                 <i class="fa fa-shopping-cart"></i>
                 Add to cart
-
             </button>
         </form>
         <br>
@@ -24,7 +23,6 @@
 </div>
 <div class="row mt-4">
     <div class="col-sm-2">
-
     </div>
     <div class="col-sm-3">
     </div>
@@ -39,6 +37,6 @@
 </div>
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
-        <?= $this->render('reviews'); ?>
+        <?= $this->render('reviews.create'); ?>
     </div>
 </div>

@@ -8,33 +8,29 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarToggler">
-            <ul class="navbar-nav mx-auto">
+            <ul class="navbar-nav  mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/">
+                    <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/' ? 'active' : '' ?>" aria-current="page"
+                        href="/">
                         <i class="fa fa-home"></i>
                         Home
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/products">
+                    <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/products' ? 'active' : '' ?>" href="/products">
                         <i class="fa fa-shopping-bag"></i>
                         Products
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="/shopping-cart">
-                        <i class="fa fa-shopping-cart"></i>
-                        Shopping Cart
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/about">
+                    <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/about' ? 'active' : '' ?>" href="/about">
                         <i class="fa fa-info-circle"></i>
                         About Us
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">
+                    <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/contact' ? 'active' : '' ?>" href="/contact">
                         <i class="fa fa-address-card"></i>
                         Contact
                     </a>
@@ -43,32 +39,38 @@
 
             <div class="" id="topbarNavDropdown">
                 <ul class="navbar-nav ml-auto">
-                    <?php if ($_SESSION['auth']) { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard">
-                            <i class="fa fa-money"> </i> Balance:
-                            <i class="fa fa-dollar"></i><?= $_SESSION['balance']; ?>
+                        <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/shopping-cart' ? 'active' : '' ?>"
+                            href="/shopping-cart">
+                            <i class="fa fa-shopping-cart"></i>
+                            Cart
                         </a>
                     </li>
+                    <?php if (isset($_SESSION['auth'])) {?>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="topbarNavDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link  <?= $_SERVER['REQUEST_URI'] == '/dashboard' ? 'active' : '' ?> dropdown-toggle"
+                            href="#" id="topbarNavDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             <i class="fa fa-user"></i>
-                            <?php
-                        if (isset($_SESSION['username'])) {
-                            echo ucfirst($_SESSION['username']);
-                        } else {
-                            echo 'Guest';
-                        }
-                        ?>
-
+                            <?php if (isset($_SESSION['username'])) {
+                                    $data = [
+                                        ucfirst($_SESSION['username']),
+                                        "<i class='fa fa-dollar'></i>",
+                                        $_SESSION['balance']
+                                    ];
+                                    echo $data[0] . ' (' . $data[1] . $data[2] . ')';
+                                    } else {
+                                        echo 'Guest';
+                                    }
+                            ?>
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="topbarNavDropdown">
+                        <ul class="dropdown-menu dropdown-right" aria-labelledby="topbarNavDropdown">
                             <li>
-                                <a class="dropdown-item" href="<?= (!$_SESSION['auth']) ? 'login' : 'dashboard' ?>">
-                                    Dashboard
+                                <a class="dropdown-item" href="<?= !$_SESSION['auth'] ? 'login' : 'dashboard' ?>">
+                                    <?= !$_SESSION['auth'] ? 'Login' : 'Dashboard' ?>
                                 </a>
                             </li>
+                            <?php if ($_SESSION['auth']) {?>
                             <div class="dropdown-divider"></div>
                             <li class="dropdown-item">
                                 <form action="/logout" method="POST">
@@ -79,7 +81,9 @@
                                     </div>
                                 </form>
                             </li>
+                            <?php } ?>
                         </ul>
+
                     </li>
                     <?php } ?>
                 </ul>
