@@ -6,36 +6,40 @@
                 <a class="text-decoration-none copyright" href="index.php">
                     Storelle
                 </a>
-                <?php echo $year = date('Y'); ?>
+                <?= date('Y'); ?>
                 <br>
-                Developed by
-                <a rel="noopener" class="copyright text-decoration-none" href="https://devkhris.github.io" target="_blank" >
+                Powered with
+                <a rel="noopener" class="copyright text-decoration-none"
+                    href="https://github.com/DevKhris/rubynight-framework" title="RubyNight Framework" target="_blank">
+                    RubyNight
+                </a> by
+                <a rel="noopener" class="copyright text-decoration-none" title="DevKhris" href="https://devkhris.rf.gd"
+                    target="_blank">
                     @DevKhris
-                </a> with parts of
-                <a rel="noopener" class="copyright text-decoration-none" href="https://github.com/DevKhris/rubynight-framework" target="_blank" >        RubyNight
                 </a>
             </p>
-        </div>        <div class="col-sm-2 py-3">
-        <ul class="nav nav-footer flex-column pt-4">
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="home">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="products">Products</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="shopping-cart">Shopping Cart</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="about">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="contact">Contact</a>
-            </li>
-        </ul>
+        </div>
+        <div class="col-sm-2 py-3">
+            <ul class="nav nav-footer flex-column pt-4">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" title="Home" href="home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" title="Products" href="products">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" title="Shopping Cart" href="shopping-cart">Shopping Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" title="About" href="about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" title="Contact" href="contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+        </div>
     </div>
-    <div class="col-sm-6">
-    </div>
-</div>
 
 </footer>

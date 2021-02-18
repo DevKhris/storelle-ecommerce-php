@@ -14,8 +14,8 @@
                 </li>
                 <li class="nav-item">
                     <p class="pl-4">
-                        <i class="fa fa-dollar"></i>
-                        Balance: <?= '$' . $_SESSION['balance']; ?>
+                        <i class="fa fa-money"></i>
+                        Balance: <i class="fa fa-dollar"></i><?= $_SESSION['balance']; ?>
                     </p>
                 </li>
             </ul>

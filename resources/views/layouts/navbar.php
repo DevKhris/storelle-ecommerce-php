@@ -41,12 +41,12 @@
                 </li>
             </ul>
 
-            <div class="ml-auto" id="topbarNavDropdown">
-                <ul class="navbar-nav">
+            <div class="" id="topbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
                     <?php if ($_SESSION['auth']) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="dashboard">
-                            Balance:
+                            <i class="fa fa-money"> </i> Balance:
                             <i class="fa fa-dollar"></i><?= $_SESSION['balance']; ?>
                         </a>
                     </li>
