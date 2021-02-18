@@ -83,7 +83,7 @@ class Alerts
     {
         $alert = '<div class="alert alert-success alert-dismissible fade show" role="alert">
                 	<strong>Review submited.</strong>
-                	<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               	 </div>';
         return $alert;
     }
@@ -92,7 +92,7 @@ class Alerts
     {
         $alert ='<div class="alert alert-warning alert-dismissible fade show" role="alert">
                 	<strong>Warning, Can\'t submit review.</strong>
-                	<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
              	</div>';
         return $alert;
     }

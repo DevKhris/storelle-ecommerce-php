@@ -9,7 +9,7 @@ body {
 	margin-top: 100px;
 }
 footer {
-	margin-top: 150px;
+	margin-top: 30px;
 	display: block;
 	overflow: auto;
 	position: relative;
@@ -22,9 +22,6 @@ footer {
 .featured {
 	font-size: 1.6rem;
 	color: #f9f9f9;
-	display: flex;
-	flex-direction: column;
-	background-color: rgba(31, 31, 31, 0.548);
 	background-image: url('../../images/banners/main.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -36,6 +33,9 @@ footer {
 	text-align: center;
 }
 
+.featured div{
+	text-shadow: rgba(31, 31, 31, 0.247);
+}
 .copyright {
 	font-size: 1rem;
 	color: #fff;
