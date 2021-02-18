@@ -4,13 +4,19 @@
     <div class="col-sm-8">
         <h2 class="my-4">User Profile</h2>
         <div class="d-inline-flex">
-            <img  class="img-fluid rounded-circle" src="/images/user/default_male.png" alt="Profile Picture">
+            <img class="img-fluid rounded-circle" src="/images/user/default_male.png" alt="Profile Picture">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <p class="pl-4">Username: <?= $_SESSION['username']; ?></p>
+                    <p class="pl-4">
+                        <i class="fa fa-user"></i>
+                        Username: <?= $_SESSION['username']; ?>
+                    </p>
                 </li>
                 <li class="nav-item">
-                    <p class="pl-4">Balance: <?= '$' . $_SESSION['balance']; ?></p>
+                    <p class="pl-4">
+                        <i class="fa fa-dollar"></i>
+                        Balance: <?= '$' . $_SESSION['balance']; ?>
+                    </p>
                 </li>
             </ul>
         </div>

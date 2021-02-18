@@ -12,43 +12,51 @@ namespace App\Core;
 
 class Request
 {
-    public $req;
+    public $params;
+    public $body;
+    public $method;
+    public $contentType;
+    /**
+     * Constructor
+     */
+    function __construct($params = [])
+    {
+        $this->params = $this->getParams();
+        $this->body = $this->getBody();
+        $this->method = $this->getMethod();
+        $this->contentType = $this->getType();
+    }
+
 
     /**
      * Get the relative path
      *
      * @return string path
      */
-    public function getPath()
+     public function getPath()
     {
-        // get's the request uri or set's it to root
         $path = $_SERVER['REQUEST_URI'] ?? '/';
-        // gets the position of the path at mark ?
-        $pos = \strpos($path, '?');
-        // if position if false, return path
+        $pos = strpos($path, '?');
         if (!$pos) {
             return $path;
         }
-        // substracts position mark from path
-        $path = \substr($path, 0, $pos);
-
-        // returns the path wthout params
+        $path = substr($path, 0, $pos);
+        
         return $path;
     }
 
     /**
      * Get method from server
-     *
-     * @return string description
+     * 
+     * @return string method
      */
     public function getMethod()
     {
-        // get's the method and lowercases the value
-        $method = strtolower($_SERVER['REQUEST_METHOD']);
-        // returns method
+       $method = strtolower($_SERVER['REQUEST_METHOD']);
+
         return $method;
     }
-
+    
     public function onGet()
     {
         return $this->getMethod() === 'GET';
@@ -59,20 +67,56 @@ class Request
         return $this->getMethod() === 'POST';
     }
 
+    /**
+     * Get contentType from server
+     *
+     * @return void
+     */
+    public function getType()
+    {
+        $type = !empty($_SERVER['CONTENT_TYPE']) ? trim($_SERVER['CONTENT_TYPE']) : 'application/html';
+        return $type;
+    }
+    
+    /**
+     * Get body function
+     *
+     * @return array
+     */
     public function getBody()
     {
         $body = [];
-        if ($this->getMethod() === 'GET') {
-            foreach ($_GET as $key) {
-                $body[$key] = \filter_input(INPUT_GET, $key, \FILTER_SANITIZE_SPECIAL_CHARS);
-            }
-        }
-        if ($this->getMethod() === 'POST') {
-            foreach ($_POST as $key) {
-                $body[$key] = \filter_input(INPUT_POST, $key, \FILTER_SANITIZE_SPECIAL_CHARS);
+        if ($this->getMethod() == 'POST') {
+            foreach ($_POST as $key => $value) {
+                $body[$key] = filter_input(
+                    INPUT_POST, 
+                    $key, 
+                    FILTER_SANITIZE_SPECIAL_CHARS
+                );
             }
         }
 
+        if ($this->getMethod() == 'GET') {
+            foreach ($_GET as $key => $value) {
+                $body[$key] = filter_input(
+                    INPUT_GET, 
+                    $key, 
+                    FILTER_SANITIZE_SPECIAL_CHARS
+                );
+            }
+        }
         return $body;
+    }
+
+    /**
+     * Get parameters from request
+     *
+     * @return array
+     */
+    public function getParams()
+    {
+        foreach ($_REQUEST as $key=>$value) {
+            return [$key => $value];
+        }
     }
 }

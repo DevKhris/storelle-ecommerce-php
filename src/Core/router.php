@@ -85,10 +85,13 @@ class Router
     {
         // get path from request
         $path = $this->req->getPath();
-        // get pmethod from request
+        
+        // get method from request
         $method = $this->req->getMethod();
+        
         // get the route method and path or return false
         $callback = $this->routes[$method][$path] ?? false;
+
         // if not callback then return and 404 state and display view
         if ($callback == false) {
             $this->res->setStatus(404);
@@ -117,15 +120,14 @@ class Router
     public function view($view)
     {
         $content = $this->display();
-        $view = $this->render($view);
+        $view = $this->render($view);     
         return str_replace('{{ display }}', $view, $content);
-        include_once Application::$apppath . "/views/$view.php";
     }
 
     /**
      * Content function for rendering content to display placeholder
      *
-     * @param  string $content content to render
+     * @param string $content content to render
      *
      * @return string
      */
@@ -137,16 +139,16 @@ class Router
 
     protected function display()
     {
-        \ob_start();
+        ob_start();
         include_once Application::$path . "/resources/views/app.php";
-        return \ob_get_clean();
+        return ob_get_clean();
     }
 
     /**
      * Render function
      *
-     * @param string view
-     * @param array parameters for view
+     * @param string $view   view
+     * @param array  $params parameters for view
      *
      * @return object
      */
@@ -155,8 +157,8 @@ class Router
         foreach ($params as $key => $value) {
             $key = $value;
         }
-        \ob_start();
+        ob_start();
         include_once Application::$path . "/resources/views/$view.php";
-        return \ob_get_clean();
+        return ob_get_clean();
     }
 }

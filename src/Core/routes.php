@@ -24,13 +24,13 @@ $app->router->post('/contact', [ContactController::class, 'send']);
 // check if visitor is logged and assigns the routes
 if ($_SESSION['auth'] === false) {
     //set an array for the routes to redirect to login
-    $routes = array('products', 'product', 'shopping-cart', 'dashboard');
+    $protectedRoutes = array('products', 'product', 'shopping-cart', 'dashboard');
 
     //routes the rest to login
-    foreach ($routes as $key => $value) {
-        $route = $routes[$key];
-        $app->router->get('/' . $route, [LoginController::class, 'index']);
-        $app->router->post('/' . $route, [LoginController::class, 'login']);
+    foreach ($protectedRoutes as $key => $value) {
+        $protectedRoute = $protectedRoutes[$key];
+        $app->router->get('/' . $protectedRoute, [LoginController::class, 'index']);
+        $app->router->post('/' . $protectedRoute, [LoginController::class, 'login']);
     }
 
     // Routes login to view
@@ -48,6 +48,7 @@ if ($_SESSION['auth'] === false) {
 
     // Routes product to view
     $app->router->get('/product', [ProductController::class, 'index']);
+    $app->router->get('/product/[id]', [ProductController::class, 'show']);
     // Sets controller for product callback
     $app->router->post('/product', [ProductController::class, 'get']);
 

@@ -36,6 +36,7 @@ class Products
      */
     public function get()
     {
+        
         // fetch products from db
         $products = $this->db->select('products');
         // // encode products array to json

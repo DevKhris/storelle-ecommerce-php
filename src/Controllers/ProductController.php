@@ -17,23 +17,31 @@ class ProductController
      *
      * @return view render view
      */
-    public static function index()
+    public static function index(Request $req)
     {
-        // render view from router for product
         return Application::$app->router->view('product');
     }
 
     /**
      * Get's the requested product and return it
      *
-     * @return json returns product
+     * @return $product returns product
      */
-    public static function get()
+    public static function get(Request $req)
     {
-        $productId = $_GET['id'];
-        // get product by id and store in var
         $product = new Product();
-        // return product
-        return $product->get($productId);
+        return $product->get($req->params['id']);
     }
+
+    /**
+     * Index function
+     *
+     * @return view render view
+     */
+    public static function show()
+    {
+        // render view from router for product
+        return Application::$app->router->view('product');
+    }
+
 }
