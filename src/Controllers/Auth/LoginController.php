@@ -11,9 +11,9 @@ class LoginController
     /**
      * Index
      *
-     * @param Request $req [request]
+     * @param Request $req request
      *
-     * @return [view]       [renders login]
+     * @return view       
      */
     public static function index(Request $req)
     {
@@ -22,11 +22,11 @@ class LoginController
             return 'Logged in succesfully';
         }
         // renders the login view and returns it
-        return Application::$app->router->view('login');
+        return Application::$app->router->view('auth.login');
     }
 
     /**
-     * handler for validate user session
+     * Validate user
      *
      * @return void
      */

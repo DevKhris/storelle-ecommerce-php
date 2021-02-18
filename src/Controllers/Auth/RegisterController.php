@@ -18,12 +18,8 @@ class RegisterController
 {
     public $auth;
 
-    public function __construct()
-    {
-        return $this;
-    }
     /**
-     * [register callback]
+     * Index function
      *
      * @param Request $req [request]
      *
@@ -34,13 +30,13 @@ class RegisterController
         if ($req->onPost()) {
             return 'Register succesfully';
         }
-        return Application::$app->router->view('register');
+        return Application::$app->router->view('auth.register');
     }
 
     /**
-     * [callback handler for handling user register]
+     * User register
      *
-     * @return [string] [validation]
+     * @return 
      */
     public static function register()
     {

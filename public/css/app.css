@@ -4,6 +4,10 @@ html, body {
 	font-family: 'Abel', sans-serif;
 	font-family: 'Noto Sans SC', sans-serif;
 }
+
+body {
+	margin-top: 100px;
+}
 footer {
 	margin-top: 150px;
 	display: block;
@@ -17,13 +21,15 @@ footer {
 }
 .featured {
 	font-size: 1.6rem;
-	color: #fff;
-	text-shadow: 2px 2px #333;
+	color: #f9f9f9;
 	display: flex;
 	flex-direction: column;
-	background-image: url(https://picsum.photos/1400/500);
+	background-color: rgba(31, 31, 31, 0.548);
+	background-image: url('../../images/banners/main.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
+	object-position: center;
+	object-fit: contain;
 	height: 480px;
 	align-items: center;
 	justify-content: center;

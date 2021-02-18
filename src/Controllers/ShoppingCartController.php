@@ -20,7 +20,7 @@ class ShoppingCartController
     public static function index()
     {
         // render view from router for shopping cart
-        return Application::$app->router->view('shopping-cart');
+        return Application::$app->router->view('shopping-cart.index');
     }
 
     /**
