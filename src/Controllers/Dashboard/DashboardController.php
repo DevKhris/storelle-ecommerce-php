@@ -15,7 +15,7 @@ class DashboardController
      */
     public static function index()
     {
-        return Application::$app->router->view('dashboard');
+        return Application::$app->router->view('user.dashboard.index');
     }
 
     /**

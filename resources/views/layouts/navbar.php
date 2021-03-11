@@ -1,9 +1,9 @@
-<nav class="navbar navbar-expand-sm navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-sm navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
             <img src="/images/logo-min.png" alt="Storelle" class="d-inline-block align-top" width="132" height="72">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
             aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle Navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -16,6 +16,9 @@
                         Home
                     </a>
                 </li>
+                <div class="nav-item mt-2 d-sm-inline d-none">
+                    <p class="text-warning"> | </p>
+                </div>
                 <li class="nav-item">
                     <p class="nav-text text-warning my-2">|</p>
                 </li>
@@ -25,15 +28,24 @@
                         Products
                     </a>
                 </li>
+<<<<<<< HEAD
                 <li class="nav-item">
                     <p class="nav-text text-warning my-2">|</p>
                 </li>
+=======
+                <div class="nav-item mt-2 d-sm-inline d-none">
+                    <p class="text-warning"> | </p>
+                </div>
+>>>>>>> 740271422a62dbe7959ac68ebbebd9c15ba3d9a9
                 <li class="nav-item">
                     <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/about' ? 'active' : '' ?>" href="/about">
                         <i class="fa fa-info-circle"></i>
                         About Us
                     </a>
                 </li>
+                <div class="nav-item mt-2 d-sm-inline d-none">
+                    <p class="text-warning"> | </p>
+                </div>
                 <li class="nav-item">
                     <p class="nav-text text-warning my-2">|</p>
                 </li>
@@ -47,6 +59,7 @@
 
             <div class="dropdown" id="topbarNavDropdown">
                 <ul class="navbar-nav ml-auto">
+                    <?php if ($_SESSION['auth']) {?>
                     <li class="nav-item">
                         <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/shopping-cart' ? 'active' : '' ?>"
                             href="/shopping-cart">
@@ -54,8 +67,17 @@
                             Cart
                         </a>
                     </li>
+<<<<<<< HEAD
                     <?php if (isset($_SESSION['auth'])) { ?>
                     <li class="nav-item dropdown-right">
+=======
+                    <div class="nav-item mt-2 d-sm-inline d-none">
+                        <p class="text-warning"> | </p>
+                    </div>
+                    <?php } ?>
+                    <?php if (isset($_SESSION['auth'])) {?>
+                    <li class="nav-item dropdown">
+>>>>>>> 740271422a62dbe7959ac68ebbebd9c15ba3d9a9
                         <a class="nav-link  <?= $_SERVER['REQUEST_URI'] == '/dashboard' ? 'active' : '' ?> dropdown-toggle"
                             href="#" id="topbarNavDropdown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -80,12 +102,14 @@
                             </li>
                             <?php if ($_SESSION['auth']) { ?>
                             <div class="dropdown-divider"></div>
-                            <li class="dropdown-item">
+                            <li>
                                 <form action="/logout" method="POST">
                                     <div class="form-group">
-                                        <input class="border-0" type="submit" value="Logout">
-                                        <i class="fa fa-power-off">
-                                        </i>
+                                        <button class="dropdown-item border-0" type="submit">
+                                            <i class="fa fa-power-off">
+                                            </i>
+                                            Logout
+                                        </button>
                                     </div>
                                 </form>
                             </li>

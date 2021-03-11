@@ -60,19 +60,23 @@ final class ShoppingCart implements ShoppingCartInterface
         $userId = $data['userId'];
         $productId = $data['productId'];
         $name = $data['productName'];
-        $price = $data['productPrice'];
+        $price = filter_var($data['productPrice'], FILTER_SANITIZE_URL);
         $quantity = $data['productQuantity'];
-        $product = "'$userId', '$productId', '$name', '$quantity', '$price'";
+        $image = $data['productImage'];
+        $product = "'$userId', '$productId', '$name', '$quantity', '$price', '$image'";
         
         // Query to insert the current product into the shopping cart
-        
-        $result = $this->db->insert("shoppingcart", "userId, productId, name, quantity, price", $product);
+        $result = $this->db->insert(
+            "shoppingcart",
+            "userId, productId, name, quantity, price, image", 
+            $product
+        );
        
         if ($result) {
             // returns success if item was inserted into db
             echo Alerts::shopping_cart_add_success($name);
         } else {
-            dump($result);
+            
           // returns error if can't insert item
             echo Alerts::shopping_cart_add_error($name);
         }

@@ -2,7 +2,7 @@
     <div class="col-sm-4">
         <img src="images/logo-min.png" alt="" class="mx-3 img-fluid" width="356">
         <p class="text-center pb-5">&copy;
-            <a class="text-decoration-none copyright" href="index.php">
+            <a class="text-decoration-none copyright" href="/">
                 Storelle
             </a>
             <?= date('Y'); ?>
