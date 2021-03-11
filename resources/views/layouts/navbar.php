@@ -20,17 +20,14 @@
                     <p class="text-warning"> | </p>
                 </div>
                 <li class="nav-item">
-                    <p class="nav-text text-warning my-2">|</p>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/products' ? 'active' : '' ?>" href="/products">
                         <i class="fa fa-shopping-bag"></i>
                         Products
                     </a>
                 </li>
-                <li class="nav-item">
-                    <p class="nav-text text-warning my-2">|</p>
-                </li>
+                <div class="nav-item mt-2 d-sm-inline d-none">
+                    <p class="text-warning"> | </p>
+                </div>
                 <li class="nav-item">
                     <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/about' ? 'active' : '' ?>" href="/about">
                         <i class="fa fa-info-circle"></i>
@@ -41,9 +38,6 @@
                     <p class="text-warning"> | </p>
                 </div>
                 <li class="nav-item">
-                    <p class="nav-text text-warning my-2">|</p>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/contact' ? 'active' : '' ?>" href="/contact">
                         <i class="fa fa-address-card"></i>
                         Contact
@@ -53,7 +47,7 @@
 
             <div class="dropdown" id="topbarNavDropdown">
                 <ul class="navbar-nav ml-auto">
-                    <?php if ($_SESSION['auth']) {?>
+                    <?php if ($_SESSION['auth']) { ?>
                     <li class="nav-item">
                         <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/shopping-cart' ? 'active' : '' ?>"
                             href="/shopping-cart">
@@ -61,6 +55,7 @@
                             Cart
                         </a>
                     </li>
+                    <?php } ?>
                     <?php if (isset($_SESSION['auth'])) { ?>
                     <li class="nav-item dropdown-right">
                         <a class="nav-link  <?= $_SERVER['REQUEST_URI'] == '/dashboard' ? 'active' : '' ?> dropdown-toggle"
