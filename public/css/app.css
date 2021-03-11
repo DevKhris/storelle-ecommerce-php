@@ -19,16 +19,11 @@ footer {
 }
 .featured {
 	font-size: 1.6rem;
-<<<<<<< HEAD:public/css/styles.min.css
 	color: #fff;
 	text-shadow: 2px 2px #333;
 	display: flex;
 	flex-direction: column;
 	background-image: url(../images/background.jpg);
-=======
-	color: #f9f9f9;
-	background-image: url('../../images/banners/main.jpg');
->>>>>>> 740271422a62dbe7959ac68ebbebd9c15ba3d9a9:public/css/app.css
 	background-repeat: no-repeat;
 	background-size: cover;
 	object-position: center;
@@ -126,7 +121,6 @@ a.checked:hover {
 }
 
 /**  Reviews classes */
-
 .reviews .overall_rating .num {
     font-size: 30px;
     font-weight: bold;

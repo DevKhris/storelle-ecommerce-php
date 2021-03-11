@@ -103,63 +103,6 @@ function toggleReviewBox() {
 }
 
 /**
-<<<<<<< HEAD
-=======
- * Fetch product by Id
- * @return json product
- */
-function requestProduct() {
-  // get id from attribute
-  let id = $(this).attr("id");
-  $.ajax({
-    url: "product".id,
-    type: "POST",
-    data: {
-      id: id,
-    },
-    dataType: "json",
-    success: function (product) {
-      // render product to view
-      let stars = '<i class="fa fa-star stars"></i>';
-      let productImg = `
-        <a class="text-decoration-none" href="${product.img}" data-lightbox="product" id="productImage">
-          <img
-            class="img-thumbnail shadow-sm shadow-lg"
-            src="${product.img}" 
-            alt="${product.name}"
-            width=512 
-            height=512     
-          >
-          <p class="text-muted text-center" >${product.name}</p>
-        </a>
-      `;
-      $("#productImg").html(productImg);
-      let productInfo = `
-            <div>
-              <h1 class="text-monospace mt-3" id="productName">
-                ${product.name}
-              </h1>
-              
-              <h3 class="text-muted" id="productPrice">
-                 <i class="fa fa-dollar"></i> ${product.price}
-              </h3>
-              <p class="reviews num" id="stars">
-                ${stars}
-                ${product.rating} / 5 
-              </p>
-            </div>
-            `;
-      $("#productInfo").html(productInfo);
-      // parse url param id and store in var
-      id = parseUrlParams("id");
-      // renders the reviews
-      requestReviews(id);
-    },
-  });
-}
-
-/**
->>>>>>> 740271422a62dbe7959ac68ebbebd9c15ba3d9a9
  * Add product to shopping cart request
  * @param array data from product to add
  */
