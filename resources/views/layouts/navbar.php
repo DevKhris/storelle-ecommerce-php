@@ -28,15 +28,9 @@
                         Products
                     </a>
                 </li>
-<<<<<<< HEAD
                 <li class="nav-item">
                     <p class="nav-text text-warning my-2">|</p>
                 </li>
-=======
-                <div class="nav-item mt-2 d-sm-inline d-none">
-                    <p class="text-warning"> | </p>
-                </div>
->>>>>>> 740271422a62dbe7959ac68ebbebd9c15ba3d9a9
                 <li class="nav-item">
                     <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/about' ? 'active' : '' ?>" href="/about">
                         <i class="fa fa-info-circle"></i>
@@ -67,17 +61,8 @@
                             Cart
                         </a>
                     </li>
-<<<<<<< HEAD
                     <?php if (isset($_SESSION['auth'])) { ?>
                     <li class="nav-item dropdown-right">
-=======
-                    <div class="nav-item mt-2 d-sm-inline d-none">
-                        <p class="text-warning"> | </p>
-                    </div>
-                    <?php } ?>
-                    <?php if (isset($_SESSION['auth'])) {?>
-                    <li class="nav-item dropdown">
->>>>>>> 740271422a62dbe7959ac68ebbebd9c15ba3d9a9
                         <a class="nav-link  <?= $_SERVER['REQUEST_URI'] == '/dashboard' ? 'active' : '' ?> dropdown-toggle"
                             href="#" id="topbarNavDropdown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">

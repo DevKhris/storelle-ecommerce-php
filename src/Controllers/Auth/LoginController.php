@@ -10,22 +10,12 @@ class LoginController extends Controller
     /**
      * Index
      *
-<<<<<<< HEAD
      * @return view
-=======
-     * @param Request $req request
-     *
-     * @return view       
->>>>>>> 740271422a62dbe7959ac68ebbebd9c15ba3d9a9
      */
     public function index()
     {
         // renders the login view and returns it
-<<<<<<< HEAD
         $this->view('login');
-=======
-        return Application::$app->router->view('auth.login');
->>>>>>> 740271422a62dbe7959ac68ebbebd9c15ba3d9a9
     }
 
     /**
