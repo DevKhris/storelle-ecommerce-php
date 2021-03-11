@@ -1,8 +1,6 @@
 /*** Base Styles **/
-
-html, body {
-	font-family: 'Abel', sans-serif;
-	font-family: 'Noto Sans SC', sans-serif;
+body {
+	font-family: 'Noto Sans SC','Abel', sans-serif !important;
 }
 footer {
 	margin-top: 150px;
@@ -13,7 +11,7 @@ footer {
 }
 
 .btn {
-	border-radius: 0rem !important;
+	border-radius: 1rem !important;
 }
 .featured {
 	font-size: 1.6rem;
@@ -21,7 +19,7 @@ footer {
 	text-shadow: 2px 2px #333;
 	display: flex;
 	flex-direction: column;
-	background-image: url(https://picsum.photos/1400/500);
+	background-image: url(../images/background.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	height: 480px;
@@ -135,6 +133,11 @@ a.checked:hover {
 
 }
 
+i.stars-grey {
+	    letter-spacing: 3px;
+    font-size: 24px;
+    color: #292929 !important;
+}
 i.stars {
 	    letter-spacing: 3px;
     font-size: 24px;

@@ -2,22 +2,21 @@
 
 namespace App\Controllers;
 
-use App\Application;
-use App\Core\Request;
+use App\Core\Controller;
 
 /**
  *
  */
-class AboutController
+class AboutController extends Controller
 {
     /**
      * Index function
      *
      * @return view render view
      */
-    public static function index()
+    public function index()
     {
         // render view from router for about
-        return Application::$app->router->view('about');
+        return $this->view('about');
     }
 }

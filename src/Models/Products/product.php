@@ -37,7 +37,7 @@ final class Product implements ProductInterface
      *
      * @return json
      */
-    public function get($productId)
+    public function get($productId, $json = true)
     {
         // fetch products from db
         $product = $this->db->select('products', "id=$productId");
@@ -52,10 +52,14 @@ final class Product implements ProductInterface
         // put values to array
         $product = array_replace($product[0], array('rating' => $rating));
 
-        // encode product array to json
-        $json = json_encode($product);
+        if ($json) {
+            // encode product array to json
+            $json = json_encode($product);
+            // Returns the product json
+            return $json;
+        }
 
-        // Returns the product json
-        return $json;
+        $result = $product;
+        return $result;
     }
 }

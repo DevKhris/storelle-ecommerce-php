@@ -10,7 +10,7 @@
             <div id="review-alerts"></div>
             <form class="form-group" id="review-form">
                 <label for="reviewRating">Rate this product</label>
-                <input type="hidden" name="" value=<?= $id = $_REQUEST['id']; ?> id="productId">
+                <input type="hidden" name="" value=<?= $id ?> id="productId">
                 <input class="form-control" type="number" min=1 max=5 name="" id="reviewRating" required="required">
                 <label for="reviewContent">Write your review:</label>
                 <textarea class="form-control" name="" id="reviewContent" cols="30" rows="10"

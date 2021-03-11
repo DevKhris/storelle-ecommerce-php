@@ -15,15 +15,16 @@
     <!-- Lightbox -->
     <link rel="stylesheet" href="/css/lightbox.min.css">
     <!-- Google Fonts -->
-    <link rel="preload"
+    <link
         href="https://fonts.googleapis.com/css2?family=Abel&family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet">
+
 </head>
 
 <body>
+
     <header>
         <?= $this->render('layouts.navbar'); ?>
-
     </header>
     <main class="container-fluid">
         {{ display }}

@@ -6,20 +6,18 @@
 
 namespace App\Controllers;
 
-use App\Application;
-use App\Core\Request;
-use App\Core\User;
+use App\Core\Controller;
 
-class HomeController
+class HomeController extends Controller
 {
     /**
      * Index function
      *
      * @return view render view
      */
-    public static function index()
+    public function index()
     {
         // render view from router for home
-        return Application::$app->router->view('home');
+        return $this->view('home');
     }
 }

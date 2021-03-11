@@ -2,27 +2,20 @@
 
 namespace App\Controllers\Auth;
 
-use App\Application;
 use App\Core\Auth;
-use App\Core\Request;
+use App\Core\Controller;
 
-class LoginController
+class LoginController extends Controller
 {
     /**
      * Index
      *
-     * @param Request $req [request]
-     *
-     * @return [view]       [renders login]
+     * @return view
      */
-    public static function index(Request $req)
+    public function index()
     {
-        // if request was post then
-        if ($req->onPost()) {
-            return 'Logged in succesfully';
-        }
         // renders the login view and returns it
-        return Application::$app->router->view('login');
+        $this->view('login');
     }
 
     /**
@@ -30,7 +23,7 @@ class LoginController
      *
      * @return void
      */
-    public static function login()
+    public function login()
     {
         $auth = new Auth;
         return $auth->validate($_POST['username'], $_POST['password']);

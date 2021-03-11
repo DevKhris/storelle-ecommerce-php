@@ -44,7 +44,7 @@ class Auth
             // verifies if passwords match
             if (password_verify($password, $result[0]['password'])) {
                 // initialize new user session
-                var_dump($result);
+
                 $user = new User($result[0]['username'], $result[0]['balance']);
                 // generate session id
                 session_regenerate_id(true);

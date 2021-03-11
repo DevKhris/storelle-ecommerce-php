@@ -1,21 +1,24 @@
 {
-    "name": "devkhris/storelle",
-    "description": "Ecommerce",
-    "type": "project",
-    "authors": [
-        {
-            "name": "Christian Hernandez",
-            "email": "chrissh443@gmail.com"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "App\\": "src/",
-            "App\\Config\\": "config/"
-        }
-    },
-    "require": {
-      "ext-mysqli": "*",
-        "maximebf/debugbar": "^1.16"
+  "name": "devkhris/storelle",
+  "description": "Ecommerce",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Christian Hernandez",
+      "email": "chrissh443@gmail.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "./src/",
+      "App\\Controllers\\": "./src/Controllers",
+      "App\\Middlewares\\": "./src/Middlewares",
+      "App\\Config\\": "./config/"
+    }
+  },
+  "require": {
+    "ext-mysqli": "*",
+    "maximebf/debugbar": "^1.16",
+    "bramus/router": "^1.5"
+  }
 }

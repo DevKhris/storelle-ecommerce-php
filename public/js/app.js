@@ -12,11 +12,6 @@ $(function () {
       // renders the products
       requestProducts();
       break;
-    case "/product":
-      // render one product
-      requestProduct();
-      requestReviews(parseUrlParams("id"));
-      break;
     case "/shopping-cart":
       // renders the shopping cart
       requestCart();
@@ -48,18 +43,13 @@ $(function () {
   $("#review-form").submit(function (e) {
     e.preventDefault();
     const reviewData = {
-      productId: $("#productId").val(),
+      id: $("#productId").val(),
       feedback: $("#reviewContent").val(),
       rating: $("#reviewRating").val(),
     };
     // encode data to json
-    let jsonData = JSON.stringify(reviewData);
-    postReview(jsonData);
+    postReview(reviewData);
     $("#review-form").trigger("reset");
-    // parse id to var from url
-    id = parseUrlParams("id");
-    // request reviews
-    requestReviews(id);
   });
 
   $(document).on("click", ".cartItem-delete", function () {
@@ -107,53 +97,6 @@ function toggleReviewBox() {
   } else {
     $("#review-form").show();
   }
-}
-
-/**
- * Fetch product by Id
- * @return json product
- */
-function requestProduct() {
-  // get id from attribute
-  let id = $(this).attr("id");
-  $.ajax({
-    url: "product".id,
-    type: "POST",
-    data: {
-      id: id,
-    },
-    dataType: "json",
-    success: function (product) {
-      // render product to view
-      let stars = '<i class="fa fa-star stars"></i>';
-      let productImg = `
-        <a class="text-decoration-none" href="${product.img}" data-lightbox="product">
-          <img class="img-thumbnail shadow-sm shadow-lg" src="${product.img}" alt="${product.name}" width=512 height=512>
-          <p class="text-muted text-center" >${product.name}</p>
-        </a>
-      `;
-      $("#productImg").html(productImg);
-      let productInfo = `
-            <div>
-              <h1 class="text-monospace mt-3" id="productName">
-                ${product.name}
-              </h1>
-              <h3 class="text-muted" id="productPrice">
-                <i class="fa fa-dollar"></i> ${product.price}
-              </h3>
-              <p class="reviews num" id="stars">
-                ${stars}
-                ${product.rating} / 5 
-              </p>
-            </div>
-            `;
-      $("#productInfo").html(productInfo);
-      // parse url param id and store in var
-      id = parseUrlParams("id");
-      // renders the reviews
-      requestReviews(id);
-    },
-  });
 }
 
 /**
@@ -205,7 +148,7 @@ function requestProducts() {
         template += `
                 <div class="col-sm-3">
                 <div class="card-deck">
-                    <a class="text-decoration-none product-link font-weight-bold" href="product?id=${product.id}">
+                    <a class="text-decoration-none product-link font-weight-bold" href="product/${product.id}">
                         <div class="card shadow-sm shadow-lg product text-center my-2">
                             <img src="${product.img}" class="card-img-top align-self-center img-fluid" width=360 height=240 alt="${product.name}">
                             <div class="card-body">
@@ -214,7 +157,7 @@ function requestProducts() {
                                 <span class="card-text">$${product.price}</span>
                             </div>
                             <div class="card-footer">
-                                <button href="products?id=${product.id}" class="btn btn-product">
+                                <button href="product/${product.id}" class="btn btn-product">
                                  <i class="fa fa-shopping-cart"></i> View Product
                                 </button>
                             </div>
@@ -235,65 +178,24 @@ function requestProducts() {
  * @return string           alert
  */
 function postReview(reviewData) {
+  data = JSON.stringify(reviewData);
   $.ajax({
-    url: "/publish",
+    url: "/reviews/" + reviewData.id,
     type: "POST",
     data: {
-      review: reviewData,
+      review: data,
     },
     success: function (res) {
+      console.log(res);
       $("#review-alerts").html(res);
     },
   });
 }
 
 /**
- * Request all reviews for product by id
- * @param  int id product id
+ * Request items from cart
  *
- * @return string view
- */
-function requestReviews(id) {
-  $.ajax({
-    url: "/reviews",
-    type: "POST",
-    data: {
-      id: id,
-    },
-    success: function (json) {
-      let reviews = JSON.parse(json);
-      let template = "";
-      reviews.forEach((review) => {
-        template += `
-                    <div class="reviews card">
-                    <div class="card-header">
-                        <h4 class="mt-3 mx-auto">
-                            ${review.username}
-                        </h4>
-                        <h5>
-                            <div id=stars>
-                            <i class="fa fa-star stars"></i>
-                             ${review.rating}
-                            </div>
-                           
-                        </h5>
-                    </div>
-                    <div class="card-body">
-                        <p class="text-muted">
-                        ${review.feedback}
-                        </p>
-                    </div>
-                </div>
-                `;
-      });
-      $("#reviews-box").html(template);
-    },
-  });
-}
-
-/**
- * [requestCart request items from cart]
- * @return {[array]} [cart items]
+ * @return array cart items
  */
 function requestCart() {
   $.ajax({

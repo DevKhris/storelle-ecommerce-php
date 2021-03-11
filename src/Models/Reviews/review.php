@@ -45,7 +45,7 @@ final class Review implements ReviewInterface
     {
         // Query to insert values from review into db and store the result
         $result = $this->db->insert('reviews', 'productId, username, feedback, rating', "$productId, '$username', '$feedback', $rating");
-         // checks if result has value
+        // checks if result has value
         if (!$result) {
             echo Alerts::review_submit_error();
         } else {
@@ -56,8 +56,24 @@ final class Review implements ReviewInterface
     /**
      * Get review from database by product id
      */
-    public function get($productId)
+    /**
+     * Get reviews from product by id
+     *
+     * @param int $id product id
+     *
+     * @return json reviews json
+     */
+    public function get($id, $json = true)
     {
-        // To implement
+        // save query to reviews array
+        $reviews = $this->db->select('reviews', "productId = $id");
+        // encode reviews array to json
+        if ($json) {
+            $json = json_encode($reviews);
+            // Returns the reviews json
+            return $json;
+        }
+        $result = $reviews;
+        return $result;
     }
 }

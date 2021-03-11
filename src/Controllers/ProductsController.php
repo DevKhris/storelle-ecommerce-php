@@ -3,7 +3,9 @@
 namespace App\Controllers;
 
 use App\Application;
+use App\Core\Controller;
 use App\Models\Products\Products;
+
 /**
  * Class ProductsController for request products
  *
@@ -11,17 +13,17 @@ use App\Models\Products\Products;
  *
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
-class ProductsController
+class ProductsController extends Controller
 {
     /**
      * Render view
      *
      * @return view renders view
      */
-    public static function index()
+    public function index()
     {
         // render view from router for products
-        return Application::$app->router->view('products.index');
+        return $this->view('products.index');
     }
 
     /**
@@ -29,11 +31,11 @@ class ProductsController
      *
      * @return array $products
      */
-    public static function get()
+    public function show()
     {
         // declare a new products object
         $products = new Products();
         // return products
-        return $products->get();
+        echo $products->get();
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App;
 
-use App\Core\Router;
 use App\Core\Request;
 use App\Core\Response;
+use Bramus\Router\Router;
 
 /**
  * Application Class
@@ -29,8 +29,7 @@ class Application
         self::$path = $path;
         $this->req = new Request();
         $this->res = new Response();
-        $this->router = new Router($this->req, $this->res);
-        
+        $this->router = new Router;
         return $this;
     }
 
@@ -41,6 +40,6 @@ class Application
      */
     public function execute()
     {
-        echo $this->router->resolve();
+        return $this->router->run();
     }
 }
