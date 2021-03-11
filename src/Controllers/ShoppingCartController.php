@@ -2,14 +2,14 @@
 
 namespace App\Controllers;
 
-use App\Application;
+use App\Core\Controller;
 use App\Core\User;
 use App\Models\Cart\ShoppingCart;
 
 /**
  * Shopping Cart Controller
  */
-class ShoppingCartController
+class ShoppingCartController extends Controller
 {
 
     /**
@@ -17,10 +17,10 @@ class ShoppingCartController
      *
      * @return view render view
      */
-    public static function index()
+    public function index()
     {
         // render view from router for shopping cart
-        return Application::$app->router->view('shopping-cart.index');
+        return $this->view('shopping-cart.index');
     }
 
     /**
@@ -28,7 +28,7 @@ class ShoppingCartController
      *
      * @return array json
      */
-    public static function get()
+    public function show()
     {
         if (isset($_SESSION['id'])) {
             // get cart from user id

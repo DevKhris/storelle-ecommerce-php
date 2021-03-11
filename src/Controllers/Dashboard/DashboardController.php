@@ -2,20 +2,20 @@
 
 namespace App\Controllers\Dashboard;
 
-use App\Application;
+use App\Core\Controller;
 use App\Core\Request;
 use App\Core\User;
 
-class DashboardController
+class DashboardController extends Controller
 {
     /**
      * Index function
      *
      * @return void
      */
-    public static function index()
+    public function index()
     {
-        return Application::$app->router->view('user.dashboard.index');
+        $this->view('user.dashboard.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class DashboardController
      *
      * @return array request
      */
-    public static function get()
+    public function show()
     {
         // get balance from current user in session and store
         $res = $_SESSION['balance'];

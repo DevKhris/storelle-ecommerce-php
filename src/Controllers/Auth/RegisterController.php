@@ -10,27 +10,24 @@
 
 namespace App\Controllers\Auth;
 
-use App\Application;
 use App\Core\Auth;
+use App\Core\Controller;
 use App\Core\Request;
 
-class RegisterController
+class RegisterController extends Controller
 {
     public $auth;
 
     /**
      * Index function
      *
-     * @param Request $req [request]
+     * @param Request $req request
      *
-     * @return [view]       [renders register]
+     * @return view    
      */
-    public static function index(Request $req)
+    public function index(Request $req)
     {
-        if ($req->onPost()) {
-            return 'Register succesfully';
-        }
-        return Application::$app->router->view('auth.register');
+        $this->view('auth.register');
     }
 
     /**
@@ -38,7 +35,7 @@ class RegisterController
      *
      * @return 
      */
-    public static function register()
+    public function register()
     {
         $auth = new Auth;
         $auth->register($_POST['username'], $_POST['password']);

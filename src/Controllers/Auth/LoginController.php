@@ -19,7 +19,7 @@ class LoginController extends Controller
     }
 
     /**
-     * Validate user
+     * handler for validate user session
      *
      * @return void
      */
