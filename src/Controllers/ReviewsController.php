@@ -3,8 +3,8 @@
 namespace App\Controllers;
 
 use App\Application;
-use App\Core\Controller;
 use App\Core\Request;
+use App\Core\Controller;
 use App\Models\Reviews\Review;
 
 
@@ -18,11 +18,11 @@ class ReviewsController extends Controller
      *
      * @return void
      */
-    public static function store($id)
+    public function store($id)
     {
         dump($this->request);
         if (!isset($_REQUEST['review'])) {
-            throw new PDOException('Can\'t find request');
+            throw new \PDOException('Can\'t find request');
         }
 
         // decode json from request
