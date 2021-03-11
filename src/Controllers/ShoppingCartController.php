@@ -36,7 +36,7 @@ class ShoppingCartController extends Controller
             // return shopping cart
             $shoppingCart = new ShoppingCart($id);
             // return cart
-            return $shoppingCart->cart;
+            echo $shoppingCart->cart;
         }
     }
 
@@ -45,7 +45,7 @@ class ShoppingCartController extends Controller
      *
      * @return void
      */
-    public static function add()
+    public static function store()
     {
         // decode json from request
         $data = json_decode($_REQUEST['product'], true);
@@ -58,7 +58,7 @@ class ShoppingCartController extends Controller
         $shoppingCart->add($data);
     }
 
-    public static function remove()
+    public static function destroy()
     {
         $userId = $_SESSION['id'];
 

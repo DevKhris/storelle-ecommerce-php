@@ -1,10 +1,12 @@
 <div class="row" id="productDetails" onload="requestProduct()">
     <div class="col-sm-2">
     </div>
-    <div class="col-sm-3" id="productImg">
+
+    <div class="col-sm-3">
+
         <a class="text-decoration-none" href="/<?= $product['img'] ?>" data-lightbox="product">
             <img class="img-thumbnail shadow-sm shadow-lg" src="/<?= $product['img'] ?>" alt="<?= $product['name'] ?>"
-                width=512 height=512>
+                width=512 height=512 id="productImg">
             <p class="text-muted text-center">
                 <?= $product['name'] ?>
             </p>
@@ -14,6 +16,7 @@
         <div id="alerts"></div>
         <div id="productInfo">
             <div>
+                <span id="productId" hidden aria-hidden="true"> <?= $product['id'] ?></span>
                 <h1 class="text-monospace mt-3" id="productName">
                     <?= $product['name'] ?>
                 </h1>

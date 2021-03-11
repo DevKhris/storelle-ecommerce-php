@@ -57,6 +57,7 @@ final class ShoppingCart implements ShoppingCartInterface
      */
     public function add($data)
     {
+        dump($data);
         $userId = $data['userId'];
         $productId = $data['productId'];
         $name = $data['productName'];
@@ -64,20 +65,20 @@ final class ShoppingCart implements ShoppingCartInterface
         $quantity = $data['productQuantity'];
         $image = $data['productImage'];
         $product = "'$userId', '$productId', '$name', '$quantity', '$price', '$image'";
-        
+
         // Query to insert the current product into the shopping cart
         $result = $this->db->insert(
             "shoppingcart",
-            "userId, productId, name, quantity, price, image", 
+            "userId, productId, name, quantity, price, image",
             $product
         );
-       
+
         if ($result) {
             // returns success if item was inserted into db
             echo Alerts::shopping_cart_add_success($name);
         } else {
-            
-          // returns error if can't insert item
+
+            // returns error if can't insert item
             echo Alerts::shopping_cart_add_error($name);
         }
     }
@@ -98,7 +99,7 @@ final class ShoppingCart implements ShoppingCartInterface
             // returns error if can't remove item
             echo Alerts::shopping_cart_remove_error();
         } else {
-             // returns success if item was removed from db
+            // returns success if item was removed from db
             echo Alerts::shopping_cart_remove_success();
         }
     }

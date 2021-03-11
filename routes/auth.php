@@ -43,6 +43,6 @@ $app->router->post('/shopping-cart/remove', '\App\Controllers\ShoppingCartContro
 $app->router->post('/checkout', '\App\Controllers\ShoppingCartController@checkout');
 
 // Sets controller for dashboard callback functions
-$app->router->get('/dashboard', '\App\Controllers\DashboardController@index');
-$app->router->post('/dashboard', '\App\Controllers\DashboardController@show');
-$app->router->post('/logout', '\App\Controllers\DashboardController@logout');
+$app->router->get('/dashboard', '\App\Controllers\Dashboard\DashboardController@index');
+$app->router->post('/dashboard', '\App\Controllers\Dashboard\DashboardController@show');
+$app->router->post('/logout', '\App\Controllers\Dashboard\DashboardController@logout');

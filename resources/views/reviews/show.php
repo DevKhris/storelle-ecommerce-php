@@ -1,3 +1,5 @@
+<?php if ($reviews != []) { ?>
+
 <?php foreach ($reviews as $review) { ?>
 <div class="reviews card">
     <div class="card-header">
@@ -22,4 +24,6 @@
         </p>
     </div>
 </div>
+<?php } ?>
+
 <?php } ?>

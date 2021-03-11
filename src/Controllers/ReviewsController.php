@@ -20,7 +20,6 @@ class ReviewsController extends Controller
      */
     public function store($id)
     {
-        dump($this->request);
         if (!isset($_REQUEST['review'])) {
             throw new \PDOException('Can\'t find request');
         }
@@ -29,13 +28,12 @@ class ReviewsController extends Controller
         $data = json_decode($_REQUEST['review'], true);
 
         // assign vars values
-        $productId = $data['productId'];
+        $id = $data['id'];
         $username = $_SESSION['username'];
         $feedback = $data['feedback'];
         $rating = $data['rating'];
-
         // add review to db call
         $review = new Review();
-        $review->add($productId, $username, $feedback, $rating);
+        $review->add($id, $username, $feedback, $rating);
     }
 }

@@ -26,8 +26,8 @@ $(function () {
     e.preventDefault();
     // obtains product info and store in a array
     let productData = {
-      productImage: $("#productImage").children("img").attr("src"),
-      productId: parseUrlParams("id"),
+      productImage: $("#productImg").attr("src"),
+      productId: $("#productId").html(),
       productName: $("#productName").html(),
       productPrice: $("#productPrice")
         .html()
@@ -207,12 +207,10 @@ function requestCart() {
     success: function (data) {
       let currentBalance = getBalance();
       let cartItems = JSON.parse(data);
-
       let totalPrice = 0;
       let shippingCost = getShipping();
       let template = "";
       let pricing = "";
-      console.log(data);
       cartItems.forEach((cartItem) => {
         totalPrice += parseFloat(cartItem.price) * parseInt(cartItem.quantity);
         template += `

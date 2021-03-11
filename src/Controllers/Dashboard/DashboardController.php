@@ -3,8 +3,6 @@
 namespace App\Controllers\Dashboard;
 
 use App\Core\Controller;
-use App\Core\Request;
-use App\Core\User;
 
 class DashboardController extends Controller
 {
@@ -28,7 +26,7 @@ class DashboardController extends Controller
         // get balance from current user in session and store
         $res = $_SESSION['balance'];
         // return response
-        return $res;
+        echo $res;
     }
 
     /**
