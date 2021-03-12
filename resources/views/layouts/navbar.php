@@ -57,7 +57,7 @@
                     </li>
                     <?php } ?>
                     <?php if (isset($_SESSION['auth'])) { ?>
-                    <li class="nav-item dropdown-right">
+                    <li class="nav-item dropdown dropdown-right">
                         <a class="nav-link  <?= $_SERVER['REQUEST_URI'] == '/dashboard' ? 'active' : '' ?> dropdown-toggle"
                             href="#" id="topbarNavDropdown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">

@@ -15,7 +15,7 @@ class LoginController extends Controller
     public function index()
     {
         // renders the login view and returns it
-        $this->view('login');
+        $this->view('auth.login');
     }
 
     /**

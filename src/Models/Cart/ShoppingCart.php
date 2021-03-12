@@ -57,7 +57,7 @@ final class ShoppingCart implements ShoppingCartInterface
      */
     public function add($data)
     {
-        dump($data);
+
         $userId = $data['userId'];
         $productId = $data['productId'];
         $name = $data['productName'];

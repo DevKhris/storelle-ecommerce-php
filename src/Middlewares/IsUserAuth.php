@@ -5,11 +5,9 @@ namespace App\Middlewares;
 
 class IsUserAuth
 {
-    public function __construct()
+    public function run()
     {
-        if ($_SESSION['auth'] === true) {
-            return true;
-        } else {
+        if (!$_SESSION['auth']) {
             header("Location: /login");
             exit();
         }

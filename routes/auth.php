@@ -1,18 +1,5 @@
 <?php
 
-use App\Middlewares\IsUserAuth;
-
-$protectedRoutes = [
-    'products/.*',
-    'product/.*',
-    'shopping-cart/.*',
-    'dashboard/.*'
-];
-
-foreach ($protectedRoutes as $route) {
-    $app->router->before('GET|POST', $route, 'App\Middlewares\IsUserAuth@run');
-}
-
 // Routes login to view
 $app->router->get('/login', '\App\Controllers\Auth\LoginController@index');
 $app->router->post('/login', '\App\Controllers\Auth\LoginController@login');
@@ -20,6 +7,18 @@ $app->router->post('/login', '\App\Controllers\Auth\LoginController@login');
 // Routes register to view
 $app->router->get('/register', '\App\Controllers\Auth\RegisterController@index');
 $app->router->post('/register', '\App\Controllers\Auth\RegisterController@register');
+
+// Middlewares
+$app->router->before('GET|POST', '/product/.*', '\App\Middlewares\IsUserAuth@run');
+
+$app->router->before('GET|POST', '/shopping-cart', '\App\Middlewares\IsUserAuth@run');
+
+$app->router->before('GET|POST', '/shopping-cart/*', '\App\Middlewares\IsUserAuth@run');
+
+$app->router->before('GET|POST', '/dashboard', '\App\Middlewares\IsUserAuth@run');
+
+$app->router->before('GET|POST', '/dashboard/.*', '\App\Middlewares\IsUserAuth@run');
+
 
 // Routes products to view
 $app->router->get('/products', '\App\Controllers\ProductsController@index');
