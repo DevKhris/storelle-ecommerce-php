@@ -142,14 +142,23 @@ a.checked:hover {
 }
 
 i.stars-grey {
-	    letter-spacing: 3px;
+	letter-spacing: 3px;
     font-size: 24px;
     color: #292929 !important;
+	cursor: pointer;
+}
+
+i.stars-grey:hover {
+	letter-spacing: 3px;
+	font-size: 24px;
+	color: #F5A624 !important;
+	transition: .1 all linear;
 }
 i.stars {
-	    letter-spacing: 3px;
+	letter-spacing: 3px;
     font-size: 24px;
     color: #F5A624 !important;
+	cursor: pointer;
 }
 
 /*** Shopping Cart ***/

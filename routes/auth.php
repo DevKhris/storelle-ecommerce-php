@@ -1,5 +1,10 @@
 <?php
 
+// Auth Middlewares
+$app->router->before('GET|POST', '/login', '\App\Middlewares\IsUserSession@run');
+$app->router->before('GET|POST', '/register', '\App\Middlewares\IsUserSession@run');
+
+
 // Routes login to view
 $app->router->get('/login', '\App\Controllers\Auth\LoginController@index');
 $app->router->post('/login', '\App\Controllers\Auth\LoginController@login');

@@ -1,8 +1,12 @@
 <div class="container">
-    <h2 class="mt-3 pt-3">User Reviews</h2>
+    <h2 class="mt-3 pt-3">
+        <i class="fa fa-pencil"></i>
+        Post a Review
+    </h2>
     <hr>
     <div class="row">
-        <button type="submit" class="btn btn-dark" id="reviewBtn" onclick="toggleReviewBox()">Write Review</button>
+        <button type="submit" class="btn btn-dark" id="reviewBtn" onclick="toggleReviewBox()"><i class="fa fa-star"></i>
+            Write Review</button>
     </div>
     <br>
     <div class="row">

@@ -1,16 +1,29 @@
 # Storelle
----
-Storelle a MVC like proof of concept Ecommerce app build with PHP7, Javascript and AJAX
-In this system you can register and login getting a artificial balance of 100$ per account, remove/add product's to shopping cart, pay product's with 'pseudo' balance rate products and also write/read reviews
 
-*This repo takes small and legacy pieces of rubynight, is intended to be a mockup platform and no to be used in production and stuff.
+Storelle a proof of concept MVC Ecommerce App build with PHP, Javascript and AJAX
 
----
+## Features
 
-### Usage
+- Route middlewares for Auth/Session
+- Authetication, every accounts start with 100$ (artificial) per account
+- View Products and Images
+- Read/Write Reviews
+- Add/Remove product's to shopping cart and
+- Cart Checkout and Set shipping cost for checkout
 
-Clone the repository
+_This repo takes small and older pieces of RubyNight, is intended to be a test platform and should not be used in production._
 
-Import the SQL file to your DB
+## Usage
 
-Change database configuration details in .\src\Core\database.php
+- Clone the repository
+
+- Import the SQL file to your DB
+
+- Change database configuration details in .\src\Core\database.php
+
+Demo Account
+
+```
+username: admin
+password: admin
+```

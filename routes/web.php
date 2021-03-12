@@ -8,3 +8,8 @@ $app->router->get('/about', '\App\Controllers\AboutController@index');
 $app->router->get('/contact', '\App\Controllers\ContactController@index');
 // sets the controller for the current request
 $app->router->post('/contact', '\App\Controllers\ContactController@create');
+
+$app->router->set404(function () use ($app) {
+    header('HTTP/1.1 404 Not Found');
+    $app->view->view('partials.404');
+});

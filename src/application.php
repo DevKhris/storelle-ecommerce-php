@@ -4,6 +4,7 @@ namespace App;
 
 use App\Core\Request;
 use App\Core\Response;
+use App\Core\View;
 use Bramus\Router\Router;
 
 /**
@@ -30,6 +31,7 @@ class Application
         $this->req = new Request();
         $this->res = new Response();
         $this->router = new Router;
+        $this->view = new View;
         return $this;
     }
 

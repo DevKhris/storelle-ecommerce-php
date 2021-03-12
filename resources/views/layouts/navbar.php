@@ -57,7 +57,7 @@
                     </li>
                     <?php } ?>
                     <?php if (isset($_SESSION['auth'])) { ?>
-                    <li class="nav-item dropdown dropdown-right">
+                    <li class="nav-item dropdown ">
                         <a class="nav-link  <?= $_SERVER['REQUEST_URI'] == '/dashboard' ? 'active' : '' ?> dropdown-toggle"
                             href="#" id="topbarNavDropdown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -74,15 +74,16 @@
                                 }
                                 ?>
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="topbarNavDropdown">
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="topbarNavDropdown">
                             <li class="dropdown-item">
                                 <a class="dropdown-item" href="<?= !$_SESSION['auth'] ? 'login' : 'dashboard' ?>">
+                                    <i class=" <?= !$_SESSION['auth'] ? 'fa fa-sign-in' : 'fa fa-dashboard' ?>"></i>
                                     <?= !$_SESSION['auth'] ? 'Login' : 'Dashboard' ?>
                                 </a>
                             </li>
                             <?php if ($_SESSION['auth']) { ?>
                             <div class="dropdown-divider"></div>
-                            <li>
+                            <li class="dropdown-item">
                                 <form action="/logout" method="POST">
                                     <div class="form-group">
                                         <button class="dropdown-item border-0" type="submit">
@@ -95,7 +96,6 @@
                             </li>
                             <?php } ?>
                         </ul>
-
                     </li>
                     <?php } ?>
                 </ul>

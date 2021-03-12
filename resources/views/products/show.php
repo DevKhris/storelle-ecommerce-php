@@ -25,10 +25,14 @@
                 </h3>
                 <p class="reviews num" id="stars">
                     <?php for ($i = 0; $i < $product['rating']; $i++) { ?>
-                    <i class="fa fa-star stars"></i>
+                    <a class="text-decoration-none" href="#reviews-box">
+                        <i class="fa fa-star stars"></i>
+                    </a>
                     <?php } ?>
                     <?php for ($i = 0; $i < 5 - $product['rating']; $i++) { ?>
-                    <i class="fa fa-star stars-grey"></i>
+                    <a class="text-decoration-none" href="#reviews-box">
+                        <i class="fa fa-star stars-grey"></i>
+                    </a>
                     <?php } ?>
                 </p>
             </div>
@@ -53,7 +57,9 @@
     <div class="col-sm-3">
     </div>
     <div class="col-sm-6">
-        <h2>User Reviews</h2>
+        <h2>
+            <i class="fa fa-user-circle"></i> User Reviews
+        </h2>
         <hr>
         <div id="reviews-box">
             <?= $this->render('reviews.show', compact('reviews')); ?>

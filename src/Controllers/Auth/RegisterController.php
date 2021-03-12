@@ -12,7 +12,6 @@ namespace App\Controllers\Auth;
 
 use App\Core\Auth;
 use App\Core\Controller;
-use App\Core\Request;
 
 class RegisterController extends Controller
 {
@@ -21,11 +20,10 @@ class RegisterController extends Controller
     /**
      * Index function
      *
-     * @param Request $req request
      *
      * @return view    
      */
-    public function index(Request $req)
+    public function index()
     {
         $this->view('auth.register');
     }
