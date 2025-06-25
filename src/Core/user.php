@@ -19,16 +19,14 @@ final class User implements UserInterface
     public $username;
     public $balance;
     private Database $db;
-    
-    public function __construct($username,$balance)
+
+    public function __construct($username, $balance)
     {
         $this->db = new Database;
         $this->username = $username;
         $this->balance = $balance;
-
-        return $this;
     }
-    
+
     public function getUsername()
     {
         return $this->username;
@@ -45,9 +43,9 @@ final class User implements UserInterface
      *
      * @return void
      */
-    public function setBalance($balance, $id)
+    public function setBalance($balance, $id): string
     {
-        $result = $this->db->update('users', "balance = $balance", "id = $id");
+        $this->db->update('users', "balance = $balance", "id = $id");
 
         if (!empty($result)) {
             return Alerts::user_set_balance_success();
@@ -60,7 +58,7 @@ final class User implements UserInterface
      *
      * @return void
      */
-    public function getBalance()
+    public function getBalance(): bool|string
     {
         $id = $_SESSION['id'];
         $balance = $this->db->selectFrom('balance', 'users', "id = $id");

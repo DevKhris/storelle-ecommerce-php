@@ -4,28 +4,32 @@
  *	Front Controller
  *-------------------------------
  **/
+require __DIR__ . '/../vendor/autoload.php';
 
+use Whoops\Run;
+
+use Whoops\Handler\PrettyPageHandler;
 use App\Application;
-use DebugBar\StandardDebugBar;
 
-// start new session
 session_start();
 
-// require the psr-4 autoloader
-require_once '../vendor/autoload.php';
+$whoops = new Run;
+$whoops->writeToOutput(true);
+$whoops->pushHandler(new PrettyPageHandler);
+$whoops->register();
+
 // require config
-require_once '../src/Core/config.php';
+$config = require __DIR__ . '/../src/Core/config.php';
 
 //if no session exist set auth to false
 if (!isset($_SESSION['auth'])) {
     $_SESSION['auth'] = false;
 }
 
-// create new app instance
-$app = new Application(BASE_PATH);
+$app = new Application($config['path']);
 
 // require routes
-require_once BASE_PATH . '/routes/web.php';
-require_once BASE_PATH . '/routes/auth.php';
+require_once __DIR__ . '/../routes/web.php';
+require_once __DIR__ . '/../routes/auth.php';
 
 $app->execute();

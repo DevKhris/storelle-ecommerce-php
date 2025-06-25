@@ -19,7 +19,7 @@ class Request
     /**
      * Constructor
      */
-    function __construct($params = [])
+    function __construct(array $parameters)
     {
         $this->params = $this->getParams();
         $this->body = $this->getBody();
@@ -33,7 +33,7 @@ class Request
      *
      * @return string path
      */
-     public function getPath()
+    public function getPath()
     {
         $path = $_SERVER['REQUEST_URI'] ?? '/';
         $pos = strpos($path, '?');
@@ -41,7 +41,7 @@ class Request
             return $path;
         }
         $path = substr($path, 0, $pos);
-        
+
         return $path;
     }
 
@@ -52,11 +52,11 @@ class Request
      */
     public function getMethod()
     {
-       $method = strtolower($_SERVER['REQUEST_METHOD']);
+        $method = strtolower($_SERVER['REQUEST_METHOD'] ?? 'GET');
 
         return $method;
     }
-    
+
     public function onGet()
     {
         return $this->getMethod() === 'GET';
@@ -72,25 +72,25 @@ class Request
      *
      * @return void
      */
-    public function getType()
+    public function getType(): string
     {
-        $type = !empty($_SERVER['CONTENT_TYPE']) ? trim($_SERVER['CONTENT_TYPE']) : 'application/html';
-        return $type;
+        return (!empty($_SERVER['CONTENT_TYPE'])) ? trim($_SERVER['CONTENT_TYPE']) : 'application/html';
+
     }
-    
+
     /**
      * Get body function
      *
      * @return array
      */
-    public function getBody()
+    public function getBody(): array
     {
         $body = [];
         if ($this->getMethod() == 'POST') {
             foreach ($_POST as $key => $value) {
                 $body[$key] = filter_input(
-                    INPUT_POST, 
-                    $key, 
+                    INPUT_POST,
+                    $key,
                     FILTER_SANITIZE_SPECIAL_CHARS
                 );
             }
@@ -99,8 +99,8 @@ class Request
         if ($this->getMethod() == 'GET') {
             foreach ($_GET as $key => $value) {
                 $body[$key] = filter_input(
-                    INPUT_GET, 
-                    $key, 
+                    INPUT_GET,
+                    $key,
                     FILTER_SANITIZE_SPECIAL_CHARS
                 );
             }
@@ -113,10 +113,12 @@ class Request
      *
      * @return array
      */
-    public function getParams()
+    public function getParams(): array
     {
-        foreach ($_REQUEST as $key=>$value) {
+        foreach ($_REQUEST as $key => $value) {
             return [$key => $value];
         }
+
+        return [];
     }
 }

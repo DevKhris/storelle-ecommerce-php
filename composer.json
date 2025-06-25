@@ -17,8 +17,12 @@
     }
   },
   "require": {
-    "ext-mysqli": "*",
     "maximebf/debugbar": "^1.16",
-    "bramus/router": "^1.5"
+    "bramus/router": "~1.6",
+    "symfony/cache": "^5.4",
+    "doctrine/dbal": "^4.2",
+    "doctrine/orm": "^3.4",
+    "php-di/php-di": "^7.0",
+    "filp/whoops": "^2.18"
   }
 }

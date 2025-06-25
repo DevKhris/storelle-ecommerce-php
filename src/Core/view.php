@@ -17,7 +17,7 @@ class View
      *
      * @return string
      */
-    public function view($view, $params = [])
+    public function view($view, array $params = []): void
     {
         $content = $this->display();
         if (!empty($params)) {
@@ -31,7 +31,7 @@ class View
     protected function display()
     {
         ob_start();
-        include_once Application::$path . "/resources/views/app.php";
+        include_once realpath("resources/views/app.php");
         return ob_get_clean();
     }
 
@@ -43,7 +43,7 @@ class View
      *
      * @return object
      */
-    protected function render($view, $params = [])
+    protected function render($view, $params = []): bool|string
     {
         $view = str_replace('.', DIRECTORY_SEPARATOR, $view);
 
@@ -54,7 +54,7 @@ class View
                 $params[$key] = $value;
             }
         }
-        include Application::$path . "/resources/views/" . "$view.php";
+        include realpath("resources/views/$view.php");
         return ob_get_clean();
     }
 

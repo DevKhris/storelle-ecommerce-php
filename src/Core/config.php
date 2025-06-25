@@ -1,6 +1,6 @@
 <?php
 // Set base path
-define('BASE_PATH', realpath(dirname('../..')));
-
-// Set base uri
-define('BASE_URL', 'http://localhost/');
+return [
+    'path' => realpath(dirname('../..')),
+    'url' => "http://localhost/",
+];
