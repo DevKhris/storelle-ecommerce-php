@@ -1,4 +1,4 @@
-<?php
+$router = new Router();<?php
 
 /*-------------------------------
  *	Front Controller
@@ -9,8 +9,9 @@ $container = require __DIR__ . '/../src/bootstrap.php';
 
 use Whoops\Run;
 
-use Whoops\Handler\PrettyPageHandler;
 use App\Application;
+use Bramus\Router\Router;
+use Whoops\Handler\PrettyPageHandler;
 
 session_start();
 
@@ -19,17 +20,14 @@ $whoops->writeToOutput(true);
 $whoops->pushHandler(new PrettyPageHandler);
 $whoops->register();
 
+$router = new Router();
 
-
-//if no session exist set auth to false
 if (!isset($_SESSION['auth'])) {
     $_SESSION['auth'] = false;
 }
 
-$app = $container->get(Application::class);
-
 // require routes
 require_once __DIR__ . '/../routes/web.php';
-require_once __DIR__ . '/../routes/auth.php';
+// require_once __DIR__ . '/../routes/auth.php';
 
-$app->execute();
+$router->run();

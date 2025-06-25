@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Core;
+namespace App\Controllers;
 
 use App\Core\View;
+use App\Core\Request;
+use App\Core\Response;
 
 abstract class Controller
 {
@@ -12,9 +14,9 @@ abstract class Controller
 
     public Response $response;
 
-    public function __construct()
+    public function __construct(View $view)
     {
-        $this->view = new View;
+        $this->view = $view;
         $this->request = new Request([]);
         $this->response = new Response;
     }

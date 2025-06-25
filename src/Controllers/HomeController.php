@@ -6,14 +6,15 @@
 
 namespace App\Controllers;
 
-use App\Core\Controller;
+use App\Core\View;
+use App\Controllers\Controller;
 
 class HomeController extends Controller
 {
     /**
      * Index function
      *
-     * @return view render view
+     * @return View render view
      */
     public function index()
     {

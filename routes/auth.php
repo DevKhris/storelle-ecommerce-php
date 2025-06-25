@@ -1,52 +1,50 @@
 <?php
 
 // Auth Middlewares
-$app->router->before('GET|POST', '/login', '\App\Middlewares\IsUserSession@run');
-$app->router->before('GET|POST', '/register', '\App\Middlewares\IsUserSession@run');
-
+$router->before('GET|POST', '/login', '\App\Middlewares\IsUserSession@run');
+$router->before('GET|POST', '/register', '\App\Middlewares\IsUserSession@run');
 
 // Routes login to view
-$app->router->get('/login', '\App\Controllers\Auth\LoginController@index');
-$app->router->post('/login', '\App\Controllers\Auth\LoginController@login');
+$router->get('/login', '\App\Controllers\Auth\LoginController@index');
+$router->post('/login', '\App\Controllers\Auth\LoginController@login');
 
 // Routes register to view
-$app->router->get('/register', '\App\Controllers\Auth\RegisterController@index');
-$app->router->post('/register', '\App\Controllers\Auth\RegisterController@register');
+$router->get('/register', '\App\Controllers\Auth\RegisterController@index');
+$router->post('/register', '\App\Controllers\Auth\RegisterController@register');
 
 // Middlewares
-$app->router->before('GET|POST', '/product/.*', '\App\Middlewares\IsUserAuth@run');
+$router->before('GET|POST', '/product/.*', '\App\Middlewares\IsUserAuth@run');
 
-$app->router->before('GET|POST', '/shopping-cart', '\App\Middlewares\IsUserAuth@run');
+$router->before('GET|POST', '/shopping-cart', '\App\Middlewares\IsUserAuth@run');
 
-$app->router->before('GET|POST', '/shopping-cart/*', '\App\Middlewares\IsUserAuth@run');
+$router->before('GET|POST', '/shopping-cart/*', '\App\Middlewares\IsUserAuth@run');
 
-$app->router->before('GET|POST', '/dashboard', '\App\Middlewares\IsUserAuth@run');
+$router->before('GET|POST', '/dashboard', '\App\Middlewares\IsUserAuth@run');
 
-$app->router->before('GET|POST', '/dashboard/.*', '\App\Middlewares\IsUserAuth@run');
-
+$router->before('GET|POST', '/dashboard/.*', '\App\Middlewares\IsUserAuth@run');
 
 // Routes products to view
-$app->router->get('/products', '\App\Controllers\ProductsController@index');
+$router->get('/products', '\App\Controllers\ProductsController@index');
 
 // Sets controller for products callback
-$app->router->post('/products', '\App\Controllers\ProductsController@show');
+$router->post('/products', '\App\Controllers\ProductsController@show');
 
 // Routes product to view
-$app->router->get('/product/{id}', '\App\Controllers\ProductController@index');
-$app->router->post('/product/{id}', '\App\Controllers\ProductController@show');
+$router->get('/product/{id}', '\App\Controllers\ProductController@index');
+$router->post('/product/{id}', '\App\Controllers\ProductController@show');
 
 // Sets controller for review posting callback
-$app->router->post('/reviews/{id}', '\App\Controllers\ReviewsController@store');
+$router->post('/reviews/{id}', '\App\Controllers\ReviewsController@store');
 
 // Routes shopping cart to view
-$app->router->get('/shopping-cart', '\App\Controllers\ShoppingCartController@index');
-$app->router->post('/shopping-cart', '\App\Controllers\ShoppingCartController@show');
-$app->router->post('/shopping-cart/add', '\App\Controllers\ShoppingCartController@store');
-$app->router->post('/shopping-cart/remove', '\App\Controllers\ShoppingCartController@destroy');
+$router->get('/shopping-cart', '\App\Controllers\ShoppingCartController@index');
+$router->post('/shopping-cart', '\App\Controllers\ShoppingCartController@show');
+$router->post('/shopping-cart/add', '\App\Controllers\ShoppingCartController@store');
+$router->post('/shopping-cart/remove', '\App\Controllers\ShoppingCartController@destroy');
 
-$app->router->post('/checkout', '\App\Controllers\ShoppingCartController@checkout');
+$router->post('/checkout', '\App\Controllers\ShoppingCartController@checkout');
 
 // Sets controller for dashboard callback functions
-$app->router->get('/dashboard', '\App\Controllers\Dashboard\DashboardController@index');
-$app->router->post('/dashboard', '\App\Controllers\Dashboard\DashboardController@show');
-$app->router->post('/logout', '\App\Controllers\Dashboard\DashboardController@logout');
+$router->get('/dashboard', '\App\Controllers\Dashboard\DashboardController@index');
+$router->post('/dashboard', '\App\Controllers\Dashboard\DashboardController@show');
+$router->post('/logout', '\App\Controllers\Dashboard\DashboardController@logout');

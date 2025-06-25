@@ -2,14 +2,13 @@
 
 namespace App\Core;
 
-use App\Application;
-use DebugBar\StandardDebugBar;
 
 class View
 {
     public function __construct()
     {
     }
+
     /**
      * Render view function
      *

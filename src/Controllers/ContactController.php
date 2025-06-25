@@ -2,9 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Application;
-use App\Core\Controller;
 use App\Core\Request;
+use App\Controllers\Controller;
 
 class ContactController extends Controller
 {
@@ -15,7 +14,6 @@ class ContactController extends Controller
      */
     public function index()
     {
-        // render view from router for contact
         return $this->view('contact');
     }
 
@@ -27,9 +25,7 @@ class ContactController extends Controller
      */
     public function create(Request $req)
     {
-        // get body from requests
         $body = $req->getBody();
-        // return body
         return $body;
     }
 }

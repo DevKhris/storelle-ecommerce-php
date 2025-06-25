@@ -11,7 +11,7 @@
 namespace App\Controllers\Auth;
 
 use App\Core\Auth;
-use App\Core\Controller;
+use App\Controllers\Controller;
 
 class RegisterController extends Controller
 {

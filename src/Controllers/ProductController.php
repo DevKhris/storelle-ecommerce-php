@@ -6,9 +6,8 @@
 
 namespace App\Controllers;
 
-use App\Application;
-use App\Core\Controller;
 use App\Models\Reviews\Review;
+use App\Controllers\Controller;
 use App\Models\Products\Product;
 
 class ProductController extends Controller
