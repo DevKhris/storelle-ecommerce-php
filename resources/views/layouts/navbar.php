@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-sm navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
-            <img src="/images/logo-min.png" alt="Storelle" class="d-inline-block align-top" width="132" height="72">
+            <img src="images/logo-min.png" alt="Storelle" class="d-inline-block align-top" width="132" height="72">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
             aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle Navigation">
@@ -48,21 +48,21 @@
             <div class="dropdown" id="topbarNavDropdown">
                 <ul class="navbar-nav ml-auto">
                     <?php if ($_SESSION['auth']) { ?>
-                    <li class="nav-item">
-                        <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/shopping-cart' ? 'active' : '' ?>"
-                            href="/shopping-cart">
-                            <i class="fa fa-shopping-cart"></i>
-                            Cart
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/shopping-cart' ? 'active' : '' ?>"
+                                href="/shopping-cart">
+                                <i class="fa fa-shopping-cart"></i>
+                                Cart
+                            </a>
+                        </li>
                     <?php } ?>
                     <?php if (isset($_SESSION['auth'])) { ?>
-                    <li class="nav-item dropdown ">
-                        <a class="nav-link  <?= $_SERVER['REQUEST_URI'] == '/dashboard' ? 'active' : '' ?> dropdown-toggle"
-                            href="#" id="topbarNavDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="fa fa-user"></i>
-                            <?php if (isset($_SESSION['username'])) {
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link  <?= $_SERVER['REQUEST_URI'] == '/dashboard' ? 'active' : '' ?> dropdown-toggle"
+                                href="#" id="topbarNavDropdown" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="fa fa-user"></i>
+                                <?php if (isset($_SESSION['username'])) {
                                     $data = [
                                         ucfirst($_SESSION['username']),
                                         "<i class='fa fa-dollar'></i>",
@@ -73,30 +73,30 @@
                                     echo 'Guest';
                                 }
                                 ?>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="topbarNavDropdown">
-                            <li class="dropdown-item">
-                                <a class="dropdown-item" href="<?= !$_SESSION['auth'] ? 'login' : 'dashboard' ?>">
-                                    <i class=" <?= !$_SESSION['auth'] ? 'fa fa-sign-in' : 'fa fa-dashboard' ?>"></i>
-                                    <?= !$_SESSION['auth'] ? 'Login' : 'Dashboard' ?>
-                                </a>
-                            </li>
-                            <?php if ($_SESSION['auth']) { ?>
-                            <div class="dropdown-divider"></div>
-                            <li class="dropdown-item">
-                                <form action="/logout" method="POST">
-                                    <div class="form-group">
-                                        <button class="dropdown-item border-0" type="submit">
-                                            <i class="fa fa-power-off">
-                                            </i>
-                                            Logout
-                                        </button>
-                                    </div>
-                                </form>
-                            </li>
-                            <?php } ?>
-                        </ul>
-                    </li>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="topbarNavDropdown">
+                                <li class="dropdown-item">
+                                    <a class="dropdown-item" href="<?= !$_SESSION['auth'] ? 'login' : 'dashboard' ?>">
+                                        <i class=" <?= !$_SESSION['auth'] ? 'fa fa-sign-in' : 'fa fa-dashboard' ?>"></i>
+                                        <?= !$_SESSION['auth'] ? 'Login' : 'Dashboard' ?>
+                                    </a>
+                                </li>
+                                <?php if ($_SESSION['auth']) { ?>
+                                    <div class="dropdown-divider"></div>
+                                    <li class="dropdown-item">
+                                        <form action="/logout" method="POST">
+                                            <div class="form-group">
+                                                <button class="dropdown-item border-0" type="submit">
+                                                    <i class="fa fa-power-off">
+                                                    </i>
+                                                    Logout
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </li>
                     <?php } ?>
                 </ul>
             </div>
