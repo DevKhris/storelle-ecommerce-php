@@ -58,8 +58,11 @@ CREATE TABLE IF NOT EXISTS `shoppingcart` (
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(55) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `balance` double DEFAULT NULL,
+  `created_at` datetime DEFAULT NOW(),
+  `updated_at` datetime DEFAULT NULL
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

@@ -5,6 +5,7 @@
  *-------------------------------
  **/
 require __DIR__ . '/../vendor/autoload.php';
+$container = require __DIR__ . '/../src/bootstrap.php';
 
 use Whoops\Run;
 
@@ -18,15 +19,14 @@ $whoops->writeToOutput(true);
 $whoops->pushHandler(new PrettyPageHandler);
 $whoops->register();
 
-// require config
-$config = require __DIR__ . '/../src/Core/config.php';
+
 
 //if no session exist set auth to false
 if (!isset($_SESSION['auth'])) {
     $_SESSION['auth'] = false;
 }
 
-$app = new Application($config['path']);
+$app = $container->get(Application::class);
 
 // require routes
 require_once __DIR__ . '/../routes/web.php';
