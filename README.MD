@@ -21,6 +21,8 @@ _This repo takes small and older pieces of RubyNight, is intended to be a test p
 
 - Change database configuration details in .\src\Core\database.php
 
+- Local Development Server : php -T 0.0.0.0:3000 -t public
+
 Demo Account
 
 ```
