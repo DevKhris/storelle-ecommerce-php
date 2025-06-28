@@ -23,6 +23,10 @@ _This repo takes small and older pieces of RubyNight, is intended to be a test p
 
 - Local Development Server : php -T 0.0.0.0:3000 -t public
 
+- Creating Schema: php bin/doctrine orm:schema-tool:create 
+
+- Updating Schema: php bin/doctrine orm:schema-tool:update --force --dump-sql
+
 Demo Account
 
 ```
