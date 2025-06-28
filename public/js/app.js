@@ -136,43 +136,6 @@ function removeProduct(id) {
   });
 }
 
-/**
- * Request all products
- * @return json products
- */
-function requestProducts() {
-  $.ajax({
-    url: "products",
-    type: "POST",
-    success: function (res) {
-      let products = JSON.parse(res);
-      let template = "";
-      products.forEach((product) => {
-        template += `
-                <div class="col-sm-3">
-                <div class="card-deck">
-                    <a class="text-decoration-none product-link font-weight-bold" href="product/${product.id}">
-                        <div class="card shadow-sm shadow-lg product text-center my-2">
-                            <img src="${product.img}" class="card-img-top align-self-center img-fluid" width=360 height=240 alt="${product.name}">
-                            <div class="card-body">
-                                
-                                <h3 class="card-title">${product.name}</h3>
-                                <span class="card-text">$${product.price}</span>
-                            </div>
-                            <div class="card-footer">
-                                <button href="product/${product.id}" class="btn btn-product">
-                                 <i class="fa fa-shopping-cart"></i> View Product
-                                </button>
-                            </div>
-                        </div>
-                    </a>
-                    </div>
-                </div>`;
-      });
-      $("#products").html(template);
-    },
-  });
-}
 
 /**
  * Request for posting review

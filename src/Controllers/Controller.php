@@ -2,23 +2,24 @@
 
 namespace App\Controllers;
 
-use App\Core\View;
-use App\Core\Request;
-use App\Core\Response;
+use Mythos\Engine\View;
+use Nyholm\Psr7\Request;
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 abstract class Controller
 {
+    public $request;
+    public $response;
+
     public View $view;
 
-    public Request $request;
-
-    public Response $response;
-
-    public function __construct(View $view)
+    public function __construct(RequestInterface $request, ResponseInterface $response, View $view)
     {
         $this->view = $view;
-        $this->request = new Request([]);
-        $this->response = new Response;
+        $this->request = $request;
+        $this->response = $response;
     }
 
     public function view($view, $params = [])

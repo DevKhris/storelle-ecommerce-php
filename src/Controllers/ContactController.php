@@ -2,15 +2,15 @@
 
 namespace App\Controllers;
 
-use App\Core\Request;
 use App\Controllers\Controller;
+use Psr\Http\Message\RequestInterface;
 
 class ContactController extends Controller
 {
     /**
      * Index resource 
      *
-     * @return view render view
+     * @return View render view
      */
     public function index()
     {
@@ -19,13 +19,13 @@ class ContactController extends Controller
 
     /**
      * Create contact resource
-     * @param Request $req request object
+     * @param RequestInterface $request request object
      *
      * @return array $body 
      */
-    public function create(Request $req)
+    public function create(RequestInterface $request)
     {
-        $body = $req->getBody();
+        $body = $request->getBody();
         return $body;
     }
 }

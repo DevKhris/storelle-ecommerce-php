@@ -1,35 +1,54 @@
 
 <?php
 
-use App\Core\View;
 use App\Application;
+use Mythos\Engine\View;
 use DI\ContainerBuilder;
 use Doctrine\ORM\EntityManager;
 use Doctrine\DBAL\DriverManager;
-use App\Controllers\HomeController;
-use App\Controllers\AboutController;
-use App\Controllers\ContactController;
-use App\Controllers\ProductController;
-use App\Controllers\ProductsController;
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Nyholm\Psr7Server\ServerRequestCreator;
 
-$config = require __DIR__ . '/../src/Core/config.php';
+$databaseConfig = require_once __DIR__ . '/../src/Config/database.php';
+$applicationConfig = require_once __DIR__ . '/../src/Config/app.php';
+
 $connection = DriverManager::getConnection([
     'driver' => 'pdo_sqlite',
     'path' => __DIR__ . '/db.sqlite',
-], $config['database']);
+], $databaseConfig['database']);
 
 $containerBuilder = new ContainerBuilder();
 $containerBuilder->addDefinitions([
-    EntityManager::class => new EntityManager($connection, $config['database']),
-    View::class => new View(),
-    Application::class => new Application($config),
+    Application::class => new Application($applicationConfig),
 
-        // CVontrollers
-    HomeController::class => \DI\autowire(),
-    ProductController::class => \DI\autowire(),
-    ProductsController::class => \DI\autowire(),
-    AboutController::class => \DI\autowire(),
-    ContactController::class => \DI\autowire(),
+        // Core
+    EntityManager::class => new EntityManager($connection, $databaseConfig['database']),
+    View::class => new View([
+        'path' => realpath(__DIR__ . '/../resources/views/')
+    ]),
+    RequestInterface::class => function () {
+        $psr17Factory = new Psr17Factory();
+        $creator = new ServerRequestCreator(
+            $psr17Factory, // ServerRequestFactory
+            $psr17Factory, // UriFactory
+            $psr17Factory, // UploadedFileFactory
+            $psr17Factory  // StreamFactory
+        );
+        return $creator->fromGlobals();
+    },
+    ResponseInterface::class => function () {
+        $psr17Factory = new Psr17Factory();
+        return $psr17Factory->createResponse();
+    },
+
+    // Controllers
+    App\Controllers\HomeController::class => \DI\autowire(),
+    App\Controllers\ProductController::class => \DI\autowire(),
+    App\Controllers\ProductsController::class => \DI\autowire(),
+    App\Controllers\AboutController::class => \DI\autowire(),
+    App\Controllers\ContactController::class => \DI\autowire(),
 ]);
 
 return $containerBuilder->build();

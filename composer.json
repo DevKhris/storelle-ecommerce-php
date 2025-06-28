@@ -17,12 +17,15 @@
     }
   },
   "require": {
-    "maximebf/debugbar": "^1.16",
+    "maximebf/debugbar": "^2.2",
     "bramus/router": "~1.6",
     "symfony/cache": "^5.4",
     "doctrine/dbal": "^4.2",
     "doctrine/orm": "^3.4",
     "php-di/php-di": "^7.0",
-    "filp/whoops": "^2.18"
+    "filp/whoops": "^2.18",
+    "nyholm/psr7": "^1.8",
+    "nyholm/psr7-server": "^1.1",
+    "devkhris/mythos": "^0.1.2"
   }
 }
