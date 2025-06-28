@@ -1,11 +1,11 @@
 {
   "name": "devkhris/storelle",
-  "description": "Ecommerce",
+  "description": "Ecommerce boilerplate for technical interview",
   "type": "project",
   "authors": [
     {
       "name": "Christian Hernandez",
-      "email": "chrissh443@gmail.com"
+      "email": "devkhris@gmail.com"
     }
   ],
   "autoload": {
