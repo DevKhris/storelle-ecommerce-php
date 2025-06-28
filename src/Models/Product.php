@@ -23,6 +23,12 @@ class Product extends Entity
     #[ORM\Column(type: 'string')]
     protected $image_url;
 
+    #[ORM\Column(type: 'datetime')]
+    private $created_at;
+
+    #[ORM\Column(type: 'datetime')]
+    private $updated_at;
+
     public function getName(): string
     {
         return $this->name;

@@ -23,4 +23,10 @@ class Review extends Entity
 
     #[ORM\Column(type: 'float')]
     private float $rating;
+
+    #[ORM\Column(type: 'datetime')]
+    private $created_at;
+
+    #[ORM\Column(type: 'datetime')]
+    private $updated_at;
 }
