@@ -1,12 +1,7 @@
 <?php
 
-/**
- *
- */
-
 namespace App\Controllers;
 
-// use App\Models\Reviews\Review;
 use App\Controllers\Controller;
 use App\Services\ProductService;
 

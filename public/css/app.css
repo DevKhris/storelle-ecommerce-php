@@ -1,5 +1,6 @@
 * {
 	scroll-behavior: smooth;
+
 }
 
 /*** Base Styles **/
@@ -11,13 +12,6 @@ body {
 	margin-top: 100px;
 }
 
-footer {
-	margin-top: 30px;
-	display: block;
-	overflow: auto;
-	position: relative;
-	clear: both;
-}
 
 .btn {
 	border-radius: 1rem !important;
