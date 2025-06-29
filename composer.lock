@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6f0c2ecdef6dc8f4b5b44519a1a389a8",
+    "content-hash": "7bc1c82c2866f362c7953b8e300e5d84",
     "packages": [
         {
             "name": "bramus/router",
@@ -59,18 +59,22 @@
         },
         {
             "name": "devkhris/mythos",
-            "version": "v0.1.2",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DevKhris/mythos.git",
-                "reference": "cb65d6733c0634c81372588f1a6694f01887eaf5"
+                "reference": "35b5e34353e70d41b4132ff3c687b913d5c9d905"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DevKhris/mythos/zipball/cb65d6733c0634c81372588f1a6694f01887eaf5",
-                "reference": "cb65d6733c0634c81372588f1a6694f01887eaf5",
+                "url": "https://api.github.com/repos/DevKhris/mythos/zipball/35b5e34353e70d41b4132ff3c687b913d5c9d905",
+                "reference": "35b5e34353e70d41b4132ff3c687b913d5c9d905",
                 "shasum": ""
             },
+            "require": {
+                "php": ">=8"
+            },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -83,16 +87,20 @@
             ],
             "authors": [
                 {
-                    "name": "Chris Hernandez",
-                    "email": "devkhris@hotmail.com"
+                    "name": "Christian Hernandez",
+                    "email": "devkhris@gmail.com",
+                    "role": "Developer"
                 }
             ],
             "description": "Templating Engine maded with PHP",
+            "keywords": [
+                "templating"
+            ],
             "support": {
                 "issues": "https://github.com/DevKhris/mythos/issues",
-                "source": "https://github.com/DevKhris/mythos/tree/v0.1.2"
+                "source": "https://github.com/DevKhris/mythos/tree/main"
             },
-            "time": "2021-04-21T07:47:14+00:00"
+            "time": "2025-06-29T07:20:05+00:00"
         },
         {
             "name": "doctrine/collections",
@@ -2653,7 +2661,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "devkhris/mythos": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {},

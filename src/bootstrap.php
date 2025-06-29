@@ -42,7 +42,8 @@ $containerBuilder->addDefinitions([
     },
     View::class => new View([
         'path' => realpath(__DIR__ . '/../resources/views/')
-    ]),
+    ], '.mythos'),
+
     EntityManager::class => $entityManager,
 
     // Services

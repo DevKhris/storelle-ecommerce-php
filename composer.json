@@ -25,6 +25,6 @@
     "filp/whoops": "^2.18",
     "nyholm/psr7": "^1.8",
     "nyholm/psr7-server": "^1.1",
-    "devkhris/mythos": "^0.1.2"
+    "devkhris/mythos": "dev-main"
   }
 }
