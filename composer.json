@@ -17,7 +17,6 @@
     }
   },
   "require": {
-    "maximebf/debugbar": "^2.2",
     "bramus/router": "~1.6",
     "symfony/cache": "^5.4",
     "doctrine/dbal": "^4.2",
