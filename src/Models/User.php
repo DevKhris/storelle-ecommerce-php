@@ -5,8 +5,8 @@ namespace App\Models;
 use App\Models\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
-#[ORM\Table('users')]
+// #[ORM\Entity]
+// #[ORM\Table('users')]
 class User extends Entity
 {
     #[ORM\Id]

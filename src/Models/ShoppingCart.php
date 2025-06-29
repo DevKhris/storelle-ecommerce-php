@@ -3,10 +3,13 @@
 use App\Models\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
-#[ORM\Table('shopping_carts')]
+// #[ORM\Entity]
+// #[ORM\Table('shopping_carts')]
 class ShoppingCart extends Entity
 {
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer')]
+    #[ORM\GeneratedValue]
     private int $id;
 
     private int $userId;

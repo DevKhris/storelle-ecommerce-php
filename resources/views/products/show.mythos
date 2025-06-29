@@ -1,14 +1,15 @@
-<div class="row" id="productDetails" onload="requestProduct()">
+<section class="mt-5 pt-5">
+    <div class="row" id="productDetails">
     <div class="col-sm-2">
     </div>
 
     <div class="col-sm-3">
 
-        <a class="text-decoration-none" href="/<?= $product['img'] ?>" data-lightbox="product">
-            <img class="img-thumbnail shadow-sm shadow-lg" src="/<?= $product['img'] ?>" alt="<?= $product['name'] ?>"
+        <a class="text-decoration-none" href="/<?= $product->getImageUrl() ?>" data-lightbox="product">
+            <img class="img-thumbnail shadow-sm shadow-lg" src="/<?= $product->getImageUrl()  ?>" alt="<?= $product->getName() ?>"
                 width=512 height=512 id="productImg">
             <p class="text-muted text-center">
-                <?= $product['name'] ?>
+                <?= $product->getName() ?>
             </p>
         </a>
     </div>
@@ -16,25 +17,25 @@
         <div id="alerts"></div>
         <div id="productInfo">
             <div>
-                <span id="productId" hidden aria-hidden="true"> <?= $product['id'] ?></span>
+                <span id="productId" hidden aria-hidden="true"> <?= $product->getId() ?></span>
                 <h1 class="text-monospace mt-3" id="productName">
-                    <?= $product['name'] ?>
+                   <?= $product->getName() ?>
                 </h1>
                 <h3 class="text-muted" id="productPrice">
-                    <i class="fa fa-dollar"></i> <?= $product['price'] ?>
+                    <i class="fa fa-dollar"></i>  <?= $product->getPrice() ?>
                 </h3>
                 <p class="reviews num" id="stars">
-                    <?php for ($i = 0; $i < $product['rating']; $i++) { ?>
+                    <!-- <?php // for ($i = 0; $i < $product['rating']; $i++) { ?> -->
                     <a class="text-decoration-none" href="#reviews-box">
                         <i class="fa fa-star stars"></i>
                     </a>
-                    <?php } ?>
-                    <?php for ($i = 0; $i < 5 - $product['rating']; $i++) { ?>
+                    <!-- <?php // } ?> -->
+                    <!-- <?php//  for ($i = 0; $i < 5 - $product['rating']; $i++) { ?> -->
                     <a class="text-decoration-none" href="#reviews-box">
                         <i class="fa fa-star stars-grey"></i>
                     </a>
-                    <?php } ?>
-                </p>
+                    <!-- <?php //} ?> -->
+                </p> 
             </div>
         </div>
         <form class="form-group" method="POST" id="product-form">
@@ -62,7 +63,7 @@
         </h2>
         <hr>
         <div id="reviews-box">
-            <?= $this->render('reviews.show', compact('reviews')); ?>
+            <!-- <?php // $this->render('reviews.show', compact('reviews'));  ?> -->
         </div>
     </div>
     <div class="col-sm-2">
@@ -70,6 +71,7 @@
 </div>
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
-        <?= $this->render('reviews.create', ['id' => $product['id']]); ?>
+        <!-- <?php// $this->render('reviews.create', ['id' => $product['id']]); ?> -->
     </div>
 </div>
+</section>

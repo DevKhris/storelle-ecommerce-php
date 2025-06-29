@@ -4,7 +4,7 @@ namespace App\Models\Reviews;
 
 use App\Alerts\Alerts;
 use App\Core\Database;
-use App\Interfaces\ReviewInterface;
+
 
 /**
  * Class Review for adding reviews to db extending from BaseReview model
@@ -13,7 +13,7 @@ use App\Interfaces\ReviewInterface;
  *
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
-final class Review implements ReviewInterface
+final class Review
 {
     /**
      * @var App\Core\Database database

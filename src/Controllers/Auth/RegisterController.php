@@ -19,9 +19,7 @@ class RegisterController extends Controller
 
     /**
      * Index function
-     *
-     *
-     * @return view    
+
      */
     public function index()
     {

@@ -5,8 +5,8 @@ namespace App\Models;
 use App\Models\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
-#[ORM\Table('reviews')]
+// #[ORM\Entity]
+// #[ORM\Table('reviews')]
 class Review extends Entity
 {
     #[ORM\Id]

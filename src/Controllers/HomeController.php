@@ -6,19 +6,18 @@
 
 namespace App\Controllers;
 
-use App\Core\View;
 use App\Controllers\Controller;
+use App\Services\ProductService;
 
 class HomeController extends Controller
 {
     /**
      * Index function
-     *
-     * @return View render view
      */
-    public function index()
+    public function index(ProductService $productService)
     {
-        // render view from router for home
-        return $this->view('home');
+        $products = $productService->getAll();
+
+        return $this->view('home', compact('products'));
     }
 }

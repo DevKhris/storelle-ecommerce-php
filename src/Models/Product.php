@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity]
 #[ORM\Table('products')]
@@ -11,23 +12,35 @@ class Product extends Entity
 {
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
-    #[ORM\GeneratedValue]
-    protected $id;
+    #[ORM\GeneratedValue('AUTO')]
+    protected int $id;
 
     #[ORM\Column(type: 'string')]
-    protected $name;
+    protected string $name;
+
+    // #[@Gedmo\Slug(fields: 'name')]
+    // #[ORM\Column(type: 'string')]
+    protected string $slug;
 
     #[ORM\Column(type: 'float')]
-    protected $price;
+    protected float $price;
 
     #[ORM\Column(type: 'string')]
-    protected $image_url;
+    protected string $image_url;
 
-    #[ORM\Column(type: 'datetime')]
-    private $created_at;
+    // #[ORM\Column(type: 'datetime')]
+    // private $created_at;
 
-    #[ORM\Column(type: 'datetime')]
-    private $updated_at;
+    // #[ORM\Column(type: 'datetime')]
+    // private $updated_at;
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
 
     public function getName(): string
     {
@@ -37,6 +50,24 @@ class Product extends Entity
     public function setName($name): void
     {
         $this->name = $name;
+    }
+
+    /**
+     * Get the value of slug
+     */ 
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set the value of slug
+     *
+     * @return  self
+     */ 
+    public function setSlug($slug): void
+    {
+        $this->slug = $slug;
     }
 
     public function getPrice(): float

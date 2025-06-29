@@ -1,15 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Ecommerce site re-build with PHP8">
     <title>Storelle</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="/css/app.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/fontawesome.min.css">
     <!-- Lightbox -->
@@ -26,10 +26,12 @@
     <header>
         <?= $this->render('layouts.navbar'); ?>
     </header>
+
     <main class="container-fluid">
         {{ display }}
     </main>
-    <footer class="container-fluid sticky-bottom bg-black pb-5 py-5">
+
+    <footer class="container-fluid position-sticky bg-black pb-5 py-5">
         <?= $this->render('layouts.footer'); ?>
     </footer>
 
@@ -45,7 +47,7 @@
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- App -->
-    <script src="js/app.js" defer></script>
+    <script src="/js/app.js" defer></script>
 
 </body>
 

@@ -23,7 +23,8 @@ if (!isset($_SESSION['auth'])) {
 }
 
 // require routes
+require_once __DIR__ . '/../routes/api.php';
 require_once __DIR__ . '/../routes/web.php';
-// require_once __DIR__ . '/../routes/auth.php';
+require_once __DIR__ . '/../routes/auth.php';
 
 $router->run();

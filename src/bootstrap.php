@@ -19,22 +19,20 @@ $connection = DriverManager::getConnection([
     'path' => __DIR__ . '/db.sqlite',
 ], $databaseConfig['database']);
 
+$entityManager = new EntityManager($connection, $databaseConfig['database']);
+
 $containerBuilder = new ContainerBuilder();
 $containerBuilder->addDefinitions([
     Application::class => new Application($applicationConfig),
 
-        // Core
-    EntityManager::class => new EntityManager($connection, $databaseConfig['database']),
-    View::class => new View([
-        'path' => realpath(__DIR__ . '/../resources/views/')
-    ]),
+    // Core
     RequestInterface::class => function () {
         $psr17Factory = new Psr17Factory();
         $creator = new ServerRequestCreator(
-            $psr17Factory, // ServerRequestFactory
-            $psr17Factory, // UriFactory
-            $psr17Factory, // UploadedFileFactory
-            $psr17Factory  // StreamFactory
+            serverRequestFactory: $psr17Factory, 
+            uriFactory: $psr17Factory, 
+            uploadedFileFactory: $psr17Factory, 
+            streamFactory: $psr17Factory  
         );
         return $creator->fromGlobals();
     },
@@ -42,13 +40,21 @@ $containerBuilder->addDefinitions([
         $psr17Factory = new Psr17Factory();
         return $psr17Factory->createResponse();
     },
+    View::class => new View([
+        'path' => realpath(__DIR__ . '/../resources/views/')
+    ]),
+    EntityManager::class => $entityManager,
+
+    // Services
+    App\Services\ProductService::class => new App\Services\ProductService($entityManager),
 
     // Controllers
     App\Controllers\HomeController::class => \DI\autowire(),
     App\Controllers\ProductController::class => \DI\autowire(),
-    App\Controllers\ProductsController::class => \DI\autowire(),
+    App\Controllers\ProductController::class => \DI\autowire(),
     App\Controllers\AboutController::class => \DI\autowire(),
     App\Controllers\ContactController::class => \DI\autowire(),
+    App\Controllers\Auth\LoginController::class => \DI\autowire(),
 ]);
 
 return $containerBuilder->build();

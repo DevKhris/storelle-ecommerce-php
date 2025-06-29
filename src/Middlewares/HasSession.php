@@ -2,11 +2,11 @@
 
 namespace App\Middlewares;
 
-class IsUserSession
+class HasSession
 {
     public function run()
     {
-        if ($_SESSION['auth']) {
+        if ($_SESSION['uid']) {
             header("Location: /dashboard");
             exit();
         }
