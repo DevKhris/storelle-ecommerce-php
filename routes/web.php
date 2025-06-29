@@ -1,15 +1,36 @@
 <?php
 
-// Routes to home view
-$app->router->get('/', '\App\Controllers\HomeController@index');
-// Routes to about view
-$app->router->get('/about', '\App\Controllers\AboutController@index');
-// Routes to contact controller to render view
-$app->router->get('/contact', '\App\Controllers\ContactController@index');
-// sets the controller for the current request
-$app->router->post('/contact', '\App\Controllers\ContactController@create');
+$router->get('/', function () use ($container) {
+    $controller = $container->get(App\Controllers\HomeController::class);
+    $controller->index($container->get('App\Services\ProductService'));
+});
 
-$app->router->set404(function () use ($app) {
+$router->get('/products', function () use ($container) {
+    $controller = $container->get(App\Controllers\ProductController::class);
+    $controller->index($container->get('App\Services\ProductService'));
+});
+
+$router->get('/product/{id}', function (int $id) use ($container) {
+    $controller = $container->get(App\Controllers\ProductController::class);
+    $controller->show($container->get('App\Services\ProductService'), $id);
+});
+
+$router->get('/about', function () use ($container) {
+    $controller = $container->get(App\Controllers\AboutController::class);
+    $controller->index();
+});
+
+$router->get('/contact', function () use ($container) {
+    $controller = $container->get(App\Controllers\ContactController::class);
+    $controller->index();
+});
+
+$router->post('/contact', function () use ($container) {
+    $controller = $container->get(App\Controllers\ContactController::class);
+    $controller->create();
+});
+
+$router->set404(function () use ($container) {
     header('HTTP/1.1 404 Not Found');
-    $app->view->view('partials.404');
+    $container->get(Mythos\Engine\View::class)->view('partials.404');
 });

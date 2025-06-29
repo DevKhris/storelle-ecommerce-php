@@ -2,11 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Application;
-use App\Core\Request;
-use App\Core\Controller;
 use App\Models\Reviews\Review;
-
+use App\Controllers\Controller;
 
 /**
  *

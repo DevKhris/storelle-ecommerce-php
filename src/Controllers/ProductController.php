@@ -1,41 +1,31 @@
 <?php
 
-/**
- *
- */
-
 namespace App\Controllers;
 
-use App\Application;
-use App\Core\Controller;
-use App\Models\Reviews\Review;
-use App\Models\Products\Product;
+use App\Controllers\Controller;
+use App\Services\ProductService;
 
 class ProductController extends Controller
-{
+{    
     /**
      * Index function
-     *
-     * @return view render view
      */
-    public function index($id)
+    public function index(ProductService $productService)
     {
-        $product = new Product();
-        $product = $product->get($id, false);
-        $reviews = new Review();
-        $reviews = $reviews->get($id, false);
-        // render view from router for product
-        $this->view('products.show', compact(['product', 'reviews']));
+        $products = $productService->getAll();
+
+        return $this->view('products.index', compact('products'));
     }
+
     /**
-     * Get's the requested product and return it
-     * @param  $id product id
-     * 
-     * @return $product returns product
+     * Index function
      */
-    public function show($id)
+    public function show(ProductService $productService, int $id)
     {
-        $product = new Product();
-        return $product->get($id);
+        $product = $productService->findById($id);
+        // $reviews = new Review();
+        // $reviews = $reviews->get($id, false);
+
+        $this->view('products.show', compact('product'));
     }
 }

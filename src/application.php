@@ -2,15 +2,8 @@
 
 namespace App;
 
-use App\Core\Request;
-use App\Core\Response;
-use App\Core\View;
-use Bramus\Router\Router;
-
 /**
  * Application Class
- *
- * @package RubyNight\App;
  *
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  *
@@ -18,30 +11,17 @@ use Bramus\Router\Router;
 class Application
 {
     public static string $path;
+
     public static Application $app;
-    /**
-     * Contructor function
-     *
-     * @param string $path application path
-     */
-    public function __construct($path)
-    {
-        self::$app = $this;
-        self::$path = $path;
-        $this->req = new Request();
-        $this->res = new Response();
-        $this->router = new Router;
-        $this->view = new View;
-        return $this;
-    }
 
     /**
-     * Exec to resolve callback
+     * Contructor function.
      *
-     * @return callback executes callback from request
+     * @param array $config application config
      */
-    public function execute()
+    public function __construct(array $config)
     {
-        return $this->router->run();
+        self::$app = $this;
+        self::$path = $config['path'];
     }
 }

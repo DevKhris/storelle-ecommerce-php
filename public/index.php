@@ -4,28 +4,27 @@
  *	Front Controller
  *-------------------------------
  **/
+require __DIR__ . '/../vendor/autoload.php';
 
-use App\Application;
-use DebugBar\StandardDebugBar;
+use Whoops\Run;
+use Bramus\Router\Router;
+use Whoops\Handler\PrettyPageHandler;
 
-// start new session
-session_start();
+$whoops = new Run;
+$whoops->writeToOutput(true);
+$whoops->pushHandler(new PrettyPageHandler);
+$whoops->register();
 
-// require the psr-4 autoloader
-require_once '../vendor/autoload.php';
-// require config
-require_once '../src/Core/config.php';
+$container = require __DIR__ . '/../src/bootstrap.php';
+$router = new Router();
 
-//if no session exist set auth to false
 if (!isset($_SESSION['auth'])) {
     $_SESSION['auth'] = false;
 }
 
-// create new app instance
-$app = new Application(BASE_PATH);
-
 // require routes
-require_once BASE_PATH . '/routes/web.php';
-require_once BASE_PATH . '/routes/auth.php';
+require_once __DIR__ . '/../routes/api.php';
+require_once __DIR__ . '/../routes/web.php';
+require_once __DIR__ . '/../routes/auth.php';
 
-$app->execute();
+$router->run();

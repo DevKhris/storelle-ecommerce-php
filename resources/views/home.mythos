@@ -1,0 +1,37 @@
+<div class="row d-block">
+    <div class="featured img-fluid w-full">
+        <h1 class="title">Welcome to our Shop</h1>
+        <p class="subtitle">Your favorite products at the distance of one click</p>
+        <a class="btn btn-primary" href="products">
+            <i class="fa fa-shopping-car">
+            </i>
+            View Products
+        </a>
+    </div>
+</div>
+<section>
+    <h2 class="h2 text-center my-5 pb-5">Recently Added Products</h2>
+    <div class="row justify-content-md-center mt-5 mb-5 mx-auto align-items-center" id="products">
+        <?php if (is_array($products))
+            foreach ($products as $product) { ?>
+            <div class="col-sm-3">
+                <div class="card-deck">
+                    <a class="text-decoration-none product-link font-weight-bold" href="product">
+                        <div class="card shadow-sm shadow-lg product text-center my-2">
+                                <img src="<?= $product->getImageUrl() ?>" class="card-img-top align-self-center img-fluid" width=360 height=240 alt="<?= $product->getName() ?>">
+                                <div class="card-body">
+                                    <h3 class="card-title"><?= $product->getName() ?></h3>
+                                    <span class="card-text"><?= $product->getprice() ?></span>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="product/<?php echo $product->getId() ?>" class="btn btn-product">
+                                        <i class="fas fa-shopping-cart"></i> View Product
+                                    </a>
+                                </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+</section>

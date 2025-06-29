@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Core\Controller;
 use App\Core\User;
+use App\Controllers\Controller;
 use App\Models\Cart\ShoppingCart;
 
 /**

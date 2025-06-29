@@ -21,7 +21,6 @@ class Auth
     public function __construct()
     {
         $this->db = new Database;
-        return $this;
     }
 
     /**

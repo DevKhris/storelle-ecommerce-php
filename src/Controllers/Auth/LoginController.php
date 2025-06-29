@@ -3,18 +3,15 @@
 namespace App\Controllers\Auth;
 
 use App\Core\Auth;
-use App\Core\Controller;
+use App\Controllers\Controller;
 
 class LoginController extends Controller
 {
     /**
-     * Index
-     *
-     * @return view
+     * Show login view.
      */
     public function index()
     {
-        // renders the login view and returns it
         $this->view('auth.login');
     }
 
