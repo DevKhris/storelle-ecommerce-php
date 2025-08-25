@@ -12,8 +12,7 @@
     "psr-4": {
       "App\\": "./src/",
       "App\\Controllers\\": "./src/Controllers",
-      "App\\Middlewares\\": "./src/Middlewares",
-      "App\\Config\\": "./config/"
+      "App\\Middlewares\\": "./src/Middlewares"
     }
   },
   "require": {
@@ -25,6 +24,8 @@
     "filp/whoops": "^2.18",
     "nyholm/psr7": "^1.8",
     "nyholm/psr7-server": "^1.1",
-    "devkhris/mythos": "dev-main"
+    "devkhris/mythos": "dev-main",
+    "aura/session": "^4.0",
+    "phpdevcommunity/php-dotenv": "^3.0"
   }
 }

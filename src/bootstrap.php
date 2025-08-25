@@ -2,24 +2,34 @@
 <?php
 
 use App\Application;
+use App\Core\ConfigManager;
 use Mythos\Engine\View;
 use DI\ContainerBuilder;
 use Doctrine\ORM\EntityManager;
 use Doctrine\DBAL\DriverManager;
 use Nyholm\Psr7\Factory\Psr17Factory;
+use PhpDevCommunity\DotEnv;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Nyholm\Psr7Server\ServerRequestCreator;
 
-$databaseConfig = require_once __DIR__ . '/../src/Config/database.php';
-$applicationConfig = require_once __DIR__ . '/../src/Config/app.php';
+$envPath =__DIR__ . '/../.env';
+
+(new DotEnv($envPath))->load();
+
+$configManager = new ConfigManager(__DIR__ . '/../src/Config/*.php');
+
+$databaseConfig = $configManager->get('database');
+$applicationConfig = $configManager->get('app');
 
 $connection = DriverManager::getConnection([
-    'driver' => 'pdo_sqlite',
-    'path' => __DIR__ . '/db.sqlite',
-], $databaseConfig['database']);
+    'driver' => $databaseConfig['driver'][getEnv('DATABASE_DRIVER')]['driver'],
+    'user' => $databaseConfig['driver'][getEnv('DATABASE_DRIVER')]['user'],
+    'password' => $databaseConfig['driver'][getEnv('DATABASE_DRIVER')]['password'],
+    'dbname' => $databaseConfig['driver'][getEnv('DATABASE_DRIVER')]['dbname'],
+], $databaseConfig['orm']);
 
-$entityManager = new EntityManager($connection, $databaseConfig['database']);
+$entityManager = new EntityManager($connection, $databaseConfig['orm']);
 
 $containerBuilder = new ContainerBuilder();
 $containerBuilder->addDefinitions([

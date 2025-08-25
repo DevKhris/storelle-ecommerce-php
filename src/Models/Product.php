@@ -28,11 +28,11 @@ class Product extends Entity
     #[ORM\Column(type: 'string')]
     protected string $image_url;
 
-    // #[ORM\Column(type: 'datetime')]
-    // private $created_at;
+    #[ORM\Column(type: 'datetime')]
+    private $created_at;
 
-    // #[ORM\Column(type: 'datetime')]
-    // private $updated_at;
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private $updated_at;
 
     /**
      * Get the value of id

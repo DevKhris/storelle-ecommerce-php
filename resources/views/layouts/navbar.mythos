@@ -20,7 +20,7 @@
                     <p class="text-warning"> | </p>
                 </div>
                 <li class="nav-item">
-                    <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/products' ? 'active' : '' ?>" href="products"
+                    <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/products' ? 'active' : '' ?>" href="/products"
                         title="Products">
                         <i class="fa fa-shopping-bag"></i>
                         Products
@@ -30,7 +30,7 @@
                     <p class="text-warning"> | </p>
                 </div>
                 <li class="nav-item">
-                    <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/about' ? 'active' : '' ?>" href="about"
+                    <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/about' ? 'active' : '' ?>" href="/about"
                         title="About">
                         <i class="fa fa-info-circle"></i>
                         About Us
@@ -40,7 +40,7 @@
                     <p class="text-warning"> | </p>
                 </div>
                 <li class="nav-item">
-                    <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/contact' ? 'active' : '' ?>" href="contact"
+                    <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/contact' ? 'active' : '' ?>" href="/contact"
                         title="Contact">
                         <i class="fa fa-address-card"></i>
                         Contact
