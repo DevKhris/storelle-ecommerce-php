@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @var $container ContainerBuilder
+ */
 $router->get('/', function () use ($container) {
     $controller = $container->get(App\Controllers\HomeController::class);
     $controller->index($container->get('App\Services\ProductService'));

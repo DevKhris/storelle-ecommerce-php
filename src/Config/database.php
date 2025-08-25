@@ -13,6 +13,7 @@ return [
             'driver' => 'pdo_sqlite',
             'path' => __DIR__ . '/db.sqlite',
         ],
+        
         'mysql' => [
             'driver' => 'pdo_mysql',
             'dbname' => getenv('DATABASE_NAME'),

@@ -3,6 +3,7 @@
 
 use App\Application;
 use App\Core\ConfigManager;
+use Aura\Session\SessionFactory;
 use Mythos\Engine\View;
 use DI\ContainerBuilder;
 use Doctrine\ORM\EntityManager;
@@ -17,6 +18,7 @@ $envPath =__DIR__ . '/../.env';
 
 (new DotEnv($envPath))->load();
 
+$sessionManager = (new SessionFactory)->newInstance($_COOKIE);
 $configManager = new ConfigManager(__DIR__ . '/../src/Config/*.php');
 
 $databaseConfig = $configManager->get('database');
@@ -34,6 +36,10 @@ $entityManager = new EntityManager($connection, $databaseConfig['orm']);
 $containerBuilder = new ContainerBuilder();
 $containerBuilder->addDefinitions([
     Application::class => new Application($applicationConfig),
+
+    ConfigManager::class => $configManager,
+    EntityManager::class => $entityManager,
+    SessionFactory::class => $sessionManager,
 
     // Core
     RequestInterface::class => function () {
@@ -53,8 +59,6 @@ $containerBuilder->addDefinitions([
     View::class => new View([
         'path' => realpath(__DIR__ . '/../resources/views/')
     ], '.mythos'),
-
-    EntityManager::class => $entityManager,
 
     // Services
     App\Services\ProductService::class => new App\Services\ProductService($entityManager),
