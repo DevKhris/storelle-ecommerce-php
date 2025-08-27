@@ -12,11 +12,12 @@ namespace App\Controllers\Auth;
 
 use App\Core\Auth;
 use App\Controllers\Controller;
+use App\Services\AuthService;
+use Doctrine\ORM\EntityManager;
+use Psr\Http\Message\ServerRequestInterface;
 
 class RegisterController extends Controller
 {
-    public $auth;
-
     /**
      * Index function
 
@@ -28,12 +29,14 @@ class RegisterController extends Controller
 
     /**
      * User register
-     *
-     * @return 
      */
-    public function register()
+    public function register(AuthService $authService, ServerRequestInterface $request): void
     {
-        $auth = new Auth;
-        $auth->register($_POST['username'], $_POST['password']);
+        $data = $request->getParsedBody();
+        $result = $authService->register($data);
+        die();
+        if ($result) {
+            header('location: \\');
+        }
     }
 }

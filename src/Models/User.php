@@ -5,8 +5,8 @@ namespace App\Models;
 use App\Models\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
-// #[ORM\Entity]
-// #[ORM\Table('users')]
+#[ORM\Entity]
+#[ORM\Table('users')]
 class User extends Entity
 {
     #[ORM\Id]
@@ -84,5 +84,21 @@ class User extends Entity
     public function setEmail($email): void
     {
         $this->email = $email;
+    }
+
+    /**
+     * Get the value of created_at.
+     */ 
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * Set the value of created_at.
+     */ 
+    public function setCreatedAt($created_at): void
+    {
+        $this->created_at = $created_at;
     }
 }

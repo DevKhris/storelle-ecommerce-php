@@ -28,27 +28,4 @@ class DashboardController extends Controller
         // return response
         echo $res;
     }
-
-    /**
-     * [callback for handling logout]
-     *
-     * @return void
-     */
-    public function logout()
-    {
-        // set logged to false
-        $_SESSION['auth'] = false;
-
-        // if the session is destroyed returns to login and ends
-        if (\session_destroy()) {
-            header('Location: \login');
-            die;
-        }
-        // unsets the session
-        \session_unset();
-        // aborts session
-        \session_abort();
-        // returns to login
-        header('Location: \login');
-    }
 }

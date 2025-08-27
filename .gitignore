@@ -1,3 +1,5 @@
 /vendor
 .env
 /node_modules
+db.sql
+db_dump.sql

@@ -2,12 +2,21 @@
 
 namespace App\Middlewares;
 
+use Aura\Session\Session;
+
 class IsAuthenticated
 {
-    public function run(SessionFactory $sessionFactory)
+    private $sessionManager;
+
+    public function __construct(Session $sessionManager)
     {
-        $segment = $sessionFactory->getSement('auth');
-        if (!$segment->get('is_valid')) {
+        $this->sessionManager = $sessionManager;
+    }
+
+    public function run()
+    {
+        $segment = $this->sessionManager->getSegment('auth');
+        if (! $segment->get('is_valid')) {
             header("HTTP/1.1 401 Unathorized");
             header("Location: /login");
         } else {

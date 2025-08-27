@@ -26,6 +26,7 @@
     "nyholm/psr7-server": "^1.1",
     "devkhris/mythos": "dev-main",
     "aura/session": "^4.0",
-    "phpdevcommunity/php-dotenv": "^3.0"
+    "phpdevcommunity/php-dotenv": "^3.0",
+    "nesbot/carbon": "^3.10"
   }
 }

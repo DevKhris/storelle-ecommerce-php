@@ -4,18 +4,30 @@
 // $router->before('GET|POST', '/login', '\App\Middlewares\HasSession@run');
 // $router->before('GET|POST', '/register', '\App\Middlewares\HasSession@run');
 
-// // Routes login to view
+/**
+ * Auth Routes
+ */
 $router->get('/login', function () use ($container) {
     $controller = $container->get(App\Controllers\Auth\LoginController::class);
     $controller->index();
 });
 $router->post('/login', function () use ($container) {
     $controller = $container->get(App\Controllers\Auth\LoginController::class);
-    $controller->login();
+    $controller->login($container->get(App\Services\AuthService::class), $container->get('Psr\Http\Message\RequestInterface'));
 });
-// // Routes register to view
-// $router->get('/register', '\App\Controllers\Auth\RegisterController@index');
-// $router->post('/register', '\App\Controllers\Auth\RegisterController@register');
+$router->get('/register', function () use ($container) {
+    $controller = $container->get(App\Controllers\Auth\RegisterController::class);
+    $controller->index();
+});
+$router->post('/register', function () use ($container) {
+    $controller = $container->get(App\Controllers\Auth\RegisterController::class);
+    $controller->register($container->get('App\Services\AuthService'), $container->get('Psr\Http\Message\RequestInterface'));
+});
+
+$router->post('/logout', function() use ($container) {
+    $controller = $container->get(App\Controllers\Auth\LoginController::class);
+    $controller->logout($container->get('App\Services\AuthService'));
+});
 
 // // Middlewares
 // $router->before('GET|POST', '/product/.*', '\App\Middlewares\IsUserAuth@run');
@@ -46,4 +58,3 @@ $router->post('/login', function () use ($container) {
 // // Sets controller for dashboard callback functions
 // $router->get('/dashboard', '\App\Controllers\Dashboard\DashboardController@index');
 // $router->post('/dashboard', '\App\Controllers\Dashboard\DashboardController@show');
-// $router->post('/logout', '\App\Controllers\Dashboard\DashboardController@logout');

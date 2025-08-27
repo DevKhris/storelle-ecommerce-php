@@ -10,32 +10,8 @@
 
 namespace App\Core;
 
-use App\Alerts\Alerts;
-use App\Core\Database;
-use App\Interfaces\UserInterface;
-
 final class User implements UserInterface
 {
-    public $username;
-    public $balance;
-    private Database $db;
-
-    public function __construct($username, $balance)
-    {
-        $this->db = new Database;
-        $this->username = $username;
-        $this->balance = $balance;
-    }
-
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    public function setUsername($username)
-    {
-        $this->username = $username;
-    }
     /**
      * Set Balance function
      *

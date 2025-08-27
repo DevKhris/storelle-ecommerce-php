@@ -4,6 +4,9 @@ namespace App\Controllers\Auth;
 
 use App\Core\Auth;
 use App\Controllers\Controller;
+use App\Services\AuthService;
+use Psr\Http\Message\ServerRequestInterface;
+
 
 class LoginController extends Controller
 {
@@ -16,13 +19,27 @@ class LoginController extends Controller
     }
 
     /**
-     * handler for validate user session
-     *
-     * @return void
+     * handler for validate user session.
      */
-    public function login()
+    public function login(AuthService $authService, ServerRequestInterface $request)
     {
-        $auth = new Auth;
-        return $auth->validate($_POST['username'], $_POST['password']);
+        $data = $request->getParsedBody();
+        $isLogged = $authService->validate($data);
+
+        if ($isLogged) {
+            header('location: \dashboard');
+            exit;
+        };
+
+        header('location: \login'); 
+    }
+
+     /**
+     * handling logout.
+     */
+    public function logout(AuthService $authService)
+    {
+        $authService->logout();
+        header('Location: \login');
     }
 }

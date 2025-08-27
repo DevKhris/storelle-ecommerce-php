@@ -3,6 +3,7 @@
 
 use App\Application;
 use App\Core\ConfigManager;
+use Aura\Session\Session;
 use Aura\Session\SessionFactory;
 use Mythos\Engine\View;
 use DI\ContainerBuilder;
@@ -39,7 +40,7 @@ $containerBuilder->addDefinitions([
 
     ConfigManager::class => $configManager,
     EntityManager::class => $entityManager,
-    SessionFactory::class => $sessionManager,
+    Session::class => $sessionManager,
 
     // Core
     RequestInterface::class => function () {
@@ -70,6 +71,10 @@ $containerBuilder->addDefinitions([
     App\Controllers\AboutController::class => \DI\autowire(),
     App\Controllers\ContactController::class => \DI\autowire(),
     App\Controllers\Auth\LoginController::class => \DI\autowire(),
+    App\Controllers\Auth\RegisterController::class => \DI\autowire(),
+
+    // Services
+    App\Services\AuthService::class => \DI\autowire(),
 ]);
 
 return $containerBuilder->build();

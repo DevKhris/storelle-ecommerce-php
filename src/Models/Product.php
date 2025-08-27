@@ -33,7 +33,10 @@ class Product extends Entity
 
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $updated_at;
-
+    
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private $deleted_at;
+    
     /**
      * Get the value of id
      */ 
