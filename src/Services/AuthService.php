@@ -27,7 +27,7 @@ class AuthService
                 {
                     echo 'Warning: Please fill both fields';
                 }
-
+                
                 $segment = $this->sessionManager->getSegment('auth');
                 $user = $this->userRepository->findOneBy(['email' => $data['email']]);
 
@@ -36,6 +36,7 @@ class AuthService
                         $segment->set('isValid', (bool) AuthEnum::VALID);
                         $segment->set('username', $user->getUsername());
 
+                        $this->sessionManager->commit();
                         return true;
                     }
                 } else {

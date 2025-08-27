@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use App\Services\ProductService;
+use App\Services\ReviewService;
 
 class ProductController extends Controller
 {    
@@ -23,9 +24,9 @@ class ProductController extends Controller
     public function show(ProductService $productService, int $id)
     {
         $product = $productService->findById($id);
-        // $reviews = new Review();
-        // $reviews = $reviews->get($id, false);
+        $reviews = $product->getReviews();
+        $productRating = $productService->getAverageRating($product);
 
-        $this->view('products.show', compact('product'));
+        $this->view('products.show', compact('product', 'reviews', 'productRating'));
     }
 }

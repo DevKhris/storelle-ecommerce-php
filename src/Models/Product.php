@@ -3,7 +3,13 @@
 namespace App\Models;
 
 use App\Models\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\InverseJoinColumn;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity]
@@ -36,7 +42,22 @@ class Product extends Entity
     
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $deleted_at;
-    
+
+    /**
+     * Many products have many reviews.
+     * @var Collection<int, Review>
+     */
+    #[JoinTable(name: 'products_reviews')]
+    #[JoinColumn(name: 'product_id', referencedColumnName: 'id')]
+    #[InverseJoinColumn(name: 'review_id', referencedColumnName: 'id')]
+    #[ManyToMany(targetEntity: 'Review')]
+    protected Collection $reviews;
+
+    public function __construct()
+    {
+        $this->reviews = new ArrayCollection();
+    }
+
     /**
      * Get the value of id
      */ 
@@ -83,36 +104,11 @@ class Product extends Entity
         return $this->image_url;
     }
 
-    // /**
-    //  * [get's product from database by id]
-    //  *
-    //  * @param int $productId product id to get
-    //  *
-    //  * @return json
-    //  */
-    // public function get($productId, $json = true)
-    // {
-    //     // fetch products from db
-    //     $product = $this->db->select('products', "id=$productId");
-
-    //     // get average rating from product
-    //     $average = $this->db->average('rating', 't_rating', 'reviews', 't_reviews', "productId = $productId");
-
-    //     // round value from array and convert to int
-    //     $rating = floor($average[0]['t_rating']);
-    //     // go towards every row from result
-
-    //     // put values to array
-    //     $product = array_replace($product[0], array('rating' => $rating));
-
-    //     if ($json) {
-    //         // encode product array to json
-    //         $json = json_encode($product);
-    //         // Returns the product json
-    //         return $json;
-    //     }
-
-    //     $result = $product;
-    //     return $result;
-    // }
+    /**
+     * Get the value of reviews
+     */ 
+    public function getReviews()
+    {
+        return $this->reviews;
+    }
 }

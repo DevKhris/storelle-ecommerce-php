@@ -4,13 +4,12 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\StreamInterface;
 
 class ContactController extends Controller
 {
     /**
-     * Index resource 
-     *
-     * @return View render view
+     * Index resource .
      */
     public function index()
     {
@@ -23,7 +22,7 @@ class ContactController extends Controller
      *
      * @return array $body 
      */
-    public function create(RequestInterface $request)
+    public function create(RequestInterface $request): StreamInterface
     {
         $body = $request->getBody();
         return $body;

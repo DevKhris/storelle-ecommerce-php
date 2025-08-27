@@ -20,6 +20,7 @@ $envPath =__DIR__ . '/../.env';
 (new DotEnv($envPath))->load();
 
 $sessionManager = (new SessionFactory)->newInstance($_COOKIE);
+$sessionManager->start();
 $configManager = new ConfigManager(__DIR__ . '/../src/Config/*.php');
 
 $databaseConfig = $configManager->get('database');
@@ -61,9 +62,6 @@ $containerBuilder->addDefinitions([
         'path' => realpath(__DIR__ . '/../resources/views/')
     ], '.mythos'),
 
-    // Services
-    App\Services\ProductService::class => new App\Services\ProductService($entityManager),
-
     // Controllers
     App\Controllers\HomeController::class => \DI\autowire(),
     App\Controllers\ProductController::class => \DI\autowire(),
@@ -75,6 +73,8 @@ $containerBuilder->addDefinitions([
 
     // Services
     App\Services\AuthService::class => \DI\autowire(),
+    App\Services\ProductService::class => \DI\autowire(),
+    App\Services\ReviewService::class => \DI\autowire(),
 ]);
 
 return $containerBuilder->build();

@@ -24,7 +24,7 @@ class DashboardController extends Controller
     public function show()
     {
         // get balance from current user in session and store
-        $res = $_SESSION['balance'];
+        $res = 0;
         // return response
         echo $res;
     }

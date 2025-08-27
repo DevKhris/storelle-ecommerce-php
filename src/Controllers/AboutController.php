@@ -10,13 +10,10 @@ use App\Controllers\Controller;
 class AboutController extends Controller
 {
     /**
-     * Index function
-     *
-     * @return view render view
+     * Index function.
      */
     public function index()
     {
-        // render view from router for about
         return $this->view('about');
     }
 }

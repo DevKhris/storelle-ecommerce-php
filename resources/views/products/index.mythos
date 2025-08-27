@@ -7,15 +7,15 @@
             foreach ($products as $product) { ?>
             <div class="col-sm-3">
                 <div class="card-deck">
-                    <a class="text-decoration-none product-link font-weight-bold" href="product">
+                    <a class="text-decoration-none product-link font-weight-bold" href="product/<?= $this->escape($product->getId()) ?>">
                         <div class="card shadow-sm shadow-lg product text-center my-2">
-                                <img src="<?= $product->getImageUrl() ?>" class="card-img-top align-self-center img-fluid" width=360 height=240 alt="<?= $product->getName() ?>">
+                                <img src="<?= $this->escape($product->getImageUrl()) ?>" class="card-img-top align-self-center img-fluid" width=360 height=240 alt="<?= $product->getName() ?>">
                                 <div class="card-body">
-                                    <h3 class="card-title"><?= $product->getName() ?></h3>
-                                    <span class="card-text"><?= $product->getprice() ?></span>
+                                    <h3 class="card-title"><?= $this->escape($product->getName()) ?></h3>
+                                    <span class="card-text"><?= $this->escape($product->getprice())  ?></span>
                                 </div>
                                 <div class="card-footer">
-                                    <a href="product/<?php echo $product->getId() ?>" class="btn btn-product">
+                                    <a href="product/<?= $this->escape($product->getId()) ?>" class="btn btn-product">
                                         <i class="fas fa-shopping-cart"></i> View Product
                                     </a>
                                 </div>

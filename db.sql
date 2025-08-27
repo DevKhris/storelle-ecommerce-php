@@ -7,22 +7,6 @@
 CREATE DATABASE IF NOT EXISTS `storelle` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `storelle`;
 
-CREATE TABLE IF NOT EXISTS `products` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL DEFAULT '0',
-  `price` double(18, 2) NOT NULL DEFAULT '0.0',
-  `image_url` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` (`id`, `name`, `price`, `image_url`) VALUES
-	(1, 'Apple', 0.3, 'images/products/apple-min.jpg'),
-	(2, 'Beer', 2.2,'images/products/beer-min.png'),
-	(3, 'Water', 1.5,'images/products/waterbottle-min.png'),
-	(4, 'Cheese', 3.74, 'images/products/cheese-min.png');
-/*!40000 ALTER TABLE `products` ENABLE KEYS */;
-
 CREATE TABLE IF NOT EXISTS `reviews` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `productId` int(11) NOT NULL,

@@ -4,9 +4,8 @@
  *	Front Controller
  *-------------------------------
  **/
-require __DIR__ . '/../vendor/autoload.php';
 
-session_start();
+require __DIR__ . '/../vendor/autoload.php';
 
 use Whoops\Run;
 use Bramus\Router\Router;

@@ -29,23 +29,10 @@ $router->post('/logout', function() use ($container) {
     $controller->logout($container->get('App\Services\AuthService'));
 });
 
-// // Middlewares
-// $router->before('GET|POST', '/product/.*', '\App\Middlewares\IsUserAuth@run');
-
 // $router->before('GET|POST', '/shopping-cart', '\App\Middlewares\IsUserAuth@run');
 
 // $router->before('GET|POST', '/shopping-cart/*', '\App\Middlewares\IsUserAuth@run');
 
-// $router->before('GET|POST', '/dashboard', '\App\Middlewares\IsUserAuth@run');
-
-// $router->before('GET|POST', '/dashboard/.*', '\App\Middlewares\IsUserAuth@run');
-
-// // Routes product to view
-
-// $router->post('/product/{id}', '\App\Controllers\ProductController@show');
-
-// // Sets controller for review posting callback
-// $router->post('/reviews/{id}', '\App\Controllers\ReviewsController@store');
 
 // // Routes shopping cart to view
 // $router->get('/shopping-cart', '\App\Controllers\ShoppingCartController@index');
@@ -56,5 +43,3 @@ $router->post('/logout', function() use ($container) {
 // $router->post('/checkout', '\App\Controllers\ShoppingCartController@checkout');
 
 // // Sets controller for dashboard callback functions
-// $router->get('/dashboard', '\App\Controllers\Dashboard\DashboardController@index');
-// $router->post('/dashboard', '\App\Controllers\Dashboard\DashboardController@show');

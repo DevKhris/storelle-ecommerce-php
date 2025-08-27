@@ -45,12 +45,13 @@ $(function () {
 
   $("#review-form").submit(function (e) {
     e.preventDefault();
+
     const reviewData = {
-      id: $("#productId").val(),
-      feedback: $("#reviewContent").val(),
+      productId: $("#productValue").val(),
+      content: $("#reviewContent").val(),
       rating: $("#reviewRating").val(),
     };
-    // encode data to json
+
     postReview(reviewData);
     $("#review-form").trigger("reset");
   });
@@ -144,13 +145,10 @@ function removeProduct(id) {
  * @return string           alert
  */
 function postReview(reviewData) {
-  data = JSON.stringify(reviewData);
   $.ajax({
-    url: "/reviews/" + reviewData.id,
+    url: "/reviews/",
     type: "POST",
-    data: {
-      review: data,
-    },
+    data: reviewData,
     success: function (res) {
       console.log(res);
       $("#review-alerts").html(res);

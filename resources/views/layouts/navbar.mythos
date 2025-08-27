@@ -50,7 +50,7 @@
 
             <div class="dropdown" id="topbarNavDropdown">
                 <ul class="navbar-nav ml-auto">
-                    <?php if (isset($_SESSION['auth'])&& $_SESSION['auth']['isValid'] === true) {?>
+                    <?php if (isset($_SESSION['auth']) && (isset($_SESSION['auth']['isValid']) && $_SESSION['auth']['isValid'] === true)) { ?>
                     <li class="nav-item">
                         <a class="nav-link <?= $_SERVER['REQUEST_URI'] == '/shopping-cart' ? 'active' : '' ?>"
                             href="/shopping-cart">
@@ -63,23 +63,21 @@
                             href="#" id="topbarNavDropdown" role="button" data-toggle="dropdown"
                             aria-expanded="false">
                             <i class="fa fa-user"></i>
-                            <?php if (isset($_SESSION['auth']['isValid'])) {
-                                    $data = [
-                                        $_SESSION['auth']['username'],
-                                        "<i class='fa fa-dollar'></i>",
+                            <?php
+                                $data = [
+                                    $_SESSION['auth']['username'],
+                                    "<i class='fa fa-dollar'></i>",
                                         0
-                                    ];
-                                    echo $data[0] . ' (' . $data[1] . $data[2] . ')';
-                                } else {
-                                    echo 'Guest';
-                                }
-                                ?>
+                                ];
+                                
+                                echo $data[0] . ' (' . $data[1] . $data[2] . ')';
+                            ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="topbarNavDropdown">
                             <li class="dropdown-item">
-                                <a class="dropdown-item" href="<?= !$_SESSION['auth'] ? 'login' : 'dashboard' ?>">
-                                    <i class=" <?= !$_SESSION['auth'] ? 'fa fa-sign-in' : 'fa fa-dashboard' ?>"></i>
-                                    <?= !$_SESSION['auth'] ? 'Login' : 'Dashboard' ?>
+                                <a class="dropdown-item" href="dashboard">
+                                    <i class="fa fa-dashboard"></i>
+                                    Dashboard
                                 </a>
                             </li>
                             <?php if ($_SESSION['auth']) { ?>

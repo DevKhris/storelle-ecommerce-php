@@ -6,21 +6,22 @@ use Aura\Session\Session;
 
 class IsAuthenticated
 {
-    private $sessionManager;
+    private Session $sessionManager;
 
     public function __construct(Session $sessionManager)
     {
         $this->sessionManager = $sessionManager;
     }
 
-    public function run()
+    public function handle()
     {
         $segment = $this->sessionManager->getSegment('auth');
-        if (! $segment->get('is_valid')) {
+        $isValid = $segment->get('isValid', false);
+
+        if (! $isValid) {
             header("HTTP/1.1 401 Unathorized");
-            header("Location: /login");
-        } else {
-            exit(1);
-        }
+            header("location: /login");
+            exit;
+        } 
     }
 }

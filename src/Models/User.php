@@ -3,7 +3,13 @@
 namespace App\Models;
 
 use App\Models\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\InverseJoinColumn;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
 
 #[ORM\Entity]
 #[ORM\Table('users')]
@@ -31,6 +37,22 @@ class User extends Entity
 
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $deleted_at;
+
+    /**
+     * Many users have many reviews.
+     * @var Collection<int, Review>
+     */
+    #[ManyToMany(targetEntity: 'Review', inversedBy: 'users')]
+    #[JoinTable(name: 'users_reviews')]
+    #[JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+    #[InverseJoinColumn(name: 'review_id', referencedColumnName: 'id')]
+
+    protected Collection $reviews;
+
+    public function __construct()
+    {
+        $this->reviews = new ArrayCollection();
+    }
 
     /**
      * Get the value of username
@@ -100,5 +122,13 @@ class User extends Entity
     public function setCreatedAt($created_at): void
     {
         $this->created_at = $created_at;
+    }
+
+    /**
+     * Get the value of reviews
+     */ 
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
     }
 }

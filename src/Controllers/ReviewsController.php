@@ -2,8 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Models\Reviews\Review;
 use App\Controllers\Controller;
+use App\Services\ReviewService;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  *
@@ -15,22 +16,9 @@ class ReviewsController extends Controller
      *
      * @return void
      */
-    public function store($id)
+    public function store(ReviewService $reviewService, ServerRequestInterface $request)
     {
-        if (!isset($_REQUEST['review'])) {
-            throw new \PDOException('Can\'t find request');
-        }
-
-        // decode json from request
-        $data = json_decode($_REQUEST['review'], true);
-
-        // assign vars values
-        $id = $data['id'];
-        $username = $_SESSION['username'];
-        $feedback = $data['feedback'];
-        $rating = $data['rating'];
-        // add review to db call
-        $review = new Review();
-        $review->add($id, $username, $feedback, $rating);
+        $data = $request->getParsedBody();
+        $review = $reviewService->store($data);
     }
 }

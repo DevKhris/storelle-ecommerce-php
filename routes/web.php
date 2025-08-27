@@ -1,7 +1,12 @@
 <?php
 
+ $router->set404(function () use ($container) {
+    header('HTTP/1.1 404 Not Found');
+    $container->get(Mythos\Engine\View::class)->view('partials.404');
+});
+
 /**
- * @var $container ContainerBuilder
+ * Main routes
  */
 $router->get('/', function () use ($container) {
     $controller = $container->get(App\Controllers\HomeController::class);
@@ -33,7 +38,22 @@ $router->post('/contact', function () use ($container) {
     $controller->create();
 });
 
-$router->set404(function () use ($container) {
-    header('HTTP/1.1 404 Not Found');
-    $container->get(Mythos\Engine\View::class)->view('partials.404');
+/**
+ * User routes.
+ */
+$router->before('GET|POST', '/dashboard/', function() use ($container) {
+    $middleware = $container->get(\App\Middlewares\IsAuthenticated::class);
+    $middleware->handle();
 });
+
+$router->get('/dashboard', function() use ($container) {
+    $controller = $container->get(App\Controllers\Dashboard\DashboardController::class);
+    $controller->index();
+});
+
+$router->post('/reviews', function() use ($container) {
+    $controller = $container->get(App\Controllers\ReviewsController::class);
+    $controller->store($container->get('App\Services\ReviewService'), $container->get('Psr\Http\Message\RequestInterface'));
+});
+// $router->post('/dashboard', '\App\Controllers\Dashboard\DashboardController@show');
+
